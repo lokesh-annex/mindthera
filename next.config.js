@@ -7,4 +7,9 @@ const nextConfig = {
   images: { unoptimized: true },
 };
 
-module.exports = nextConfig;
+module.exports = {
+  swcMinify: false,
+  experimental: {
+    optimizeCss: false,
+  },
+};
