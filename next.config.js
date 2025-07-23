@@ -4,12 +4,13 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: { unoptimized: true },
-};
-
-module.exports = {
+  images: {
+    unoptimized: true,
+  },
   swcMinify: false,
   experimental: {
-    optimizeCss: false,
+    optimizeCss: false,  // <-- THIS IS CRITICAL
   },
 };
+
+module.exports = nextConfig;
