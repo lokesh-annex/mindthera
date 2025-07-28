@@ -64,7 +64,7 @@ const LatestArticles = () => {
                 </div>
                 <div>
                   <small className="text-uppercase text-muted d-block mb-1">KRISHNA • Apr 24, 2022</small>
-                  <h2 className="fw-bold mb-0 ">{item.title}</h2>
+                  <h3 className="fw-bold mb-0 ">{item.title}</h3>
                 </div>
               </div>
             ))}
