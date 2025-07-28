@@ -3,7 +3,7 @@
 :root {
     --title-font: "Jost", Helvetica, Arial, sans-serif;
     --body-font: "Jost", Helvetica, Arial, sans-serif;
-    --alt-font: "Allison";
+    --alt-font: 'Allison', cursive;
     --body-font-size: 16px;
     --title-font-weight: 500;
     --title-font-color: #202020;
@@ -89,6 +89,9 @@ body.boxed {
 }
 body .owl-stage .owl-item {
     margin-bottom: 15px;
+}
+.alt-font{
+  font-family: var(--alt-font);
 }
 #wrapper {
     position: relative;
