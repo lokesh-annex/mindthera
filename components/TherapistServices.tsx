@@ -5,6 +5,11 @@ const TherapistServices = () => {
   return (
     <section className="relative overflow-hidden pb60">
       <img
+        src="/images/bg-2-copyright.png"
+        className="w-20 absolute top-20 start-0 sw-anim"
+        alt=""
+      />
+         <img
         src="/images/misc/flowers-crop-2.webp"
         className="w-30 absolute top-0 start-0 sw-anim"
         alt=""
@@ -12,7 +17,7 @@ const TherapistServices = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-6 offset-lg-3 text-center">
-            <div className="subtitle  mb-3">Our Services</div>
+            <div className="subtitle mb-3">Our Services</div>
             <h2 className="" data-wow-delay=".2s">
               Therapist &amp; <span className="alt-font fw-500 fs-64 id-color-2">Treatments</span>
             </h2>
@@ -54,7 +59,7 @@ const TherapistServices = () => {
           ].map((service, i) => (
             <div key={i} className="col-lg-4 col-sm-6">
               <div className="relative mb-3">
-                <a href="service-single.html" className="d-block hover mb-3">
+                <a href="" className="d-block hover mb-3">
                   <div className="relative overflow-hidden rounded-20px shadow-soft">
                     <img
                       src="/images/misc/flowers-crop-3-white.webp"

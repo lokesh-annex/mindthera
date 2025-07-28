@@ -93,38 +93,7 @@ export default function Header() {
                       <a className="menu-item" href="index.html">
                         Home
                       </a>
-                      <ul>
-                        <li>
-                          <a className="menu-item" href="index.html">
-                            Homepage One
-                          </a>
-                        </li>
-                        <li>
-                          <a className="menu-item" href="homepage-2.html">
-                            Homepage Two
-                          </a>
-                        </li>
-                        <li>
-                          <a className="menu-item" href="homepage-3.html">
-                            Homepage Three
-                          </a>
-                        </li>
-                        <li>
-                          <a className="menu-item" href="homepage-4.html">
-                            Homepage Four
-                          </a>
-                        </li>
-                        <li>
-                          <a className="menu-item" href="homepage-5.html">
-                            Homepage Five
-                          </a>
-                        </li>
-                        <li>
-                          <a className="menu-item" href="homepage-6.html">
-                            Homepage Six
-                          </a>
-                        </li>
-                      </ul>
+                    
                     </li>
                     <li>
                       <a className="menu-item" href="#">
