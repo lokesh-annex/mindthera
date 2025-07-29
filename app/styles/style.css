@@ -1728,6 +1728,7 @@ a.btn-slider:hover {
 a.btn-main:hover,
 .btn-main:hover {
     color: #fff;
+    background: var(--primary-color);
     -webkit-box-shadow: 2px 2px 20px 0px rgba(29, 29, 31, 0.5);
     -moz-box-shadow: 2px 2px 20px 0px rgba(29, 29, 31, 0.5);
     box-shadow: 2px 2px 20px 0px rgba(29, 29, 31, 0.5);
