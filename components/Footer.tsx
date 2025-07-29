@@ -8,14 +8,14 @@ export default function Footer() {
       <footer className="bg-dark text-light py-5 mt-auto">
         <div className="container">
           <div className="row align-items-center">
-            {/* Left Side */}
+           
             <div className="col-md-4 text-center text-md-start">
               <span className="ms-md-3">
-                ThemeREX © 2025. All Rights Reserved.
+                Themename© 2025. All Rights Reserved.
               </span>
             </div>
 
-            {/* Middle */}
+         
             <div className="col-md-4 text-center my-2 my-md-0">
               <div className="d-inline-block px-3 py-1 ">
                 <img
@@ -26,7 +26,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Right Side */}
+           
             <div className="col-md-4 text-center text-md-end">
               <div className="d-inline-flex align-items-center me-md-3">
                 <div className="footer-socail-icon d-flex align-items-center justify-content-center gap-3 me-2">

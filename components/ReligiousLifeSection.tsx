@@ -54,7 +54,7 @@ const ReligiousLifeSection = () => {
               <div className="fw-bold text-secondary" style={{ fontSize: '1.1rem' }}>SUN–THU: <span className="text-dark">9 AM – 18 PM</span></div>
               <div className="fw-bold text-secondary" style={{ fontSize: '1.1rem' }}>FRI: <span className="text-dark">9 AM – 15 PM</span></div>
             </div>
-            <a className="btn btn-primary px-4 py-2 fw-bold" style={{ background: '#432c5c', border: 'none', fontSize: '1rem' }} href="about.html">
+            <a className="btn btn-main px-4 py-2 fw-bold" href="about.html">
               ABOUT US
             </a>
           </div>

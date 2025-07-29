@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const DonationSection  = () => {
   return (
-   <section style={{ background: '#fdf5fa', padding: '60px 0' }}>
+   <section style={{ background: '#f1f7f4', padding: '60px 0' }}>
       <div className="container">
         <div className="row align-items-center">
           {/* Left: Image */}
@@ -23,10 +23,10 @@ const DonationSection  = () => {
           {/* Right: Donation Form */}
           <div className="col-lg-6">
             <div className="d-flex justify-content-between align-items-center mb-2">
-              <div className="fw-bold" style={{ fontSize: '1.1rem' }}>Raised: <span style={{ color: '#432c5c' }}>$15,572</span></div>
-              <div className="fw-bold" style={{ fontSize: '1.1rem' }}>Goal: <span style={{ color: '#432c5c' }}>$12,000</span></div>
+              <div className="fw-bold" style={{ fontSize: '1.1rem' }}>Raised: <span style={{ color: '#5a9e7c' }}>$15,572</span></div>
+              <div className="fw-bold" style={{ fontSize: '1.1rem' }}>Goal: <span style={{ color: '#5a9e7c' }}>$12,000</span></div>
             </div>
-            <div style={{ height: '6px', background: '#432c5c', width: '100%', marginBottom: '24px', borderRadius: '3px' }}></div>
+            <div style={{ height: '6px', background: '#5a9e7c', width: '100%', marginBottom: '24px', borderRadius: '3px' }}></div>
             <p className="text-muted mb-4" style={{ maxWidth: '500px' }}>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod.
             </p>
@@ -48,7 +48,7 @@ const DonationSection  = () => {
                 <button type="button" className="btn btn-outline-dark px-4 py-2 fw-bold" style={{ minWidth: '100px' }}>$200</button>
                 <button type="button" className="btn btn-outline-dark px-4 py-2 fw-bold" style={{ minWidth: '160px' }}>Custom Amount</button>
               </div>
-              <button type="submit" className="btn btn-primary px-5 py-3 fw-bold" style={{ background: '#432c5c', border: 'none', fontSize: '1.1rem', letterSpacing: '1px' }}>
+              <button type="submit" className="btn-main  px-3 py-2 fw-bold">
                 DONATE NOW
               </button>
             </form>
