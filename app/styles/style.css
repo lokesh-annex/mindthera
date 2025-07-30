@@ -3286,6 +3286,9 @@ ol.ol-style-1 li::before {
 .pt90 {
     padding-top: 80px;
 }
+.pt190 {
+    padding-top: 190px;
+}
 .pb0 {
     padding-bottom: 0;
 }
@@ -8995,6 +8998,101 @@ img {
     justify-content: center;
     height: 40px;
     border-radius: 20px;
+}
+
+.testimonials-bottom-section {
+  background: #f1f7f4;
+  padding: 60px 0;
+}
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.testimonials-label {
+  display: inline-block;
+  background: #c6f3d6;
+  color: #2e7d32;
+  font-weight: 500;
+  border-radius: 20px;
+  padding: 6px 18px;
+  margin-bottom: 14px;
+  font-size: 1rem;
+}
+.testimonials-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+}
+.testimonials-cards {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.testimonial-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 40px 32px 32px 32px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.testimonial-image-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.testimonial-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.testimonial-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 12px 0 4px 0;
+  color: #222;
+}
+.testimonial-role {
+  color: #7c6f8e;
+  font-size: 1rem;
+  margin-bottom: 14px;
+  display: block;
+}
+.testimonial-text {
+  font-size: 1.08rem;
+  color: #333;
+  margin-bottom: 22px;
+  min-height: 60px;
+}
+.testimonial-btn {
+  background: #f3f3f3;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 28px;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+  margin-bottom: 10px;
+ transition: background 0.2s;
+}
+.testimonial-btn:hover {
+  background: #c6f3d6;
+}
+.testimonial-index {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  color: #7cbfa2;
+  font-size: 1.3rem;
+  font-family: 'Allison', cursive;
+  font-weight: 600;
+  opacity: 0.7;
 }
 @media (min-width: 992px) {
     .col-md-1-5 {

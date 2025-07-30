@@ -12,6 +12,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutUS from "@/components/AboutUs";
 import Header from "@/components/Header";
 import DonationSection from "@/components/DonationSection";
+import TestimonialsBottom from "@/components/TestimonialsBottom ";
 
 export default function Home() {
   return (
@@ -21,10 +22,12 @@ export default function Home() {
       <HeroSection />
       <AboutUS />
       <TestimonialSection />
-      <DonationSection />
+     
       <TherapistServices />
       <ReligiousLifeSection />
       <LatestArticles />
+      <TestimonialsBottom />
+       <DonationSection />
       <NewsletterSection />
       <Footer />
     </>

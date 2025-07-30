@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const DonationSection  = () => {
   return (
-   <section style={{ background: '#f1f7f4', padding: '60px 0' }}>
+   <section style={{ background: '#ffffff', padding: '100px 0' }}>
       <div className="container">
         <div className="row align-items-center">
           {/* Left: Image */}
