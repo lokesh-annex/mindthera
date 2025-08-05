@@ -11,7 +11,7 @@ export default function Header() {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <div className="de-flex sm-pt10">
+              <div className="de-flex sm-pt10 pt-2 pb-2">
                 {/* Logo */}
                 <div className="de-flex-col">
                   <div id="logo">
@@ -19,18 +19,11 @@ export default function Header() {
                       <img
                         className="logo-main"
                         src="/images/logo.webp"
+                        height={80}
                         alt="Main Logo"
                       />
-                      <img
-                        className="logo-scroll"
-                        src="/images/logo-black.webp"
-                        alt="Scrolled Logo"
-                      />
-                      <img
-                        className="logo-mobile"
-                        src="/images/logo.webp"
-                        alt="Mobile Logo"
-                      />
+                      
+                     
                     </a>
                   </div>
                 </div>
@@ -40,62 +33,47 @@ export default function Header() {
                   <ul id="mainmenu">
                     <li>
                       <a className="menu-item" href="index.html">
-                        Home
+                        Harmonyum
                       </a>
                     
                     </li>
                     <li>
                       <a className="menu-item" href="#">
-                        Services
+                        Angebote
                       </a>
-                      <ul>
+                      </li>
+                  
+                    
                         <li>
                           <a className="menu-item" href="services.html">
-                            Services Style 1
+                           About Me 
                           </a>
                         </li>
                         <li>
                           <a className="menu-item" href="services-2.html">
-                            Services Style 2
+                         Events
                           </a>
                         </li>
                         <li>
                           <a className="menu-item" href="services-3.html">
-                            Services Style 3
+                           Blog
                           </a>
                         </li>
                         <li>
                           <a className="menu-item" href="service-single.html">
-                            Services Single
+                           Q&A 
                           </a>
                         </li>
                         <li>
                           <a className="menu-item" href="appointment.html">
-                            Appointment
+                           Kontakt
                           </a>
                         </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a className="menu-item" href="about.html">
-                        About Us
-                      </a>
-                    </li>
-                    <li>
-                      <a className="menu-item" href="study-case.html">
-                        Study Case
-                      </a>
-                    </li>
-                    <li>
-                      <a className="menu-item" href="blog.html">
-                        Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a className="menu-item" href="contact.html">
-                        Contact
-                      </a>
-                    </li>
+                     
+                   
+                   
+                 
+                
                   </ul>
                 </div>
 

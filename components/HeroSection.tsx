@@ -1,11 +1,11 @@
-import React from 'react';
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import React from "react";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const HeroSection = () => {
   return (
@@ -22,7 +22,7 @@ const HeroSection = () => {
           <SwiperSlide>
             <div
               className="swiper-inner"
-              style={{ backgroundImage: 'url(/images/slider/1.webp)' }}
+              style={{ backgroundImage: "url(/images/slider/1.webp)" }}
             >
               <div className="sw-caption relative z-1000">
                 <div className="container">
@@ -33,19 +33,23 @@ const HeroSection = () => {
                       <div className="sw-text-wrapper">
                         <div className="subtitle s2 mb-2">Mindthera</div>
                         <h1 className="slider-title mb-3">
-                          Begin Your
+                          Ein sanfter Weg zur Transformation
                           <span className="d-block alt-font fw-500 id-color-2 fs-96 fs-xs-60">
-                            Inner Peace Journey
+                            von Trauma auf allen Ebenen
                           </span>
                         </h1>
                         <div className="col-lg-8">
                           <p className="slider-teaser mb-3">
-                            Embark on a journey of self-discovery and emotional healing with our expert therapists.
+                            WISSENSCHAFT & WEISHEIT, KÖRPER & FREQUENZ WERDEN
+                            MITEINANDER VERBUNDEN
                           </p>
                         </div>
                         <div className="spacer-10"></div>
-                        <a className="btn-main bg-color-2 mb10 mb-3" href="services.html">
-                          Our Services
+                        <a
+                          className="btn-main bg-color-2 mb10 mb-3"
+                          href="services.html"
+                        >
+                          Harmonyum Trauma Release®
                         </a>
                       </div>
                     </div>
@@ -65,7 +69,7 @@ const HeroSection = () => {
           <SwiperSlide>
             <div
               className="swiper-inner"
-              style={{ backgroundImage: 'url(/images/slider/2.webp)' }}
+              style={{ backgroundImage: "url(/images/slider/2.webp)" }}
             >
               <div className="sw-caption relative z-1000">
                 <div className="container">
@@ -73,22 +77,26 @@ const HeroSection = () => {
                     <div className="spacer-double"></div>
                     <div className="col-lg-6 offset-lg-6">
                       <div className="spacer-single"></div>
-                      <div className="sw-text-wrapper">
+                         <div className="sw-text-wrapper">
                         <div className="subtitle s2 mb-2">Mindthera</div>
                         <h1 className="slider-title mb-3">
-                          Begin Your
+                          Ein sanfter Weg zur Transformation
                           <span className="d-block alt-font fw-500 id-color-2 fs-96 fs-xs-60">
-                            Inner Peace Journey
+                            von Trauma auf allen Ebenen
                           </span>
                         </h1>
                         <div className="col-lg-8">
                           <p className="slider-teaser mb-3">
-                            Embark on a journey of self-discovery and emotional healing with our expert therapists.
+                            WISSENSCHAFT & WEISHEIT, KÖRPER & FREQUENZ WERDEN
+                            MITEINANDER VERBUNDEN
                           </p>
                         </div>
                         <div className="spacer-10"></div>
-                        <a className="btn-main bg-color-2 mb10 mb-3" href="services.html">
-                          Our Services
+                        <a
+                          className="btn-main bg-color-2 mb10 mb-3"
+                          href="services.html"
+                        >
+                          Harmonyum Trauma Release®
                         </a>
                       </div>
                     </div>
@@ -106,7 +114,6 @@ const HeroSection = () => {
         </Swiper>
       </div>
     </section>
-
   );
 };
 

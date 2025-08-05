@@ -21,14 +21,15 @@
     --bg-gradient-1: 0deg, rgba(var(--primary-color-rgb), .1) 0%, rgba(var(--secondary-color-rgb), .2) 100%;
     --swiper-theme-color: var(--secondary-color);
     --rounded-1: 12px;
-    --primary-color: #5a9e7c;
-    --primary-color-rgb: 90, 158, 124;
-    --secondary-color: #83cc61;
-    --secondary-color-rgb: 131, 204, 97;
-    --tertiary-color: #e1ffd4;
-    --tertiary-color-rgb: 225, 255, 212;
-    --quaternary-color: #b7e576;
-    --quaternary-color-rgb: 183, 229, 118;
+    --primary-color: #5c377d;
+    --primary-color-rgb: 92, 55, 125;
+    --secondary-color: #bf94e5;
+    --secondary-color-rgb: 147, 109, 182;
+    --tertiary-color: #d1b3ff; 
+  --tertiary-color-rgb: 209, 179, 255;
+
+  --quaternary-color: #f3eaff; 
+  --quaternary-color-rgb: 243, 234, 255;
 }
     
 body {
@@ -39,6 +40,9 @@ body {
     padding: 0;
     line-height: 29px;
     word-spacing: 0px;
+}
+.bg-primary{
+    background-color: var(--primary-color) !important;
 }
 .bg-dark-1 {
     background-color: var(--bg-dark-1) !important
@@ -5152,7 +5156,7 @@ a.img-icon-zoom {
 }
 .swiper-slide {
     position: relative;
-    background: var(--bg-dark-1);
+    /* background: var(--bg-dark-1); */
 }
 .sw-caption {
     z-index: 1;
@@ -9001,7 +9005,7 @@ img {
 }
 
 .testimonials-bottom-section {
-  background: #f1f7f4;
+  background: #f8f5fd;
   padding: 60px 0;
 }
 .testimonials-header {
@@ -9010,8 +9014,8 @@ img {
 }
 .testimonials-label {
   display: inline-block;
-  background: #c6f3d6;
-  color: #2e7d32;
+     color: var(--title-font-color);
+    background: var(--tertiary-color);
   font-weight: 500;
   border-radius: 20px;
   padding: 6px 18px;
@@ -9034,11 +9038,13 @@ img {
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-  padding: 40px 32px 32px 32px;
-  max-width: 340px;
+  /* padding: 40px 32px 32px 32px; */
+  /* max-width: 340px; */
   width: 100%;
   text-align: center;
   position: relative;
+  min-height: 410px;
+    margin-bottom: 59px;
 }
 .testimonial-image-wrap {
   display: flex;

@@ -8,9 +8,11 @@ const DonationSection  = () => {
         <div className="row align-items-center">
           {/* Left: Image */}
           <div className="col-lg-6 mb-4 mb-lg-0 d-flex justify-content-center">
-            <img
+          <Image
               src="/images/misc/10.webp"
               alt="Donation"
+              width={500}
+              height={350}
               style={{
                 width: '90%',
                 maxWidth: '500px',
@@ -23,10 +25,10 @@ const DonationSection  = () => {
           {/* Right: Donation Form */}
           <div className="col-lg-6">
             <div className="d-flex justify-content-between align-items-center mb-2">
-              <div className="fw-bold" style={{ fontSize: '1.1rem' }}>Raised: <span style={{ color: '#5a9e7c' }}>$15,572</span></div>
-              <div className="fw-bold" style={{ fontSize: '1.1rem' }}>Goal: <span style={{ color: '#5a9e7c' }}>$12,000</span></div>
+              <div className="fw-bold" style={{ fontSize: '1.1rem' }}>Raised: <span style={{ color: '#5c377d' }}>$15,572</span></div>
+              <div className="fw-bold" style={{ fontSize: '1.1rem' }}>Goal: <span style={{ color: '#5c377d' }}>$12,000</span></div>
             </div>
-            <div style={{ height: '6px', background: '#5a9e7c', width: '100%', marginBottom: '24px', borderRadius: '3px' }}></div>
+            <div style={{ height: '6px', background: '#5c377d', width: '100%', marginBottom: '24px', borderRadius: '3px' }}></div>
             <p className="text-muted mb-4" style={{ maxWidth: '500px' }}>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod.
             </p>

@@ -14,17 +14,17 @@ const TestimonialSection = () => {
               className="img-fluid circle"
               alt="Jeffery Mussman"
             />
-            <h5 className="mt-3 mb-0">Jeffery Mussman</h5>
-            <p className="small mb-2">Individual Therapy</p>
+            <h5 className="mt-3 mb-0">Kerstin R. Stoll</h5>
+            <p className="small mb-2">CEO</p>
           </div>
           <div className="col-lg-8 col-sm-8">
             <p
               className="mb20 fs-32 fw-600 lh-1-3"
               data-wow-delay=".2s"
             >
-              Mindthera is exceptional! Their psychologists are highly professional and caring.
-              The atmosphere is welcoming and calming, and the staff provides outstanding support.
-              Thank you, Mindthera, for your excellent service!
+           Kerstin R. Stoll, CEO
+Ich erinnere dich an das, was du längst bist –
+durch Präsenz, Energie und seelische Wahrheit.
             </p>
           </div>
         </div>

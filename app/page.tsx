@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect ,useRef } from "react";
 
 import TestimonialSection from "@/components/TestimonialSection";
 import TherapistServices from "@/components/TherapistServices";
@@ -15,21 +15,51 @@ import DonationSection from "@/components/DonationSection";
 import TestimonialsBottom from "@/components/TestimonialsBottom ";
 
 export default function Home() {
+const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const tryPlay = () => {
+      if (!audioRef.current) return;
+
+      audioRef.current
+        .play()
+        .then(() => {
+          console.log("✅ Music started");
+        })
+        .catch((err) => {
+          console.error("❌ Audio play error:", err.message);
+        });
+
+      document.removeEventListener("click", tryPlay);
+      document.removeEventListener("keydown", tryPlay);
+    };
+
+    document.addEventListener("click", tryPlay);
+    document.addEventListener("keydown", tryPlay);
+
+    return () => {
+      document.removeEventListener("click", tryPlay);
+      document.removeEventListener("keydown", tryPlay);
+    };
+  }, []);
   return (
     <>
-      
-     <Header />
+    <audio ref={audioRef} src="/music/bg-music.mp3" loop preload="auto" />
+
+      {/* Your actual page content */}
+      <Header />
       <HeroSection />
       <AboutUS />
       <TestimonialSection />
-     
       <TherapistServices />
       <ReligiousLifeSection />
       <LatestArticles />
       <TestimonialsBottom />
-       <DonationSection />
+      <DonationSection />
       <NewsletterSection />
       <Footer />
     </>
   );
 }
+
+
