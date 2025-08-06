@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 const AboutUS = () => (
   <>
   
@@ -46,9 +46,24 @@ const AboutUS = () => (
             <a href="#about" className="btn btn-main px-4 py-2 mb-4">
               ERFAHRE MEHR …
             </a>
-            <div className="mb-4">
-              <h4 className="fw-bold mb-2">Meine Qualifikationen</h4>
-              <ul className="list-unstyled">
+            </div>
+             <div className="col-lg-5 d-flex justify-content-center">
+            <Image
+              src="/images/pic.png"
+              width={500}
+              height={500}
+              alt="Kerstin R. Stoll Portrait"
+              className="rounded-4 shadow-lg img-fluid"
+             
+            />
+          </div>
+           <div className="row mt-5 g-4">
+          <div className="col-lg-6">
+            <div className="mb-4 p-4 rounded-4 shadow-sm bg-light h-100">
+              <h4 className="fw-bold mb-3 text-primary">
+                <i className="bi bi-award me-2"></i>Meine Qualifikationen
+              </h4>
+              <ul className="list-unstyled mb-0" style={{ fontSize: "1.08rem" }}>
                 <li>✨ Visionärin der inneren Räume für neue Realitäten</li>
                 <li>Zertifiziert in alternativer Medizin, Energiearbeit und Quantenheilung:</li>
                 <li>Altchinesische Medizin & Kräuterheilkunde, 2001-2003</li>
@@ -64,9 +79,13 @@ const AboutUS = () => (
                 <li>Harmonyum Trauma Release®, 2025</li>
               </ul>
             </div>
-            <div>
-              <h4 className="fw-bold mb-2">Autorin folgender Bücher:</h4>
-              <ul className="list-unstyled">
+          </div>
+          <div className="col-lg-6">
+            <div className="mb-4 p-4 rounded-4 shadow-sm bg-light h-100">
+              <h4 className="fw-bold mb-3 text-primary">
+                <i className="bi bi-book me-2"></i>Autorin folgender Bücher:
+              </h4>
+              <ul className="list-unstyled mb-0" style={{ fontSize: "1.08rem" }}>
                 <li>1. Die Kraft des Gebetes im Alltag erleben: Stärke Dich mit Gebeten - sie geben Deinem Leben die optimale Richtung und schenken Dir Heilung, Fülle und Licht!</li>
                 <li>2. Spiritualität im Reisegepäck - Wie du beim reisen fürs Leben lernst</li>
                 <li>3. Schule mal anders - Brücken bauen zwischen altem und neuem Schulsystem</li>
@@ -75,17 +94,11 @@ const AboutUS = () => (
               </ul>
             </div>
           </div>
-          {/* Right Side: Decorative Image or Illustration */}
-          <div className="col-lg-5 d-flex justify-content-center">
-            <img
-              src="/images/pic.png"
-              alt="Kerstin R. Stoll Portrait"
-              className="rounded-4 shadow-lg img-fluid"
-              style={{ maxWidth: "340px", objectFit: "cover" }}
-            />
-          </div>
         </div>
-      </div>
+        
+         </div>
+        </div>
+     
     </section>
   </>
 );

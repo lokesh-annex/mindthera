@@ -1,7 +1,5 @@
 "use client";
-import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Image from 'next/image';
 import Logo from "./Logo";
 export default function Footer() {
   return (

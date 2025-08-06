@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const LatestArticles = () => {
   return (
-    <section className="pt190 pt-lg-7 bg-white text-dark">
+    <section className="pt-lg-7 bg-white text-dark">
       <div className="container">
         <p className="text-uppercase text-muted fw-semibold small mb-1">Read our blog</p>
         <h2 className="display-5 fw-bold mb-5">Latest articles</h2>
@@ -27,9 +27,9 @@ const LatestArticles = () => {
                 <small className="text-muted text-uppercase">Apr</small>
               </div>
               <div>
-                <h2 className="fw-bold">Traditional Holi delicacies you should try</h2>
+                <h2 className="fw-bold">Ich baue Räume – keine Konzepte.</h2>
                 <p className="text-muted mb-2 small">
-                  Proin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat.
+                 Warum ich mich Bewusstseins-Architektin nenne
                 </p>
                 <small className="text-muted">0 Likes &nbsp;•&nbsp; 1 Comment</small>
               </div>
@@ -40,16 +40,16 @@ const LatestArticles = () => {
           <div className="col-lg-6">
             {[
               {
-                title: 'The most unusual spiritual practices and yoga',
-                image: '/images/blog/krishna1.jpg',
+                title: 'Ich baue Räume – keine Konzepte.',
+                image: '/images/blog/holi.jpg',
               },
               {
-                title: 'Top 5 brightest and most solemn Hindu feasts',
-                image: '/images/blog/festival.jpg',
+                title: 'Ich baue Räume – keine Konzepte.',
+                image: '/images/blog/holi.jpg',
               },
               {
-                title: 'Mediation is the conscious creation of reality',
-                image: '/images/blog/lamp.jpg',
+                title: 'Ich baue Räume – keine Konzepte.',
+                image: '/images/blog/holi.jpg',
               },
             ].map((item, idx) => (
               <div key={idx} className="d-flex mb-4 align-items-center">
@@ -63,7 +63,7 @@ const LatestArticles = () => {
                   />
                 </div>
                 <div>
-                  <small className="text-uppercase text-muted d-block mb-1">KRISHNA • Apr 24, 2022</small>
+                  <small className="text-uppercase text-muted d-block mb-1">Apr 24, 2022</small>
                   <h3 className="fw-bold mb-0 ">{item.title}</h3>
                 </div>
               </div>

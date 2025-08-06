@@ -26,7 +26,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/angebote">
+                    <Link className="menu-item" href="/">
                       Angebote
                     </Link>
                   </li>
@@ -37,22 +37,22 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/events">
+                    <Link className="menu-item" href="/">
                       Events
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/blog">
+                    <Link className="menu-item" href="/">
                       Blog
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/qa">
+                    <Link className="menu-item" href="/">
                       Q&amp;A
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/kontakt">
+                    <Link className="menu-item" href="/">
                       Kontakt
                     </Link>
                   </li>

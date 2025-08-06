@@ -1,62 +1,68 @@
-// components/ReligiousLifeSection.jsx
-import React from 'react';
-
+import Image from 'next/image';
 const ReligiousLifeSection = () => {
   return (
-  <section className="py-5 bg-white">
+    <section className="py-5 bg-white">
       <div className="container">
         <div className="row align-items-center">
-          {/* Left: Overlapping Images */}
+          {/* Images Left */}
           <div className="col-lg-7 position-relative mb-4 mb-lg-0" style={{ minHeight: '350px' }}>
             <div style={{ position: 'relative', width: '100%', height: '550px' }}>
-              <img
-                src="/images/image-15.jpg"
+              <Image
+                src="/images/image-16.jpg"
                 alt="Temple"
+                width={800}
+                height={650}
                 style={{
                   position: 'absolute',
                   left: 0,
                   top: 0,
-                  width: '55%',
+                  width: '69%',
                   height: '100%',
                   objectFit: 'cover',
-                
                   boxShadow: '0 8px 32px rgba(0,0,0,0.08)'
                 }}
               />
-              <img
-                 src="/images/image-16.jpg"
+              <Image
+                src="/images/image-15.jpg"
                 alt="Spiritual Life"
+                width={800}
+                height={600}
                 style={{
                   position: 'absolute',
-                  left: '30%',
-                  top: '40%',
-                  width: '55%',
+                  right: '10%',
+                  top: '30%',
+                  width: '65%',
                   height: '80%',
                   objectFit: 'cover',
-                 
                   boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
-                
                   zIndex: 2
                 }}
               />
             </div>
           </div>
-         
+          {/* Content Right */}
           <div className="col-lg-5">
-            <div className="mb-2 text-uppercase fw-bold text-secondary" style={{ letterSpacing: '2px', fontSize: '15px' }}>Religious Life</div>
-            <h2 className="fw-bold mb-3" style={{ fontSize: '2.5rem', lineHeight: 1.1 }}>
-              The hub of creativity<br />and spirituality
-            </h2>
-            <p className="text-muted mb-4" style={{ maxWidth: '420px' }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-            </p>
-            <div className="mb-4">
-              <div className="fw-bold text-secondary" style={{ fontSize: '1.1rem' }}>SUN–THU: <span className="text-dark">9 AM – 18 PM</span></div>
-              <div className="fw-bold text-secondary" style={{ fontSize: '1.1rem' }}>FRI: <span className="text-dark">9 AM – 15 PM</span></div>
+            <div className="mb-2 text-uppercase fw-bold text-secondary" style={{ letterSpacing: '2px', fontSize: '15px' }}>
+              Side EVENTS
             </div>
-            <a className="btn btn-main px-4 py-2 fw-bold" href="about.html">
-              ABOUT US
-            </a>
+            <h2 className="fw-bold mb-3" style={{ fontSize: '2.2rem', lineHeight: 1.1 }}>
+              Die Urform der Menschlichkeit –<br />
+              Trauma auf Zellebene lösen mit Harmonyum Trauma Release
+            </h2>
+            <p className="text-muted mb-4" style={{ fontSize: '1.08rem' }}>
+              Trauma lösen - wenn der Körper bereit ist, loszulassen. Viele Menschen tragen Geschichten in sich, die längst vorbei sind – aber im Körper weiterwirken.<br /><br />
+              In diesem Vortrag zeige ich dir, wie unser Nervensystem Trauma speichert – und was möglich wird, wenn wir es nicht länger festhalten müssen.<br /><br />
+              Ich stelle dir Harmonyum Trauma Release vor: eine körperbasierte Methode, die ohne Worte wirkt, sanft entlädt und dich zurückbringt in dein ursprüngliches Gleichgewicht.<br /><br />
+              Ein Raum für Alle, die spüren, dass reden nicht reicht – und bereit sind, sich selbst neu zu begegnen.
+            </p>
+            <div className="mb-3">
+              <a className="btn btn-main px-4 py-2 fw-bold mb-2" href="#">
+                👉 Hier findest du Termine &amp; Orte
+              </a>
+              <div className="fw-bold text-secondary mt-2" style={{ fontSize: '1.1rem' }}>
+                Eintritt: <span className="text-dark">20.- CHF</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
