@@ -11,12 +11,12 @@ const ReligiousLifeSection = () => {
                 src="/images/image-16.jpg"
                 alt="Temple"
                 width={800}
-                height={650}
+                height={600}
                 style={{
                   position: 'absolute',
                   left: 0,
                   top: 0,
-                  width: '69%',
+                  width: '58%',
                   height: '100%',
                   objectFit: 'cover',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.08)'
@@ -29,9 +29,9 @@ const ReligiousLifeSection = () => {
                 height={600}
                 style={{
                   position: 'absolute',
-                  right: '10%',
-                  top: '30%',
-                  width: '65%',
+                  right: '6%',
+                  top: '40%',
+                  width: '55%',
                   height: '80%',
                   objectFit: 'cover',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.10)',

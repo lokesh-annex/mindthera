@@ -41,15 +41,15 @@ const LatestArticles = () => {
             {[
               {
                 title: 'Ich baue Räume – keine Konzepte.',
-                image: '/images/blog/holi.jpg',
+                image: '/images/blog/krishna1.jpg',
               },
               {
                 title: 'Ich baue Räume – keine Konzepte.',
-                image: '/images/blog/holi.jpg',
+                image: '/images/blog/festival.jpg',
               },
               {
                 title: 'Ich baue Räume – keine Konzepte.',
-                image: '/images/blog/holi.jpg',
+                image: '/images/blog/lamp.jpg',
               },
             ].map((item, idx) => (
               <div key={idx} className="d-flex mb-4 align-items-center">
