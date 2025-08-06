@@ -46,8 +46,8 @@ const audioRef = useRef<HTMLAudioElement | null>(null);
     <>
     <audio ref={audioRef} src="/music/bg-music.mp3" loop preload="auto" />
 
-      {/* Your actual page content */}
-      <Header />
+   
+     
       <HeroSection />
       <AboutUS />
       <TestimonialSection />
@@ -57,7 +57,7 @@ const audioRef = useRef<HTMLAudioElement | null>(null);
       <TestimonialsBottom />
       <DonationSection />
       <NewsletterSection />
-      <Footer />
+    
     </>
   );
 }

@@ -210,9 +210,7 @@ header div#logo {
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
-header div#logo img {
-    width: 100%;
-}
+
 header .logo-2 {
     display: none;
 }
