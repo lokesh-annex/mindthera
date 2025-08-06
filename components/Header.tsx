@@ -1,34 +1,28 @@
 'use client';
 import React from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Link from 'next/link';
+import Image from 'next/image';
+import Logo from './Logo';
 
 export default function Header() {
   return (
   <header className="transparent scroll-light has-topbar">
       
 
-        {/* Main Header */}
+       
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="de-flex sm-pt10 pt-2 pb-2">
-                {/* Logo */}
+               
                 <div className="de-flex-col">
                   <div id="logo">
-                    <a href="index.html">
-                      <img
-                        className="logo-main"
-                        src="/images/logo.webp"
-                        height={80}
-                        alt="Main Logo"
-                      />
-                      
-                     
-                    </a>
+                    <Logo />
                   </div>
                 </div>
 
-                {/* Menu */}
+              
                 <div className="de-flex-col header-col-mid">
                   <ul id="mainmenu">
                     <li>

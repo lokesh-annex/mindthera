@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -54,9 +55,11 @@ const TestimonialsBottom = () => {
           <SwiperSlide key={idx}>
             <div className="testimonial-card">
               <div className="testimonial-image-wrap">
-                <img
+                <Image
                   src={testimonial.image}
                   alt={testimonial.name}
+                  width={200}
+                  height={200}
                   className="testimonial-image"
                 /> 
               </div>

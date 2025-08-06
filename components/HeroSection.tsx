@@ -31,7 +31,7 @@ const HeroSection = () => {
                     <div className="col-lg-6 offset-lg-6">
                       <div className="spacer-single"></div>
                       <div className="sw-text-wrapper">
-                        <div className="subtitle s2 mb-2">Mindthera</div>
+                        {/* <div className="subtitle s2 mb-2">Mindthera</div> */}
                         <h1 className="slider-title mb-3">
                           Ein sanfter Weg zur Transformation
                           <span className="d-block alt-font fw-500 id-color-2 fs-96 fs-xs-60">
@@ -78,7 +78,7 @@ const HeroSection = () => {
                     <div className="col-lg-6 offset-lg-6">
                       <div className="spacer-single"></div>
                          <div className="sw-text-wrapper">
-                        <div className="subtitle s2 mb-2">Mindthera</div>
+                        {/* <div className="subtitle s2 mb-2">Mindthera</div> */}
                         <h1 className="slider-title mb-3">
                           Ein sanfter Weg zur Transformation
                           <span className="d-block alt-font fw-500 id-color-2 fs-96 fs-xs-60">

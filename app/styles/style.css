@@ -596,7 +596,7 @@ header .header-col.mid .social-icons {
     position: relative;
 }
 #mainmenu>li {
-    margin-right: 30px;
+    margin-right: 24px;
 }
 #mainmenu>li {
     counter-increment: my-awesome-counter;
@@ -2077,7 +2077,7 @@ footer h6 {
 }
 h1,
 .h1 {
-    font-size: 64px !important;
+    font-size: 60px !important;
     margin-bottom: 20px;
     line-height: 1.1em;
     letter-spacing: -3px;

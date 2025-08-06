@@ -2,6 +2,7 @@
 import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Image from 'next/image';
+import Logo from "./Logo";
 export default function Footer() {
   return (
     <div className="d-flex flex-column">
@@ -18,13 +19,7 @@ export default function Footer() {
          
             <div className="col-md-4 text-center my-2 my-md-0">
               <div className="d-inline-block px-3 py-1 ">
-                <Image
-                  className="logo-main"
-                  src="/images/logo.webp"
-                  alt="Main Logo"
-                  width={120}
-                  height={120}
-                />
+              <Logo />
               </div>
             </div>
 
