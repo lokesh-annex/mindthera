@@ -45,7 +45,7 @@ const ReligiousLifeSection = () => {
             <div className="mb-2 text-uppercase fw-bold text-secondary" style={{ letterSpacing: '2px', fontSize: '15px' }}>
               Side EVENTS
             </div>
-            <h2 className="fw-bold mb-3" style={{ fontSize: '2.2rem', lineHeight: 1.1 }}>
+            <h2 className="fw-bold mb-3" style={{ fontSize: '2rem', lineHeight: 1.2 }}>
               Die Urform der Menschlichkeit –<br />
               Trauma auf Zellebene lösen mit Harmonyum Trauma Release
             </h2>
