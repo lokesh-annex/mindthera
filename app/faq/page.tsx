@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const faqs = [
 	{
@@ -56,9 +57,18 @@ const Faq = () => {
 	};
 
 	return (
+    
 		<section className="bg-white py-5">
+       <Breadcrumbs
+      title="FAQ"
+      items={[
+        { label: "Home", href: "/" },
+        { label: "FAQ" }
+      ]}
+    />
+
 			<div className="container">
-				<div className="row justify-content-center mb-5">
+				<div className="row justify-content-center mt-5 mb-5">
 					<div className="col-lg-8 text-center">
 						<span className="text-uppercase text-primary fw-semibold small mb-2 d-block letter-spacing">
 							Q&amp;A – Häufig gestellte Fragen

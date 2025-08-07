@@ -1,25 +1,16 @@
 import React from "react";
 import Image from "next/image";
+import Breadcrumbs from "@/components/Breadcrumbs";
 const AboutUS = () => (
   <>
   
-    <section id="de-subheader" className="mt-sm-60 pt20 pb20 bg-gradient-45-deg text-light">
-      <div className="container relative z-index-1000">
-        <div className="row align-items-center">
-          <div className="col-lg-6">
-            <h3 className="mb-0">About Us</h3>
-          </div>
-          <div className="col-lg-6 text-lg-end">
-            <ul className="crumb">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li className="active">About Us</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+   <Breadcrumbs
+      title="About Us"
+      items={[
+        { label: "Home", href: "/" },
+        { label: "About Us" }
+      ]}
+    />
 
   
     <section className="bg-white py-5">
