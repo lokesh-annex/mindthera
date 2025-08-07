@@ -137,7 +137,7 @@ const TherapistServices = () => {
 							</span>
 						</h2>
 						<p className="lead mb-0 ">
-						für eine Urform Session
+						Sint tempor consequat ad commodo 
 						</p>
 						<div className="spacer-single" />
 						<div className="spacer-half" />
