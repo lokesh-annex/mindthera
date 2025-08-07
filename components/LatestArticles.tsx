@@ -5,8 +5,8 @@ const LatestArticles = () => {
   return (
     <section className="pt-lg-7 bg-white text-dark">
       <div className="container">
-        <p className="text-uppercase text-muted fw-semibold small mb-1">Read our blog</p>
-        <h2 className="display-5 fw-bold mb-5">Latest articles</h2>
+        <p className="text-uppercase text-muted fw-semibold small mb-1">Unser Blog</p>
+        <h2 className="display-5 fw-bold mb-5">Der neuste Artikel</h2>
 
         <div className="row">
           {/* Main big article */}

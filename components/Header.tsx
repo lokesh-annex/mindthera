@@ -26,33 +26,33 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/angebote">
+                    <Link className="menu-item" href="/">
                       Angebote
                     </Link>
                   </li>
 
                   <li>
-                    <Link className="menu-item" href="/about">
+                    <Link className="menu-item" href="/">
                       About Me
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/events">
+                    <Link className="menu-item" href="/">
                       Events
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/blog">
+                    <Link className="menu-item" href="/">
                       Blog
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/faq">
+                    <Link className="menu-item" href="/">
                       Q&amp;A
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/kontakt">
+                    <Link className="menu-item" href="/">
                       Kontakt
                     </Link>
                   </li>
@@ -62,15 +62,15 @@ export default function Header() {
               {/* Right Contact + Button */}
               <div className="de-flex-col">
                 <div className="menu_side_area">
-                  <div className="h-phone xs-hide">
+                  {/* <div className="h-phone xs-hide">
                     <i className="icofont-headphone-alt"></i>
                     <span>Need Help?</span>+929 333 9296
-                  </div>
+                  </div> */}
                   <a
                     href="appointment.html"
                     className="btn-main d-xl-block d-md-none"
                   >
-                    Make Appointment
+                   Buche hier deinen Termin
                   </a>
                   <span id="menu-btn"></span>
                 </div>

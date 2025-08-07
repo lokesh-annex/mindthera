@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 
 const tabData = [
 	{
-		label: 'Harmonyum Trauma Release®',
+		label: 'Für Paare & Familien',
 		services: [
 			{
-				title: 'bei Paaren mit Kinderwunsch',
+				title: 'für eine Urform Session ',
 				image: '1.webp',
 				desc: 'Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.',
 			},
 			{
-				title: 'für Familien-Entlastung',
+				title: 'bei Paaren mit Kinderwunsch',
 				image: '2.webp',
 				desc: 'Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.',
 			},
@@ -21,7 +21,7 @@ const tabData = [
 				desc: 'Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.',
 			},
 			{
-				title: 'für eine Urform Session',
+				title: 'für Familienentlastung',
 				image: '4.webp',
 				desc: 'Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.',
 			},
@@ -29,21 +29,22 @@ const tabData = [
 	},
 
 	{
-		label: 'Harmonyum Trauma Release® bei',
+		label: 'Für Schwangerschaft, Geburt & Wochenbett',
 		services: [
 			{
 				title: 'Schwangerschaft',
-				image: '5.webp',
+        	image: '6.webp',
+				
 				desc: 'Individuelle Trauma Release Sitzungen für nachhaltige Entlastung und Heilung.',
 			},
 			{
 				title: 'Geburt',
-				image: '6.webp',
+			image: '7.webp',
 				desc: 'Gruppensitzungen für gemeinsames Wachstum und Unterstützung.',
 			},
       {
 				title: 'Wochenbett',
-				image: '7.webp',
+				image: '5.webp',
 				desc: 'Gruppensitzungen für gemeinsames Wachstum und Unterstützung.',
 			},
       {
@@ -54,25 +55,27 @@ const tabData = [
 		],
 	},
   	{
-		label: 'Harmonyum Trauma Release® bei',
+		label: 'Für sofortige Hilfe',
 		services: [
 			{
-				title: 'Unfall',
+				 title: 'Krankheit',
 				image: '9.webp',
 				desc: 'Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.',
 			},
 			{
-				title: 'Krankheit',
+				title: 'Unfall',
 				image: '10.webp',
 				desc: 'Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.',
 			},
       	{
-				title: 'besonderer Hilfe',
+
+          title: 'Depression, Stress, BurnOut',
+				
 				image: '11.webp',
 				desc: 'Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.',
 			},
 			{
-				title: 'Depression, Stress, BurnOut',
+				title: 'besonderer Hilfe',
 				image: '12.webp',
 				desc: 'Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.',
 			},
@@ -81,25 +84,29 @@ const tabData = [
 	{
 		label: 'Unsere Spezialangebote',
 		services: [
-			{
-				title: 'HTR bei kollektiven Traumaerlebnissen',
-				image: '13.webp',
-				desc: 'Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.',
-			},
-			{
-				title: 'HTR für die Rückgabe inkarnierter Traumafrequenzen',
-				image: '14.webp',
-				desc: 'Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.',
-			},
+			
+		
+		
+      
       	{
 				title: 'Retreats',
 				image: '15.webp',
 				desc: 'Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.',
 			},
-			{
+      	{
 				title: 'HTR mit Pferden (coming soon)',
 				image: '16.webp',
 				desc: 'Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.',
+			},
+      	{
+				title: 'HTR für die Rückgabe inkarnierter Traumafrequenzen',
+				image: '14.webp',
+				desc: 'Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.',
+			},
+      {
+				title: 'HTR bei kollektiven Traumaerlebnissen',
+				image: '13.webp',
+				desc: 'Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.',
 			},
 		],
 	},
@@ -123,16 +130,14 @@ const TherapistServices = () => {
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-6 offset-lg-3 text-center">
-						<div className="subtitle mb-3">My Offers</div>
+						<div className="subtitle mb-3">Meine Angebote</div>
 						<h2 className="" data-wow-delay=".2s">
-							My
-							<span className="alt-font fw-500 fs-64 id-color-2">
-								Offers
+							 Meine <span className="alt-font fw-500 fs-64 id-color-2">
+								 angebote
 							</span>
 						</h2>
 						<p className="lead mb-0 ">
-							Qui culpa qui consequat officia cillum quis irure aliquip ut dolore
-							sit eu culpa ut irure nisi occaecat dolore adipisicing do pariatur.
+						für eine Urform Session
 						</p>
 						<div className="spacer-single" />
 						<div className="spacer-half" />

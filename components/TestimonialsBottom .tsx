@@ -36,41 +36,46 @@ const TestimonialsBottom = () => {
   return (
     <section className="testimonials-bottom-section">
       <div className="container">
-      <div className="testimonials-header">
-        <span className="testimonials-label">Erfahrungsberichte von KundInnen</span>
-        <h2 className="testimonials-title">Erfahrungsberichte von KundInnen</h2>
-      </div>
-      <Swiper
-        modules={[Pagination]}
-        spaceBetween={32}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-        breakpoints={{
-          768: { slidesPerView: 2 },
-          1200: { slidesPerView: 3 },
-        }}
-        className="testimonials-cards"
-      >
-        {testimonials.map((testimonial, idx) => (
-          <SwiperSlide key={idx}>
-            <div className="testimonial-card">
-              <div className="testimonial-image-wrap">
-                <Image
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  width={200}
-                  height={200}
-                  className="testimonial-image"
-                /> 
+        <div className="testimonials-header">
+          <span className="testimonials-label">Erfahrungsberichte von KundInnen</span>
+          <h2 className="testimonials-title">Erfahrungsberichte von KundInnen</h2>
+        </div>
+        <Swiper
+          modules={[Pagination]}
+          spaceBetween={32}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1200: { slidesPerView: 3 },
+          }}
+          className="testimonials-cards"
+        >
+          {testimonials.map((testimonial, idx) => (
+            <SwiperSlide key={idx}>
+              <div className="testimonial-card">
+                <div className="testimonial-image-wrap">
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={200}
+                    height={200}
+                    className="testimonial-image"
+                  />
+                </div>
+                <p className="testimonial-text">{testimonial.text}</p>
+                <span className="testimonial-index">{`0${idx + 1}`}</span>
               </div>
-              {/* <h3 className="testimonial-name">{testimonial.name}</h3> */}
-              {/* <span className="testimonial-role">{testimonial.role}</span> */}
-              <p className="testimonial-text">{testimonial.text}</p>
-              <span className="testimonial-index">{`0${idx + 1}`}</span>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        
+        <div className="d-flex justify-content-center mt-5">
+          <button
+            className="btn fw-bold btn-main px-5 py-3">
+            Feedback
+          </button>
+        </div>
       </div>
     </section>
   );

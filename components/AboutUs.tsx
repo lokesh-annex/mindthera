@@ -1,14 +1,19 @@
 import React from "react";
+import Image from 'next/image';
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 const AboutUS = () => {
   return (
     <section className="relative ">
-        <img
+      <div className="leaf-bg">
+        <Image
           src="/images/misc/leaf.webp"
-          className="absolute top-10 end-10 w-100px anim-up-down sm-hide"
+          width={100}
+          height={118}
+          className="absolute top-10 end-10  anim-up-down sm-hide"
           alt=""
         />
+        </div>
       <div className="container ">
       
 
@@ -19,30 +24,38 @@ const AboutUS = () => {
               <div className="row g-4 z-1000">
                 <div className="col-6">
                   <div className="spacer-single sm-hide"></div>
-                  <img
+                  <Image
                     src="/images/misc/11.webp"
                     className="img-fluid rounded-10px mb-4 w-70 ms-30 "
                     data-wow-delay=".0s"
+                    width={500}
+                    height={500}
                     alt=""
                   />
-                  <img
+                  <Image
                     src="/images/misc/3.webp"
                     className="img-fluid rounded-10px"
                     data-wow-delay=".1s"
+                      width={500}
+                    height={500}
                     alt=""
                   />
                 </div>
                 <div className="col-6">
-                  <img
+                  <Image
                     src="/images/misc/10.webp"
                     className="img-fluid rounded-10px mb-4 "
                     data-wow-delay=".2s"
+                      width={500}
+                    height={500}
                     alt=""
                   />
-                  <img
+                  <Image
                     src="/images/misc/8.webp"
                     className="img-fluid rounded-10px w-70 "
                     data-wow-delay=".3s"
+                      width={500}
+                    height={500}
                     alt=""
                   />
                 </div>
@@ -70,7 +83,7 @@ const AboutUS = () => {
                 <ul className="ul-style-2 text-dark fw-600">
                   <li>
                     Während dein Körper loslässt, entladen sich emotionale und
-                    seelische Spannungen,cdie oft über Jahre gespeichert wurden
+                    seelische Spannungen,die oft über Jahre gespeichert wurden
                     – ohne, dass du sie nochmal durchleben musst.
                   </li>
                   <li>

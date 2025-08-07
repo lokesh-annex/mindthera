@@ -43,7 +43,7 @@ const ReligiousLifeSection = () => {
           {/* Content Right */}
           <div className="col-lg-5">
             <div className="mb-2 text-uppercase fw-bold text-secondary" style={{ letterSpacing: '2px', fontSize: '15px' }}>
-              Side EVENTS
+              MEHR ÜBER TRAUMA
             </div>
             <h2 className="fw-bold mb-3" style={{ fontSize: '2rem', lineHeight: 1.2 }}>
               Die Urform der Menschlichkeit –<br />
@@ -57,11 +57,11 @@ const ReligiousLifeSection = () => {
             </p>
             <div className="mb-3">
               <a className="btn btn-main px-4 py-2 fw-bold mb-2" href="#">
-                👉 Hier findest du Termine &amp; Orte
+               Das interessiert mich- ich buche mir einen Termin
               </a>
-              <div className="fw-bold text-secondary mt-2" style={{ fontSize: '1.1rem' }}>
+              {/* <div className="fw-bold text-secondary mt-2" style={{ fontSize: '1.1rem' }}>
                 Eintritt: <span className="text-dark">20.- CHF</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -33,19 +33,13 @@ export default function Footer() {
                     <i className="bi bi-facebook text-white"></i>
                   </a>
                   <a
-                    href="https://www.twitter.com"
+                    href="https://www.linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="bi bi-twitter text-white"></i>
+                    <i className="bi bi-linkedin text-white"></i>
                   </a>
-                  <a
-                    href="https://www.pinterest.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-pinterest text-white"></i>
-                  </a>
+                 
                   <a
                     href="https://www.instagram.com"
                     target="_blank"
