@@ -6,7 +6,6 @@ const DonationSection = () => {
     <section style={{ background: "#ffffff", padding: "100px 0" }}>
       <div className="container">
         <div className="row align-items-center">
-         
           <div className="col-lg-6 mb-4 mb-lg-0 d-flex justify-content-center">
             <Image
               src="/images/misc/10.jpg"
@@ -14,7 +13,6 @@ const DonationSection = () => {
               width={500}
               height={450}
               style={{
-               
                 maxWidth: "500px",
                 borderRadius: "8px",
                 objectFit: "cover",
@@ -22,7 +20,7 @@ const DonationSection = () => {
               }}
             />
           </div>
-         
+
           <div className="col-lg-6">
             <div className="d-flex justify-content-between align-items-center mb-2">
               <div className="fw-bold" style={{ fontSize: "1.1rem" }}>
@@ -33,7 +31,7 @@ const DonationSection = () => {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "6px",
-                     marginLeft: "5px"
+                    marginLeft: "5px",
                   }}
                 >
                   <svg
@@ -57,18 +55,17 @@ const DonationSection = () => {
                   15,572
                 </span>
               </div>
-              <div className="fw-bold" style={{ fontSize: "1.1rem", }}>
+              <div className="fw-bold" style={{ fontSize: "1.1rem" }}>
                 Goal:{" "}
-               <span
+                <span
                   style={{
                     color: "#5c377d",
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "6px",
-                    marginLeft: "5px"
+                    marginLeft: "5px",
                   }}
                 >
-                
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     version="1.1"

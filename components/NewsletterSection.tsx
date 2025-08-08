@@ -22,7 +22,7 @@ const NewsletterSection = () => {
         <div className="row justify-content-center mb-4">
           <div className="col-lg-8">
             <h2 className="fw-bold">
-              Our online meditation sessions are a <br /> great way to start your day
+             Unser Flyer ist ein guter Start<br />  für mehr Informationen
             </h2>
           </div>
         </div>
@@ -32,13 +32,13 @@ const NewsletterSection = () => {
               <InputGroup className="newslatter-input-group-section mb-3">
                 <Form.Control
                   type="email"
-                  placeholder="Enter Your Email Address"
+                  placeholder="Geben Sie Ihre E-Mail-Adresse ein"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
                 <Button variant="dark" type="submit">
-                  <i className="bi bi-send-fill me-2"></i>SUBSCRIBE
+                  <i className="bi bi-send-fill me-2"></i>ABONNIEREN
                 </Button>
               </InputGroup>
               <div className="form-check d-flex align-items-center justify-content-center">
@@ -51,7 +51,7 @@ const NewsletterSection = () => {
                   required
                 />
                 <label className="form-check-label" htmlFor="privacyCheck">
-                  I agree to the <a href="" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+                 Ich stimme dem zu <a href="" target="_blank" rel="noopener noreferrer">Datenschutzrichtlinie</a>.
                 </label>
               </div>
             </Form>

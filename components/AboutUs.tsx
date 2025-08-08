@@ -1,5 +1,5 @@
 import React from "react";
-import Image from 'next/image';
+import Image from "next/image";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 const AboutUS = () => {
@@ -13,10 +13,8 @@ const AboutUS = () => {
           className="absolute top-10 end-10  anim-up-down sm-hide"
           alt=""
         />
-        </div>
+      </div>
       <div className="container ">
-      
-
         <div className="row g-4 gx-5 align-items-center">
           {/* Left Column */}
           <div className="col-lg-6">
@@ -36,7 +34,7 @@ const AboutUS = () => {
                     src="/images/misc/3.webp"
                     className="img-fluid rounded-10px"
                     data-wow-delay=".1s"
-                      width={500}
+                    width={500}
                     height={500}
                     alt=""
                   />
@@ -46,7 +44,7 @@ const AboutUS = () => {
                     src="/images/misc/10.webp"
                     className="img-fluid rounded-10px mb-4 "
                     data-wow-delay=".2s"
-                      width={500}
+                    width={500}
                     height={500}
                     alt=""
                   />
@@ -54,7 +52,7 @@ const AboutUS = () => {
                     src="/images/misc/8.webp"
                     className="img-fluid rounded-10px w-70 "
                     data-wow-delay=".3s"
-                      width={500}
+                    width={500}
                     height={500}
                     alt=""
                   />
@@ -83,8 +81,8 @@ const AboutUS = () => {
                 <ul className="ul-style-2 text-dark fw-600">
                   <li>
                     Während dein Körper loslässt, entladen sich emotionale und
-                    seelische Spannungen,die oft über Jahre gespeichert wurden
-                    – ohne, dass du sie nochmal durchleben musst.
+                    seelische Spannungen,die oft über Jahre gespeichert wurden –
+                    ohne, dass du sie nochmal durchleben musst.
                   </li>
                   <li>
                     Es ist kein Tun. Es ist ein Geschehen lassen. Ein
