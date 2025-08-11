@@ -32,12 +32,12 @@ export default function Header() {
                   </li>
 
                   <li>
-                    <Link className="menu-item" href="/">
+                    <Link className="menu-item" href="/about">
                       About Me
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/">
+                    <Link className="menu-item" href="/event">
                       Events
                     </Link>
                   </li>
@@ -47,7 +47,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/">
+                    <Link className="menu-item" href="/faq">
                       Q&amp;A
                     </Link>
                   </li>
@@ -68,7 +68,7 @@ export default function Header() {
                   </div> */}
                   <a
                     href="appointment.html"
-                    className="btn-main d-xl-block d-md-none"
+                    className="btn-main d-xl-block "
                   >
                    Buche hier deinen Termin
                   </a>
