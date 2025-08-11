@@ -32,12 +32,12 @@ export default function Header() {
                   </li>
 
                   <li>
-                    <Link className="menu-item" href="/about">
+                    <Link className="menu-item" href="/">
                       About Me
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/event">
+                    <Link className="menu-item" href="/">
                       Events
                     </Link>
                   </li>
@@ -47,7 +47,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/faq">
+                    <Link className="menu-item" href="/">
                       Q&amp;A
                     </Link>
                   </li>
