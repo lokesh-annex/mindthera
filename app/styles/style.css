@@ -9272,6 +9272,10 @@ img {
   #quick_search {
     width: 200px;
   }
+  .folwer-image{
+    width: 300px !important;
+    height: 210px !important;
+  }
   #quick_search {
     position: absolute;
     top: 30px;

@@ -22,7 +22,7 @@ const TestimonialSection = () => {
               className="mb20 fs-32 fw-600 lh-1-3"
               data-wow-delay=".2s"
             >
-           Kerstin R. Stoll, CEO
+           Kerstin R. Stoll, CEO <br />
 Ich erinnere dich an das, was du längst bist –
 durch Präsenz, Energie und seelische Wahrheit.
             </p>

@@ -59,10 +59,10 @@ const HeroSection = () => {
               </div>
               <Image
                 src="/images/misc/flowers-crop.webp"
-                width={730}
-                height={481}
-                className="w-30 absolute bottom-0 start-0 sw-anim"
-                alt=""
+                width={560}
+                height={381}
+                className="absolute bottom-0 start-0 sw-anim folwer-image"
+                alt="Flowers background"
               />
             </div>
           </SwiperSlide>
@@ -71,7 +71,7 @@ const HeroSection = () => {
           <SwiperSlide>
             <div
               className="swiper-inner"
-              style={{ backgroundImage: "url(/images/slider/2.jpg)",backgroundPosition: "bottom" }}
+              style={{ backgroundImage: "url(/images/slider/2.jpg)",backgroundPosition: "20% bottom" }}
             >
               <div className="sw-caption relative z-1000">
                 <div className="container">
@@ -108,10 +108,10 @@ const HeroSection = () => {
               </div>
               <Image
                 src="/images/misc/flowers-crop.webp"
-                  width={730}
-                height={481}
-                className="w-30 absolute bottom-0 start-0 sw-anim"
-                alt=""
+                width={560}
+                height={381}
+                className="absolute bottom-0 start-0 sw-anim folwer-image"
+                alt="Flowers background"
               />
             </div>
           </SwiperSlide>
