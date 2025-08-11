@@ -71,7 +71,7 @@ const HeroSection = () => {
           <SwiperSlide>
             <div
               className="swiper-inner"
-              style={{ backgroundImage: "url(/images/slider/2.jpg)",backgroundPosition: "20% bottom" }}
+              style={{ backgroundImage: "url(/images/slider/2.jpg)",backgroundPosition: "20% 79%" }}
             >
               <div className="sw-caption relative z-1000">
                 <div className="container">
