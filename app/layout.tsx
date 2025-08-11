@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Mindthera - Psychology and Counseling',
+  title: 'Traumafrei - Psychology and Counseling',
   description:
     'Professional psychology and counseling services to help you achieve mental wellness and personal growth',
 };

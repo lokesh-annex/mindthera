@@ -130,7 +130,7 @@ const TherapistServices = () => {
               Meine{" "}
               <span className="alt-font fw-500 fs-64 id-color-2">angebote</span>
             </h2>
-            <p className="lead mb-0 ">Sint tempor consequat ad commodo</p>
+            <p className="lead mb-0 ">Dieses Angebot ist noch in Bearbeitung und braucht noch etwas Zeit…</p>
             <div className="spacer-single" />
             <div className="spacer-half" />
           </div>

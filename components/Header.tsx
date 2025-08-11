@@ -67,8 +67,8 @@ export default function Header() {
                     <span>Need Help?</span>+929 333 9296
                   </div> */}
                   <a
-                    href="appointment.html"
-                    className="btn-main d-xl-block "
+                    
+                    className="btn-main d-xl-block"
                   >
                    Buche hier deinen Termin
                   </a>
