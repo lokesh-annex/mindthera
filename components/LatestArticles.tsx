@@ -43,15 +43,15 @@ const LatestArticles = () => {
           <div className="col-lg-6">
             {[
               {
-                title: "Ich baue Räume – keine Konzepte.",
+                title: "Die 9 Traumabereiche – Wie tief sitzende Muster unser Leben prägen",
                 image: "/images/blog/krishna1.jpg",
               },
               {
-                title: "Ich baue Räume – keine Konzepte.",
+                title: "Die Urform der Menschlichkeit ist das befreite Trauma",
                 image: "/images/blog/festival.jpg",
               },
               {
-                title: "Ich baue Räume – keine Konzepte.",
+                title: "Wie fühlt sich ein Leben ohne gespeichertes Trauma an?",
                 image: "/images/blog/lamp.jpg",
               },
             ].map((item, idx) => (
