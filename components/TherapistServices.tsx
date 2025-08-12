@@ -74,7 +74,7 @@ const tabData = [
         desc: "Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.",
       },
       {
-        title: "besonderer Hilfe",
+        title: "Bei besonderer Hilfe",
         image: "12.webp",
         desc: "Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.",
       },
@@ -84,22 +84,22 @@ const tabData = [
     label: "Unsere Spezialangebote",
     services: [
       {
-        title: "Retreats",
+        title: "Retreats HTR für die Rückgabe inkarnierter Traumafrequenzen",
         image: "15.webp",
-        desc: "Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.",
-      },
-      {
-        title: "HTR mit Pferden (coming soon)",
-        image: "16.webp",
-        desc: "Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.",
-      },
-      {
-        title: "HTR für die Rückgabe inkarnierter Traumafrequenzen",
-        image: "14.webp",
         desc: "Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.",
       },
       {
         title: "HTR bei kollektiven Traumaerlebnissen",
+        image: "16.webp",
+        desc: "Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.",
+      },
+      {
+        title: "Hier wartet eine Überraschung auf dich",
+        image: "14.webp",
+        desc: "Dieses Angebot ist noch in Bearbeitung und braucht noch etwas Zeit…",
+      },
+      {
+        title: "Retreats",
         image: "13.webp",
         desc: "Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.",
       },
@@ -127,10 +127,9 @@ const TherapistServices = () => {
           <div className="col-lg-6 offset-lg-3 text-center">
             <div className="subtitle mb-3">Meine Angebote</div>
             <h2 className="" data-wow-delay=".2s">
-              Meine{" "}
-              <span className="alt-font fw-500 fs-64 id-color-2">angebote</span>
+              Meine <span className="alt-font fw-500 ml-4 fs-64 id-color-2">Angebote</span>
             </h2>
-            <p className="lead mb-0 ">Dieses Angebot ist noch in Bearbeitung und braucht noch etwas Zeit…</p>
+            {/* <p className="lead mb-0 ">Dieses Angebot ist noch in Bearbeitung und braucht noch etwas Zeit…</p> */}
             <div className="spacer-single" />
             <div className="spacer-half" />
           </div>

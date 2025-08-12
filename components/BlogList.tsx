@@ -2,64 +2,44 @@ import Image from "next/image";
 const blogs = [
   {
     image: "images/blog/holi.jpg",
-    title: "The Power of Positive Thinking",
+    title: "ch baue Räume – keine Konzepte.",
     link: "blog-single.html",
-    desc: "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
+    desc: "Warum ich mich Bewusstseins-Architektin nenne",
     author: "Brunilda Doniger",
     authorImg: "images/testimonial/1.jpg",
     date: "18 Mar 2024",
-    tag: "tips & tricks",
+
   },
   {
-    image: "images/blog/holi.jpg",
-    title: "Understanding the Roots of Anxiety",
+    image: "images/blog/krishna1.jpg",
+    title: "Die 9 Traumabereiche – Wie tief sitzende Muster unser Leben prägen",
     link: "blog-single.html",
-    desc: "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
+    desc: "… und wie Harmonyum Trauma Release sie transformieren kann",
     author: "Brunilda Doniger",
     authorImg: "images/testimonial/1.jpg",
     date: "18 Mar 2024",
-    tag: "tips & tricks",
+
   },
   {
-    image: "images/blog/holi.jpg",
-    title: "The Psychology of Procrastination",
+    image: "images/blog/festival.jpg",
+    title: "Die Urform der Menschlichkeit ist das befreite Trauma",
     link: "blog-single.html",
-    desc: "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
+    desc: "Wie tiefenwirksame Heilung jenseits von Sprache, Analyse und Geschichte geschieht",
     author: "Brunilda Doniger",
     authorImg: "images/testimonial/1.jpg",
     date: "18 Mar 2024",
-    tag: "tips & tricks",
+  
   },
   {
-    image: "images/blog/holi.jpg",
-    title: "Stress Management Techniques",
+    image: "images/blog/lamp.jpg",
+    title: "Wie fühlt sich ein Leben ohne gespeichertes Trauma an?",
     link: "blog-single.html",
-    desc: "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
+    desc: "Ein Einblick in das, was du tief in dir schon kennst.",
     author: "Brunilda Doniger",
     authorImg: "images/testimonial/1.jpg",
     date: "18 Mar 2024",
-    tag: "tips & tricks",
-  },
-  {
-    image: "images/blog/holi.jpg",
-    title: "The Psychology of Resilience",
-    link: "blog-single.html",
-    desc: "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
-    author: "Brunilda Doniger",
-    authorImg: "images/testimonial/1.jpg",
-    date: "18 Mar 2024",
-    tag: "tips & tricks",
-  },
-  {
-    image: "images/blog/holi.jpg",
-    title: "The Secrets to a Fulfilling Life",
-    link: "blog-single.html",
-    desc: "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
-    author: "Brunilda Doniger",
-    authorImg: "images/testimonial/1.jpg",
-    date: "18 Mar 2024",
-    tag: "tips & tricks",
-  },
+    
+  }
 ];
 
 const BlogList = () => (
@@ -68,9 +48,7 @@ const BlogList = () => (
       <div className="col-lg-4 col-md-6 mb10" key={idx}>
         <div className="rounded-20px">
           <div className="post-image rounded-10px">
-            <div className="d-tagline">
-              <span>{blog.tag}</span>
-            </div>
+           
             <Image
               alt=""
               src={blog.image}

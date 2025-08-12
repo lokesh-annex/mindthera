@@ -7,7 +7,7 @@ const TestimonialSection = () => {
      
    
       <div className="container">
-        <div className="row g-4 gx-5 relative z-index-1000">
+        <div className="row g-4 gx-5 relative z-index-1000 align-items-center">
           <div className="col-lg-2 offset-lg-1 col-sm-4 text-center">
             <img
               src="/images/team/2.webp"
@@ -22,7 +22,7 @@ const TestimonialSection = () => {
               className="mb20 fs-32 fw-600 lh-1-3"
               data-wow-delay=".2s"
             >
-           Kerstin R. Stoll, CEO <br />
+           {/* Kerstin R. Stoll, CEO <br /> */}
 Ich erinnere dich an das, was du längst bist –
 durch Präsenz, Energie und seelische Wahrheit.
             </p>
