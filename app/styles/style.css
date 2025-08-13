@@ -9044,7 +9044,7 @@ img {
 
 .testimonial-section {
   padding: 100px 0;
-  background: url("/images/background/3.webp") no-repeat center center;
+  background: url("/images/background/3.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -9261,6 +9261,15 @@ img {
   left: 0;
   position: absolute;
 }
+
+@media (min-width: 1600px) and (max-width: 2500px) {
+
+ .swiper-inner.two {
+    background-position: 10%;
+    background-size: 100% 113% !important;
+  }
+}
+ 
 @media (min-width: 992px) {
   .col-md-1-5 {
     width: 20%;

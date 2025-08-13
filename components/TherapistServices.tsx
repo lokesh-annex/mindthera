@@ -117,15 +117,15 @@ const TherapistServices = () => {
         className="w-20 absolute top-20 start-0 sw-anim"
         alt=""
       />
-      <img
+      {/* <img
         src="/images/misc/flowers-crop-2.webp"
         className="w-30 absolute top-0 start-0 sw-anim"
         alt=""
-      />
+      /> */}
       <div className="container">
         <div className="row">
           <div className="col-lg-6 offset-lg-3 text-center">
-            <div className="subtitle mb-3">Meine Angebote</div>
+           
             <h2 className="" data-wow-delay=".2s">
               Meine <span className="alt-font fw-500 ml-4 fs-64 id-color-2">Angebote</span>
             </h2>

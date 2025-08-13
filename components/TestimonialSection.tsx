@@ -23,7 +23,7 @@ const TestimonialSection = () => {
               data-wow-delay=".2s"
             >
            {/* Kerstin R. Stoll, CEO <br /> */}
-Ich erinnere dich an das, was du längst bist –
+Ich erinnere dich an das, was du längst bist –<br />
 durch Präsenz, Energie und seelische Wahrheit.
             </p>
           </div>

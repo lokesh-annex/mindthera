@@ -37,14 +37,12 @@ const TestimonialsBottom = () => {
     <section className="testimonials-bottom-section">
       <div className="container">
         <div className="testimonials-header">
-          <span className="testimonials-label">Erfahrungsberichte von KundInnen</span>
-          <h2 className="testimonials-title">Erfahrungsberichte von KundInnen</h2>
-           <div className="d-flex justify-content-center mt-2">
-          <button
-            className="btn fw-bold btn-main px-5 py-3">
+        <button
+            className="btn fw-bold mb-3 btn-main px-5 py-3">
             Feedback
           </button>
-        </div>
+          <h2 className="testimonials-title">Erfahrungsberichte von KundInnen</h2>
+         
         </div>
         <Swiper
           modules={[Pagination]}
