@@ -57,13 +57,13 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
-              <Image
+              {/* <Image
                 src="/images/misc/flowers-crop.webp"
                width={400}
                 height={281}
                 className="absolute bottom-0 start-0 sw-anim folwer-image"
                 alt="Flowers background"
-              />
+              /> */}
             </div>
           </SwiperSlide>
 
@@ -106,13 +106,13 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
-              <Image
+              {/* <Image
                 src="/images/misc/flowers-crop.webp"
                 width={400}
                 height={281}
                 className="absolute bottom-0 start-0 sw-anim folwer-image"
                 alt="Flowers background"
-              />
+              /> */}
             </div>
           </SwiperSlide>
         </Swiper>
