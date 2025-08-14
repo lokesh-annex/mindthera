@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { InlineWidget } from "react-calendly";
 
 const HeroSection = () => {
   return (
@@ -117,6 +118,7 @@ const HeroSection = () => {
           </SwiperSlide>
         </Swiper>
       </div>
+       <InlineWidget url="https://calendly.com/rohit-annexlogics/30min" />
     </section>
   );
 };
