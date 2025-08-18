@@ -1841,7 +1841,7 @@ a.btn-line,
   font-weight: bold;
   text-decoration: none;
   padding: 8px 25px;
-  font-size: 14px;
+  font-size: 17px;
   border: none;
   border-radius: 30px;
   -moz-border-radius: 30px;
@@ -5241,7 +5241,7 @@ h3.slider-teaser {
   font-size: 24px;
 }
 p.slider-teaser {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.6em;
   font-weight: 400;
 }

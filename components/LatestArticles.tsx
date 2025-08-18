@@ -5,17 +5,28 @@ const articles = [
     {
     title: "Wie fühlt sich ein Leben ohne gespeichertes Trauma an?",
     image: "/images/blog/lamp.jpg",
-    date: "Jun 2, 2024",
+    date: "12 August, 2025",
+    likes: 0,
+    comments: 1,
+    mainDay: "12",
+    mainMonth: "Aug",
+    mainYear: "2025",
+    description: "Kurze Beschreibung zum Artikel."
+  },
+   {
+    title: "Ich baue Räume – keine Konzepte.",
+    image: "/images/blog/holi.jpg",
+    date: "25 July, 2025 ",
     likes: 0,
     comments: 1,
     mainDay: "02",
-    mainMonth: "Jun",
-    description: "Kurze Beschreibung zum Artikel."
+    mainMonth: "May",
+    description: "Warum ich mich Bewusstseins-Architektin nenne"
   },
   {
     title: "Die 9 Traumabereiche – Wie tief sitzende Muster unser Leben prägen",
     image: "/images/blog/krishna1.jpg",
-    date: "Apr 24, 2023",
+    date: "1 August, 2025",
     likes: 0,
     comments: 1,
     mainDay: "24",
@@ -26,7 +37,7 @@ const articles = [
   {
     title: "Die Urform der Menschlichkeit ist das befreite Trauma",
     image: "/images/blog/festival.jpg",
-    date: "May 10, 2022",
+    date: "8 August, 2025",
     likes: 0,
     comments: 1,
     mainDay: "10",
@@ -34,16 +45,7 @@ const articles = [
     description: "Kurze Beschreibung zum Artikel."
   },
 
-    {
-    title: "Ich baue Räume – keine Konzepte.",
-    image: "/images/blog/holi.jpg",
-    date: "May 02, 2021",
-    likes: 0,
-    comments: 1,
-    mainDay: "02",
-    mainMonth: "May",
-    description: "Warum ich mich Bewusstseins-Architektin nenne"
-  },
+   
 ];
 
 const LatestArticles = () => {
@@ -71,7 +73,7 @@ const LatestArticles = () => {
             <div className="d-flex mt-3">
               <div className="me-3 text-center">
                 <h2 className="fw-bold mb-0">{main.mainDay}</h2>
-                <small className="text-muted text-uppercase">{main.mainMonth}</small>
+                <small className="text-muted text-uppercase">{main.mainMonth} {main.mainYear}</small>
               </div>
               <div>
                 <h2 className="fw-bold">{main.title}</h2>

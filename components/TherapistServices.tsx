@@ -6,51 +6,51 @@ const tabData = [
     label: "Für Paare & Familien",
     services: [
       {
-        title: "für eine Urform Session ",
+        title: "Harmonyum Trauma Release  ",
         image: "1.webp",
-        desc: "Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.",
+        desc: "Frequenzform zur Rückverbindung",
       },
       {
-        title: "bei Paaren mit Kinderwunsch",
+        title: "Paar-special Mit Kinderwunsch",
         image: "2.webp",
-        desc: "Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.",
+        desc: "ein heilender Raum für Empfängnis – körperlich, energetisch, seelisch",
       },
       {
-        title: "für Ahnenfrieden",
+        title: "Ahnenfrieden – Energetische Löschung Von Übernommenem Trauma",
         image: "3.webp",
-        desc: "Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.",
+        desc: "du trägst, was du fühlst. Aber Manches ist alt, gehört nicht zu dir und wartet auf Erlösung.",
       },
       {
-        title: "für Familienentlastung",
+        title: "Gemeinsame Familienzeit ",
         image: "4.webp",
-        desc: "Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.",
+        desc: "ein heilender Raum für Eltern – in Rückverbindung mit sich selbst und ihren Kindern",
       },
     ],
   },
 
   {
-    label: "Für Schwangerschaft, Geburt & Wochenbett",
+    label: "Für Schwangerschaft",
     services: [
       {
         title: "Schwangerschaft",
         image: "6.webp",
 
-        desc: "Individuelle Trauma Release Sitzungen für nachhaltige Entlastung und Heilung.",
+        desc: "Nervensystem-Beruhigung & Rückverbindung",
       },
       {
-        title: "Geburt",
+        title: "Mutter & Kind – Geburts-special",
         image: "7.webp",
-        desc: "Gruppensitzungen für gemeinsames Wachstum und Unterstützung.",
+        desc: "die Geburt verändert alles – auch das, was oft unsichtbar bleibt",
       },
       {
-        title: "Wochenbett",
+        title: "Ergänzende Begleitung Im Wochenbett",
         image: "5.webp",
-        desc: "Gruppensitzungen für gemeinsames Wachstum und Unterstützung.",
+        desc: "weil Rückverbindung nicht mit der Geburt deines Kindes endet",
       },
       {
-        title: "für Babys & Kinder",
+        title: "Traumata Aus Der Kindheit",
         image: "8.webp",
-        desc: "Gruppensitzungen für gemeinsames Wachstum und Unterstützung.",
+        desc: "die ersten Jahre prägen alles – auch das, was wir längst vergessen haben",
       },
     ],
   },
@@ -58,25 +58,25 @@ const tabData = [
     label: "Für sofortige Hilfe",
     services: [
       {
-        title: "Krankheit",
+        title: "Trauma Durch Emotionale & Körperliche Blockaden ",
         image: "9.webp",
-        desc: "Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.",
+        desc: "wenn etwas zu gross war, um verarbeitet zu werden – wird es vom Körper getragen",
       },
       {
-        title: "Unfall",
+        title: "Trauma Nach Unfall",
         image: "10.webp",
-        desc: "Sint tempor consequat ad commodo nostrud occaecat ad nulla labore esse culpa non dolore pariatur fugiat.",
+        desc: "Erste-Hilfe-Special mit BlueBody-Aktivierung",
       },
       {
-        title: "Depression, Stress, BurnOut",
+        title: "Trauma Durch Chronischen Stress, Burnout, Depression & Überforderung",
 
         image: "11.webp",
-        desc: "Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.",
+        desc: "wenn nichts mehr geht – ist es Zeit, wieder bei dir anzukommen",
       },
       {
-        title: "Bei besonderer Hilfe",
+        title: "Trauma Durch Berufliche Belastung (Z. B. Notfallmedizin, Polizei, Rettungskräfte)",
         image: "12.webp",
-        desc: "Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.",
+        desc: "wenn Helfen traumatisch wird – braucht auch die Stärke einen Raum",
       },
     ],
   },
@@ -84,14 +84,14 @@ const tabData = [
     label: "Unsere Spezialangebote",
     services: [
       {
-        title: "Retreats HTR für die Rückgabe inkarnierter Traumafrequenzen",
+        title: "Seelenentbindung – Rückgabe Inkarnierter Traumafrequenzen",
         image: "15.webp",
-        desc: "Intensive Harmonyum Anwendungen für tiefgreifende Entspannung.",
+        desc: "manchmal reagiert der Körper auf Dinge, die der Verstand nicht kennt",
       },
       {
-        title: "HTR bei kollektiven Traumaerlebnissen",
+        title: "Kollektive Erlebnisse (Krieg, Pandemie, Flucht, Gewalt Etc.)",
         image: "16.webp",
-        desc: "Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.",
+        desc: "manche Erfahrungen prägen nicht nur dich – sondern ganze Felder, Gesellschaften und Kulturen",
       },
       {
         title: "Hier wartet eine Überraschung auf dich",
@@ -99,9 +99,9 @@ const tabData = [
         desc: "Dieses Angebot ist noch in Bearbeitung und braucht noch etwas Zeit…",
       },
       {
-        title: "Retreats",
+        title: "Stille Heilt",
         image: "13.webp",
-        desc: "Sanfte Harmonyum Sitzungen für innere Balance und Wohlbefinden.",
+        desc: "Retreat zur Rückverbindung mit deiner Urform",
       },
     ],
   },
@@ -114,7 +114,7 @@ const TherapistServices = () => {
     <section className="relative overflow-hidden pb60">
       <img
         src="/images/bg-2-copyright.png"
-        className="w-20 absolute top-20 start-0 sw-anim"
+        className="w-30 absolute top-20 start-0 sw-anim"
         alt=""
       />
       {/* <img
@@ -136,7 +136,7 @@ const TherapistServices = () => {
         </div>
 
         {/* Tabs */}
-        <div className="d-flex justify-content-center mb-5 gap-3 flex-wrap">
+        <div className="d-flex justify-content-center mb-5 gap-1 flex-wrap">
           {tabData.map((tab, idx) => (
             <button
               key={tab.label}
@@ -156,13 +156,13 @@ const TherapistServices = () => {
           {tabData[activeTab].services.map((service, i) => (
             <div key={i} className="col-lg-3 col-sm-6">
               <div className="relative mb-3">
-                <a href="#" className="d-block hover mb-3">
+                <a href="/service" className="d-block hover mb-3">
                   <div className="relative overflow-hidden rounded-20px shadow-soft">
-                    <img
+                    {/* <img
                       src="/images/misc/flowers-crop-3-white.webp"
                       className="w-50 end-0 absolute hover-op-0"
                       alt=""
-                    />
+                    /> */}
                     <div className="absolute start-0 w-100 abs-middle fs-36 text-white text-center">
                       <span className="btn-main hover-scale-in-2">
                         Read More
@@ -175,8 +175,8 @@ const TherapistServices = () => {
                     />
                   </div>
                 </a>
-                <h4>{service.title}</h4>
-                <p className="no-bottom">{service.desc}</p>
+                <h4 className="text-center">{service.title}</h4>
+                <p className="no-bottom text-center">{service.desc}</p>
               </div>
             </div>
           ))}
@@ -185,6 +185,9 @@ const TherapistServices = () => {
         <div className="spacer-double" />
       </div>
     </section>
+
+
+
   );
 };
 

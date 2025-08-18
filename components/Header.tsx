@@ -33,7 +33,7 @@ export default function Header() {
 
                   <li>
                     <Link className="menu-item" href="/">
-                      About Me
+                     Über mich
                     </Link>
                   </li>
                   <li>
