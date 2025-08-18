@@ -157,7 +157,7 @@ const TherapistServices = () => {
             <div key={i} className="col-lg-3 col-sm-6">
               <div className="relative mb-3">
                 <a href="/service" className="d-block hover mb-3">
-                  <div className="relative overflow-hidden rounded-20px shadow-soft">
+                  <div className="relative overflow-hidden rounded-20px ">
                     {/* <img
                       src="/images/misc/flowers-crop-3-white.webp"
                       className="w-50 end-0 absolute hover-op-0"
