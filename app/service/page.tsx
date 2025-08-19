@@ -30,6 +30,7 @@ const service = [
 ];
 
 export default function SessionPage() {
+  
   return (
     <>
        <Breadcrumbs

@@ -32,7 +32,7 @@ export default function Header() {
                   </li>
 
                   <li>
-                    <Link className="menu-item" href="/">
+                    <Link className="menu-item" href="/about">
                      Über mich
                     </Link>
                   </li>

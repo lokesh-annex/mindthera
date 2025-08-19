@@ -128,7 +128,9 @@ a.a-underline span {
 a.a-underline:hover span {
   width: 100%;
 }
-
+.gap-12 {
+  gap: 6rem;
+}
 header {
   width: 100%;
   position: absolute;
