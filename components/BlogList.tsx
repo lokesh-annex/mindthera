@@ -63,7 +63,7 @@ const BlogList = () => (
             />
           </div>
           <div className="pt-2 h-100">
-            <Link href={`/blog-single/${encodeURIComponent(article.title.replace(/\s+/g, '-').toLowerCase())}`} className="text-dark text-decoration-none">
+            <Link href="/" className="text-dark text-decoration-none">
               <h4 className="text-dark">{article.title}</h4>
             </Link>
             <p className="mb-3">{article.description}</p>
