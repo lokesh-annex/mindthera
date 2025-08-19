@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-
+import Link from "next/link";
+import Image from "next/image";
 const tabData = [
   {
     label: "Für Paare & Familien",
@@ -126,17 +127,12 @@ const TherapistServices = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="relative overflow-hidden pb60">
-      <img
-        src="/images/bg-2-copyright.png"
-        className="w-25 absolute top-20 start-0 sw-anim"
-        alt=""
-      />
-      {/* <img
-        src="/images/misc/flowers-crop-2.webp"
-        className="w-30 absolute top-0 start-0 sw-anim"
-        alt=""
-      /> */}
+    <section className="relative  pb60">
+    
+     
+     
+      
+    
       <div className="container">
         <div className="row">
           <div className="col-lg-6 offset-lg-3 text-center">
@@ -170,8 +166,8 @@ const TherapistServices = () => {
         <div className="row g-4">
           {tabData[activeTab].services.map((service, i) => (
             <div key={i} className="col-lg-3 col-sm-6">
-              <div className="relative mb-3">
-                <a href="/service" className="d-block hover mb-3">
+              <div className="relative mb-3" style={{ minHeight: "470px" }}>
+                <Link href={`/service/${service.slug}`} className="d-block hover mb-3">
                   <div className="relative overflow-hidden rounded-20px ">
                     {/* <img
                       src="/images/misc/flowers-crop-3-white.webp"
@@ -189,16 +185,32 @@ const TherapistServices = () => {
                       alt={service.title}
                     />
                   </div>
-                </a>
-                <h4 className="text-center">{service.title}</h4>
+                </Link>
+                <h4 className="text-center">
+                  <Link href={`/service/${service.slug}`} className="text-decoration-none text-dark">
+                    {service.title}
+                  </Link>
+                </h4>
                 <p className="no-bottom text-center">{service.desc}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="spacer-double" />
-      </div>
+         
+       </div>
+       <span className="absolute top-20 start-0">
+
+     
+        <Image
+          src="/images/bg-2-copyright.webp"
+          width={393}
+          height={625}
+           
+          alt="Background Copyright"
+          priority
+        />
+          </span>
     </section>
 
 

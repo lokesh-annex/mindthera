@@ -1,6 +1,7 @@
 "use client";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Logo from "./Logo";
+import Link from "next/link";
 export default function Footer() {
   return (
     <div className="d-flex flex-column">
@@ -54,20 +55,19 @@ export default function Footer() {
             <div className="col text-center">
               <ul className="list-inline mb-0">
                 <li className="list-inline-item mx-2">
-                  <a href="/agb" className="text-light text-decoration-none">
+                  <Link href="/agb" className="text-light text-decoration-none">
                     AGB  Impressum
-                  </a>
+                  </Link>
                 </li>
-              
                 <li className="list-inline-item mx-2">
-                  <a href="/disclaimer" className="text-light text-decoration-none">
+                  <Link href="/disclaimer" className="text-light text-decoration-none">
                     Disclaimer
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-inline-item mx-2">
-                  <a href="/agb-traumafrei" className="text-light text-decoration-none">
+                  <Link href="/agb-traumafrei" className="text-light text-decoration-none">
                     AGB – traumafrei
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

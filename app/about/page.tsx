@@ -51,45 +51,57 @@ const AboutUS = () => (
             />
           </div>
 <div className="col-lg-12">
-   <h3 className="h5 mt-4 mb-3 text-primary">Liebe Seele,</h3>
-            <p className="mb-3">
-              Ich arbeite mit positiven Menschen im Erwachen, die tief in sich selbst wissen oder spüren:<br />
-              <span className="fw-semibold">So wie bisher geht es nicht weiter.</span><br />
-              Aber auch:<br />
-              <span className="fw-semibold">So wie ich wirklich bin – darf es jetzt in der Tiefe weitergehen.</span>
-            </p>
-            <p className="mb-3">
-              Ich begleite Menschen, die sich selbst wieder bewohnen wollen – durch Präsenz, Frequenz &amp; tiefe energetische Arbeit auf Zellebene.<br />
-              Meine Arbeit ist kein „Coaching im Kopf“ – sondern eine Erinnerung an das, was du längst weisst.<br />
-              Ich arbeite intuitiv, hellsichtig, körperorientiert und seelengeführt.<br />
-              Ich arbeite auf energetischer &amp; zellulärer Ebene – ich verwandle Bewusstsein.<br />
-              Ich führe Dich zurück – und lasse Dich erinnern.
-            </p>
-            <p className="mb-3">
-              Als Bewusstseins-Architektin baue ich keine Häuser.<br />
-              Ich baue Räume – in dir.<br />
-              Räume, in denen du endlich atmen kannst.<br />
-              In denen du deine Wahrheit nicht erklären musst.<br />
-              In denen du nicht funktionieren musst, um wertvoll zu sein.<br />
-              Ich begleite Menschen, die innerlich längst wissen:<br />
-              <span className="fw-semibold">„Ich bin mehr als das hier.“</span><br />
-              Aber noch nicht wissen, wie sie dahin kommen.
-            </p>
-            <p className="mb-3">
-              Als Bewusstseins-Architektin arbeite ich mit Struktur und Frequenz.<br />
-              Ich sehe, wo du dich klein gemacht hast – und zeige dir, wie du dich neu bauen kannst:<br />
-              ehrlich, stabil, spirituell angebunden.<br />
-              Meine Werkzeuge sind energetische Trauma-Arbeit, intuitive Klarheit und ein unbestechlicher Blick auf das, was du wirklich bist – unter all den Rollen.<br />
-              Ich bin nicht hier, um dich zu coachen.<br />
-              Ich bin hier, um dir deine inneren Räume zurückzugeben.<br />
-              Damit du dich nicht mehr verbiegen musst – sondern dich selbst wieder bewohnen kannst.
-            </p>
-            <div className="alert alert-info mt-4 mb-3">
-              <strong>Ich verbinde Wissenschaft &amp; Weisheit, Körper &amp; Frequenz</strong><br />
-              Kerstin R. Stoll<br />
-              Bewusstseins-Architektin &amp; Harmonyum Trauma Release® Practitioner<br />
-              ✨ Visionärin der inneren Räume für neue Realitäten
-            </div>
+  <div className="card border-0 shadow-lg mb-5 bg-light">
+    <div className="card-body p-5">
+      <h3 className="h4 mb-4 text-primary text-center">
+        <i className="bi bi-heart-fill me-2 text-danger"></i>Liebe Seele
+      </h3>
+      <div className="row">
+        <div className="col-md-6 mb-4 mb-md-0">
+          <p className="mb-3">
+            Ich arbeite mit positiven Menschen im Erwachen, die tief in sich selbst wissen oder spüren:<br />
+            <span className="fw-semibold text-success">So wie bisher geht es nicht weiter.</span><br />
+            Aber auch:<br />
+            <span className="fw-semibold text-success">So wie ich wirklich bin – darf es jetzt in der Tiefe weitergehen.</span>
+          </p>
+          <p className="mb-3">
+            Ich begleite Menschen, die sich selbst wieder bewohnen wollen – durch Präsenz, Frequenz &amp; tiefe energetische Arbeit auf Zellebene.<br />
+            Meine Arbeit ist kein „Coaching im Kopf“ – sondern eine Erinnerung an das, was du längst weisst.<br />
+            Ich arbeite intuitiv, hellsichtig, körperorientiert und seelengeführt.<br />
+            Ich arbeite auf energetischer &amp; zellulärer Ebene – ich verwandle Bewusstsein.<br />
+            Ich führe Dich zurück – und lasse Dich erinnern.
+          </p>
+        </div>
+        <div className="col-md-6">
+          <p className="mb-3">
+            Als Bewusstseins-Architektin baue ich keine Häuser.<br />
+            Ich baue Räume – in dir.<br />
+            Räume, in denen du endlich atmen kannst.<br />
+            In denen du deine Wahrheit nicht erklären musst.<br />
+            In denen du nicht funktionieren musst, um wertvoll zu sein.<br />
+            Ich begleite Menschen, die innerlich längst wissen:<br />
+            <span className="fw-semibold text-success">„Ich bin mehr als das hier.“</span><br />
+            Aber noch nicht wissen, wie sie dahin kommen.
+          </p>
+          <p className="mb-3">
+            Als Bewusstseins-Architektin arbeite ich mit Struktur und Frequenz.<br />
+            Ich sehe, wo du dich klein gemacht hast – und zeige dir, wie du dich neu bauen kannst:<br />
+            ehrlich, stabil, spirituell angebunden.<br />
+            Meine Werkzeuge sind energetische Trauma-Arbeit, intuitive Klarheit und ein unbestechlicher Blick auf das, was du wirklich bist – unter all den Rollen.<br />
+            Ich bin nicht hier, um dich zu coachen.<br />
+            Ich bin hier, um dir deine inneren Räume zurückzugeben.<br />
+            Damit du dich nicht mehr verbiegen musst – sondern dich selbst wieder bewohnen kannst.
+          </p>
+        </div>
+      </div>
+      <div className="alert alert-info mt-4 mb-3 text-center">
+        <strong>Ich verbinde Wissenschaft &amp; Weisheit, Körper &amp; Frequenz</strong><br />
+        Kerstin R. Stoll<br />
+        Bewusstseins-Architektin &amp; Harmonyum Trauma Release® Practitioner<br />
+        ✨ Visionärin der inneren Räume für neue Realitäten
+      </div>
+    </div>
+  </div>
 </div>
         </div>
         <div className="row mt-2 g-4">
