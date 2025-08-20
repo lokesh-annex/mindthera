@@ -5,8 +5,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 const ContactPage = () => (
   <>
    <Breadcrumbs
-        title="Contact"
-        items={[{ label: "Kontakt", href: "/" }, { label: "Kontakt" }]}
+        title="Kontakt"
+        items={[{ label: "Home", href: "/" }, { label: "Kontakt" }]}
       />
   <section>
     <div className="container">
