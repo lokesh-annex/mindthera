@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 import React from "react";
 import HeroSection from "@/components/harmonyum/HeroSection";
-import Anwendungsbereiche from "@/components/harmonyum/Anwendungsbereiche";
+// import Anwendungsbereiche from "@/components/harmonyum/Anwendungsbereiche";
 import WirkungDerSitzung from "@/components/harmonyum/WirkungDerSitzung";
 import WasIstTrauma from "@/components/harmonyum/WasIstTrauma";
 import BeispieleTrauma from "@/components/harmonyum/BeispieleTrauma";
@@ -25,8 +25,8 @@ export default function HarmonyumPage() {
       />
 
   <HeroSection />
-  <Anwendungsbereiche />
   <WirkungDerSitzung />
+  {/* <Anwendungsbereiche /> */}
   <WasIstTrauma />
   <BeispieleTrauma />
   <WarumBleibtTrauma />

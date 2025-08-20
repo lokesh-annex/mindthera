@@ -1,6 +1,7 @@
 
 import React from "react";
-import { FaLeaf, FaHeart, FaBaby, FaLock } from "react-icons/fa";
+// Bootstrap icons CDN or package should be included in your project
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function Anwendungsbereiche() {
   return (
@@ -21,22 +22,30 @@ export default function Anwendungsbereiche() {
             letterSpacing: "1px",
           }}>
             Anwendungsbereiche von HTR
-          </h2>
+          </h2> 
           <ul className="list-unstyled mb-3">
             <li className="d-flex align-items-center mb-3">
-              <span className="me-3 text-primary" style={{ fontSize: "1.5rem" }}><FaLeaf /></span>
+              <span className="me-3 text-primary" style={{ fontSize: "1.5rem" }}>
+                <i className="bi bi-flower1"></i>
+              </span>
               <span>Traumata aus früheren Leben <span className="text-muted">(z.B. unerklärliche Ängste, Blockaden)</span></span>
             </li>
             <li className="d-flex align-items-center mb-3">
-              <span className="me-3 text-success" style={{ fontSize: "1.5rem" }}><FaHeart /></span>
+              <span className="me-3 text-primary" style={{ fontSize: "1.5rem" }}>
+                <i className="bi bi-heart-fill"></i>
+              </span>
               <span>Vererbte Familienmuster und karmische Belastungen</span>
             </li>
             <li className="d-flex align-items-center mb-3">
-              <span className="me-3 text-warning" style={{ fontSize: "1.5rem" }}><FaBaby /></span>
+              <span className="me-3 text-primary" style={{ fontSize: "1.5rem" }}>
+                <i className="bi bi-baby"></i>
+              </span>
               <span>Geburtstraumata und pränatale Erfahrungen</span>
             </li>
             <li className="d-flex align-items-center mb-3">
-              <span className="me-3 text-danger" style={{ fontSize: "1.5rem" }}><FaLock /></span>
+              <span className="me-3 text-primary" style={{ fontSize: "1.5rem" }}>
+                <i className="bi bi-shield-lock-fill"></i>
+              </span>
               <span>Emotionale Blockaden, die den Alltag beeinträchtigen</span>
             </li>
           </ul>
