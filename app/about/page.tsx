@@ -5,8 +5,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 const AboutUS = () => (
   <>
     <Breadcrumbs
-      title="Über Kerstin R. Stoll"
-      items={[{ label: "Home", href: "/" }, { label: "Über Kerstin R. Stoll" }]}
+      title="Über mich"
+      items={[{ label: "Home", href: "/" }, { label: "Über mich" }]}
     />
     <section className="bg-white py-5">
       <div className="container">

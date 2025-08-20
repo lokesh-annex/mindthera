@@ -5,8 +5,8 @@ const OfferPage = () => (
   <main>
    
       <Breadcrumbs
-        title="Offer"
-        items={[{ label: "Home", href: "/" }, { label: "Offer" }]}
+        title="Meine Angebote"
+        items={[{ label: "Home", href: "/" }, { label: "Meine Angebote" }]}
       />
     <TherapistServices />
   </main>
