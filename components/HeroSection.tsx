@@ -47,8 +47,8 @@ const HeroSection = () => {
                         </div>
                         <div className="spacer-10"></div>
                         <a
-                          className="btn-main  mb10 mb-3"
-                          href="services.html"
+                          className="btn-main mb10 mb-3"
+                          href="/harmonyum"
                         >
                           Harmonyum Trauma Release®
                         </a>
