@@ -26,7 +26,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/offer">
+                    <Link className="menu-item" href="/">
                       Angebote
                     </Link>
                   </li>

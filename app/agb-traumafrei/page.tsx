@@ -8,7 +8,7 @@ export default function AgbTraumafreiPage() {
         items={[{ label: "Home", href: "/" }, { label: "AGB – traumafrei" }]}
       />
       <div className="container py-5">
-        <h2 className="mb-4">AGB – traumafrei</h2>
+       
         <div className="bg-light p-4 rounded shadow">
           <h2 className="h5 mb-3">Allgemeine Geschäftsbedingungen (AGB)</h2>
           <p>

@@ -14,7 +14,7 @@ const ContactPage = () => (
         <div className="col-lg-6">
           <div className="subtitle fadeInUp mb-3">Contact Form</div>
           <h2 className="fadeInUp">Get In Touch</h2>
-          <p>Whether you have a question, a suggestion, or just want to say hello, this is the place to do it. Please fill out the form below with your details and message, and we'll get back to you as soon as possible.</p>
+          <p>Whether you have a question, a suggestion, or just want to say hello, this is the place to do it. Please fill out the form below with your details and message, and we&apos;ll get back to you as soon as possible.</p>
           <div className="spacer-single"></div>
           <h4>Our Office</h4>
           <div className="row">
