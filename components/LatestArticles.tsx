@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const articles = [
     {
     title: "Wie fühlt sich ein Leben ohne gespeichertes Trauma an?",
     image: "/images/blog/lamp.jpg",
+    slug: "wie-fuehlt-sich-ein-leben-ohne-gespeichertes-trauma-an",
     date: "12 August, 2025",
     likes: 0,
     comments: 1,
@@ -12,9 +14,11 @@ const articles = [
     mainMonth: "Aug",
     mainYear: "2025",
     description: "Kurze Beschreibung zum Artikel."
+    
   },
    {
     title: "Ich baue Räume – keine Konzepte.",
+     slug: "ich-baue-raeume-keine-konzepte",
     image: "/images/blog/holi.jpg",
     date: "25 July, 2025 ",
     likes: 0,
@@ -25,6 +29,7 @@ const articles = [
   },
   {
     title: "Die 9 Traumabereiche – Wie tief sitzende Muster unser Leben prägen",
+      slug: "die-9-traumabereiche-wie-tief-sitzende-muster-unser-leben-praegen",
     image: "/images/blog/krishna1.jpg",
     date: "1 August, 2025",
     likes: 0,
@@ -36,6 +41,7 @@ const articles = [
 
   {
     title: "Die Urform der Menschlichkeit ist das befreite Trauma",
+     slug: "die-urform-der-menschlichkeit-ist-das-befreite-trauma",
     image: "/images/blog/festival.jpg",
     date: "8 August, 2025",
     likes: 0,
@@ -62,13 +68,15 @@ const LatestArticles = () => {
           {/* Main big article */}
           <div className="col-lg-6 mb-4">
             <div className="position-relative">
-              <Image
-                src={main.image}
-                alt={main.title}
-                className="img-fluid"
-                width={600}
-                height={500}
-              />
+              <Link href={`/blog-single/${main.slug}`}>
+                <Image
+                  src={main.image}
+                  alt={main.title}
+                  className="img-fluid"
+                  width={600}
+                  height={500}
+                />
+              </Link>
             </div>
             <div className="d-flex mt-3">
               <div className="me-3 text-center">
@@ -76,7 +84,9 @@ const LatestArticles = () => {
                 <small className="text-muted text-uppercase">{main.mainMonth} {main.mainYear}</small>
               </div>
               <div>
+                  <Link href={`/blog-single/${main.slug}`}>
                 <h2 className="fw-bold">{main.title}</h2>
+                </Link>
                 <p className="text-muted mb-2 small">{main.description}</p>
                 <small className="text-muted">
                   {main.likes} Likes &nbsp;•&nbsp; {main.comments} Comment
@@ -101,7 +111,9 @@ const LatestArticles = () => {
                   <small className="text-uppercase text-muted d-block mb-1">
                     {item.date}
                   </small>
-                  <h3 className="fw-bold mb-0">{item.title}</h3>
+                  <Link href={`/blog-single/${item.slug}`}>
+                    <h3 className="fw-bold mb-0">{item.title}</h3>
+                  </Link>
                 </div>
               </div>
             ))}

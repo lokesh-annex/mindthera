@@ -10,10 +10,10 @@ const DonationSection = () => {
             <Image
               src="/images/misc/10.jpg"
               alt="Donation"
-              width={500}
-              height={450}
+              width={550}
+              height={500}
               style={{
-                maxWidth: "500px",
+               
                 borderRadius: "8px",
                 objectFit: "cover",
                 boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
@@ -49,7 +49,7 @@ const DonationSection = () => {
                       />
                     </g>
                   </svg>
-                  15,572
+                  0
                 </span>
               </div>
               <div className="fw-bold" style={{ fontSize: "1.1rem" }}>
@@ -93,12 +93,17 @@ const DonationSection = () => {
               }}
             ></div>
 
-            <p className="text-muted mb-4" style={{ maxWidth: "500px" }}>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae. Lorem ipsum dolor sit amet, consectetur sadipscing elitr,
-              sed diam nonumy eirmod.
-            </p>
+            <div className="text-muted mb-4" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
+                 <p><strong>Liebe Seele,</strong></p>
+              <div style={{ fontSize: "15px" }}>
+             
+                <p className="mb-1">Nicht alle Menschen können sich momentan eine Harmonyum Trauma Release-Behandlung leisten. Unser Gesundheitssystem darf dieses Angebot noch in ihr Portfolio aufnehmen.</p>
+                <p className="mb-1">Deshalb sammeln wir für Menschen in körperlicher, emotionaler und/oder seelischer Not nach traumatischen Erfahrungen.</p>
+                <p className="mb-1">Es gibt in der Schweiz, Österreich und Deutschland Obdachlose, Flüchtlinge, Frauenhäuser oder Babyklappen, die sehr von Harmonyum Trauma Release profitieren können.</p>
+                <p className="mb-1">Hier möchten wir mit deiner Spende die finanzielle Lücke schliessen, damit so viele Menschen wie möglich von diesem Angebot profitieren können.</p>
+                <p className="mb-1">Unter anderem begleiten wir Projekte in Afrika und Indien, damit traumatisierte Kinder wieder aufatmen können, um glücklich zu spielen und ihr volles Potential auszuschöpfen.</p>
+              </div>
+            </div>
 
             <form>
               <div
@@ -113,8 +118,8 @@ const DonationSection = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     version="1.1"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
-                    width="18"
-                    height="18"
+                    width="14"
+                    height="14"
                     viewBox="0 0 432.763 432.762"
                   >
                     <g>
@@ -130,7 +135,7 @@ const DonationSection = () => {
                   className="form-control"
                   placeholder="10"
                   style={{
-                    height: "48px",
+                    height: "33px",
                     fontSize: "1.1rem",
                     fontWeight: 500,
                     borderLeft: "none",
@@ -148,14 +153,14 @@ const DonationSection = () => {
                     key={i}
                     type="button"
                     className="btn btn-outline-dark  px-4 py-2 fw-bold"
-                    style={{ minWidth: i === 3 ? "100px" : "100px" }}
+                    style={{ minWidth: i === 3 ? "80px" : "80px" }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                      width="18"
-                      height="18"
+                      width="13"
+                      height="13"
                       viewBox="0 0 432.763 432.762"
                     >
                       <g>

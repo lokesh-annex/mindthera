@@ -42,7 +42,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/">
+                    <Link className="menu-item" href="/blog">
                       Blog
                     </Link>
                   </li>

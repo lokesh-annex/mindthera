@@ -3,6 +3,7 @@ import Link from "next/link";
 const articles = [
   {
     title: "Wie fühlt sich ein Leben ohne gespeichertes Trauma an?",
+    slug: "wie-fuehlt-sich-ein-leben-ohne-gespeichertes-trauma-an",
     image: "/images/blog/lamp.jpg",
     date: "12 August, 2025",
     likes: 0,
@@ -11,10 +12,12 @@ const articles = [
     mainMonth: "Aug",
     mainYear: "2025",
     description: "Kurze Beschreibung zum Artikel.",
-    author: "Brunilda Doniger"
+    author: "Kerstin R. Stoll",
+      content: `Wie fühlt sich ein Leben ohne gespeichertes Trauma`
   },
   {
     title: "Ich baue Räume – keine Konzepte.",
+    slug: "ich-baue-raeume-keine-konzepte",
     image: "/images/blog/holi.jpg",
     date: "25 July, 2025 ",
     likes: 0,
@@ -22,10 +25,12 @@ const articles = [
     mainDay: "02",
     mainMonth: "May",
     description: "Warum ich mich Bewusstseins-Architektin nenne",
-    author: "Brunilda Doniger"
+    author: "Kerstin R. Stoll",
+    content: "Demo-Inhalt für diesen Blogartikel. Hier steht der vollständige Text oder eine Zusammenfassung."
   },
   {
     title: "Die 9 Traumabereiche – Wie tief sitzende Muster unser Leben prägen",
+    slug: "die-9-traumabereiche-wie-tief-sitzende-muster-unser-leben-praegen",
     image: "/images/blog/krishna1.jpg",
     date: "1 August, 2025",
     likes: 0,
@@ -33,10 +38,12 @@ const articles = [
     mainDay: "24",
     mainMonth: "Apr",
     description: "Warum ich mich Bewusstseins-Architektin nenne",
-    author: "Brunilda Doniger"
+    author: "Kerstin R. Stoll",
+    content: "Demo-Inhalt für diesen Blogartikel. Hier steht der vollständige Text oder eine Zusammenfassung."
   },
   {
     title: "Die Urform der Menschlichkeit ist das befreite Trauma",
+    slug: "die-urform-der-menschlichkeit-ist-das-befreite-trauma",
     image: "/images/blog/festival.jpg",
     date: "8 August, 2025",
     likes: 0,
@@ -44,7 +51,8 @@ const articles = [
     mainDay: "10",
     mainMonth: "May",
     description: "Kurze Beschreibung zum Artikel.",
-    author: "Brunilda Doniger"
+    author: "Kerstin R. Stoll",
+    content: "Demo-Inhalt für diesen Blogartikel. Hier steht der vollständige Text oder eine Zusammenfassung."
   },
 ];
 
@@ -63,7 +71,7 @@ const BlogList = () => (
             />
           </div>
           <div className="pt-2 h-100">
-            <Link href="/" className="text-dark text-decoration-none">
+            <Link href={`/blog-single/${article.slug}`} className="text-dark text-decoration-none">
               <h4 className="text-dark">{article.title}</h4>
             </Link>
             <p className="mb-3">{article.description}</p>

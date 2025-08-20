@@ -1,18 +1,21 @@
-'use client';
-import React, { useState } from 'react';
-import { Form, Button, InputGroup } from 'react-bootstrap';
+"use client";
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import DatenschutzPage from "@/app/datenschutz/page";
+import { Form, Button, InputGroup } from "react-bootstrap";
+import DatenschutzPageContent from "@/components/DatenschutzContent";
 
 const NewsletterSection = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (agree && email) {
       alert(`Subscribed with: ${email}`);
-      // Place your API call here
     } else {
-      alert('Please enter an email and agree to the privacy policy.');
+      alert("Please enter an email and agree to the privacy policy.");
     }
   };
 
@@ -22,7 +25,8 @@ const NewsletterSection = () => {
         <div className="row justify-content-center mb-4">
           <div className="col-lg-8">
             <h2 className="fw-bold">
-             Unser Flyer ist ein guter Start<br />  für mehr Informationen
+              Unser Flyer ist ein guter Start
+              <br /> für mehr Informationen
             </h2>
           </div>
         </div>
@@ -51,7 +55,31 @@ const NewsletterSection = () => {
                   required
                 />
                 <label className="form-check-label" htmlFor="privacyCheck">
-                 Ich stimme dem zu <a href="" target="_blank" rel="noopener noreferrer">Datenschutzrichtlinie</a>.
+                  Ich stimme dem zu{" "}
+                  <span
+                    style={{
+                      cursor: "pointer",
+                      color: "#5c377d",
+                      textDecoration: "underline",
+                    }}
+                    onClick={() => setShowModal(true)}
+                  >
+                    Datenschutzrichtlinie
+                  </span>
+                  .
+                  <Modal
+                    show={showModal}
+                    onHide={() => setShowModal(false)}
+                    size="lg"
+                    scrollable
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title>Datenschutzerklärung</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <DatenschutzPageContent />
+                    </Modal.Body>
+                  </Modal>
                 </label>
               </div>
             </Form>
