@@ -3,7 +3,7 @@ import React from "react";
 export default function WarumBleibtTrauma() {
   return (
     <section
-      className=" py-5"
+      className="py-8"
       style={{ background: '#f8f5fd', }}
     >
       <div className="container">

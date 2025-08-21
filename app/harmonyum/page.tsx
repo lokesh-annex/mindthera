@@ -1,7 +1,6 @@
 
 // ...existing code...
 import Breadcrumbs from "@/components/Breadcrumbs";
-
 import React from "react";
 import HeroSection from "@/components/harmonyum/HeroSection";
 // import Anwendungsbereiche from "@/components/harmonyum/Anwendungsbereiche";

@@ -6,7 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 export default function Anwendungsbereiche() {
   return (
     <section
-      className="py-5 position-relative"
+      className="py-8 position-relative"
       style={{
         background:'#f8f5fd'
       }}

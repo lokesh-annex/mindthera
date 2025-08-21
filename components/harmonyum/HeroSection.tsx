@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section
-      className="container-fluid py-5 position-relative harmonyum-hero-section"
+      className="container-fluid py-8 position-relative harmonyum-hero-section"
       style={{
         backgroundImage: 'url(/images/slider/1.jpg)',
         backgroundSize: 'cover',

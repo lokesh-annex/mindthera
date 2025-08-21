@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AblaufDerBehandlung() {
   return (
-    <section className=" py-5 bg-light">
+    <section className=" py-8 bg-light">
         <div className="container">
       <h2 className="fw-bold mb-3">Ablauf der Behandlung</h2>
       <p className="dark-color">Wir beginnen mit einem kurzen Gespräch. Danach liegst du für ca. 30 Minuten bekleidet auf einer Massageliege auf dem Bauch. Du bleibst dann noch eine kurze Zeit liegen. Trinke nach einer Behandlung genügend Wasser.</p>
