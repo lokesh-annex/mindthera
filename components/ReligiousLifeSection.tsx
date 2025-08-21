@@ -1,7 +1,7 @@
 import Image from "next/image";
 const ReligiousLifeSection = () => {
   return (
-    <section className="py-5 bg-white">
+    <section className="py-5 bg-white two-images-section">
       <div className="container">
         <div className="row align-items-center">
           {/* Images Left */}
@@ -32,6 +32,7 @@ const ReligiousLifeSection = () => {
                 alt="Spiritual Life"
                 width={800}
                 height={600}
+                className="second-image"
                 style={{
                   position: "absolute",
                   right: "6%",

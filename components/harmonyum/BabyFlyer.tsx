@@ -2,7 +2,7 @@ import React from "react";
 
 export default function BabyFlyer() {
   return (
-    <section className="py-5 babyflyer-sec  position-relative" style={{ overflow: 'hidden' }}>
+    <section className="py-8 babyflyer-sec  position-relative" style={{ overflow: 'hidden' }}>
       {/* Blurred background image */}
       <div
         style={{
@@ -27,7 +27,7 @@ export default function BabyFlyer() {
       />
       <div className="container position-relative" style={{ zIndex: 2 }}>
         <div className="row align-items-center">
-          <div className="col-md-6 mb-4 mb-md-0">
+          <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
             <img
               src="/images/c-img.jpg"
               alt="Sanfte Hilfe für dein Baby"
@@ -42,7 +42,7 @@ export default function BabyFlyer() {
               <strong>Harmonyum Trauma Release</strong> – eine sanfte, energetische Behandlung, die Spannungen löst, das Nervensystem beruhigt und Bindung stärkt.</p>
             <p className="mb-0"><a href="https://www.traumafrei.ch" className="link-success fw-bold" target="_blank" rel="noopener">www.traumafrei.ch</a></p>
           </div>
-          <div className="col-md-6">
+          <div className="col-lg-6 col-md-12">
             <h2 className="fw-bold mb-3">Ein guter Start ins Leben – Sanfte Hilfe für dein Baby</h2>
             <p className="mb-2"><strong>Kerstin R. Stoll</strong><br />
               <a href="mailto:info@traumafrei.ch" className="link-success">info@traumafrei.ch</a> <br />
@@ -51,15 +51,15 @@ export default function BabyFlyer() {
             <h5 className="mt-3 mb-3">Besonders hilfreich bei:</h5>
             <div className="row g-3 mb-3">
               {[ 
-                { icon: '👶', text: 'unruhigen Babys, Schreibabys' },
-                { icon: '🍼', text: 'Trink- oder Schlafproblemen' },
-                { icon: '🏥', text: 'Geburtstraumata, wie Kaiserschnitt, Zangengeburt oder Nabelschnurkomplikationen' },
-                { icon: '🤱', text: 'Geburt mit viel Stress für Mutter und Kind' }
+                { icon: <i className="bi bi-emoji-smile"></i>, text: 'unruhigen Babys, Schreibabys' },
+                { icon: <i className="bi bi-cup-straw"></i>, text: 'Trink- oder Schlafproblemen' },
+                { icon: <i className="bi bi-hospital"></i>, text: 'Geburtstraumata, wie Kaiserschnitt, Zangengeburt oder Nabelschnurkomplikationen' },
+                { icon: <i className="bi bi-person-heart"></i>, text: 'Geburt mit viel Stress für Mutter und Kind' }
               ].map((item, idx) => (
                 <div className="col-md-6" key={idx}>
                   <div className="card h-100 shadow-sm border-0" style={{ borderRadius: '1rem', background: '#fff', padding: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <span style={{ fontSize: '2rem', color: '#6366f1', marginRight: '0.7rem' }}>{item.icon}</span>
-                    <span style={{ fontSize: '1rem', color: '#334155',textAlign:'center' }}>{item.text}</span>
+                    <span style={{ fontSize: '2rem', color: '#7a566b', marginRight: '0.7rem' }}>{item.icon}</span>
+                    <span style={{ fontSize: '1rem', color: '#202020',textAlign:'center' }}>{item.text}</span>
                   </div>
                 </div>
               ))}
