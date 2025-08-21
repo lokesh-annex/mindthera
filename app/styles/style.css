@@ -9378,9 +9378,33 @@ img {
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+  #mainmenu{
+    display: none;
+  }
+  .crumb {
+  padding-left: 0;
+}
   .slider_text {
     padding-top: 0px;
   }
+  #de-subheader {
+  margin-top: 19px;
+}
+.menu_side_area {
+  width: 259px;
+}
+.about-image-left.img-fluid {
+  width: 100%;
+}
+.about-us-text {
+  margin-top: 40px;
+}
+.work-section .justify-content-center {
+  justify-content: flex-start !important;
+}
+.build-portrait {
+  justify-content: flex-start !important;
+}
 }
 @media only screen and (max-width: 1090px) {
   #quick_search {
@@ -9495,7 +9519,7 @@ img {
   header,
   header.fixed {
     display: block;
-    position: inherit;
+    position: relative;
     margin: 0;
     padding: 0;
     margin-top: 0;

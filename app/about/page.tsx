@@ -19,12 +19,12 @@ const AboutUS = () => (
                 width={600}
                 height={500}
                 alt="Kerstin R. Stoll Portrait"
-                className="rounded-4  img-fluid"
+                className="rounded-4 about-image-left img-fluid"
               />
             </div>
           </div>
           <div className="col-lg-6 text-dark">
-            <div className="subtitle fadeInUp mb-3 ">Über Kerstin R. Stoll</div>
+            <div className="subtitle about-us-text fadeInUp mb-3 ">Über Kerstin R. Stoll</div>
 
             <blockquote className="fs-4 fst-italic mb-4 text-dark border-start border-3 ps-3">
               „Ich möchte nicht mehr dauernd erklären, dass ich anders arbeite –
@@ -74,7 +74,7 @@ const AboutUS = () => (
         </div>
       </div>
 </section>
-      <section className="py-5 mt-5" style={{ background: "#fdf6fa" }}>
+      <section className="py-5 mt-5 work-section" style={{ background: "#fdf6fa" }}>
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
@@ -187,7 +187,7 @@ const AboutUS = () => (
           </div>
         </div>
       </section>
-      <section style={{ background: "#7a566b", padding: "64px 0" }}>
+      <section className="build-spaces" style={{ background: "#7a566b", padding: "64px 0" }}>
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-lg-6 mb-4 mb-lg-0">
@@ -207,7 +207,7 @@ const AboutUS = () => (
                 <br />– in dir.
               </h2>
               
-                <div style={{ height: '320px', overflow: 'hidden', borderRadius: '16px', background: '#7a566b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="build-portrait" style={{ height: '320px', overflow: 'hidden', borderRadius: '16px', background: '#7a566b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Image
                     src="/images/harmonyum-min.jpg"
                     width={580}

@@ -1,4 +1,4 @@
- "use client"
+"use client"
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -124,97 +124,58 @@ const OfferPage = () => {
     ],
   },
 ];
-  const [activeTab, setActiveTab] = useState(0);
   return (
     <main>
-   
       <Breadcrumbs
         title="Meine Angebote"
         items={[{ label: "Home", href: "/" }, { label: "Meine Angebote" }]}
       />
-
-    <section className="relative  pb60">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-6 offset-lg-3 text-center">
-           
-            <h2 className="" data-wow-delay=".2s">
-              Meine <span className="alt-font fw-500 ml-4 fs-64 id-color-2">Angebote</span>
-            </h2>
-            {/* <p className="lead mb-0 ">Dieses Angebot ist noch in Bearbeitung und braucht noch etwas Zeit…</p> */}
-            <div className="spacer-single" />
-            <div className="spacer-half" />
+      <section className="relative pb60">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 offset-lg-3 text-center">
+              <h2 className="mb-5" data-wow-delay=".2s">
+                Meine <span className="alt-font fw-500 ml-4 fs-64 id-color-2">Angebote</span>
+              </h2>
+            </div>
           </div>
-        </div>
-
-        {/* Tabs */}
-  <div className="d-flex justify-content-center mb-5 gap-12 flex-wrap">
+          {/* Category Sections */}
           {tabData.map((tab, idx) => (
-            <button
-              key={tab.label}
-              className={`btn rounded-7 px-4 py-2  ${
-                activeTab === idx ? "bg-primary text-white" : " "
-              }  fw-bold`}
-              onClick={() => setActiveTab(idx)}
-              style={{ minWidth: 140, borderRadius: "50px" }}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Tab Content */}
-        <div className="row g-4">
-          {tabData[activeTab].services.map((service, i) => (
-            <div key={i} className="col-lg-3 col-sm-6">
-              <div className="relative mb-3" style={{ minHeight: "470px" }}>
-                <Link href="/" className="d-block hover mb-3">
-                  <div className="relative overflow-hidden rounded-20px ">
-                    {/* <img
-                      src="/images/misc/flowers-crop-3-white.webp"
-                      className="w-50 end-0 absolute hover-op-0"
-                      alt=""
-                    /> */}
-                    <div className="absolute start-0 w-100 abs-middle fs-36 text-white text-center">
-                      <span className="btn-main hover-scale-in-2">
-                        Read More
-                      </span>
+            <div key={tab.label} className="mb-5">
+              <div className="row mb-4">
+                <div className="col-lg-12">
+                  <h3 className="fw-bold text-center py-3" style={{ background: 'rgba(122,86,107,0.08)', color: '#5c377d', borderRadius: '12px', fontSize: '2rem', letterSpacing: '1px' }}>
+                    {tab.label}
+                  </h3>
+                </div>
+              </div>
+              <div className="row g-4">
+                {tab.services.map((service, i) => (
+                  <div className="col-lg-4 col-sm-6" key={i}>
+                    <div className="relative pb-0 mt-5 h-100 rounded-10px bg-color-3 p-4 rounded-20px">
+                      <div className="alt-font absolute end-0 pe-4 fw-bold fs-24 id-color">{(i+1).toString().padStart(2, '0')}</div>
+                      <Image src={`/images/services/${service.image}`} width={120} height={120} className="img-fluid circle mb-4 w-30 mt-50 shadow-soft wow scaleIn animated" alt={service.title} />
+                      <h4>{service.title}</h4>
+                      <p className="no-bottom">{service.desc}</p>
+                      <Link className="btn-main btn-light-trans mt-3" href={`/service/${service.slug}`}>Read More</Link>
                     </div>
-                    <img
-                      src={`/images/services/${service.image}`}
-                      className="img-fluid hover-scale-1-2"
-                      alt={service.title}
-                    />
                   </div>
-                </Link>
-                <h4 className="text-center">
-                  <Link href="/" className="text-decoration-none text-dark">
-                    {service.title}
-                  </Link>
-                </h4>
-                <p className="no-bottom text-center">{service.desc}</p>
+                ))}
               </div>
             </div>
           ))}
-        </div>
-
-         
-       </div>
-       <span className="absolute top-20 start-0">
-
-     
-        <Image
-          src="/images/bg-2-copyright.webp"
-          width={393}
-          height={625}
-           
-          alt="Background Copyright"
-          priority
-        />
+          <span className="absolute top-20 start-0">
+            <Image
+              src="/images/bg-2-copyright.webp"
+              width={393}
+              height={625}
+              alt="Background Copyright"
+              priority
+            />
           </span>
-    </section>
-  </main>
-   
+        </div>
+      </section>
+    </main>
   );
 };
 
