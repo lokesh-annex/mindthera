@@ -130,31 +130,24 @@ const OfferPage = () => {
         title="Meine Angebote"
         items={[{ label: "Home", href: "/" }, { label: "Meine Angebote" }]}
       />
-      <section className="relative pb60">
+      <section className="relative pb60 pt-2">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-6 offset-lg-3 text-center">
-              <h2 className="mb-5" data-wow-delay=".2s">
-                Meine <span className="alt-font fw-500 ml-4 fs-64 id-color-2">Angebote</span>
-              </h2>
-            </div>
-          </div>
-          {/* Category Sections */}
+       
           {tabData.map((tab, idx) => (
             <div key={tab.label} className="mb-5">
-              <div className="row mb-4">
+              <div className="row ">
                 <div className="col-lg-12">
-                  <h3 className="fw-bold text-center py-3" style={{ background: 'rgba(122,86,107,0.08)', color: '#5c377d', borderRadius: '12px', fontSize: '2rem', letterSpacing: '1px' }}>
+                  <h3 className="fw-bold mb-4 mt-5" style={{ color: '#5c377d', }}>
                     {tab.label}
                   </h3>
                 </div>
               </div>
-              <div className="row g-4">
+              <div className="row g-3">
                 {tab.services.map((service, i) => (
-                  <div className="col-lg-4 col-sm-6" key={i}>
-                    <div className="relative pb-0 mt-5 h-100 rounded-10px bg-color-3 p-4 rounded-20px">
+                  <div className="col-lg-3 col-sm-6" key={i}>
+                    <div className="relative pb-0 mt-5 h-100 rounded-10px p-4 rounded-20px" style={{ background: '#f8f5fd' }}>
                       <div className="alt-font absolute end-0 pe-4 fw-bold fs-24 id-color">{(i+1).toString().padStart(2, '0')}</div>
-                      <Image src={`/images/services/${service.image}`} width={120} height={120} className="img-fluid circle mb-4 w-30 mt-50 shadow-soft wow scaleIn animated" alt={service.title} />
+                      <Image src={`/images/services/${service.image}`} width={120} height={120} className="img-fluid circle mb-4 w-30 mt-50 shadow-soft  scaleIn animated" alt={service.title} />
                       <h4>{service.title}</h4>
                       <p className="no-bottom">{service.desc}</p>
                       <Link className="btn-main btn-light-trans mt-3" href={`/service/${service.slug}`}>Read More</Link>
@@ -164,15 +157,7 @@ const OfferPage = () => {
               </div>
             </div>
           ))}
-          <span className="absolute top-20 start-0">
-            <Image
-              src="/images/bg-2-copyright.webp"
-              width={393}
-              height={625}
-              alt="Background Copyright"
-              priority
-            />
-          </span>
+        
         </div>
       </section>
     </main>
