@@ -14,7 +14,7 @@ const ContactPage = () => (
         <div className="col-lg-6">
           <div className="subtitle fadeInUp mb-3">Contact Form</div>
           <h2 className="fadeInUp">Get In Touch</h2>
-          <p>Whether you have a question, a suggestion, or just want to say hello, this is the place to do it. Please fill out the form below with your details and message, and we&apos;ll get back to you as soon as possible.</p>
+          <p className="text-dark">Whether you have a question, a suggestion, or just want to say hello, this is the place to do it. Please fill out the form below with your details and message, and we&apos;ll get back to you as soon as possible.</p>
           <div className="spacer-single"></div>
           <h4>Our Office</h4>
           <div className="row">
@@ -26,19 +26,19 @@ const ContactPage = () => (
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="fw-bold text-dark"><i className="bi bi-geo-alt-fill me-2 id-color-2"></i>Office Location</div>
+              <div className="fw-bold text-dark"><i className="bi bi-geo-alt-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>Office Location</div>
               100 S Main St, Los Angeles, CA
               <div className="spacer-single"></div>
-              <div className="fw-bold text-dark"><i className="bi bi-envelope-fill me-2 id-color-2"></i>Send a Message</div>
+              <div className="fw-bold text-dark"><i className="bi bi-envelope-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>Send a Message</div>
               contact@traumafrei.com
               <div className="spacer-single"></div>
-              <div className="fw-bold text-dark"><i className="bi bi-telephone-fill me-2 id-color-2"></i>Call Us Directly</div>
+              <div className="fw-bold text-dark"><i className="bi bi-telephone-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>Call Us Directly</div>
               +XXXXXX XXXX XXX
             </div>
           </div>
         </div>
         <div className="col-lg-6">
-          <div className="p-4 bg-grey rounded-10px">
+          <div className="p-4 rounded-10px" style={{ background: 'rgba(var(--secondary-color-rgb), 0.1)' }}>
             <form
               name="contactForm"
               id="contact_form"

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 const events = [
   {
@@ -19,7 +20,7 @@ const events = [
           Ein Raum für Alle, die spüren, dass reden nicht reicht – und bereit sind, sich selbst neu zu begegnen.
         </p>
         <p>
-          <span role="img" aria-label="pointer">👉</span> <a href="#">[Hier findest du Termine &amp; Orte]</a><br />
+          <span role="img" aria-label="pointer">👉</span> <Link href="#" style={{ color: 'rgb(45, 26, 58)' }}>[Hier findest du Termine &amp; Orte]</Link><br />
           Eintritt: 20.- CHF
         </p>
       </>
@@ -46,7 +47,7 @@ image: "/images/events/2.png",
           Ich halte den Raum für deinen ersten Schritt zurück zu dir.
         </p>
         <p>
-          <strong>Buche hier:</strong> <a href="https://www.traumafrei.ch/booking" target="_blank" rel="noopener">www.traumafrei.ch/booking</a>
+          <strong>Buche hier:</strong> <a href="https://www.traumafrei.ch/booking" target="_blank" rel="noopener" style={{ color: 'rgb(45, 26, 58)' }}>www.traumafrei.ch/booking</a>
         </p>
       </>
     ),
@@ -67,7 +68,7 @@ image: "/images/events/2.png",
         </ul>
         <p>Für Menschen, die spüren:<br /><em>„Ich bin bereit, mich zu erinnern.“</em></p>
         <p>
-          <span role="img" aria-label="pointer">👉</span> <a href="#">[Hier findest du Termine &amp; Orte]</a>
+          <span role="img" aria-label="pointer">👉</span> <Link href="#" style={{ color: 'rgb(45, 26, 58)' }}>[Hier findest du Termine &amp; Orte]</Link>
         </p>
         <p>
           <strong>Flyer &gt; Download</strong> (Flyer itself comes later)
