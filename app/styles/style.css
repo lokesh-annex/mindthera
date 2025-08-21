@@ -9000,6 +9000,23 @@ img {
   }
 }
 
+.new-session-box{
+  background: #f8f5fd;
+    border-radius: 30px;
+}
+.session-sec-bg{
+  padding: 60px 0;
+    background-image: url(../../public/images/shape-bg.png);
+    position: relative;
+    z-index: 1;
+}
+.session-sec-bg-fe{
+  padding: 60px 0;
+    /* background-image: url(../../public/images/shape-bg-f.png); */
+    position: relative;
+    z-index: 1;
+}
+
 .line-preloader {
   width: 100px;
   height: 100px;

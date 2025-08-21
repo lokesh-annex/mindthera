@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 import "swiper/css";
@@ -9,6 +8,7 @@ import "swiper/css/scrollbar";
 
 const HeroSection = () => {
   return (
+    <>
     <section className="section-dark text-light hero-section no-top no-bottom position-relative overflow-hidden z-1000">
       <div className="v-center">
         <Swiper
@@ -68,8 +68,14 @@ const HeroSection = () => {
             </div>
           </SwiperSlide>
         </Swiper>
+
       </div>
     </section>
+
+
+
+    </>
+
   );
 };
 

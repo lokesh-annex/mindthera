@@ -19,31 +19,37 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         title="Service"
         items={[{ label: "Home", href: "/" }, { label: "Service" }]}
       />
-      <div className="container py-5">
-        <div className="row justify-content-center">
-          <div className="card border-0  mb-5 ">
+      <section className="relative py-0">
+      <span className="absolute top-20  end-0">
+          <Image
+            src="/images/shape-bg-f.png"
+            width={350}
+            height={525}
+            alt="Background Copyright"
+            priority
+          />
+            </span>
+              {/* <div className="leaf-bg">
+                    <Image
+                      src="/images/misc/leaf-1.png"
+                      width={100}
+                      height={118}
+                      className="absolute top-10 end-10  anim-up-down sm-hide"
+                      alt=""
+                    />
+                  </div> */}
+      <div className=" py-5 pb-0">
+          <div className="card border-0  mb-0 ">
             <div className="row g-0 align-items-center">
-              {/* <div className="col-md-12 p-4">
-                <Image
-                  src={data.image}
-                  width={400}
-                  height={300}
-                  alt={data.title}
-                  className="rounded-4 shadow img-fluid mb-3"
-                />
-              </div> */}
-              <div className="col-md-12 p-4">
                 <h3 className="fw-bold text-primary mb-2" style={{ fontSize: "2.2rem" }}>{data.title}</h3>
                 <h4 className="mb-3 text-danger" style={{ fontWeight: 600 }}>{data.subtitle}</h4>
-                <hr className="my-3" />
                 <div className="text-dark" style={{ fontSize: "1.15rem", lineHeight: 1.7 }}>
                   {data.description}
                 </div>
-              </div>
             </div>
-          </div>
         </div>
       </div>
+      </section>
     </>
   );
 }
