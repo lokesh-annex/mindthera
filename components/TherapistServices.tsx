@@ -127,12 +127,7 @@ const TherapistServices = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="relative  pb60">
-    
-     
-     
-      
-    
+    <section className="relative  pb60 tabs-sec">
       <div className="container">
         <div className="row">
           <div className="col-lg-6 offset-lg-3 text-center">
@@ -165,7 +160,7 @@ const TherapistServices = () => {
         {/* Tab Content */}
         <div className="row g-4">
           {tabData[activeTab].services.map((service, i) => (
-            <div key={i} className="col-lg-3 col-sm-6">
+            <div key={i} className="col-lg-3 col-sm-4">
               <div className="relative mb-3" style={{ minHeight: "470px" }}>
                 <Link href="/" className="d-block hover mb-3">
                   <div className="relative overflow-hidden rounded-20px ">

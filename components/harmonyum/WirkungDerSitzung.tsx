@@ -3,10 +3,10 @@ import React from "react";
 
 export default function WirkungDerSitzung() {
   return (
-    <section className="py-5 position-relative bg-light" >
+    <section className="py-8 position-relative bg-light two-sec" >
       <div className="container">
         <div className="row align-items-center justify-content-center">
-          <div className="col-md-7 mb-4 mb-md-0">
+          <div className="col-lg-7 col-md-12 mb-4 mb-md-0">
             <div className="p-5 bg-white bg-opacity-90" style={{ position: 'relative' }}>
             
               <h2 className="fw-bold mb-3 " style={{ color: '#000000', fontSize: '2.2rem', letterSpacing: '1px' }}>Anwendungsbereiche von HTR:</h2>
@@ -22,8 +22,8 @@ export default function WirkungDerSitzung() {
               </div>
             </div>
           </div>
-          <div className="col-md-5 text-center">
-            <div className=" p-3" style={{ background: '#5c377d', display: 'inline-block' }}>
+          <div className="col-lg-5 col-md-5 text-center">
+            <div className=" p-3 mt-2" style={{ background: '#5c377d', display: 'inline-block' }}>
               <img
                 src="/images/side-Harmonyum.jpg"
                 alt="Harmonyum"
