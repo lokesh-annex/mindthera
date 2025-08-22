@@ -195,8 +195,6 @@ const TherapistServices = () => {
          
        </div>
        <span className="absolute top-20 start-0">
-
-     
         <Image
           src="/images/bg-2-copyright.webp"
           width={393}
@@ -207,6 +205,8 @@ const TherapistServices = () => {
         />
           </span>
     </section>
+
+
 
 
 
