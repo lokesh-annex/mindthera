@@ -157,7 +157,7 @@ const serviceData: Record<
         </section>
 
         {/* Für wen sind URFORM-Sessions gedacht Section */}
-        <section className="py-5" style={{ background: "#fff" }}>
+        <section className="py-5 urfrom-sessions" style={{ background: "#fff" }}>
           <div className="container">
             <div className="row justify-content-center mb-4">
               <div className="col-lg-12 text-center">
@@ -317,8 +317,29 @@ const serviceData: Record<
           </div>
         </section>
 
-        <section className="py-5 bg-[#fce4ec] d-flex justify-content-center align-items-center">
-          <div className="container">
+        <section className="py-5 price-sec">
+            <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          background: `url('/images/c-img.jpg') center `,
+          filter: 'blur(10px)',
+          opacity: 0.6,
+        }}
+        aria-hidden="true"
+      />
+      {/* Overlay for better text contrast */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          background: '#ffffff88',
+        }}
+        aria-hidden="true"
+      />
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
             <div className="new-session-box">
             <div className="row">
                 <div className="col-lg-5 col-md-12">
@@ -427,14 +448,14 @@ const serviceData: Record<
 
         {/* Stimmen aus den Sessions Section */}
         <section
-          className="py-5 bg-light "
+          className="py-5 bg-light stimmen-sec "
         >
           <div className="container">
             <div className="row align-items-center justify-content-center">
               <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
                 <div
                   style={{
-                    maxWidth: 340,
+
                     borderRadius: "16px",
                     overflow: "hidden",
                     background: "#fff",
