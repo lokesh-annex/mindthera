@@ -151,7 +151,7 @@ const OfferPage = () => {
                         <h4>{service.title}</h4>
                         <p className="no-bottom">{service.desc}</p>
                         
-                        <Link className="btn-main btn-light-trans d-flex align-items-center justify-content-center" href={`/service/${service.slug}`} style={{ position: 'absolute', right: 20, bottom: 9, margin: '0 auto', padding: '0',width: '40px', height: '40px', borderRadius: '50%', background: '#5c377d', color: '#fff', boxShadow: '0 2px 8px rgba(92,55,125,0.15)' }} aria-label="Mehr erfahren">
+                        <Link className="btn-main btn-light-trans d-flex align-items-center justify-content-center" href="/service/harmonyum-trauma-release" style={{ position: 'absolute', right: 20, bottom: 9, margin: '0 auto', padding: '0',width: '40px', height: '40px', borderRadius: '50%', background: '#5c377d', color: '#fff', boxShadow: '0 2px 8px rgba(92,55,125,0.15)' }} aria-label="Mehr erfahren">
                           <span className="bi bi-arrow-right" style={{ fontSize: '20px', color: '#fff' }}></span>
                         </Link>
                       </div>
