@@ -6,7 +6,7 @@ import HeroSection from "@/components/harmonyum/HeroSection";
 // import Anwendungsbereiche from "@/components/harmonyum/Anwendungsbereiche";
 import WirkungDerSitzung from "@/components/harmonyum/WirkungDerSitzung";
 import WasIstTrauma from "@/components/harmonyum/WasIstTrauma";
-import BeispieleTrauma from "@/components/harmonyum/BeispieleTrauma";
+// import BeispieleTrauma from "@/components/harmonyum/BeispieleTrauma";
 import WarumBleibtTrauma from "@/components/harmonyum/WarumBleibtTrauma";
 import WarumHTR from "@/components/harmonyum/WarumHTR";
 import Zielgruppen from "@/components/harmonyum/Zielgruppen";
@@ -25,14 +25,17 @@ export default function HarmonyumPage() {
 
   <HeroSection />
   <WirkungDerSitzung />
-  {/* <Anwendungsbereiche /> */}
-  <WasIstTrauma />
-  <BeispieleTrauma />
+
   <WarumBleibtTrauma />
   <WarumHTR />
   <Zielgruppen />
-  <BabyFlyer />
   <AblaufDerBehandlung />
+
+  {/* <Anwendungsbereiche /> */}
+ 
+  <WasIstTrauma />
+ 
+  <BabyFlyer />
   <KontaktBuchung />
   <HTRCertificate />
     </>

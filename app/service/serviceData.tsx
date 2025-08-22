@@ -336,7 +336,7 @@ const serviceData: Record<
           inset: 0,
           zIndex: 1,
           background: '#ffffff88',
-        }}
+        }}  
         aria-hidden="true"
       />
           <div className="container" style={{ position: 'relative', zIndex: 2 }}>
