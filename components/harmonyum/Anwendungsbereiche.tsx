@@ -7,13 +7,10 @@ export default function Anwendungsbereiche() {
   return (
     <section
       className="py-8 position-relative"
-      style={{
-        background:'#f8f5fd'
-      }}
     >
       <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "400px" }}>
         <div
-          className=" p-5 bg-white bg-opacity-90"
+          className=" p-5 bg-opacity-90"
           style={{ maxWidth: "600px", width: "100%" }}
         >
           <h2 className="fw-bold mb-4 text-center" style={{
