@@ -5,11 +5,21 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const AboutUS = () => {
   return (
     <section className="relative ">
+       <span className="absolute top-15 start-0">
+              <Image
+                src="/images/bg-2-copyright.webp"
+                width={393}
+                height={625}
+                 
+                alt="Background Copyright"
+                priority
+              />
+                </span>
       <div className="leaf-bg">
         <Image
           src="/images/misc/leaf-1.png"
-          width={100}
-          height={118}
+          width={140}
+          height={148}
           className="absolute top-10 end-10  anim-up-down sm-hide"
           alt=""
         />

@@ -448,30 +448,12 @@ const serviceData: Record<
 
         {/* Stimmen aus den Sessions Section */}
         <section
-          className="py-5 bg-light stimmen-sec "
+          className="py-8 bg-light stimmen-sec "
         >
           <div className="container">
             <div className="row align-items-center justify-content-center">
-              <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
-                <div
-                  style={{
-
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    background: "#fff",
-                  }}
-                >
-                  <Image
-                    src="/images/services/sessions-img.png"
-                    width={440}
-                    height={260}
-                    alt="Session Testimonial"
-                    className="img-fluid"
-                    style={{ borderRadius: "16px" }}
-                  />
-                </div>
-              </div>
-              <div className="col-lg-7">
+             
+              <div className="col-lg-12">
                 <h2
                   className="fw-bold mb-3"
                   style={{

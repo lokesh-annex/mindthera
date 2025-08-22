@@ -86,7 +86,7 @@ html {
   overflow-x: hidden;
   padding: 0;
   margin: 0;
-  background: var(--bg-dark-1);
+  background:#6f5586;
 }
 .dark-scheme {
   color: var(--dark-body-font-color);
@@ -474,6 +474,7 @@ header .header-col.mid .social-icons {
 }
 #de-subheader {
   margin-top: 104px;
+background: rgb(240, 240, 240);
 }
 #de-subheader.op-2 {
   margin-top: 80px;
@@ -542,8 +543,8 @@ header .header-col.mid .social-icons {
 .crumb li:last-child::after {
   display: none;
 }
-.text-light .crumb a {
-  color: rgba(255, 255, 255, 1);
+.crumb a {
+  color: var(--primary-color);
 }
 #subheader.text-light .crumb {
   color: #fff;
@@ -5240,9 +5241,11 @@ a.img-icon-zoom {
   background: var(--secondary-color);
 }
 h2.slider-title {
-  font-size: 64px;
+  font-size: 46px;
+  line-height: 1.2em;
   letter-spacing: -3px;
 }
+
 h3.slider-teaser {
   font-size: 24px;
 }
@@ -9491,6 +9494,9 @@ justify-content: flex-start !important;
   #quick_search {
     width: 200px;
   }
+  h2.slider-title {
+  line-height: 1.1em;
+}
   .folwer-image {
     width: 300px !important;
     height: 210px !important;
@@ -10514,6 +10520,9 @@ justify-content: flex-start !important;
 }
 .tabs-sec img {
     width: 100%;
+}
+body {
+    overflow-x: hidden;
 }
 }
 .babyflyer-sec {

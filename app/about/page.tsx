@@ -10,9 +10,19 @@ const AboutUS = () => (
       items={[{ label: "Home", href: "/" }, { label: "Über mich" }]}
     />
     <section className="bg-white py-5">
+      <span className="absolute top-20 start-0">
+                    <Image
+                      src="/images/bg-2-copyright.webp"
+                      width={393}
+                      height={625}
+                       
+                      alt="Background Copyright"
+                      priority
+                    />
+                      </span>
       <div className="container about-gradient rounded-4 about-shadow py-4">
         <div className="row gx-5 align-items-center">
-          <div className="col-lg-6">
+          {/* <div className="col-lg-6">
             <div className="relative rounded-20px overflow-hidden shadow-soft">
               <Image
                 src="/images/pic.png"
@@ -22,8 +32,8 @@ const AboutUS = () => (
                 className="rounded-4 about-image-left img-fluid"
               />
             </div>
-          </div>
-          <div className="col-lg-6 text-dark">
+          </div> */}
+          <div className="col-lg-12 text-dark">
             <div className="subtitle about-us-text fadeInUp mb-3 ">Über Kerstin R. Stoll</div>
 
             <blockquote className="fs-4 fst-italic mb-4 text-dark border-start border-3 ps-3">
@@ -48,9 +58,9 @@ const AboutUS = () => (
               die Erinnerung:
             </p>
             <ul className="mb-3 ps-4">
-              <li>Menschen wollen nicht therapiert, sondern erinnert werden</li>
-              <li>Wahrheit muss nicht weh tun, um tief zu wirken</li>
-              <li>Würde ist kein Konzept, sondern ein Zustand</li>
+              <li>dass Menschen nicht therapiert, sondern erinnert werden wollen</li>
+              <li>dass Wahrheit nicht weh tun muss, um tief zu wirken</li>
+              <li>dass Würde kein Konzept ist, sondern ein Zustand</li>
             </ul>
             <p className="mb-3">
               <strong>Kerstin R. Stoll</strong> ist nicht laut. Aber
@@ -67,14 +77,21 @@ const AboutUS = () => (
               Sie öffnet keine Methoden – sondern Türen. Nicht in die
               Vergangenheit, sondern in die Urform des eigenen Seins.
             </p>
-            <a className="btn-main  fadeInUp" href="about.html">
-              Leitsatz
-            </a>
-          </div>
+            
+          
+              <blockquote className="p-2 rounded-4 border-0" style={{color: "#5c377d", position: "relative" }}>
+              
+                <span className="fst-italic" style={{ fontSize: "1.1rem", color: "#2d1a3a" }}>
+                 Ihr Leitsatz: „Heilung ist kein Prozess des Reparierens – sondern des Erinnerns.“
+                </span>
+              </blockquote>
+            </div>
+           
+          
         </div>
       </div>
 </section>
-      <section className="py-5 mt-5 work-section" style={{ background: "#fdf6fa" }}>
+      <section className="py-5  work-section" style={{ background: "#fdf6fa" }}>
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">

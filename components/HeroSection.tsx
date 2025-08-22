@@ -33,18 +33,18 @@ const HeroSection = () => {
                       <div className="spacer-single"></div>
                          <div className="sw-text-wrapper">
                         {/* <div className="subtitle s2 mb-2">Mindthera</div> */}
-                        <h1 className="slider-title mb-3">
-                          Ein sanfter Weg zur Transformation
-                          <span className="d-block alt-font fw-500 id-color-2 fs-96 fs-xs-60">
-                            von Trauma auf allen Ebenen
+                        <h2 className="slider-title mb-3">
+                          Harmonyum Trauma Release® - Die Brücke ins goldene Zeitalter
+                          <span className="d-block alt-font fw-500 id-color-2 fs-56 fs-xs-56">
+                           Lass los, was dich bindet. Öffne dich für vertrauen, freude und manifestation – resonanzräume für dein Leben im goldenen zeitalter.
                           </span>
-                        </h1>
-                        <div className="col-lg-8">
+                        </h2>
+                        {/* <div className="col-lg-8">
                           <p className="slider-teaser mb-3">
                             WISSENSCHAFT & WEISHEIT, KÖRPER & FREQUENZ WERDEN
                             MITEINANDER VERBUNDEN
                           </p>
-                        </div>
+                        </div> */}
                         <div className="spacer-10"></div>
                         <a
                           className="btn-main mb10 mb-3"

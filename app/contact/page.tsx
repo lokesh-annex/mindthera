@@ -15,24 +15,16 @@ const ContactPage = () => (
           <div className="subtitle fadeInUp mb-3">Contact Form</div>
           <h2 className="fadeInUp">Get In Touch</h2>
           <p className="text-dark">Whether you have a question, a suggestion, or just want to say hello, this is the place to do it. Please fill out the form below with your details and message, and we&apos;ll get back to you as soon as possible.</p>
-          <div className="spacer-single"></div>
+          
           <h4>Our Office</h4>
           <div className="row">
-            <div className="col-lg-6">
-              <div className="img-with-cap mb20">
-                <div className="d-title">Mon - Fri 08.00 - 18.00</div>
-                <div className="d-overlay"></div>
-                <Image src="/images/misc/5.webp" width={400} height={300} className="img-fullwidth rounded-1" alt="Office" />
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div className="fw-bold text-dark"><i className="bi bi-geo-alt-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>Office Location</div>
-              100 S Main St, Los Angeles, CA
-              <div className="spacer-single"></div>
-              <div className="fw-bold text-dark"><i className="bi bi-envelope-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>Send a Message</div>
-              contact@traumafrei.com
-              <div className="spacer-single"></div>
-              <div className="fw-bold text-dark"><i className="bi bi-telephone-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>Call Us Directly</div>
+          
+            <div className="col-lg-12">
+              
+              <div className="fw-bold text-dark mt-2"><i className="bi bi-envelope-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>Send a Message</div>
+              info@traumafrei.ch
+
+              <div className="fw-bold text-dark mt-2"><i className="bi bi-telephone-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>Call Us Directly</div>
               +XXXXXX XXXX XXX
             </div>
           </div>

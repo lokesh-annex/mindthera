@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const Breadcrumbs = ({ title = "About Us", items = [{ label: "Home", href: "/" }, { label: "About Us" }] }) => (
-  <section id="de-subheader" className="mt-sm-60 pt20 pb20 bg-gradient-45-deg text-light">
+  <section id="de-subheader" className="mt-sm-60 pt20 pb20  text-dark">
     <div className="container relative z-index-1000">
       <div className="row align-items-center">
         <div className="col-lg-6">
