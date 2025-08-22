@@ -58,7 +58,7 @@ const LatestArticles = () => {
   // Swap: first article is main, next 3 are sidebar
   const [main, ...sidebar] = articles;
   return (
-    <section className="pt-lg-7 bg-white text-dark">
+    <section className="blog-page-homepage pt-lg-7 bg-white text-dark">
       <div className="container">
         <p className="text-uppercase text-muted fw-semibold small mb-1">
           Unser Blog
@@ -97,7 +97,7 @@ const LatestArticles = () => {
           {/* Sidebar articles */}
           <div className="col-lg-6">
             {sidebar.map((item, idx) => (
-              <div key={idx} className="d-flex mb-4 align-items-center">
+              <div key={idx} className="d-flex blog-article-home mb-4 align-items-center">
                 <div className="flex-shrink-0 me-3 blog-image">
                   <Image
                     src={item.image}

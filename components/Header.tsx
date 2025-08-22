@@ -31,6 +31,7 @@ export default function Header() {
           }
           .header-col-mid {
             width: 100%;
+            justify-content: right !important;
           }
             #mainmenu li:last-child {
     margin-bottom: 0;
@@ -55,7 +56,7 @@ export default function Header() {
 }
 .header-col-mid #mainmenu {
    
-    top: 69px;
+    top: 39px;
   
   }
         }
@@ -90,14 +91,14 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menu-item" href="/">
+                    <Link className="menu-item" href="/offer">
                       Angebote
                     </Link>
                   </li>
 
                   <li>
                     <Link className="menu-item" href="/about">
-                     Über mich
+                      Über mich
                     </Link>
                   </li>
                   <li>
@@ -133,10 +134,8 @@ export default function Header() {
               {/* Right Contact + Button */}
               <div className="de-flex-col">
                 <div className="menu_side_area">
-                  <a
-                    className="btn-main d-xl-block"
-                  >
-                   Buche hier deinen Termin
+                  <a className="btn-main d-xl-block">
+                    Buche hier deinen Termin
                   </a>
                 </div>
               </div>

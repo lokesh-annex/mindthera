@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const DonationSection = () => {
   return (
-    <section style={{ background: "#ffffff", padding: "100px 0" }}>
+    <section className="donation-section" style={{ background: "#ffffff", padding: "100px 0" }}>
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-6 mb-4 mb-lg-0 d-flex justify-content-center">

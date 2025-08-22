@@ -117,17 +117,16 @@ const AboutUS = () => (
                 >
                   So wie bisher geht es nicht weiter.
                 </span>
-
-                <div
-                  className="fw-semibold"
-                  style={{ fontSize: "1.15rem", color: "#3d2c4a" }}
-                >
-                  Aber auch:
-                  <br />
-                  So wie ich wirklich bin – darf es jetzt in der Tiefe
-                  weitergehen.
-                </div>
               </p>
+              <div
+                className="fw-semibold"
+                style={{ fontSize: "1.15rem", color: "#3d2c4a", marginBottom: '1rem' }}
+              >
+                Aber auch:
+                <br />
+                So wie ich wirklich bin – darf es jetzt in der Tiefe
+                weitergehen.
+              </div>
               <ul
                 className="list-unstyled"
                 style={{ fontSize: "1.15rem", color: "#3d2c4a" }}
@@ -209,7 +208,7 @@ const AboutUS = () => (
               
                 <div className="build-portrait" style={{ height: '320px', overflow: 'hidden', borderRadius: '16px', background: '#7a566b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Image
-                    src="/images/harmonyum-min.jpg"
+                    src="/images/image-15.jpg"
                     width={580}
                     height={250}
                     alt="Kerstin R. Stoll Portrait"

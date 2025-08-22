@@ -90,7 +90,7 @@ export default function EventPage() {
           {events.map((event, idx) => (
             <div
               key={idx}
-              className={`row align-items-center bg-white rounded-4 shadow-sm py-5 px-5 justify-content-center mb-5`}
+              className={`row align-items-center event-page-section bg-white rounded-4 shadow-sm py-5 px-5 justify-content-center mb-5`}
             >
               <div className={`col-lg-12 d-flex ${idx % 2 === 1 ? "flex-row-reverse" : ""} flex-wrap gap-0`}>
                 <div className="col-md-5 d-flex align-items-stretch mb-4 mb-md-0">

@@ -130,28 +130,31 @@ const OfferPage = () => {
         title="Meine Angebote"
         items={[{ label: "Home", href: "/" }, { label: "Meine Angebote" }]}
       />
-      <section className="relative pb60 pt-2">
+      <section className="relative pb60 pt-2 mt-5">
         <div className="container">
        
           {tabData.map((tab, idx) => (
-            <div key={tab.label} className="mb-5">
-              <div className="row ">
-                <div className="col-lg-12">
-                  <h3 className="fw-bold mb-4 mt-5" style={{ color: '#5c377d', }}>
+            <div key={tab.label} >
+              <div className="row mb-4 mt-3">
+                <div className="col-lg-12 mb-4 mt-3">
+                  <h3 className="fw-bold mb-0" style={{ color: '#5c377d', }}>
                     {tab.label}
                   </h3>
                 </div>
               </div>
               <div className="row g-3">
                 {tab.services.map((service, i) => (
-                  <div className="col-lg-3 col-sm-6" key={i}>
-                    <div className="relative pb-0 mt-5 h-100 rounded-10px p-4 rounded-20px" style={{ background: '#f8f5fd' }}>
-                      <div className="alt-font absolute end-0 pe-4 fw-bold fs-24 id-color">{(i+1).toString().padStart(2, '0')}</div>
-                      <Image src={`/images/services/${service.image}`} width={120} height={120} className="img-fluid circle mb-4 w-30 mt-50 shadow-soft  scaleIn animated" alt={service.title} />
-                      <h4>{service.title}</h4>
-                      <p className="no-bottom">{service.desc}</p>
-                      <Link className="btn-main btn-light-trans mt-3" href={`/service/${service.slug}`}>Read More</Link>
-                    </div>
+                  <div className="col-xl-3 col-lg-4 mb-5 col-md-6 col-sm-6" key={i}>
+                      <div className="relative h-100 rounded-10px p-4 rounded-20px d-flex flex-column" style={{ background: '#f8f5fd', position: 'relative' }}>
+                        <div className="alt-font absolute end-0 pe-4 fw-bold fs-24 id-color">{(i+1).toString().padStart(2, '0')}</div>
+                        <Image src={`/images/services/${service.image}`} width={120} height={120} className="img-fluid circle mb-4 w-30 mt-50 shadow-soft scaleIn animated" alt={service.title} />
+                        <h4>{service.title}</h4>
+                        <p className="no-bottom">{service.desc}</p>
+                        
+                        <Link className="btn-main btn-light-trans d-flex align-items-center justify-content-center" href={`/service/${service.slug}`} style={{ position: 'absolute', right: 20, bottom: 9, margin: '0 auto', padding: '0',width: '40px', height: '40px', borderRadius: '50%', background: '#5c377d', color: '#fff', boxShadow: '0 2px 8px rgba(92,55,125,0.15)' }} aria-label="Mehr erfahren">
+                          <span className="bi bi-arrow-right" style={{ fontSize: '20px', color: '#fff' }}></span>
+                        </Link>
+                      </div>
                   </div>
                 ))}
               </div>
@@ -160,7 +163,13 @@ const OfferPage = () => {
         
         </div>
       </section>
+
+    
     </main>
+
+
+
+    
   );
 };
 

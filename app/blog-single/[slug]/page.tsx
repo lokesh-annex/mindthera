@@ -194,7 +194,7 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
         title={article.title}
         items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: article.title }]}
       />
-      <section className="container py-5">
+      <section className="container py-5 blog-single">
         <div className="row">
           <div className="col-lg-8 mx-auto">
     
