@@ -162,7 +162,7 @@ const TherapistServices = () => {
           {tabData[activeTab].services.map((service, i) => (
             <div key={i} className="col-lg-3 col-sm-4">
               <div className="relative mb-3" style={{ minHeight: "470px" }}>
-                <Link href="/service/harmonyum-trauma-release" className="d-block hover mb-3">
+                <Link href={`/service/${service.slug}`} className="d-block hover mb-3">
                   <div className="relative overflow-hidden rounded-20px ">
                     {/* <img
                       src="/images/misc/flowers-crop-3-white.webp"
@@ -182,7 +182,7 @@ const TherapistServices = () => {
                   </div>
                 </Link>
                 <h4 className="text-center">
-                  <Link href="/service/harmonyum-trauma-release" className="text-decoration-none text-dark">
+                  <Link href={`/service/${service.slug}`} className="text-decoration-none text-dark">
                     {service.title}
                   </Link>
                 </h4>
