@@ -35,7 +35,7 @@ const HeroSection = () => {
                         {/* <div className="subtitle s2 mb-2">Mindthera</div> */}
                         <h2 className="slider-title mb-3">
                           Harmonyum Trauma Release® - Die Brücke ins goldene Zeitalter
-                          <span className="d-block alt-font fw-500 id-color-2 fs-56 fs-xs-56">
+                          <span className="d-block alt-font fw-500 id-color-2 fs-56 fs-xs-36">
                            Lass los, was dich bindet. Öffne dich für vertrauen, freude und manifestation – resonanzräume für dein Leben im goldenen zeitalter.
                           </span>
                         </h2>

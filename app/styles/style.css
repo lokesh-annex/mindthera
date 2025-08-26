@@ -9467,9 +9467,7 @@ img {
 .about-image-left.img-fluid {
   width: 100%;
 }
-.about-us-text {
-  margin-top: 40px;
-}
+
 .work-section .justify-content-center {
   justify-content: flex-start !important;
 }
@@ -9539,9 +9537,7 @@ justify-content: flex-start !important;
   .work-section {
   margin: 0 !important;
 }
-   .about-us-text {
-    margin-top: 40px;
-  }
+  
   .de_table .tr .td:nth-child(4),
   .de_table .tr .td:nth-child(5),
   .de_table .tr .td:nth-child(6),
@@ -10293,6 +10289,9 @@ justify-content: flex-start !important;
   header .container {
     min-width: 100%;
   }
+  .fs-72 {
+  font-size: 52px;
+}
   .pricing-2-col .pricing-box,
   .pricing-3-col .pricing-box,
   .pricing-4-col .pricing-box,
@@ -10402,11 +10401,14 @@ justify-content: flex-start !important;
   h1.ultra-big .text-line,
   h1.ultra-big-2,
   .title-text,
-  .de_count h3 span,
-  h1.slider-title,
-  h2.slider-title {
+  .de_count h3 span{
     font-size: 42px !important;
     letter-spacing: -2px;
+  }
+  h1.slider-title,
+  h2.slider-title  {
+    font-size: 34px !important;
+    
   }
   p.slider-teaser {
     font-size: 16px;
@@ -10541,6 +10543,14 @@ justify-content: flex-start !important;
 body {
     overflow-x: hidden;
 }
+.swiper-inner.two {
+  background-size: 100% 61% !important;
+  background-position: top !important;
+  background-repeat: no-repeat !important;
+}
+  .hero-section {
+    min-height: 60vh !important;
+  }
 }
 .babyflyer-sec {
   color: #000000;
