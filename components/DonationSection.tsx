@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-const PAYPAL_URL = "https://www.paypal.com/donate";
-const PAYPAL_BUSINESS_ID = "YOUR_PAYPAL_BUSINESS_ID"; // Replace with your PayPal business ID
 
 const DonationSection = () => {
   const [amount, setAmount] = useState(10);
@@ -17,11 +15,8 @@ const DonationSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirect to PayPal with amount
-    window.open(
-      `${PAYPAL_URL}?business=${PAYPAL_BUSINESS_ID}&amount=${amount}&currency_code=EUR`,
-      "_blank"
-    );
+    // Payment logic removed. You can add your own logic here if needed.
+    alert(`Spendenbetrag ausgewählt: ${amount} EUR`);
   };
 
   return (
