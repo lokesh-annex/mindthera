@@ -49,6 +49,9 @@ body {
 .bg-primary {
   background-color: var(--primary-color) !important;
 }
+.border-primary {
+  border-color: var(--primary-color) !important;
+}
 .text-primary {
   color: var(--primary-color) !important;
 }
@@ -9358,7 +9361,13 @@ img {
     margin: 20px 0 0 0;
     line-height: 1.6;
 }
-
+.donation-section .btn:hover {
+  background: var(--primary-color);
+}
+.donation-section .btn.active svg path,
+.donation-section .btn:hover svg path {
+  fill: #fff;
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;

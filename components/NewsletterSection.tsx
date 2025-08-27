@@ -9,14 +9,35 @@ const NewsletterSection = () => {
   const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string|null>(null);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (agree && email) {
-      alert(`Subscribed with: ${email}`);
-    } else {
-      alert("Please enter an email and agree to the privacy policy.");
+    setMessage(null);
+    if (!agree || !email) {
+      setMessage("Bitte geben Sie eine E-Mail-Adresse ein und stimmen Sie der Datenschutzrichtlinie zu.");
+      return;
     }
+    setLoading(true);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMessage("Erfolgreich abonniert!");
+        setEmail("");
+        setAgree(false);
+      } else {
+        setMessage(data.message || "Fehler beim Abonnieren.");
+      }
+    } catch (err) {
+      setMessage("Serverfehler. Bitte versuchen Sie es später erneut.");
+    }
+    setLoading(false);
   };
 
   return (
@@ -33,6 +54,11 @@ const NewsletterSection = () => {
         <div className="d-flex justify-content-center ">
           <div className="col-lg-8">
             <Form onSubmit={handleSubscribe}>
+              {message && (
+                <div className={`mb-3 text-center fw-bold ${message.includes("Erfolgreich") ? "text-success" : "text-danger"}`}>
+                  {message}
+                </div>
+              )}
               <InputGroup className="newslatter-input-group-section mb-3">
                 <Form.Control
                   type="email"
@@ -41,8 +67,9 @@ const NewsletterSection = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <Button variant="dark" type="submit">
-                  <i className="bi bi-send-fill me-2"></i>ABONNIEREN
+                <Button variant="dark" type="submit" disabled={loading}>
+                  <i className="bi bi-send-fill me-2"></i>
+                  {loading ? "Wird gesendet..." : "ABONNIEREN"}
                 </Button>
               </InputGroup>
               <div className="form-check d-flex align-items-center justify-content-center">

@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
+const PAYPAL_URL = "https://www.paypal.com/donate";
+const PAYPAL_BUSINESS_ID = "YOUR_PAYPAL_BUSINESS_ID"; // Replace with your PayPal business ID
+
 const DonationSection = () => {
+  const [amount, setAmount] = useState(10);
+
+  const handleAmountClick = (val: string) => {
+    setAmount(Number(val));
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(Number(e.target.value));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Redirect to PayPal with amount
+    window.open(
+      `${PAYPAL_URL}?business=${PAYPAL_BUSINESS_ID}&amount=${amount}&currency_code=EUR`,
+      "_blank"
+    );
+  };
+
   return (
     <section className="donation-section" style={{ background: "#ffffff", padding: "100px 0" }}>
       <div className="container">
@@ -105,9 +127,9 @@ const DonationSection = () => {
               </div>
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
               <div
-                className="mb-3 d-flex align-items-center border border-2 border-secondary-subtle rounded"
+                className="mb-3 d-flex align-items-center border border-secondary-subtle rounded"
                 style={{ maxWidth: "140px" }}
               >
                 <span
@@ -134,6 +156,8 @@ const DonationSection = () => {
                   type="number"
                   className="form-control"
                   placeholder="10"
+                  value={amount}
+                  onChange={handleInputChange}
                   style={{
                     height: "33px",
                     fontSize: "1.1rem",
@@ -152,8 +176,9 @@ const DonationSection = () => {
                   <button
                     key={i}
                     type="button"
-                    className="btn btn-outline-dark  px-4 py-2 fw-bold"
-                    style={{ minWidth: i === 3 ? "80px" : "80px" }}
+                    className={`btn btn-outline-dark px-4 py-2 fw-bold${amount === Number(val) ? " active bg-primary text-white border-primary" : ""}`}
+                    style={{ minWidth: "80px" }}
+                    onClick={() => handleAmountClick(val)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -169,9 +194,8 @@ const DonationSection = () => {
                           fill="#5c377d"
                         />
                       </g>
-                    </svg> 
-                    <span className="ms-2">{val} </span>
-                    
+                    </svg>
+                    <span className="ms-2">{val}</span>
                   </button>
                 ))}
                 <button
