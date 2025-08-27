@@ -6,10 +6,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
+
 const HeroSection = () => {
   return (
     <>
     <section className="section-dark text-light hero-section no-top no-bottom position-relative overflow-hidden z-1000">
+      
       <div className="v-center">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar]}
