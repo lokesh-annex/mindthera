@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
+import Image from "next/image";
 const faqs = [
   {
     q: "Was ist HTR – und was passiert in einer Sitzung?",
@@ -64,6 +64,16 @@ const Faq = () => {
       />
 
       <section className="bg-white py-5">
+        <span className="absolute top-20 start-0">
+                                         <Image
+                                           src="/images/bg-2-copyright.webp"
+                                           width={303}
+                                           height={550}
+                                            
+                                           alt="Background Copyright"
+                                           priority
+                                         />
+                                           </span>
         <div className="container">
           <div className="row justify-content-center mt-5 mb-5">
             <div className="col-lg-8 text-center">

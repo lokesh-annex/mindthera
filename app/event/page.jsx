@@ -85,11 +85,21 @@ export default function EventPage() {
             items={[{ label: "Home", href: "/" }, { label: "Events" }]}
           />
     <section className="bg-light py-5">
+      <span className="absolute top-20 start-0">
+                           <Image
+                             src="/images/bg-2-copyright.webp"
+                             width={393}
+                             height={625}
+                              
+                             alt="Background Copyright"
+                             priority
+                           />
+                             </span>
         <div className="container">
           {events.map((event, idx) => (
             <div
               key={idx}
-              className={`row align-items-center event-page-section bg-white rounded-4 shadow-sm py-5 px-5 justify-content-center mb-5`}
+              className={`row align-items-center event-page-section bg-white rounded-4 shadow-sm py-5 px-5 justify-content-center mb-5 z-100 position-relative`}
             >
               <div className={`col-lg-12 d-flex ${idx % 2 === 1 ? "flex-row-reverse" : ""} flex-wrap gap-0`}>
                 <div className="col-md-5 d-flex align-items-stretch mb-4 mb-md-0">

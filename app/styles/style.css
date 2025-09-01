@@ -9400,6 +9400,12 @@ img {
   width: 100%;
   object-position: 0% 67%;
 }
+.babyflyer-sec {
+  color: #000000;
+}
+.pb60.tabs-sec .relative.mb-3 {
+  z-index: 9999;
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;
@@ -9461,6 +9467,7 @@ img {
     float: left;
     width: 23.95%;
   }
+  
   .container,
   .container-lg,
   .container-md,
@@ -9474,6 +9481,13 @@ img {
   .gap-12 {
     gap: 2rem;
   }
+  .post-image {
+  
+  height: 270px;
+}
+.post-image img {
+  width: 100% !important;
+}
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
@@ -10667,13 +10681,11 @@ img {
   font-size: 1.8rem;
   
 }
+h2.slider-title span {
+  line-height: 31px;
 }
-.babyflyer-sec {
-  color: #000000;
 }
-.pb60.tabs-sec .relative.mb-3 {
-  z-index: 9999;
-}
+
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {
     padding-left: 30px;

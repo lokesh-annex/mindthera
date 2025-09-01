@@ -131,6 +131,16 @@ const OfferPage = () => {
         items={[{ label: "Home", href: "/" }, { label: "Meine Angebote" }]}
       />
       <section className="relative pb60 pt-2 mt-5">
+        <span className="absolute top-0 start-0">
+                                   <Image
+                                     src="/images/bg-2-copyright.webp"
+                                     width={393}
+                                     height={625}
+                                      
+                                     alt="Background Copyright"
+                                     priority
+                                   />
+                                     </span>
         <div className="container">
        
           {tabData.map((tab, idx) => (
