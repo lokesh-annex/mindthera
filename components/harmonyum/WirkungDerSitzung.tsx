@@ -19,7 +19,7 @@ export default function WirkungDerSitzung() {
               <div className="mb-3 dark-color">
                 <ul className="mb-3" style={{ listStyle: 'disc',color: '#5c377d',  paddingLeft: '1.5rem',fontSize:'1.2rem', lineHeight:'2.5rem' }}>
                   <li> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
-                </span> Traumata aus früheren Leben (z.B. unerklärliche Ängste, Blockaden)</li>
+                </span> Traumata aus früheren Leben (Z.B. unerklärliche Ängste, Blockaden)</li>
                   <li><span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                 </span> Vererbte Familienmuster und karmische Belastungen</li>
                   <li> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">

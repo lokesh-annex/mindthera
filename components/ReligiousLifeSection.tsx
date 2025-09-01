@@ -24,7 +24,7 @@ const ReligiousLifeSection = () => {
                   width: "58%",
                   height: "100%",
                   objectFit: "cover",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+                 
                 }}
               />
               <Image
@@ -40,7 +40,7 @@ const ReligiousLifeSection = () => {
                   width: "55%",
                   height: "80%",
                   objectFit: "cover",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.10)",
+                 
                   zIndex: 2,
                 }}
               />

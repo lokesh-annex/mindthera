@@ -27,7 +27,7 @@ const Datenschutzbestimmung = () => (
             <strong>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung (DSGVO):</strong><br />
             Kerstin R. Stoll, 0041 76 560 70 56<br />
             E-Mail: info@veraenderungen.ch<br />
-            Webseite: <Link href="https://veraenderungen.ch" target="_blank" rel="noopener noreferrer">veraenderungen.ch</Link>, <Link href="https://kerstin-r-stoll.ch" target="_blank" rel="noopener noreferrer">kerstin-r-stoll.ch</Link>, <Link href="https://traumafrei.ch" target="_blank" rel="noopener noreferrer">traumafrei.ch</Link>
+            Webseite: <Link href="https://veraenderungen.ch" target="_blank" rel="noopener noreferrer" style={{ color: 'rgb(92, 55, 125)' }}>veraenderungen.ch</Link>, <Link href="https://kerstin-r-stoll.ch" target="_blank" rel="noopener noreferrer" style={{ color: 'rgb(92, 55, 125)' }}>kerstin-r-stoll.ch</Link>, <Link href="https://traumafrei.ch" target="_blank" rel="noopener noreferrer" style={{ color: 'rgb(92, 55, 125)' }}>traumafrei.ch</Link>
           </p>
           <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>Welche personenbezogenen Daten wir sammeln und warum wir sie sammeln</h3>
           <p>Wenn Sie auf diese Webseite zugreifen werden automatisch Informationen allgemeiner Natur erfasst. Diese Informationen werden im Server-Logfile erfasst und beinhalten die Art des Webbrowsers, das verwendete Betriebssystem, den Domainnamen Ihres Internet-Service-Providers, Ihre IP-Adresse und ähnliches.</p>

@@ -51,13 +51,13 @@ const OfferPage = () => {
         slug: "mutter-und-kind-geburts-special",
       },
       {
-        title: "Ergänzende Begleitung Im Wochenbett",
+        title: "Ergänzende Begleitung im Wochenbett",
         image: "5.webp",
         desc: "weil Rückverbindung nicht mit der Geburt deines Kindes endet",
         slug: "wochenbett-begleitung",
       },
       {
-        title: "Traumata Aus Der Kindheit",
+        title: "Traumata aus der Kindheit",
         image: "8.webp",
         desc: "die ersten Jahre prägen alles – auch das, was wir längst vergessen haben",
         slug: "traumata-aus-der-kindheit",
@@ -68,26 +68,26 @@ const OfferPage = () => {
     label: "Für sofortige Hilfe",
     services: [
       {
-        title: "Trauma Durch Emotionale & Körperliche Blockaden ",
+        title: "Trauma durch emotionale & körperliche Blockaden ",
         image: "9.webp",
         desc: "wenn etwas zu gross war, um verarbeitet zu werden – wird es vom Körper getragen",
         slug: "trauma-durch-emotionale-und-koerperliche-blockaden",
       },
       {
-        title: "Trauma Nach Unfall",
+        title: "Trauma nach Unfall",
         image: "10.webp",
         desc: "Erste-Hilfe-Special mit BlueBody-Aktivierung",
         slug: "trauma-nach-unfall",
       },
       {
-        title: "Trauma Durch Chronischen Stress, Burnout, Depression & Überforderung",
+        title: "Trauma durch chronischen Stress, Burnout, Depression & Überforderung",
 
         image: "11.webp",
         desc: "wenn nichts mehr geht – ist es Zeit, wieder bei dir anzukommen",
          slug: "trauma-durch-stress-burnout",
       },
       {
-        title: "Trauma Durch Berufliche Belastung (Z. B. Notfallmedizin, Polizei, Rettungskräfte)",
+        title: "Trauma durch Berufliche Belastung (Z. B. Notfallmedizin, Polizei, Rettungskräfte)",
         image: "12.webp",
         desc: "wenn Helfen traumatisch wird – braucht auch die Stärke einen Raum",
          slug: "trauma-durch-berufliche-belastung",
@@ -104,7 +104,7 @@ const OfferPage = () => {
          slug: "seelenentbindung-rueckgabe-traumafrequenzen",
       },
       {
-        title: "Kollektive Erlebnisse (Krieg, Pandemie, Flucht, Gewalt Etc.)",
+        title: "Kollektive Erlebnisse (Krieg, Pandemie, Flucht, Gewalt etc.)",
         image: "16.webp",
         desc: "manche Erfahrungen prägen nicht nur dich – sondern ganze Felder, Gesellschaften und Kulturen",
         slug: "kollektive-erlebnisse",
@@ -116,7 +116,7 @@ const OfferPage = () => {
          slug: "ueberraschung-angebot",
       },
       {
-        title: "Stille Heilt",
+        title: "Stille heilt",
         image: "13.webp",
         desc: "Retreat zur Rückverbindung mit deiner Urform",
         slug: "stille-heilt-retreat",

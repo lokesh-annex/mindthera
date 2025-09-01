@@ -20,7 +20,7 @@ const ServiceWochenbettBegleitung: React.FC = () => (
                 className="text-right fw-bold mb-2"
                 style={{ color: "#1a2a6c" }}
               >
-               Ergänzende Begleitung Im Wochenbett
+               Ergänzende Begleitung im Wochenbett
               </h2>
               <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
                 weil Rückverbindung nicht mit der Geburt deines Kindes endet
@@ -78,19 +78,7 @@ const ServiceWochenbettBegleitung: React.FC = () => (
                     </span>
                     deiner Regeneration
                   </li>
-                  <li className="mb-4 d-flex align-items-start">
-                    <span
-                      style={{
-                        color: "#7A566B",
-                        fontSize: "1.7rem",
-                        marginRight: "16px",
-                        marginTop: "2px",
-                      }}
-                    >
-                      <i className="bi bi-stars"></i>
-                    </span>
-                    dem Nachnähren deiner Wurzel
-                  </li>
+                  
                   <li className="mb-4 d-flex align-items-start">
                     <span
                       style={{
@@ -166,27 +154,9 @@ const ServiceWochenbettBegleitung: React.FC = () => (
             </div>
           </div>
         </section>
-        <section className="py-5 price-sec">
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }}
-            aria-hidden="true"
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }}
-            aria-hidden="true"
-          />
+        <section className="pt-2 pb-8 price-sec">
+        
+        
           <div
             className="container"
             style={{ position: "relative", zIndex: 2 }}

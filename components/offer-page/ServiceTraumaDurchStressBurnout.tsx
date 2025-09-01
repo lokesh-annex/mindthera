@@ -13,7 +13,7 @@ const ServiceTraumaDurchStressBurnout: React.FC = () => (
         </div>
         <div className="flex-grow-1">
             <h2 className="text-right fw-bold mb-2" style={{ color: "#1a2a6c" }}>
-                Trauma Durch Chronischen Stress, Burnout, Depression & Überforderung
+                Trauma durch chronischen Stress, Burnout, Depression & Überforderung
             </h2>
             <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
                 wenn nichts mehr geht – ist es Zeit, wieder bei dir anzukommen
@@ -34,7 +34,7 @@ const ServiceTraumaDurchStressBurnout: React.FC = () => (
         </div>
     </div>
 </div>
-<section className="py-5 session-sec-bg-fe">
+<section className="pt-5 pb-0 session-sec-bg-fe">
     <div className="container">
         <div className="row justify-content-center mb-4">
             <div className="col-lg-12 text-center">
@@ -97,7 +97,7 @@ const ServiceTraumaDurchStressBurnout: React.FC = () => (
         </div>
     </div>
 </section>
-<section className="py-10 bg-light session-sec-bg">
+<section className="py-5 session-sec-bg">
     <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-[#143774] mb-6">
             Empfehlung:
@@ -108,21 +108,8 @@ const ServiceTraumaDurchStressBurnout: React.FC = () => (
         </p>
     </div>
 </section>
-<section className="py-5 price-sec">
-    <div style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }} aria-hidden="true" />
-    <div style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }} aria-hidden="true" />
+<section className="pt-2 pb-8 price-sec">
+   
     <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="new-session-box">
             <div className="row">

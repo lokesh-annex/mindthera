@@ -67,7 +67,7 @@ export default function AgbTraumafreiPage() {
               </p>
               <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>5. Pakete &amp; Gültigkeit</h3>
               <p>
-                Pakete (z.B. 3er, 5er oder 10er) sind nicht übertragbar und
+                Pakete (Z.B. 3er, 5er oder 10er) sind nicht übertragbar und
                 innerhalb von 3 Monaten ab Kaufdatum einzulösen. Nicht genutzte
                 Sessions verfallen nach Ablauf der Frist. Eine Rückerstattung ist
                 nicht möglich.

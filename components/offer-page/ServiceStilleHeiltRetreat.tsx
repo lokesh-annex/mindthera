@@ -13,7 +13,7 @@ const ServiceStilleHeiltRetreat: React.FC = () => (
         </div>
         <div className="flex-grow-1">
             <h2 className="text-right fw-bold mb-2" style={{ color: "#1a2a6c" }}>
-               Stille Heilt
+               Stille heilt
             </h2>
             <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
                 Retreat zur Rückverbindung mit deiner Urform
@@ -36,21 +36,9 @@ const ServiceStilleHeiltRetreat: React.FC = () => (
         </div>
     </div>
 </div>
-<section className="py-5 price-sec">
-    <div style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }} aria-hidden="true" />
-    <div style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }} aria-hidden="true" />
+<section className="pt-2 pb-8 price-sec">
+    
+    
     <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="new-session-box">
             <div className="row">

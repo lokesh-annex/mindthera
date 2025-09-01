@@ -36,11 +36,11 @@ const ServiceSeelenentbindungRueckgabeTraumafrequenzen: React.FC = () => (
         </div>
     </div>
 </div>
-<section className="py-10 bg-light session-sec-bg">
+<section className="py-10  session-sec-bg">
     <div className="container mx-auto">
         <h3 className="text-3xl md:text-4xl font-bold text-[#143774] mb-6">
             Harmonyum Trauma Release öffnet einen Raum, in dem tiefsitzende Erfahrungen aus
-            vergangenen Inkarnationen gelöst werden können –
+            vergangenen inkarnationen gelöst werden können –
         </h3>
         <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
             ohne Geschichten, ohne Hypnose: nur durch Frequenz, Energie und Zell-Erinnerung.
@@ -49,21 +49,8 @@ const ServiceSeelenentbindungRueckgabeTraumafrequenzen: React.FC = () => (
         </p>
     </div>
 </section>
-<section className="py-5 price-sec">
-    <div style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }} aria-hidden="true" />
-    <div style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }} aria-hidden="true" />
+<section className="pt-2 pb-8 price-sec">
+    
     <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="new-session-box">
             <div className="row">

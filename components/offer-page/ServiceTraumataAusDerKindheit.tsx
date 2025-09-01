@@ -20,7 +20,7 @@ const ServiceTraumataAusDerKindheit: React.FC = () => (
                 className="text-right fw-bold mb-2"
                 style={{ color: "#1a2a6c" }}
               >
-              Traumata Aus Der Kindheit
+              Traumata aus der Kindheit
               </h2>
               <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
                 die ersten Jahre prägen alles – auch das, was wir längst
@@ -90,19 +90,7 @@ const ServiceTraumataAusDerKindheit: React.FC = () => (
                     das Kind entscheidet, ob es mit der Mutter gemeinsam im Raum
                     ist
                   </li>
-                  <li className="mb-4 d-flex align-items-start">
-                    <span
-                      style={{
-                        color: "#7A566B",
-                        fontSize: "1.7rem",
-                        marginRight: "16px",
-                        marginTop: "2px",
-                      }}
-                    >
-                      <i className="bi bi-stars"></i>
-                    </span>
-                    dem Nachnähren deiner Wurzel
-                  </li>
+                
                   <li className="mb-4 d-flex align-items-start">
                     <span
                       style={{
@@ -128,7 +116,7 @@ const ServiceTraumataAusDerKindheit: React.FC = () => (
                       <i className="bi bi-stars"></i>
                     </span>
                     Die Sitzung richtet sich ganz nach dem natürlichen Rhythmus
-                    des Kindes; je nach Alter braucht es etwas mehr zeit, um
+                    des Kindes; je nach Alter braucht es etwas mehr Zeit, um
                     Vertrauen aufzubauen. Diese Zeit nehmen wir uns!
                   </li>
                   <li className="mb-4 d-flex align-items-start">
@@ -149,27 +137,9 @@ const ServiceTraumataAusDerKindheit: React.FC = () => (
             </div>
           </div>
         </section>
-        <section className="py-5 price-sec">
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }}
-            aria-hidden="true"
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }}
-            aria-hidden="true"
-          />
+        <section className="pt-2 pb-8 price-sec">
+        
+         
           <div
             className="container"
             style={{ position: "relative", zIndex: 2 }}

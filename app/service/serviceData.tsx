@@ -87,28 +87,28 @@ const serviceData: Record<
     description: <ServiceTraumataAusDerKindheit />,
   },
   "trauma-durch-emotionale-und-koerperliche-blockaden": {
-    title: "Trauma Durch Emotionale & Körperliche Blockaden ",
+    title: "Trauma durch emotionale & körperliche Blockaden ",
     image: "/images/services/9.webp",
     subtitle: "wenn etwas zu gross war, um verarbeitet zu werden – wird es vom Körper getragen",
     label: "Für sofortige Hilfe",
     description: <ServiceTraumaDurchEmotionaleUndKoerperlicheBlockaden />,
   },
   "trauma-nach-unfall": {
-    title: "Trauma Nach Unfall",
+    title: "Trauma nach Unfall",
     image: "/images/services/10.webp",
     subtitle: "Erste-Hilfe-Special mit BlueBody-Aktivierung",
     label: "Für sofortige Hilfe",
     description: <ServiceTraumaNachUnfall />,
   },
   "trauma-durch-stress-burnout": {
-    title:"Trauma Durch Chronischen Stress, Burnout, Depression & Überforderung",
+    title:"Trauma durch chronischen Stress, Burnout, Depression & Überforderung",
     image: "/images/services/11.webp",
     subtitle:"wenn nichts mehr geht – ist es Zeit, wieder bei dir anzukommen",
     label: "Für sofortige Hilfe",
     description: <ServiceTraumaDurchStressBurnout />,
   },
   "trauma-durch-berufliche-belastung": {
-    title:"Trauma Durch Berufliche Belastung (Z. B. Notfallmedizin, Polizei, Rettungskräfte)",
+    title:"Trauma durch Berufliche Belastung (Z. B. Notfallmedizin, Polizei, Rettungskräfte)",
     image: "/images/services/12.webp",
     subtitle:"wenn Helfen traumatisch wird – braucht auch die Stärke einen Raum",
     label: "Für sofortige Hilfe",
@@ -122,7 +122,7 @@ const serviceData: Record<
     description: <ServiceSeelenentbindungRueckgabeTraumafrequenzen />,
   },
    "kollektive-erlebnisse": {
-    title: "Kollektive Erlebnisse (Krieg, Pandemie, Flucht, Gewalt Etc.)",
+    title: "Kollektive Erlebnisse (Krieg, Pandemie, Flucht, Gewalt etc.)",
     image: "/images/services/16.webp",
     subtitle:"manche Erfahrungen prägen nicht nur dich – sondern ganze Felder, Gesellschaften und Kulturen",
     label: "Unsere Spezialangebote",
@@ -137,7 +137,7 @@ const serviceData: Record<
   },
  
   "stille-heilt-retreat": {
-    title: "Stille Heilt",
+    title: "Stille heilt",
     image: "/images/services/13.webp",
     subtitle:"Retreat zur Rückverbindung mit deiner Urform",
     label: "Unsere Spezialangebote",

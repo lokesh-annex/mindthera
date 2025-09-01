@@ -14,7 +14,7 @@ const ServiceTraumaDurchBeruflicheBelastung: React.FC = () => (
         </div>
         <div className="flex-grow-1">
             <h2 className="text-right fw-bold mb-2" style={{ color: "#1a2a6c" }}>
-               Trauma Durch Berufliche Belastung<br/> (Z.b. Notfallmedizin, Polizei,
+               Trauma durch Berufliche Belastung<br/> (Z.B. Notfallmedizin, Polizei,
 Rettungskräfte)
             </h2>
             <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
@@ -104,7 +104,7 @@ auf ein Reset.
 </section>
 
 
-<section className="py-10 bg-light session-sec-bg">
+<section className="py-10  session-sec-bg">
     <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-[#143774] mb-6">
             Empfehlung:
@@ -116,21 +116,8 @@ abzuhalten: mindestens 3x in der Woche oder täglich je eine Behandlung.
     </div>
 </section>
 
-<section className="py-5 price-sec">
-    <div style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }} aria-hidden="true" />
-    <div style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }} aria-hidden="true" />
+<section className="pt-2 pb-8 price-sec">
+   
     <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="new-session-box">
             <div className="row">

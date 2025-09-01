@@ -130,27 +130,9 @@ const ServiceGemeinsameFamilienzeit: React.FC = () => (
             </div>
           </div>
         </section>
-        <section className="py-5 price-sec">
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }}
-            aria-hidden="true"
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }}
-            aria-hidden="true"
-          />
+        <section className="pt-2 pb-8 price-sec">
+       
+         
           <div
             className="container"
             style={{ position: "relative", zIndex: 2 }}
@@ -258,7 +240,7 @@ const ServiceGemeinsameFamilienzeit: React.FC = () => (
                   className="mb-3"
                   style={{ color: "#3D2C4A", fontSize: "1.08rem" }}
                 >
-                  Nach emotional herausfordernden Zeiten, Übergängen (z.B.
+                  Nach emotional herausfordernden Zeiten, Übergängen (Z.B.
                   Umzug, Trennung, Todesfall) oder einfach als gemeinsame
                   energetische Stärkung.
                   <br />

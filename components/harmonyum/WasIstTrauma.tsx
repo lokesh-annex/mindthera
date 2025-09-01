@@ -28,7 +28,7 @@ export default function WasIstTrauma() {
                     className="bi bi-x-diamond"
                     style={{ fontSize: "1.2rem", color: "#5c377d" }}
                   ></i>
-                </span> Eigene Lebenserfahrungen (z.B. Angst, Missbrauch, Unfall)</li>
+                </span> Eigene Lebenserfahrungen (Z.B. Angst, Missbrauch, Unfall)</li>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
@@ -40,7 +40,7 @@ export default function WasIstTrauma() {
                     className="bi bi-x-diamond"
                     style={{ fontSize: "1.2rem", color: "#5c377d" }}
                   ></i>
-                </span> Prägungen aus früheren Inkarnationen</li>
+                </span> Prägungen aus früheren inkarnationen</li>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
@@ -84,7 +84,7 @@ export default function WasIstTrauma() {
                     className="bi bi-x-diamond"
                     style={{ fontSize: "1.2rem", color: "#5c377d" }}
                   ></i>
-                </span> Kollektive Erlebnisse wie z.B. Krieg, Wildfeuer, Corona etc.</li>
+                </span> Kollektive Erlebnisse wie Z.B. Krieg, Wildfeuer, Corona etc.</li>
           </ul>
          </div>
          </div>

@@ -188,20 +188,7 @@ const ServiceHarmonyumTraumaRelease: React.FC = () => (
                 </span>
                 Menschen, die spüren, dass Worte nicht ausreichen.
               </li>
-              <li className="mb-4 d-flex align-items-center">
-                <span
-                  style={{
-                    color: "#7A566B",
-                    fontSize: "1.5rem",
-                    borderRadius: "4px",
-                    marginRight: "18px",
-                  }}
-                >
-                  <i className="bi bi-chevron-double-left"></i>
-                </span>
-                Frauen & Männer, die viel gehalten haben – und nun selbst
-                gehalten werden wollen.
-              </li>
+             
               <li className="mb-4 d-flex align-items-center">
                 <span
                   style={{
@@ -231,18 +218,17 @@ const ServiceHarmonyumTraumaRelease: React.FC = () => (
               </li>
             </ul>
             <div className="mt-4 ">
-              <span
-              className="alt-font"
-                style={{
-                  fontSize: "1.25rem",
-                  color: "#5C377D",
-                  fontWeight: 600,
-                }}
-              >
-                <i className="bi bi-arrow-right-circle me-3 "></i>
-                Wenn du dich nach innerer Ruhe, Klarheit und Rückverbindung
-                sehnst, bist du hier richtig.
-              </span>
+             
+              <div className="mt-3">
+                <a
+                  href="/contact"
+                  className="btn btn-main px-4 py-2 fw-bold"
+                  
+                >
+                  Wenn du dich nach innerer Ruhe, Klarheit und Rückverbindung
+                sehnst, bist du hier richtig. 
+                </a>
+              </div>
             </div>
           </div>
         </div>

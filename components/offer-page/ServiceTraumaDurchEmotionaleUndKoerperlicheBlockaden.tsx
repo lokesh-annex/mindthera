@@ -21,7 +21,7 @@ const ServiceTraumaDurchEmotionaleUndKoerperlicheBlockaden: React.FC = () => (
                 className="text-right fw-bold mb-2"
                 style={{ color: "#1a2a6c" }}
               >
-                Trauma Durch Emotionale & Körperliche Blockaden
+                Trauma durch emotionale & körperliche Blockaden
               </h2>
               <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
                 wenn etwas zu gross war, um verarbeitet zu werden – wird es vom
@@ -43,7 +43,7 @@ diese Erfahrungen hinterlassen nicht nur Erinnerung, sondern Resonanz.
             </div>
           </div>
         </div>
-        <section className="py-8 bg-light stimmen-sec ">
+        <section className="py-5 stimmen-sec ">
           <div className="container">
             <div className="row align-items-center justify-content-center">
               <div className="col-lg-12">
@@ -71,27 +71,9 @@ diese Erfahrungen hinterlassen nicht nur Erinnerung, sondern Resonanz.
             </div>
           </div>
         </section>
-        <section className="py-5 price-sec">
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }}
-            aria-hidden="true"
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }}
-            aria-hidden="true"
-          />
+        <section className="pt-2 pb-8 price-sec">
+         
+         
           <div
             className="container"
             style={{ position: "relative", zIndex: 2 }}

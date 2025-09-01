@@ -41,7 +41,7 @@ const ServiceAhnenfriedenEnergetischeLoeschung: React.FC = () => (
           </div>
         </div>
 
-        <section className="py-10 bg-light session-sec-bg">
+        <section className="py-10 session-sec-bg">
           <div className="container mx-auto">
             <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
               In dieser Frequenzarbeit darf zurückgehen, was durch dich hindurch
@@ -90,27 +90,9 @@ const ServiceAhnenfriedenEnergetischeLoeschung: React.FC = () => (
           </div>
         </section>
 
-        <section className="py-5 price-sec">
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              background: `url('/images/c-img.jpg') center `,
-              filter: "blur(10px)",
-              opacity: 0.6,
-            }}
-            aria-hidden="true"
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#ffffff88",
-            }}
-            aria-hidden="true"
-          />
+        <section className="pt-3 pb-8 price-sec">
+       
+        
           <div
             className="container"
             style={{ position: "relative", zIndex: 2 }}
