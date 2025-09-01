@@ -9,7 +9,7 @@ const AboutUS = () => (
       title="Über mich"
       items={[{ label: "Home", href: "/" }, { label: "Über mich" }]}
     />
-    <section className="bg-white py-5">
+    <section className="bg-white py-5 d-none">
       <span className="absolute top-20 start-0">
                     <Image
                       src="/images/bg-2-copyright.webp"
@@ -91,7 +91,17 @@ const AboutUS = () => (
         </div>
       </div>
 </section>
-      <section className="py-5  work-section" style={{ background: "#fdf6fa" }}>
+      <section className="py-5  work-section" >
+         <span className="absolute top-20 start-0">
+                    <Image
+                      src="/images/bg-2-copyright.webp"
+                      width={393}
+                      height={625}
+                       
+                      alt="Background Copyright"
+                      priority
+                    />
+                      </span>
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
@@ -223,13 +233,13 @@ const AboutUS = () => (
                 <br />– in dir.
               </h2>
               
-                <div className="build-portrait" style={{ height: '320px', overflow: 'hidden', borderRadius: '16px', background: '#7a566b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="build-portrait" >
                   <Image
                     src="/images/image-15.jpg"
                     width={580}
                     height={250}
                     alt="Kerstin R. Stoll Portrait"
-                    className="img-fluid"
+                    className="img-fluid build-portrait-img"
                   />
                 </div>
             </div>

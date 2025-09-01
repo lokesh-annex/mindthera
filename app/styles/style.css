@@ -4,7 +4,8 @@
 :root {
   --title-font: "Jost", Helvetica, Arial, sans-serif;
   --body-font: "Jost", Helvetica, Arial, sans-serif;
-  --alt-font: "Allison", cursive;
+  /* --alt-font: "Allison", cursive; */
+  --alt-font: "Crimson Pro", serif;
   --body-font-size: 16px;
   --title-font-weight: 500;
   --title-font-color: #202020;
@@ -19,6 +20,7 @@
   --bg-dark-2: #232627;
   --bg-dark-3: #303030;
   --bg-grey: #f6f8f9;
+  --primary-tint:  #6f5586;
   --bg-gradient-1: 0deg, rgba(var(--primary-color-rgb), 0.1) 0%,
     rgba(var(--secondary-color-rgb), 0.2) 100%;
   --swiper-theme-color: var(--secondary-color);
@@ -70,7 +72,9 @@ body {
 .bg-grey {
   background-color: var(--bg-grey) !important;
 }
-
+.primary-tint{
+background: var(--primary-tint);
+}
 .bg-gradient-1 {
   background: -moz-linear-gradient(var(--bg-gradient-1)) !important;
   background: -webkit-linear-gradient(var(--bg-gradient-1)) !important;
@@ -108,6 +112,10 @@ body .owl-stage .owl-item {
 .alt-font {
   font-family: var(--alt-font);
 }
+.font-italic {
+  font-style: italic;
+}
+
 #wrapper {
   position: relative;
   overflow: hidden;
@@ -5249,7 +5257,13 @@ h2.slider-title {
   line-height: 1.2em;
   letter-spacing: -3px;
 }
-
+h2.slider-title span {
+  letter-spacing: 0.2px;
+  line-height: 42px;
+  margin-top: 10px;
+  font-style: italic;
+  font-weight: normal;
+}
 h3.slider-teaser {
   font-size: 24px;
 }
@@ -9007,7 +9021,7 @@ img {
   }
 }
 .price-sec {
-  padding: 60px 0;
+  padding: 0px 0 80px;
   position: relative;
   overflow: hidden;
 }
@@ -9017,8 +9031,8 @@ img {
   border-radius: 30px;
 }
 .session-sec-bg {
-  padding: 60px 0;
-  background-image: url(../../public/images/shape-bg.png);
+  padding: 0px 0 30px;
+  
   position: relative;
   z-index: 1;
 }
@@ -9235,6 +9249,7 @@ img {
   overflow: hidden;
   margin-bottom: 20px;
   position: relative;
+  height: 340px;
 }
 .widget ul {
   list-style: none;
@@ -9367,6 +9382,24 @@ img {
 .donation-section .btn:hover svg path {
   fill: #fff;
 }
+.id-color-2{
+  color: var(--secondary-color) !important;
+}
+.build-portrait{
+  height: 320px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #7a566b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.build-portrait-img{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-position: 0% 67%;
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;
@@ -9478,9 +9511,7 @@ img {
   .work-section .justify-content-center {
     justify-content: flex-start !important;
   }
-  .build-portrait {
-    justify-content: flex-start !important;
-  }
+ 
   .py-5.pb-0 {
     padding-top: 0px !important;
   }

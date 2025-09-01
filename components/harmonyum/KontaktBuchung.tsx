@@ -19,10 +19,7 @@ export default function KontaktBuchung() {
         </div>
         <div className="col-md-7">
             <h2 className="fw-bold mb-3">Kontakt & Buchung</h2>
-            <p className="mb-2">TERMINBUCHUNGEN: <a href="https://www.traumafrei.ch/booking" className=" fw-bold" style={{color:'#7a566b'}} target="_blank" rel="noopener">www.traumafrei.ch/booking</a></p>
            
-            <p className="mb-2">Für alle weiteren Fragen: <a href="mailto:info@traumafrei.ch" className=" fw-bold" style={{color:'#7a566b'}} >info@traumafrei.ch</a></p>
-            <p className="mb-0">Weitere Infos: <a href="https://www.traumafrei.ch" className=" fw-bold" style={{color:'#7a566b'}}  target="_blank" rel="noopener">www.traumafrei.ch</a></p>
           <div className="d-flex flex-column flex-md-row gap-3 mt-4">
            <a
               href="https://www.traumafrei.ch/booking"
@@ -38,7 +35,7 @@ export default function KontaktBuchung() {
               className="btn btn-main px-4 py-2 fw-bold mt-5"
               style={{ fontSize: '1.1rem' }}
             >
-              Flyer Herunterladen
+              Flyer herunterladen
             </a>
           </div>
           </div>

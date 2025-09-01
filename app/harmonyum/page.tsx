@@ -27,13 +27,14 @@ export default function HarmonyumPage() {
   <WirkungDerSitzung />
 
   <WarumBleibtTrauma />
+   <WasIstTrauma />
   <WarumHTR />
   <Zielgruppen />
   <AblaufDerBehandlung />
 
   {/* <Anwendungsbereiche /> */}
  
-  <WasIstTrauma />
+ 
  
   <BabyFlyer />
   <KontaktBuchung />

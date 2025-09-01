@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
+import Image from "next/image";
 const ServiceHarmonyumTraumaRelease: React.FC = () => (
   <>
     <div className="container py-5">
@@ -18,7 +18,7 @@ const ServiceHarmonyumTraumaRelease: React.FC = () => (
         </div>
         <div className="flex-grow-1">
           <h2 className="text-right fw-bold mb-2" style={{ color: "#1a2a6c" }}>
-            Harmonyum Trauma Release
+            Harmonyum Trauma Release®
           </h2>
           <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
             Frequenzform zur Rückverbindung
@@ -232,13 +232,14 @@ const ServiceHarmonyumTraumaRelease: React.FC = () => (
             </ul>
             <div className="mt-4 ">
               <span
+              className="alt-font"
                 style={{
                   fontSize: "1.25rem",
                   color: "#5C377D",
                   fontWeight: 600,
                 }}
               >
-                <i className="bi bi-arrow-right-circle me-3"></i>
+                <i className="bi bi-arrow-right-circle me-3 "></i>
                 Wenn du dich nach innerer Ruhe, Klarheit und Rückverbindung
                 sehnst, bist du hier richtig.
               </span>
@@ -248,7 +249,17 @@ const ServiceHarmonyumTraumaRelease: React.FC = () => (
       </div>
     </section>
 
-    <section className="py-10 bg-light session-sec-bg">
+    <section className="py-10  session-sec-bg">
+      <span className="absolute top-20 start-0">
+                                 <Image
+                                   src="/images/bg-2-copyright.webp"
+                                   width={393}
+                                   height={625}
+                                    
+                                   alt="Background Copyright"
+                                   priority
+                                 />
+                                   </span>
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-[#143774] mb-6">
           Wie läuft eine Session ab?
@@ -303,18 +314,8 @@ const ServiceHarmonyumTraumaRelease: React.FC = () => (
       </div>
     </section>
 
-    <section className="py-5 price-sec">
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-          background: `url('/images/c-img.jpg') center `,
-          filter: "blur(10px)",
-          opacity: 0.6,
-        }}
-        aria-hidden="true"
-      />
+    <section className="pt-3 pb-6 price-sec">
+      
       {/* Overlay for better text contrast */}
       <div
         style={{

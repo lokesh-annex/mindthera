@@ -76,8 +76,8 @@ const AboutUS = () => {
             <div className="subtitle  mb-3">WAS WIR TUN</div>
             <h2 className="">
               Hier endet das Verbiegen –
-              <span className="d-block mt-2 alt-font fw-500 fs-72 id-color-2">
-                und beginnt dein ganzes Sein.
+              <span className="d-block font-italic mt-2 alt-font fw-500 fs-42 id-color-2">
+                und beginnt dein ganzes Sein
               </span>
             </h2>
             <p className="">

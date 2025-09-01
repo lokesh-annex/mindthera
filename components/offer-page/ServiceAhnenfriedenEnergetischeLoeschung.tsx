@@ -23,7 +23,7 @@ const ServiceAhnenfriedenEnergetischeLoeschung: React.FC = () => (
                 Ahnenfrieden – energetische Löschung von übernommenem Trauma
               </h2>
               <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
-                du trägst, was du fühlst. Aber Manches ist alt, gehört nicht zu
+                Du trägst, was du fühlst. Aber manches ist alt, gehört nicht zu
                 dir und wartet auf Erlösung.
               </h4>
               <p className="mt-3 text-right">

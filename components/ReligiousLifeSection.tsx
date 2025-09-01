@@ -59,7 +59,7 @@ const ReligiousLifeSection = () => {
               style={{ fontSize: "2rem", lineHeight: 1.2 }}
             >
               Die Urform der Menschlichkeit –<br />
-              Trauma auf Zellebene lösen mit Harmonyum Trauma Release
+              Trauma auf Zellebene lösen mit Harmonyum Trauma Release®
             </h2>
             <p className="text-muted mb-4" style={{ fontSize: "1.08rem" }}>
               Trauma lösen - wenn der Körper bereit ist, loszulassen. Viele
@@ -72,7 +72,7 @@ const ReligiousLifeSection = () => {
               festhalten müssen.
               <br />
               <br />
-              Ich stelle dir Harmonyum Trauma Release vor: eine körperbasierte
+              Ich stelle dir Harmonyum Trauma Release® vor: eine körperbasierte
               Methode, die ohne Worte wirkt, sanft entlädt und dich zurückbringt
               in dein ursprüngliches Gleichgewicht.
               <br />

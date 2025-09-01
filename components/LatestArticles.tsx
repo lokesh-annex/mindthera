@@ -25,7 +25,7 @@ const articles = [
     comments: 1,
     mainDay: "02",
     mainMonth: "May",
-    description: "Warum ich mich Bewusstseins-Architektin nenne"
+    description: " Wie tief sitzende Muster unser Leben prägen"
   },
   {
     title: "Die 9 Traumabereiche – Wie tief sitzende Muster unser Leben prägen",
@@ -36,7 +36,7 @@ const articles = [
     comments: 1,
     mainDay: "24",
     mainMonth: "Apr",
-    description: "Warum ich mich Bewusstseins-Architektin nenne"
+    description: " Wie tief sitzende Muster unser Leben prägen"
   },
 
   {

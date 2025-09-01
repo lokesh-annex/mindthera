@@ -20,7 +20,7 @@ export default function HeroSection() {
         <div className="col-md-6 animated fadeInUp ">
           <div className="px-4">
           <h1 className="display-4 fw-bold harmonyum-title mb-3 animated-text-gradient">Harmonyum Trauma Release®</h1>
-          <p className="lead dark-color dark-color">Tiefenentspannung & Aktivierung der Selbstheilung</p>
+          <p className="lead dark-color dark-color alt-font id-color-2">Tiefenentspannung & Aktivierung der Selbstheilung</p>
           <p className="mb-0 dark-color harmonyum-hero-desc dark-color">Harmonyum Trauma Release® (HTR) ist eine innovative energetische Methode, die tiefsitzende Traumata im individuellen Energiefeld transformiert. <br/>Sie spürt nicht nur persönliche Blockaden auf, sondern auch karmische Belastungen, die über die Ahnenlinie weitergegeben wurden.</p>
         </div>
         </div>

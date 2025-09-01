@@ -3,12 +3,8 @@ import React from "react";
 export default function WasIstTrauma() {
   return (
     <section
-      className="py-5"
-      style={{
-        borderRadius: '1.5rem',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      className="py-3"
+      
     >
       <img
         src="/images/bg-2-copyright-r.png"
@@ -18,10 +14,11 @@ export default function WasIstTrauma() {
       />
 
       <div className="container">
-          <h2
-            className="fw-bold mb-3"          >
+          <h3
+            className="fw-bold mb-3"
+          >
             Was ist ein Trauma?
-          </h2>
+          </h3>
          <p className="mb-4 dark-color" style={{ fontSize: '1.2rem' }}>
             Trauma entsteht durch unsere individuellen Wahrnehmungsfilter. Eine äußere Situation oder Begegnung kann tief gehende Verletzungen hinterlassen, die sich in Form von Ängsten, Blockaden und emotionalen bis hin zu physischen Schmerzen manifestieren. Traumatische Erlebnisse können durch verschiedene Faktoren ausgelöst werden:
           </p>
@@ -53,10 +50,10 @@ export default function WasIstTrauma() {
           </ul>
 
  <div className="my-5">
-          <h2
+          <h3
             className="fw-bold mb-3">
            Beispiele für ein Trauma
-          </h2>
+          </h3>
           <ul className="mb-3" style={{ listStyle: 'none',color: '#5c377d',  paddingLeft: '0rem',fontSize:'1.2rem', lineHeight:'1.4rem' }}>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
@@ -82,7 +79,7 @@ export default function WasIstTrauma() {
                     style={{ fontSize: "1.2rem", color: "#5c377d" }}
                   ></i>
                 </span> Erlebnisse von Gewalt, Isolation und Machtmissbrauch</li>
-            <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
+            <li className="mb-0"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
                     style={{ fontSize: "1.2rem", color: "#5c377d" }}

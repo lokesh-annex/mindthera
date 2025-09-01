@@ -1,11 +1,20 @@
 import React from "react";
-
+import Image from "next/image";
 export default function WarumBleibtTrauma() {
   return (
     <section
-      className="py-8"
-  
+      className="py-4 position-relative"
     >
+       <span className="absolute top-20 start-0">
+                                <Image
+                                  src="/images/bg-2-copyright.webp"
+                                  width={393}
+                                  height={635}
+                                   
+                                  alt="Background Copyright"
+                                  priority
+                                />
+                                  </span>
       <div className="container">
       <div className="row align-items-center">
          <div className="col-md-5 text-center">

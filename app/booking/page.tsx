@@ -84,7 +84,7 @@ const BookingPage = () => {
                 Q&amp;A – Häufig gestellte Fragen
               </span>
               <h2 className="display-5 fw-bold mb-4">
-                Harmonyum Trauma Release &amp; Buchung
+                Harmonyum Trauma Release® &amp; Buchung
               </h2>
               <p className="lead text-muted">
                 Die wichtigsten Antworten rund um HTR, Ablauf, Buchung und mehr.

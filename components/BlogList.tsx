@@ -24,7 +24,7 @@ const articles = [
     comments: 1,
     mainDay: "02",
     mainMonth: "May",
-    description: "Warum ich mich Bewusstseins-Architektin nenne",
+    description: " Wie tief sitzende Muster unser Leben prägen",
     author: "Kerstin R. Stoll",
     content: "Demo-Inhalt für diesen Blogartikel. Hier steht der vollständige Text oder eine Zusammenfassung."
   },
@@ -37,7 +37,7 @@ const articles = [
     comments: 1,
     mainDay: "24",
     mainMonth: "Apr",
-    description: "Warum ich mich Bewusstseins-Architektin nenne",
+    description: " Wie tief sitzende Muster unser Leben prägen",
     author: "Kerstin R. Stoll",
     content: "Demo-Inhalt für diesen Blogartikel. Hier steht der vollständige Text oder eine Zusammenfassung."
   },
@@ -65,7 +65,7 @@ const BlogList = () => (
             <Image
               alt=""
               src={article.image}
-              className="lazy w-100"
+              className="lazy h-100"
               height={300}
               width={400}
             />

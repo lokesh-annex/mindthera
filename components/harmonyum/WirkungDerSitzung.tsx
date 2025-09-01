@@ -15,7 +15,7 @@ export default function WirkungDerSitzung() {
           <div className="col-lg-7 col-md-12 mb-4 mb-md-0">
             <div className="p-3 bg-white " style={{ position: 'relative' }}>
             
-              <h2 className="fw-bold mb-3 " style={{ color: '#000000', fontSize: '2.2rem', letterSpacing: '1px' }}>Anwendungsbereiche von HTR</h2>
+              <h2 className="fw-bold mb-3 " style={{ color: '#000000', fontSize: '2.2rem', letterSpacing: '1px' }}>Anwendungsbereiche Von HTR</h2>
               <div className="mb-3 dark-color">
                 <ul className="mb-3" style={{ listStyle: 'disc',color: '#5c377d',  paddingLeft: '1.5rem',fontSize:'1.2rem', lineHeight:'2.5rem' }}>
                   <li> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">

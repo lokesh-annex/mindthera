@@ -24,7 +24,7 @@ const ServiceGemeinsameFamilienzeit: React.FC = () => (
                 Gemeinsame Familienzeit
               </h2>
               <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
-                ein heilender Raum für Eltern – in Rückverbindung mit sich
+                Ein heilender Raum für Eltern – in Rückverbindung mit sich
                 selbst und ihren Kindern
               </h4>
               <p className="mt-3 text-right">

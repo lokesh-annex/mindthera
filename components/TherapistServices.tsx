@@ -35,7 +35,7 @@ const TherapistServices = () => {
           <div className="col-lg-6 offset-lg-3 text-center">
             <h2 className="" data-wow-delay=".2s">
               Meine{" "}
-              <span className="alt-font fw-500 ml-4 fs-64 id-color-2">Angebote</span>
+              <span className="alt-font fw-500 font-italic ml-4 fs-54 id-color-2">Angebote</span>
             </h2>
             <div className="spacer-single" />
             <div className="spacer-half" />

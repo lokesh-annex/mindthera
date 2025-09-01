@@ -8,9 +8,9 @@ export default function Zielgruppen() {
   ];
 
   return (
-    <section className="py-5" >
+    <section className="py-4" >
       <div className="container">
-        <h2 className="fw-bold mb-4" >Für wen ist HTR geeignet? </h2>
+        <h3 className="fw-bold mb-4" >Für wen ist HTR geeignet? </h3>
         <ul className="mb-3" style={{ listStyle: 'none',color: '#5c377d',  paddingLeft: '0rem',fontSize:'1.2rem', lineHeight:'1.4rem' }}>
           {zielgruppen.map((text, idx) => (
             <li key={idx} className="mb-3 text-lg text-gray-800">

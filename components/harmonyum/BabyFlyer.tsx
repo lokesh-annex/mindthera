@@ -2,20 +2,9 @@ import React from "react";
 
 export default function BabyFlyer() {
   return (
-    <section className="py-8 babyflyer-sec  position-relative" style={{ overflow: 'hidden' }}>
+    <section className="py-5 babyflyer-sec  position-relative" style={{ overflow: 'hidden' }}>
       {/* Blurred background image */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 0,
-          background: `url('/images/c-img.jpg') center/cover no-repeat`,
-          filter: 'blur(12px)',
-          opacity: 0.6,
-        }}
-        aria-hidden="true"
-      />
-      {/* Overlay for better text contrast */}
+    
       <div
         style={{
           position: 'absolute',
@@ -39,16 +28,16 @@ export default function BabyFlyer() {
             <p className="mb-2 mt-4 " style={{fontSize:'1.2rem'}}><strong>Berührung, die verbindet – Impulse, die beruhigen.<br />Für Dein Baby. Für Dich.</strong></p>
             <p style={{fontSize:'1.2rem'}}>Manche Babys weinen viel, trinken schlecht oder schlafen unruhig – Für Eltern ist das oft zermürbend und verunsichernd.<br />
               Ich biete eine innovative, tief entspannende Methode zur Unterstützung der Regulation Deines Babys:<br />
-              <strong className="mt-4 d-block">Harmonyum Trauma Release</strong> – eine sanfte, energetische Behandlung, die Spannungen löst, das Nervensystem beruhigt und Bindung stärkt.</p>
-            <p className="mb-0" style={{fontSize:'1.2rem'}}><a href="https://www.traumafrei.ch" className="link-success fw-bold" target="_blank" rel="noopener">www.traumafrei.ch</a></p>
+              <strong className="mt-4 d-block">Harmonyum Trauma Release®</strong> – eine sanfte, energetische Behandlung, die Spannungen löst, das Nervensystem beruhigt und Bindung stärkt.</p>
+            
           </div>
           <div className="col-lg-6 col-md-12">
             <div className="px-4">
             <h2 className="fw-bold mb-3">Ein guter Start ins Leben – Sanfte Hilfe für dein Baby</h2>
-            <p className="mb-2"><strong>Kerstin R. Stoll</strong><br />
+            {/* <p className="mb-2"><strong>Kerstin R. Stoll</strong><br />
               <a href="mailto:info@traumafrei.ch" className="link-success" style={{fontSize:'1.2rem'}}>info@traumafrei.ch</a> <br />
               <span className="fw-bold">0041 76 560 70 56</span>
-            </p>
+            </p> */}
             <h5 className="mt-3 mb-3">Besonders hilfreich bei:</h5>
             <ul className="mb-3 ps-3" style={{fontSize: '1.2rem', color: '#202020'}}>
               <li className="mb-2">Unruhigen Babys, Schreibabys</li>
@@ -62,7 +51,7 @@ export default function BabyFlyer() {
               className="btn btn-main px-4 py-2 fw-bold mt-5"
               style={{ fontSize: '1.1rem' }}
             >
-              Flyer Herunterladen
+              Flyer herunterladen
             </a>
           </div>
           </div>

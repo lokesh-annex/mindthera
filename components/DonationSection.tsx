@@ -114,9 +114,9 @@ const DonationSection = () => {
                  <p><strong>Liebe Seele,</strong></p>
               <div style={{ fontSize: "15px" }}>
              
-                <p className="mb-1">Nicht alle Menschen können sich momentan eine Harmonyum Trauma Release-Behandlung leisten. Unser Gesundheitssystem darf dieses Angebot noch in ihr Portfolio aufnehmen.</p>
+                <p className="mb-1">Nicht alle Menschen können sich momentan eine Harmonyum Trauma Release®-Behandlung leisten. Unser Gesundheitssystem darf dieses Angebot noch in ihr Portfolio aufnehmen.</p>
                 <p className="mb-1">Deshalb sammeln wir für Menschen in körperlicher, emotionaler und/oder seelischer Not nach traumatischen Erfahrungen.</p>
-                <p className="mb-1">Es gibt in der Schweiz, Österreich und Deutschland Obdachlose, Flüchtlinge, Frauenhäuser oder Babyklappen, die sehr von Harmonyum Trauma Release profitieren können.</p>
+                <p className="mb-1">Es gibt in der Schweiz, Österreich und Deutschland Obdachlose, Flüchtlinge, Frauenhäuser oder Babyklappen, die sehr von Harmonyum Trauma Release® profitieren können.</p>
                 <p className="mb-1">Hier möchten wir mit deiner Spende die finanzielle Lücke schliessen, damit so viele Menschen wie möglich von diesem Angebot profitieren können.</p>
                 <p className="mb-1">Unter anderem begleiten wir Projekte in Afrika und Indien, damit traumatisierte Kinder wieder aufatmen können, um glücklich zu spielen und ihr volles Potential auszuschöpfen.</p>
               </div>

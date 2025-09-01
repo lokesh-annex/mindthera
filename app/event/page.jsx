@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 const events = [
   {
     image: "/images/events/1.png",
-    title: "Die Urform der Menschlichkeit – Trauma auf Zellebene lösen mit Harmonyum Trauma Release",
+    title: "Die Urform der Menschlichkeit – Trauma auf Zellebene lösen mit Harmonyum Trauma Release®",
     content: (
       <>
         <p>
@@ -14,13 +14,13 @@ const events = [
           In diesem Vortrag zeige ich dir, wie unser Nervensystem Trauma speichert – und was möglich wird, wenn wir es nicht länger festhalten müssen.
         </p>
         <p>
-          Ich stelle dir Harmonyum Trauma Release vor: eine körperbasierte Methode, die ohne Worte wirkt, sanft entlädt und dich zurückbringt in dein ursprüngliches Gleichgewicht.
+          Ich stelle dir Harmonyum Trauma Release® vor: eine körperbasierte Methode, die ohne Worte wirkt, sanft entlädt und dich zurückbringt in dein ursprüngliches Gleichgewicht.
         </p>
         <p>
           Ein Raum für Alle, die spüren, dass reden nicht reicht – und bereit sind, sich selbst neu zu begegnen.
         </p>
         <p>
-          <span role="img" aria-label="pointer">👉</span> <Link href="#" style={{ color: 'rgb(45, 26, 58)' }}>[Hier findest du Termine &amp; Orte]</Link><br />
+           <Link href="#" className="btn-main mb10 mb-3">Hier findest du Termine &amp; Orte</Link><br />
           Eintritt: 20.- CHF
         </p>
       </>
@@ -47,14 +47,15 @@ image: "/images/events/2.png",
           Ich halte den Raum für deinen ersten Schritt zurück zu dir.
         </p>
         <p>
-          <strong>Buche hier:</strong> <a href="https://www.traumafrei.ch/booking" target="_blank" rel="noopener" style={{ color: 'rgb(45, 26, 58)' }}>www.traumafrei.ch/booking</a>
+
+          <Link className="btn-main mb10 mb-3" href="/" >Buche hier</Link>
         </p>
       </>
     ),
   },
     {
     image: "/images/events/3.png",
-    title: "STILLE HEILT – Trauma Release Retreats",
+    title: "STILLE HEILT – Trauma Release® Retreats",
     content: (
       <>
         <p>Ein Rückzug aus dem Außen.<br />Eine Rückverbindung mit dir.</p>
@@ -67,12 +68,10 @@ image: "/images/events/2.png",
           <li>🔸 Stille, Natur, tiefe Integration</li>
         </ul>
         <p>Für Menschen, die spüren:<br /><em>„Ich bin bereit, mich zu erinnern.“</em></p>
-        <p>
-          <span role="img" aria-label="pointer">👉</span> <Link href="#" style={{ color: 'rgb(45, 26, 58)' }}>[Hier findest du Termine &amp; Orte]</Link>
-        </p>
-        <p>
-          <strong>Flyer &gt; Download</strong> (Flyer itself comes later)
-        </p>
+        <Link href="#" className="btn-main mb-1">Hier findest du Termine &amp; Orte</Link>
+        <br />
+        <Link href="images/pdfs/flyer-babys.pdf" download className="btn btn-main px-4 py-2 fw-bold mt-1" >Flyer herunterladen</Link>
+
       </>
     ),
   },

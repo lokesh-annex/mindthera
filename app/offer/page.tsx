@@ -9,27 +9,27 @@ const OfferPage = () => {
     label: "Für Paare & Familien",
     services: [
       {
-        title: "Harmonyum Trauma Release  ",
+        title: "Harmonyum Trauma Release®  ",
         image: "1.webp",
         desc: "Frequenzform zur Rückverbindung",
         slug: "harmonyum-trauma-release",
       },
       {
-        title: "Paar-special Mit Kinderwunsch",
+        title: "Paar-Special mit Kinderwunsch",
         image: "2.webp",
-        desc: "ein heilender Raum für Empfängnis – körperlich, energetisch, seelisch",
+        desc: "Ein heilender Raum für Empfängnis – körperlich, energetisch, seelisch",
         slug: "paar-special-mit-kinderwunsch",
       },
       {
-        title: "Ahnenfrieden – Energetische Löschung Von Übernommenem Trauma",
+        title: "Ahnenfrieden – energetische Löschung von übernommenem Trauma",
         image: "3.webp",
-        desc: "du trägst, was du fühlst. Aber Manches ist alt, gehört nicht zu dir und wartet auf Erlösung.",
+        desc: "Du trägst, was du fühlst. Aber manches ist alt, gehört nicht zu dir und wartet auf Erlösung.",
          slug: "ahnenfrieden-energetische-loeschung",
       },
       {
         title: "Gemeinsame Familienzeit ",
         image: "4.webp",
-        desc: "ein heilender Raum für Eltern – in Rückverbindung mit sich selbst und ihren Kindern",
+        desc: "Ein heilender Raum für Eltern – in Rückverbindung mit sich selbst und ihren Kindern",
          slug: "gemeinsame-familienzeit",
       },
     ],

@@ -18,7 +18,7 @@ const articles = [
           <p>Wir sprechen viel über Trauma. Über die Symptome, die Ursachen, die Wunden.<br />Aber was passiert eigentlich danach?<br />Wie fühlt sich das an – wenn etwas gelöst ist?</p>
           <p>Viele Menschen glauben, dass Trauma „nur in schweren Fällen“ auftritt.<br />Dabei ist es oft viel subtiler: Ein ständiges inneres „Zurückhalten“.<br />Ein kaum merkbares Abgeschnittensein von sich selbst.<br />Eine latente Angst, zu viel zu sein – oder nicht genug.<br />Doch darunter liegt ein Raum, den du vielleicht längst vergessen hast.</p>
           <h3>Die Urform deiner Menschlichkeit</h3>
-          <p>Harmonyum Trauma Release (HTR) zielt nicht darauf ab, dein Trauma zu verstehen.<br />Sondern: es aus dem Zellgedächtnis zu entlassen.<br />Sanft, still, ohne Retraumatisierung.<br />Nicht durch Worte – sondern durch Frequenz, Feld und Berührung.<br />Und was bleibt, wenn das alte Programm aufhört zu senden?</p>
+          <p>Harmonyum Trauma Release® (HTR) zielt nicht darauf ab, dein Trauma zu verstehen.<br />Sondern: es aus dem Zellgedächtnis zu entlassen.<br />Sanft, still, ohne Retraumatisierung.<br />Nicht durch Worte – sondern durch Frequenz, Feld und Berührung.<br />Und was bleibt, wenn das alte Programm aufhört zu senden?</p>
           <ul>
             <li>Mehr Weite im Brustkorb, als hätte jemand dein Nervensystem entknotet</li>
             <li>Ein klares „Nein“, wo du vorher gezögert hast</li>
@@ -49,17 +49,17 @@ const articles = [
     image: "/images/blog/holi.jpg",
     date: "25 July, 2025",
     author: "Kerstin R. Stoll",
-    description: "Warum ich mich Bewusstseins-Architektin nenne",
+    description: " Wie tief sitzende Muster unser Leben prägen",
      content: (
       <>
         <h2>Ich baue Räume – keine Konzepte.</h2>
         <p>Du musst nichts leisten.<br />Du darfst einfach nur da sein – genau so, wie du bist.<br />Ich baue Räume, in denen sich das Nervensystem sicher fühlt –<br />damit das, was gehen darf, sich endlich lösen kann.<br />Räume, in denen nichts von dir erwartet wird.</p>
         <p>Die meisten von uns haben gelernt, zu funktionieren.<br />Still zu sein. Stark zu sein. Nett zu sein.<br />Wir haben uns angepasst, reguliert, zusammengerissen.<br />Und dabei etwas sehr Wichtiges verloren:<br />Den Raum, in dem wir einfach nur SEIN dürfen.<br />Ohne Rolle.<br />Ohne Aufgabe.<br />Ohne Ziel.</p>
         <p>Die Wahrheit ist:<br />Die meisten Menschen funktionieren.<br />Aber sie leben nicht wirklich aus ihrer eigenen Frequenz heraus.<br />Sie spüren den Ruf: „Da ist mehr.“<br />Aber wissen nicht, wie sie hinkommen.<br />Sie sind wach – aber müde.<br />Funktionierend – aber abgeschnitten.<br />Spirituell – aber energetisch überladen.<br />Und genau da beginnt meine Arbeit.</p>
-        <h3>Warum ich mich Bewusstseins-Architektin nenne</h3>
+        <h3> Wie tief sitzende Muster unser Leben prägen</h3>
         <p>Es gibt keinen Plan für Bewusstwerdung.<br />Kein vorgefertigtes Protokoll. Kein lineares „So geht das“.<br />Es gibt nur dich –<br />mit deinem einzigartigen Feld, deinem Tempo, deinem inneren Ruf nach mehr Wahrheit.<br />Ich habe mich früher als Coach gesehen, bis ich merkte,<br />dass ich eine Architektin bin.<br />Nicht für Häuser oder Gärten –<br />sondern für Räume, in denen dein ganzes Wesen sich neu sortieren darf.<br />Ich nenne mich Bewusstseins-Architektin.<br />Weil ich Strukturen halte – nicht um dich zu formen,<br />sondern um dich zurückzubringen in dein wahres Zuhause.</p>
         <h3>Was ich genau tue</h3>
-        <p>Ich öffne Räume.<br />Für Frequenzarbeit. Für Entladung. Für Erinnerung.<br />Ich begleite Menschen, die nicht noch eine Methode wollen –<br />sondern eine Rückverbindung mit dem, was in ihnen ruft.<br />Mit Tools wie Harmonyum Trauma Release und spirituellem Coaching<br />arbeite ich direkt am Nervensystem, an der Zellintelligenz, am Feld.<br />Fein. Wahr. Still. Kraftvoll.<br />Nicht therapeutisch, sondern bewusstseinsführend.<br />Ich arbeite mit dir an der Basis deines Bewusstseins.<br />Nicht auf Verhaltensebene. Nicht im Denken.<br />Sondern dort, wo dein Nervensystem sagt: „Ich kann nicht mehr.“<br />Ich arbeite mit Frequenz, Körperintelligenz, Intuition und einem tiefen seelischen Wissen,<br />das nicht gelernt – sondern erinnert wurde.<br />Mit sanften Methoden wie Harmonyum Trauma Release<br />unterstütze ich dein System dabei, das abzulösen,<br />was nicht mehr zu deinem Jetzt gehört.<br />Nicht weil du „defekt“ bist.<br />Sondern weil dein Körper einfach genug getragen hat.<br />Es reicht, dass du da bist.<br />Und dein System findet in seinem eigenen Tempo den Weg zurück in die heilige Ordnung.</p>
+        <p>Ich öffne Räume.<br />Für Frequenzarbeit. Für Entladung. Für Erinnerung.<br />Ich begleite Menschen, die nicht noch eine Methode wollen –<br />sondern eine Rückverbindung mit dem, was in ihnen ruft.<br />Mit Tools wie Harmonyum Trauma Release® und spirituellem Coaching<br />arbeite ich direkt am Nervensystem, an der Zellintelligenz, am Feld.<br />Fein. Wahr. Still. Kraftvoll.<br />Nicht therapeutisch, sondern bewusstseinsführend.<br />Ich arbeite mit dir an der Basis deines Bewusstseins.<br />Nicht auf Verhaltensebene. Nicht im Denken.<br />Sondern dort, wo dein Nervensystem sagt: „Ich kann nicht mehr.“<br />Ich arbeite mit Frequenz, Körperintelligenz, Intuition und einem tiefen seelischen Wissen,<br />das nicht gelernt – sondern erinnert wurde.<br />Mit sanften Methoden wie Harmonyum Trauma Release®<br />unterstütze ich dein System dabei, das abzulösen,<br />was nicht mehr zu deinem Jetzt gehört.<br />Nicht weil du „defekt“ bist.<br />Sondern weil dein Körper einfach genug getragen hat.<br />Es reicht, dass du da bist.<br />Und dein System findet in seinem eigenen Tempo den Weg zurück in die heilige Ordnung.</p>
         <h4>Was meine Arbeit nicht ist:</h4>
         <ul>
           <li>🛑 Kein Mental-Coaching mit To-do-Listen.</li>
@@ -89,12 +89,12 @@ const articles = [
     image: "/images/blog/krishna1.jpg",
     date: "1 August, 2025",
     author: "Kerstin R. Stoll",
-    description: "Warum ich mich Bewusstseins-Architektin nenne",
+    description: " Wie tief sitzende Muster unser Leben prägen",
      content: (
       <>
         <h2>Die 9 Traumabereiche – Wie tief sitzende Muster unser Leben prägen</h2>
-        <p>… und wie Harmonyum Trauma Release sie transformieren kann</p>
-        <p>Viele Menschen tragen in sich ein Gefühl von Blockade, Schwere oder Getrenntsein – obwohl sie „eigentlich“ schon viel gemacht haben: Therapie, Coaching, Persönlichkeitsentwicklung.<br />Doch es gibt eine tiefere Wahrheit:<br />Trauma ist nicht nur persönlich. Es ist auch kollektiv, epigenetisch – und manchmal auch aus früheren Inkarnationen.<br />Harmonyum Trauma Release (HTR) geht genau diesen Ebenen auf den Grund. Und bringt Licht an Orte, die bisher im Schatten lagen. In diesem Beitrag zeige ich dir die 9 Traumabereiche, die in HTR als Schlüssel zur tiefen Transformation gesehen werden.</p>
+        <p>… und wie Harmonyum Trauma Release® sie transformieren kann</p>
+        <p>Viele Menschen tragen in sich ein Gefühl von Blockade, Schwere oder Getrenntsein – obwohl sie „eigentlich“ schon viel gemacht haben: Therapie, Coaching, Persönlichkeitsentwicklung.<br />Doch es gibt eine tiefere Wahrheit:<br />Trauma ist nicht nur persönlich. Es ist auch kollektiv, epigenetisch – und manchmal auch aus früheren Inkarnationen.<br />Harmonyum Trauma Release® (HTR) geht genau diesen Ebenen auf den Grund. Und bringt Licht an Orte, die bisher im Schatten lagen. In diesem Beitrag zeige ich dir die 9 Traumabereiche, die in HTR als Schlüssel zur tiefen Transformation gesehen werden.</p>
         <ol>
           <li><strong>Pränatales Trauma</strong><br />Noch vor der Geburt können sich Traumata bilden – z. B. durch Ablehnung der Schwangerschaft, mütterlichen Stress, Operationen oder Komplikationen.<br /><em>➡ Das Nervensystem lernt: Ich bin nicht sicher. Ich bin nicht gewollt.</em></li>
           <li><strong>Geburtstrauma</strong><br />Ein Kaiserschnitt, Zangengeburt oder Trennung direkt nach der Geburt kann tiefe Spuren hinterlassen.<br /><em>➡ Muster von Kontrollverlust, Angst vor Loslassen oder chronischer Anspannung entstehen.</em></li>
@@ -125,9 +125,9 @@ const articles = [
       <>
         <h2>Die Urform der Menschlichkeit ist das befreite Trauma</h2>
         <p>Wie tiefenwirksame Heilung jenseits von Sprache, Analyse und Geschichte geschieht</p>
-        <p>Was wäre, wenn Trauma nicht verstanden, sondern entlassen werden will?<br />Nicht über den Kopf, sondern über das Herz. Über Frequenz, Berührung und Licht. Genau hier setzt Harmonyum Trauma Release (HTR) an – eine neue Art der Heilzeit, die nicht fragt „Was ist dir passiert?“, sondern „Was darf jetzt gehen?“</p>
+        <p>Was wäre, wenn Trauma nicht verstanden, sondern entlassen werden will?<br />Nicht über den Kopf, sondern über das Herz. Über Frequenz, Berührung und Licht. Genau hier setzt Harmonyum Trauma Release® (HTR) an – eine neue Art der Heilzeit, die nicht fragt „Was ist dir passiert?“, sondern „Was darf jetzt gehen?“</p>
         <p>In diesem Beitrag zeige ich dir die zentralen Gedanken und Durchbrüche aus meinem Buch:<br />👉 eine neue Sichtweise auf Trauma – und wie du deinem Körper erlauben kannst, in seine ursprüngliche Ordnung zurückzufinden.</p>
-        <h3>Was ist HTR – Harmonyum Trauma Release?</h3>
+        <h3>Was ist HTR – Harmonyum Trauma Release®?</h3>
         <p>HTR ist eine energetische, neurobiologische und spirituell fundierte Methode zur Trauma-Lösung auf Zellebene.<br />Statt Geschichten zu analysieren, zielt HTR auf das Nervensystem, das Zellgedächtnis und epigenetische Muster – dort, wo Traumata wirklich gespeichert sind.<br />In einer tiefenentspannten Haltung wird durch Berührung, Atemführung und ein bewusst aufgebautes Frequenzfeld eine innere Ordnung wiederhergestellt. Dabei arbeitet HTR mit:</p>
         <ul>
           <li>Kohärenzfeldern zwischen Klient:in und Praktizierendem</li>

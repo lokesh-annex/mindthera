@@ -25,6 +25,10 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Allison&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         <Header />

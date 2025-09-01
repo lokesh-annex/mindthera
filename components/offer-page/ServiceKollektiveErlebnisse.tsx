@@ -25,7 +25,7 @@ const ServiceKollektiveErlebnisse: React.FC = () => (
           </h4>
           <p className="mt-3 text-right">
             Manchmal ist es nicht „dein“ Trauma – und doch spürst du die Erschütterung.
-            Harmonyum Trauma Release hilft dir, kollektive Belastung aus deinem System zu entlassen.
+            Harmonyum Trauma Release® hilft dir, kollektive Belastung aus deinem System zu entlassen.
           </p>
           <p className="mt-3 text-right">
             Ob durch Kriegsgeschichten in der Familie, Isolation in der Pandemie, Flucht oder Naturkatastrophen:<br />

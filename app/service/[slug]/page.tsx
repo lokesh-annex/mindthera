@@ -19,15 +19,16 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         items={[{ label: "Home", href: "/" }, { label: "Meine Angebote" }]}
       />
       <section className="relative py-0">
-        <span className="absolute top-20  end-0">
-          <Image
-            src="/images/shape-bg-f.png"
-            width={350}
-            height={525}
-            alt="Background Copyright"
-            priority
-          />
-        </span>
+       <span className="absolute top-20 start-0">
+                           <Image
+                             src="/images/bg-2-copyright.webp"
+                             width={393}
+                             height={625}
+                              
+                             alt="Background Copyright"
+                             priority
+                           />
+                             </span>
         <div className=" py-5 pb-0">
           <div className="card border-0  mb-0 ">
             <div className="row g-0 align-items-center">

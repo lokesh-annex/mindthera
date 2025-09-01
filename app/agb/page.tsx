@@ -4,8 +4,8 @@ export default function AgbImpressumPage() {
   return (
     <>
       <Breadcrumbs
-        title="AGB & Impressum"
-        items={[{ label: "Home", href: "/" }, { label: "AGB & Impressum" }]}
+        title="Impressum"
+        items={[{ label: "Home", href: "/" }, { label: "Impressum" }]}
       />
       <div style={{
         background: 'none',

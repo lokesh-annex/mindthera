@@ -21,10 +21,10 @@ const ServicePaarSpecialMitKinderwunsch: React.FC = () => (
                 className="text-right fw-bold mb-2"
                 style={{ color: "#1a2a6c" }}
               >
-                Paar-special Mit Kinderwunsch
+                Paar-Special mit Kinderwunsch
               </h2>
               <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
-                ein heilender Raum für Empfängnis – körperlich, energetisch,
+                Ein heilender Raum für Empfängnis – körperlich, energetisch,
                 seelisch
               </h4>
               <p className="mt-3 text-right">

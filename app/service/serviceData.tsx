@@ -30,30 +30,30 @@ const serviceData: Record<
 > = {
   "harmonyum-trauma-release": {
     
-    title: "Harmonyum Trauma Release",
+    title: "Harmonyum Trauma Release®",
     image: "/images/services/1.webp",
     subtitle: "Frequenzform zur Rückverbindung",
     label: "Für Paare & Familien",
     description: <ServiceHarmonyumTraumaRelease />,
   },
   "paar-special-mit-kinderwunsch": {
-    title: "Paar-special Mit Kinderwunsch",
+    title: "Paar-Special mit Kinderwunsch",
     image: "/images/services/2.webp",
-    subtitle: "ein heilender Raum für Empfängnis – körperlich, energetisch, seelisch",
+    subtitle: "Ein heilender Raum für Empfängnis – körperlich, energetisch, seelisch",
     label: "Für Paare & Familien",
     description: <ServicePaarSpecialMitKinderwunsch />,
   },
   "ahnenfrieden-energetische-loeschung": {
-    title: "Ahnenfrieden – Energetische Löschung Von Übernommenem Trauma",
+    title: "Ahnenfrieden – energetische Löschung von übernommenem Trauma",
     image: "/images/services/3.webp",
-    subtitle: "du trägst, was du fühlst. Aber Manches ist alt, gehört nicht zu dir und wartet auf Erlösung.",
+    subtitle: "Du trägst, was du fühlst. Aber manches ist alt, gehört nicht zu dir und wartet auf Erlösung.",
     label: "Für Paare & Familien",
     description: <ServiceAhnenfriedenEnergetischeLoeschung />,
   },
   "gemeinsame-familienzeit": {
     title: "Gemeinsame Familienzeit ",
     image: "/images/services/4.webp",
-    subtitle: "ein heilender Raum für Eltern – in Rückverbindung mit sich selbst und ihren Kindern",
+    subtitle: "Ein heilender Raum für Eltern – in Rückverbindung mit sich selbst und ihren Kindern",
     label: "Für Paare & Familien",
     description: <ServiceGemeinsameFamilienzeit />,
   },

@@ -18,7 +18,7 @@ export default function Anwendungsbereiche() {
             fontSize: "2.5rem",
             letterSpacing: "1px",
           }}>
-            Anwendungsbereiche von HTR
+            Anwendungsbereiche Von HTR
           </h2> 
           <ul className="list-unstyled mb-3">
             <li className="d-flex align-items-center mb-3">

@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 const faqs = [
   {
     q: "Was ist HTR – und was passiert in einer Sitzung?",
-    a: "HTR (Harmonyum Trauma Release) ist eine energetische Heilarbeit, die auf Zellebene wirkt – ohne Gespräch, ohne Re-Traumatisierung. Du liegst in bequemer Kleidung, dein Nervensystem wird über sanfte Impulse beruhigt und Körper, Geist und Seele erinnern sich an ihre ursprüngliche Ordnung. Oft geschieht dabei innerlich sehr viel, da Trauma gelöscht wird – auch wenn es äußerlich still bleibt.",
+    a: "HTR (Harmonyum Trauma Release®) ist eine energetische Heilarbeit, die auf Zellebene wirkt – ohne Gespräch, ohne Re-Traumatisierung. Du liegst in bequemer Kleidung, dein Nervensystem wird über sanfte Impulse beruhigt und Körper, Geist und Seele erinnern sich an ihre ursprüngliche Ordnung. Oft geschieht dabei innerlich sehr viel, da Trauma gelöscht wird – auch wenn es äußerlich still bleibt.",
   },
   {
     q: "Muss ich über mein Trauma sprechen?",
@@ -71,7 +71,7 @@ const Faq = () => {
                 Q&amp;A – Häufig gestellte Fragen
               </span>
               <h2 className="display-5 fw-bold mb-4">
-                Harmonyum Trauma Release &amp; Buchung
+                Harmonyum Trauma Release® &amp; Buchung
               </h2>
               <p className="lead text-muted">
                 Die wichtigsten Antworten rund um HTR, Ablauf, Buchung und mehr.

@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <div className="d-flex flex-column">
-      <footer className="bg-dark text-light py-5 mt-auto">
+      <footer className="primary-tint text-light py-5 mt-auto">
         <div className="container">
           <div className="row align-items-center">
            
@@ -55,20 +55,27 @@ export default function Footer() {
             <div className="col text-center">
               <ul className="list-inline mb-0">
                 <li className="list-inline-item mx-2">
-                  <Link href="/agb" className="text-light text-decoration-none">
-                    AGB  Impressum
+                  <Link href="/datenschutzbestimmung " className="text-light text-decoration-none">
+                   Datenschutzbestimmung 
                   </Link>
                 </li>
-                <li className="list-inline-item mx-2">
+                 <li className="list-inline-item mx-2">
+                  <Link href="/agb-traumafrei" className="text-light text-decoration-none">
+                    AGB
+                  </Link>
+                </li>
+                 <li className="list-inline-item mx-2">
                   <Link href="/disclaimer" className="text-light text-decoration-none">
                     Disclaimer
                   </Link>
                 </li>
                 <li className="list-inline-item mx-2">
-                  <Link href="/agb-traumafrei" className="text-light text-decoration-none">
-                    AGB – traumafrei
+                  <Link href="/agb" className="text-light text-decoration-none">
+                    Impressum
                   </Link>
                 </li>
+               
+               
               </ul>
             </div>
           </div>

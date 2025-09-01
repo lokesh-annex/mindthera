@@ -4,8 +4,8 @@ export default function AgbTraumafreiPage() {
   return (
     <>
       <Breadcrumbs
-        title="AGB – traumafrei"
-        items={[{ label: "Home", href: "/" }, { label: "AGB – traumafrei" }]}
+        title="AGB"
+        items={[{ label: "Home", href: "/" }, { label: "AGB" }]}
       />
       <div style={{
         background: 'none',
