@@ -1,9 +1,18 @@
 import React from "react";
-
+import Image from "next/image";
 export default function BabyFlyer() {
   return (
-    <section className="py-5 babyflyer-sec  position-relative" style={{ overflow: 'hidden' }}>
-      {/* Blurred background image */}
+    <section className="py-5 babyflyer-sec  position-relative" >
+     <span className="absolute top-0 end-0">
+                                        <Image
+                                          src="/images/bg-2-copyright-right.webp"
+                                          width={393}
+                                          height={625}
+                                           
+                                          alt="Background Copyright"
+                                          priority
+                                        />
+                                          </span>
     
       <div
         style={{

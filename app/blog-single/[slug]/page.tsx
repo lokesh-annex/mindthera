@@ -198,7 +198,7 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
         <div className="row">
           <div className="col-lg-8 mx-auto">
     
-            <Image src={article.image} width={800} height={600} alt="Blog" className="rounded-10px mb-4 w-100" />
+            <Image src={article.image} width={800} height={600} alt="Blog" className="rounded-10px main-image mb-4 w-100" />
             <div className="mb-3 text-muted">{article.date} &nbsp;|&nbsp; Autor: {article.author}</div>
             <article className="blog-content">
               <p><strong>{article.description}</strong></p>

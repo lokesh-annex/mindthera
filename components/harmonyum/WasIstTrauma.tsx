@@ -15,7 +15,7 @@ export default function WasIstTrauma() {
 
       <div className="container">
           <h3
-            className="fw-bold mb-3"
+            className=" mb-3"
           >
             Was ist ein Trauma?
           </h3>
@@ -51,7 +51,7 @@ export default function WasIstTrauma() {
 
  <div className="my-5">
           <h3
-            className="fw-bold mb-3">
+            className="mb-3">
            Beispiele für ein Trauma
           </h3>
           <ul className="mb-3" style={{ listStyle: 'none',color: '#5c377d',  paddingLeft: '0rem',fontSize:'1.2rem', lineHeight:'1.4rem' }}>

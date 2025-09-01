@@ -9398,13 +9398,16 @@ img {
   object-fit: cover;
   height: 100%;
   width: 100%;
-  object-position: 0% 67%;
+  object-position: 0% 95%;
 }
 .babyflyer-sec {
   color: #000000;
 }
 .pb60.tabs-sec .relative.mb-3 {
   z-index: 9999;
+}
+.blog-single .main-image {
+  height: auto !important;
 }
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
