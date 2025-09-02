@@ -15,8 +15,7 @@ const DonationSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Payment logic removed. You can add your own logic here if needed.
-    alert(`Spendenbetrag ausgewählt: ${amount} EUR`);
+    window.open(`https://paypal.me/veraenderungench/${amount}`, '_blank');
   };
 
   return (
