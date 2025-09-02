@@ -1,68 +1,162 @@
 import React from "react";
 import Image from "next/image";
+
 export default function BabyFlyer() {
   return (
-    <section className="py-5 babyflyer-sec  position-relative" >
-     <span className="absolute top-0 end-0">
-                                        <Image
-                                          src="/images/bg-2-copyright-right.webp"
-                                          width={393}
-                                          height={625}
-                                           
-                                          alt="Background Copyright"
-                                          priority
-                                        />
-                                          </span>
-    
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 1,
-          background: '#ffffff9d',
-        }}
-        aria-hidden="true"
-      />
+    <section
+      className="pt-8 babyflyer-sec position-relative"
+      style={{ background: "#f8f6fa" }}
+    >
+      <span className="d-none d-lg-block position-absolute top-0 end-0">
+        <Image
+          src="/images/bg-2-copyright-right.webp"
+          width={393}
+          height={625}
+          alt="Background Copyright"
+          priority
+        />
+      </span>
+<span className="d-none d-lg-block position-absolute top-0 strat-0">
+        <Image
+          src="/images/left-mandla.png"
+          width={393}
+          height={685}
+          alt="Background Copyright"
+          priority
+        />
+      </span>
+
       <div className="container position-relative" style={{ zIndex: 2 }}>
-        <div className="row align-items-center">
-          <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
-            <img
+        <div className="row">
+          <div className="col-sm-4">
+            <Image
               src="/images/c-img.jpg"
               alt="Sanfte Hilfe für dein Baby"
-              width={150}
-              height={150}
-              className="img-fluid rounded  mb-3"
-              style={{ objectFit: "cover", width: 200, height: 200 }}
+              width={370}
+              height={400}
+              className="rounded mb-3 shadow-sm w-100"
+              style={{ objectFit: "cover" }}
             />
-            <p className="mb-2 mt-4 " style={{fontSize:'1.2rem'}}><strong>Berührung, die verbindet – Impulse, die beruhigen.<br />Für Dein Baby. Für Dich.</strong></p>
-            <p style={{fontSize:'1.2rem'}}>Manche Babys weinen viel, trinken schlecht oder schlafen unruhig – Für Eltern ist das oft zermürbend und verunsichernd.<br />
-              Ich biete eine innovative, tief entspannende Methode zur Unterstützung der Regulation Deines Babys:<br />
-              <strong className="mt-4 d-block">Harmonyum Trauma Release®</strong> – eine sanfte, energetische Behandlung, die Spannungen löst, das Nervensystem beruhigt und Bindung stärkt.</p>
-            
           </div>
-          <div className="col-lg-6 col-md-12">
-            <div className="px-4">
-            <h2 className="fw-bold mb-3">Ein guter Start ins Leben – Sanfte Hilfe für dein Baby</h2>
-            {/* <p className="mb-2"><strong>Kerstin R. Stoll</strong><br />
-              <a href="mailto:info@traumafrei.ch" className="link-success" style={{fontSize:'1.2rem'}}>info@traumafrei.ch</a> <br />
-              <span className="fw-bold">0041 76 560 70 56</span>
-            </p> */}
-            <h5 className="mt-3 mb-3">Besonders hilfreich bei:</h5>
-            <ul className="mb-3 ps-3" style={{fontSize: '1.2rem', color: '#202020'}}>
-              <li className="mb-2">Unruhigen Babys, Schreibabys</li>
-              <li className="mb-2">Trink- oder Schlafproblemen</li>
-              <li className="mb-2">Geburtstraumata, wie Kaiserschnitt, Zangengeburt oder Nabelschnurkomplikationen</li>
-              <li className="mb-2">Geburt mit viel Stress für Mutter &amp; Kind</li>
-            </ul>
-            <a
-              href="images/pdfs/flyer-babys.pdf"
-              download
-              className="btn btn-main px-4 py-2 fw-bold mt-5"
-              style={{ fontSize: '1.1rem' }}
+          <div className="col-sm-8">
+            <p
+              className="mb-2 mt-2"
+              style={{ fontSize: "1.95rem", fontWeight: 600 }}
             >
-              Flyer herunterladen
-            </a>
+              <span style={{ color: "#5c377d", fontWeight: 700 }}>
+                Sanfte Hilfe für dein Baby
+              </span>
+             
+            </p>
+             <p
+              className="mb-2 mt-2"
+              style={{ fontSize: "1.25rem", fontWeight: 600 }}
+            >
+            
+              <span style={{ color: "#333" }}>
+                Berührung, die verbindet – Impulse, die beruhigen.
+              </span>
+            </p>
+            <ul
+              className="list-unstyled  mb-3"
+              style={{ fontSize: "1.13rem", color: "#333", lineHeight: 1.7 }}
+            >
+              <li className="mb-2">
+               Weniger
+                Weinen & mehr Entspannung
+              </li>
+              <li className="mb-2">
+                Besseres
+                Trinken & Schlafen
+              </li>
+              <li className="mb-2">
+                Stärkere
+                Bindung zu den Eltern
+              </li>
+              <li className="mb-2">
+               Sanfte
+                Regulation nach Geburtstrauma
+              </li>
+            </ul>
+            <p
+              className=" mb-2"
+              style={{ fontSize: "1.43rem", color: "#333", lineHeight: 1.7 }}
+            >
+              <strong
+                className="mt-2 d-block"
+                style={{ color: "#5c377d", fontWeight: 700 }}
+              >
+                Harmonyum Trauma Release®
+              </strong>
+              </p>
+             <p style={{ fontSize: "1.23rem",color: "#333",  }}> Sanfte, energetische Behandlung, die Spannungen löst, das
+              Nervensystem beruhigt und Bindung stärkt.</p>
+             
+            
+            <div className="d-flex  mt-3">
+              <a
+                href="/images/pdfs/flyer-babys.pdf"
+                download
+                className="btn btn-main px-4 py-2 fw-bold"
+                style={{
+                  fontSize: "1.1rem",
+                  background: "#5c377d",
+                  color: "#fff",
+                  borderRadius: "2rem",
+                  boxShadow: "0 2px 8px rgba(92,55,125,0.08)",
+                }}
+              >
+                Flyer herunterladen
+              </a>
+            </div>
           </div>
+          
+          <div className="col-lg-12 mt-5">
+            <div className="px-0  py-3 ">
+              <h2
+                className="fw-bold mb-3"
+                style={{ color: "#5c377d", fontSize: "2rem" }}
+              >
+                Ein guter Start ins Leben – Sanfte Hilfe für dein Baby
+              </h2>
+              <h5 className="mt-3 mb-3 " style={{ color: "#333" }}>
+                Besonders hilfreich bei:
+              </h5>
+              <ul
+                className="mb-3 ps-3"
+                style={{
+                  fontSize: "1.15rem",
+                  color: "#202020",
+                  lineHeight: 1.7,
+                }}
+              >
+                <li className="mb-2">Unruhigen Babys, Schreibabys</li>
+                <li className="mb-2">Trink- oder Schlafproblemen</li>
+                <li className="mb-2">
+                  Geburtstraumata, wie Kaiserschnitt, Zangengeburt oder
+                  Nabelschnurkomplikationen
+                </li>
+                <li className="mb-2">
+                  Geburt mit viel Stress für Mutter &amp; Kind
+                </li>
+              </ul>
+              <div className="d-flex  mt-4">
+                <a
+                  href="/images/pdfs/flyer-babys.pdf"
+                  download
+                  className="btn btn-main px-4 py-2 fw-bold"
+                  style={{
+                    fontSize: "1.1rem",
+                    background: "#5c377d",
+                    color: "#fff",
+                    borderRadius: "2rem",
+                    boxShadow: "0 2px 8px rgba(92,55,125,0.08)",
+                  }}
+                >
+                  Flyer herunterladen
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,47 +1,63 @@
-import React from "react";
-
+import Image from "next/image";
+import HTRCertificate from "@/components/harmonyum/HTRCertificate";
 export default function KontaktBuchung() {
   return (
-    <section className="container py-8">
-          <div className="card  rounded-4 p-2" >
-      <div className="row justify-content-center align-items-center">
-        <div className="col-md-5 text-center">
-          <div className="d-flex justify-content-center align-items-center h-100">
-            <img
-              src="/images/Patienten.jpg"
-              alt="Kontakt & Buchung"
-              width={400}
-              height={180}
-              className="img-fluid"
-              style={{ background: '#fff', padding: '16px', objectFit: 'cover' }}
-            />
-          </div>
-        </div>
-        <div className="col-md-7">
-            <h2 className="fw-bold mb-3">Kontakt & Buchung</h2>
-           
-          <div className="d-flex flex-column flex-md-row gap-3 mt-4">
-           <a
-              href="https://www.traumafrei.ch/booking"
-              target="_blank"
-              rel="noopener"
-              className="btn btn-main px-4 py-2 fw-bold mt-5"
-            >
-              Jetzt Termin buchen
-            </a>
+    <>
+      <section className="kontakt-buchung bg-light position-relative">
+        <span className="d-none d-lg-block position-absolute bottom-0 end-0">
+                <Image
+                  src="/images/bg-2-copyright-right.webp"
+                  width={293}
+                  height={485}
+                  alt="Background Copyright"
+                  priority
+                />
+              </span>
+        <div className="container">
+        <div className="row">
+          <div className="col-sm-5">
+            <div className="contact-booking rounded-4  px-4  py-5">
+            <h2 className="fw-bold mb-3 fs-36 fs-xs-24" style={{ color: '#5c377d' }}>Kontakt & Buchung</h2>
+              <p className="mb-3" style={{ fontSize: '1.15rem', color: '#333', fontWeight: 500 }}>
+                Du möchtest einen Termin vereinbaren oder hast Fragen zu Harmonyum Trauma Release®?
+               
+              </p>
+            <div className="d-flex">
+              <Image
+                src="/images/Patienten.jpg"
+                alt="Kontakt & Buchung"
+                width={410}
+                height={120}
+                className="img-fluid"
+                style={{ borderRadius: "12px", objectFit: "cover" }}
+                priority
+              />
+            </div>
+            <div className="d-flex flex-column flex-md-row gap-3 mt-4">
               <a
-              href="images/pdfs/flyer-patienten.pdf"
-              download
-              className="btn btn-main px-4 py-2 fw-bold mt-5"
-              style={{ fontSize: '1.1rem' }}
-            >
-              Flyer herunterladen
-            </a>
+                href="https://www.traumafrei.ch/booking"
+                target="_blank"
+                rel="noopener"
+                className="btn btn-main"
+              >
+                Jetzt Termin buchen
+              </a>
+              <a
+                href="images/pdfs/flyer-patienten.pdf"
+                download
+                className="btn btn-main"
+              >
+                Flyer herunterladen
+              </a>
+            </div>
+            </div>
           </div>
+          <div className="col-sm-7">
+            <HTRCertificate />
           </div>
-
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
