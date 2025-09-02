@@ -15,7 +15,7 @@ export default function KontaktBuchung() {
               </span>
         <div className="container">
         <div className="row">
-          <div className="col-sm-5">
+          <div className="col-sm-5 col-lg-5 col-md-12">
             <div className="contact-booking rounded-4  px-4  py-5">
             <h2 className="fw-bold mb-3 fs-36 fs-xs-24" style={{ color: '#5c377d' }}>Kontakt & Buchung</h2>
               <p className="mb-3" style={{ fontSize: '1.15rem', color: '#333', fontWeight: 500 }}>
@@ -52,7 +52,7 @@ export default function KontaktBuchung() {
             </div>
             </div>
           </div>
-          <div className="col-sm-7">
+          <div className="col-sm-7 col-lg-7 col-md-12">
             <HTRCertificate />
           </div>
         </div>
