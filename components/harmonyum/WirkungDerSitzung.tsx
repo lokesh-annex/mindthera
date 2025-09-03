@@ -20,17 +20,33 @@ export default function WirkungDerSitzung() {
           <div className="col-lg-7 col-md-12 mb-4 mb-md-0">
             <div className="p-3 bg-white " style={{ position: 'relative' }}>
             
-              <h2 className="fw-bold mb-4 " style={{ color: '#000000', fontSize: '2.2rem', letterSpacing: '1px' }}>Anwendungsbereiche Von HTR</h2>
+              <h2 className="fw-bold mb-4 " style={{ color: '#000000',fontSize: '2.2rem', letterSpacing: '1px' }}>Anwendungsbereiche Von HTR</h2>
               <div className="mb-3 dark-color">
-                <ul className="mb-3" style={{ listStyle: 'disc',color: '#5c377d',  paddingLeft: '1.5rem',fontSize:'1.14rem', lineHeight:'normal'}}>
-                  <li className="mb-2"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
-                </span> Traumata aus früheren Leben (Z.B. unerklärliche Ängste, Blockaden)</li>
-                  <li className="mb-2"><span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
-                </span> Vererbte Familienmuster und karmische Belastungen</li>
-                  <li className="mb-2"><span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
-                </span> Geburtstraumata und pränatale Erfahrungen</li>
-                  <li className="mb-2"><span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
-                </span> Emotionale Blockaden, die den Alltag beeinträchtigen</li>
+                <ul className="mb-3" style={{ listStyle: 'none',color: '#5c377d',paddingLeft: '0rem',  fontSize:'1.14rem'}}>
+                  <li className="mb-3 d-flex">
+                    <span className="me-2" style={{ color: '#5c377d', fontSize: '1.75rem' }}>
+                      <i className="bi bi-check"></i>
+                    </span>
+                    Traumata aus früheren Leben (Z.B. unerklärliche Ängste, Blockaden)
+                  </li>
+                    <li className="mb-3 d-flex">
+                    <span className="me-2" style={{ color: '#5c377d', fontSize: '1.75rem' }}>
+                      <i className="bi bi-check"></i>
+                    </span>
+                    Vererbte Familienmuster und karmische Belastungen
+                  </li>
+                   <li className="mb-3 d-flex">
+                    <span className="me-2" style={{ color: '#5c377d', fontSize: '1.75rem' }}>
+                      <i className="bi bi-check"></i>
+                    </span>
+                    Geburtstraumata und pränatale Erfahrungen
+                  </li>
+                   <li className="mb-3 d-flex">
+                    <span className="me-2" style={{ color: '#5c377d', fontSize: '1.75rem' }}>
+                      <i className="bi bi-check"></i>
+                    </span>
+                    Emotionale Blockaden, die den Alltag beeinträchtigen
+                  </li>
                 </ul>
                 <p className="mb-2" style={{fontSize:'1.14rem', }}>Eine Harmonyum Trauma Release®-Sitzung schenkt dir einen geschützten Raum zur Regeneration, inneren Ruhe und Neuausrichtung. Mit sanften, oft kaum spürbaren oder berührungslosen Bewegungen entlang deiner Wirbelsäule wird dein System eingeladen, in einen tiefen Theta-Zustand einzutauchen. In dieser besonderen Form der Entspannung beginnt dein Körper, seine natürlichen Selbstheilungskräfte zu aktivieren.</p>
                 <p className="mb-0" style={{fontSize:'1.14rem', }}>Viele Menschen berichten nach der Sitzung von einem Gefühl innerer Klarheit, Leichtigkeit und einem tiefen Frieden – als hätten Körper, Geist und Seele sich neu verbunden.</p>
