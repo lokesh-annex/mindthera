@@ -17,9 +17,9 @@ export default function Zielgruppen() {
               <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
-                </span>{" "}  {text}
+                </span> {text}
             </li>
           ))}
         </ul>

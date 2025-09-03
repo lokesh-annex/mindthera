@@ -4,9 +4,7 @@ import Image from "next/image";
 export default function BabyFlyer() {
   return (
     <section
-      className="pt-8 babyflyer-sec position-relative"
-      style={{ background: "#f8f6fa" }}
-    >
+      className="pt-8 babyflyer-sec bg-light position-relative">
       <span className="d-none d-lg-block position-absolute top-0 end-0">
         <Image
           src="/images/bg-2-copyright-right.webp"
@@ -16,15 +14,7 @@ export default function BabyFlyer() {
           priority
         />
       </span>
-<span className="d-none d-lg-block position-absolute top-0 strat-0">
-        <Image
-          src="/images/left-mandla.png"
-          width={393}
-          height={685}
-          alt="Background Copyright"
-          priority
-        />
-      </span>
+
 
       <div className="container position-relative" style={{ zIndex: 2 }}>
         <div className="row">

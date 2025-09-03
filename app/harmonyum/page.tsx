@@ -13,7 +13,7 @@ import Zielgruppen from "@/components/harmonyum/Zielgruppen";
 import BabyFlyer from "@/components/harmonyum/BabyFlyer";
 import AblaufDerBehandlung from "@/components/harmonyum/AblaufDerBehandlung";
 import KontaktBuchung from "@/components/harmonyum/KontaktBuchung";
-
+import HTRCertificate from "@/components/harmonyum/HTRCertificate";
 
 export default function HarmonyumPage() {
   return (
@@ -38,7 +38,7 @@ export default function HarmonyumPage() {
  
   <BabyFlyer />
   <KontaktBuchung />
- 
+   <HTRCertificate />
     </>
   );
 }

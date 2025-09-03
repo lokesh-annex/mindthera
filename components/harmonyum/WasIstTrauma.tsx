@@ -1,17 +1,20 @@
 import React from "react";
-
+import Image from "next/image";
 export default function WasIstTrauma() {
   return (
     <section
-      className="py-3"
-      
+      className="py-3 position-relative"
     >
-      <img
-        src="/images/bg-2-copyright-r.png"
-        className="w-20 absolute top-20 end-0 sw-anim"
-        alt=""
-        style={{width: '300px'}}
-      />
+    <span className="absolute top-20 start-0">
+           <Image
+                                     src="/images/bg-2-copyright.webp"
+                                     width={343}
+                                     height={625}
+                                      
+                                     alt="Background Copyright"
+                                     priority
+                                   />
+                                   </span>
 
       <div className="container">
           <h3
@@ -19,32 +22,32 @@ export default function WasIstTrauma() {
           >
             Was ist ein Trauma?
           </h3>
-         <p className="mb-4 dark-color" style={{ fontSize: '1.2rem' }}>
+         <p className="mb-4 dark-color" style={{ fontSize: '1.14rem' }}>
             Trauma entsteht durch unsere individuellen Wahrnehmungsfilter. Eine äußere Situation oder Begegnung kann tief gehende Verletzungen hinterlassen, die sich in Form von Ängsten, Blockaden und emotionalen bis hin zu physischen Schmerzen manifestieren. Traumatische Erlebnisse können durch verschiedene Faktoren ausgelöst werden:
           </p>
-        <ul className="mb-3" style={{ listStyle: 'none',color: '#5c377d',  paddingLeft: '0rem',fontSize:'1.2rem', lineHeight:'1.4rem' }}>
+        <ul className="mb-3" style={{ listStyle: 'none',color: '#5c377d',  paddingLeft: '0rem',fontSize:'1.14rem', lineHeight:'1.4rem' }}>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Eigene Lebenserfahrungen (Z.B. Angst, Missbrauch, Unfall)</li>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Vererbte Traumata aus der Ahnenlinie</li>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Prägungen aus früheren inkarnationen</li>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Ungelöste, emotionale oder familiäre Muster</li>
           </ul>
@@ -54,35 +57,35 @@ export default function WasIstTrauma() {
             className="mb-3">
            Beispiele für ein Trauma
           </h3>
-          <ul className="mb-3" style={{ listStyle: 'none',color: '#5c377d',  paddingLeft: '0rem',fontSize:'1.2rem', lineHeight:'1.4rem' }}>
+          <ul className="mb-3" style={{ listStyle: 'none',color: '#5c377d',  paddingLeft: '0rem',fontSize:'1.14rem', lineHeight:'1.4rem' }}>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Höhenangst, Angststörungen</li>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Verlust geliebter Menschen</li>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Schwere Unfälle oder Umweltkatastrophen</li>
             <li className="mb-3"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Erlebnisse von Gewalt, Isolation und Machtmissbrauch</li>
             <li className="mb-0"> <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gray-800 text-white">
                   <i
                     className="bi bi-x-diamond"
-                    style={{ fontSize: "1.2rem", color: "#5c377d" }}
+                    style={{ fontSize: "1.14rem", color: "#5c377d" }}
                   ></i>
                 </span> Kollektive Erlebnisse wie Z.B. Krieg, Wildfeuer, Corona etc.</li>
           </ul>
