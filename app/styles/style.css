@@ -10737,6 +10737,9 @@ padding: 4px 12px !important;
 .application-areas .row{
   flex-direction: column-reverse;
 }
+.certificate-box img {
+  padding: 0 17px;
+}
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
