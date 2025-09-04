@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 export default function WirkungDerSitzung() {
   return (
-    <section className="py-6 position-relative  two-sec" >
+    <section className="py-6 application-areas position-relative  two-sec" >
       <span className="absolute top-20 start-0">
         <Image
                                   src="/images/bg-2-copyright.webp"

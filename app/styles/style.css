@@ -9413,10 +9413,18 @@ img {
 
   padding: 7px 18px;
 }
-.image-container-sec {
+.image-container-slider {
   padding: 10px;
   background: #fff;
   box-shadow: var(--bs-box-shadow-sm) !important;
+}
+.hero-section-slider {
+height: 100vh;
+align-items: center;
+}
+.swiper-inner.two {
+  align-items: center;
+  display: flex;
 }
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
@@ -9503,10 +9511,18 @@ img {
 .contact-booking .btn.btn-main {
   font-size: 14px;
 }
+.hero-section-slider {
+  height: 83vh;
+ 
+}
+
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+.hero-section-slider {
+  height: 60vh;
 
+}
  .header-col-mid #mainmenu {
     top: 49px !important;
   }
@@ -10371,7 +10387,7 @@ img {
   }
    header .btn-main {
     font-size: 13px;
-    width: 190px;
+    width:208px;
     padding: 6px 0px !important;
   }
   .mob-order-2 {
@@ -10415,7 +10431,7 @@ img {
     width: 100%;
   }
   .menu_side_area {
-    margin-left: 20px;
+    margin-left: 0px;
     width: 100%;
     position: relative;
     right: 0;
@@ -10544,7 +10560,7 @@ img {
   }
   h1.slider-title,
   h2.slider-title {
-    font-size: 34px !important;
+    font-size: 26px !important;
   }
   p.slider-teaser {
     font-size: 16px;
@@ -10680,8 +10696,7 @@ img {
     overflow-x: hidden;
   }
   .swiper-inner.two {
-    background-size: 100% 61% !important;
-    background-position: top !important;
+  
     background-repeat: no-repeat !important;
   }
   .hero-section {
@@ -10696,8 +10711,31 @@ img {
   font-size: 1.8rem;
   
 }
-h2.slider-title span {
-  line-height: 31px;
+  h2.slider-title span {
+    line-height: 26px;
+    font-size: 20px;
+  }
+.hero-section-slider{
+height: 330px;
+}
+a.btn-main{
+padding: 4px 12px !important;
+    font-size: 15px !important;
+}
+.image-container-sec{
+  margin-top: 30px;
+}
+.why-does-trauma h2{
+ margin-top: 15px;
+}
+.application-areas{
+  padding-bottom: 0px;
+}
+.application-areas .p-3{
+  padding: 0px !important;
+}
+.application-areas .row{
+  flex-direction: column-reverse;
 }
 }
 

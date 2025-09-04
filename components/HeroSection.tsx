@@ -10,27 +10,20 @@ import "swiper/css/scrollbar";
 const HeroSection = () => {
   return (
     <>
-    <section className="section-dark text-light hero-section no-top no-bottom position-relative overflow-hidden z-1000">
+    <section className="section-dark text-light hero-section-slider no-top no-bottom position-relative overflow-hidden z-1000">
       
-      <div className="v-center">
-        <Swiper
-          modules={[Navigation, Pagination, Scrollbar]}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          className="swiper vh-100"
-        >
-        
+     
+     
           {/* Slide 2 */}
-          <SwiperSlide>
+         
             <div
               className="swiper-inner two"
               style={{ backgroundImage: "url(/images/slider/2.jpg)",backgroundSize: "100% 114%", backgroundPosition: "10%" }}
             >
-              <div className="sw-caption relative z-1000">
+             
                 <div className="container">
                   <div className="row gx-5 align-items-center">
-                    <div className="spacer-double"></div>
+                   
                     <div className="col-lg-6 offset-lg-6">
                       <div className="spacer-single"></div>
                          <div className="sw-text-wrapper">
@@ -41,13 +34,8 @@ const HeroSection = () => {
                            Lass los, was dich bindet und öffne neue Resonanzräume in deinem Leben - Vertrauen, Freude & Fülle.
                           </span>
                         </h2>
-                        {/* <div className="col-lg-8">
-                          <p className="slider-teaser mb-3">
-                            WISSENSCHAFT & WEISHEIT, KÖRPER & FREQUENZ WERDEN
-                            MITEINANDER VERBUNDEN
-                          </p>
-                        </div> */}
-                        <div className="spacer-10"></div>
+                     
+                       
                         <a
                           className="btn-main mb10 mb-3"
                           href="/harmonyum"
@@ -56,22 +44,15 @@ const HeroSection = () => {
                         </a>
                       </div>
                     </div>
-                    <div className="spacer-single"></div>
+                  
                   </div>
                 </div>
               </div>
-              {/* <Image
-                src="/images/misc/flowers-crop.webp"
-                width={400}
-                height={281}
-                className="absolute bottom-0 start-0 sw-anim folwer-image"
-                alt="Flowers background"
-              /> */}
-            </div>
-          </SwiperSlide>
-        </Swiper>
+            
+          
+      
 
-      </div>
+      
     </section>
 
 

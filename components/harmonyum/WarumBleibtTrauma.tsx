@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function WarumBleibtTrauma() {
   return (
     <section
-      className="py-4 position-relative"
+      className="py-4 why-does-trauma position-relative"
     >
         <span className="absolute top-20 end-0">
                                 <Image
