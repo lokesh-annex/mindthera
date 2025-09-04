@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 export default function WirkungDerSitzung() {
   return (
-    <section className="py-6 application-areas position-relative  two-sec" >
+    <section className="py-6 application-areas position-relative pb-5  two-sec" >
       <span className="absolute top-20 start-0">
         <Image
                                   src="/images/bg-2-copyright.webp"
@@ -17,7 +17,7 @@ export default function WirkungDerSitzung() {
       <div className="container">
         <div className="row ">
           
-          <div className="col-lg-7 col-md-12 mb-4 mb-md-0">
+          <div className="col-lg-7 col-md-12 ">
             <div className="p-3 bg-white " style={{ position: 'relative' }}>
             
               <h2 className="fw-bold mb-4 " style={{ color: '#000000',fontSize: '2.2rem', letterSpacing: '1px' }}>Anwendungsbereiche Von HTR</h2>
