@@ -9704,6 +9704,7 @@ align-items: center;
     padding: 0 0 0 0;
     right: 0px;
     width: 210px;
+    display: none;
     left: auto;
   }
   #mainmenu > li::before {
@@ -10740,8 +10741,26 @@ padding: 4px 12px !important;
 .certificate-box img {
   padding: 0 17px;
 }
+.testimonial-section p {
+  text-align: center;
 }
-
+.tabs-sec .spacer-single,
+.tabs-sec .spacer-half{
+display: none;
+}
+.blog-page-homepage {
+  padding-top: 0;
+}
+.offer-inner-page .no-bottom {
+  margin-bottom: 25px;
+}
+.post-image img {
+  width: 100%;
+}
+.post-image {
+  height: auto;
+}
+}
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {
     padding-left: 30px;

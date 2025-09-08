@@ -59,7 +59,7 @@ const articles = [
 const BlogList = () => (
   <>
     {articles.map((article, idx) => (
-      <div className="col-lg-4 col-md-6 mb10" key={idx}>
+      <div className="col-lg-4 col-md-6 mb10 position-relative z-10" key={idx}>
         <div className="rounded-20px">
           <div className="post-image rounded-10px">
             <Image
