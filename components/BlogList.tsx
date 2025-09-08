@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+<<<<<<< HEAD
 const BlogList = () => {
   const [articles, setArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -59,6 +60,31 @@ const BlogList = () => {
                   height={300}
                   width={400}
                 />
+=======
+const BlogList = () => (
+  <>
+    {articles.map((article, idx) => (
+      <div className="col-lg-4 col-md-6 mb10 position-relative z-10" key={idx}>
+        <div className="rounded-20px">
+          <div className="post-image rounded-10px">
+            <Image
+              alt=""
+              src={article.image}
+              className="lazy h-100"
+              height={300}
+              width={400}
+            />
+          </div>
+          <div className="pt-2 h-100">
+            <Link href={`/blog-single/${article.slug}`} className="text-dark text-decoration-none">
+              <h4 className="text-dark">{article.title}</h4>
+            </Link>
+            <p className="mb-3">{article.description}</p>
+            <div className="relative bg-grey p-1 px-3 rounded-10px">
+              <div className="d-inline fs-14 fw-bold me-3">
+                <i className="bi bi-calendar id-color me-2"></i>
+                {article.date}
+>>>>>>> 2895d65f0c93258108df2d8b3d8019ff6643cfab
               </div>
               <div className="pt-2 h-100">
                 <Link

@@ -154,7 +154,7 @@ const OfferPage = () => {
               </div>
               <div className="row g-3">
                 {tab.services.map((service, i) => (
-                  <div className="col-xl-3 col-lg-4 mb-5 col-md-6 col-sm-6" key={i}>
+                  <div className="col-xl-3 col-lg-4 mb-5 col-md-6 col-sm-6 offer-inner-page" key={i}>
                       <div className="relative h-100 rounded-10px p-4 rounded-20px d-flex flex-column" style={{ background: '#f8f5fd', position: 'relative' }}>
                         <div className="alt-font absolute end-0 pe-4 fw-bold fs-24 id-color">{(i+1).toString().padStart(2, '0')}</div>
                         <Image src={`/images/services/${service.image}`} width={120} height={120} className="img-fluid circle mb-4 w-30 mt-50 shadow-soft scaleIn animated" alt={service.title} />

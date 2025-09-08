@@ -1,10 +1,51 @@
 "use client";
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-const AboutUS = () => (
-  <>
+const API_URL_WORK_SECTION = 'http://localhost:3001/api/pages/68bec51e2880ed52c0efdf22?depth=2&draft=false&trash=false';
+
+const AboutUS = () => {
+  const [workData, setWorkData] = useState<any>(null);
+  const [workLoading, setWorkLoading] = useState(true);
+  const [workError, setWorkError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        const res = await fetch(API_URL_WORK_SECTION, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        if (active) setWorkData(json);
+      } catch (e: any) {
+        if (active) setWorkError(e.message || 'Fetch failed');
+      } finally {
+        if (active) setWorkLoading(false);
+      }
+    })();
+    return () => { active = false; };
+  }, []);
+
+  const workImage = workData?.image1?.url || workData?.image?.url || null;
+  const absImg = (u?: string) => !u ? '' : (u.startsWith('http') ? u : `http://localhost:3001${u}`);
+  const workLabel = workData?.label ;
+  const workHeading = workData?.title ;
+  const highlight = workData?.highlight;
+  // Extract list items from richText if present
+  const richChildren = workData?.richText?.root?.children || [];
+  const listItems: string[] = [];
+  const walk = (n: any) => {
+    if (!n) return;
+    if (n.type === 'list-item') {
+      const t = (n.children || []).map((c: any) => c.text || '').join(' ').replace(/\s+/g, ' ').trim();
+      if (t) listItems.push(t);
+    }
+    if (Array.isArray(n.children)) n.children.forEach(walk);
+  };
+  richChildren.forEach(walk);
+  const bullets = listItems.length ? listItems : [];
+
+  return (<>
     <Breadcrumbs
       title="Über mich"
       items={[{ label: "Home", href: "/" }, { label: "Über mich" }]}
@@ -91,7 +132,7 @@ const AboutUS = () => (
         </div>
       </div>
 </section>
-      <section className="py-5  work-section" >
+  <section className="py-5  work-section">
          <span className="absolute top-20 start-0">
                     <Image
                       src="/images/bg-2-copyright.webp"
@@ -105,44 +146,46 @@ const AboutUS = () => (
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
-              <div
-                style={{
-                  maxWidth: 400,
-                  borderRadius: "16px",
-                  overflow: "hidden",
-                  boxShadow: "0 8px 32px rgba(92,55,125,0.12)",
-                }}
-              >
-                <Image
-                  src="/images/image-16.jpg"
-                  width={400}
-                  height={500}
-                  alt="Gita"
-                  className="img-fluid"
-                />
-              </div>
+              {workLoading && <p className="m-0 py-5">Loading...</p>}
+              {workError && !workLoading && <p className="text-danger m-0 py-5">{workError}</p>}
+              {!workLoading && !workError && (
+                <div
+                  style={{
+                    maxWidth: 400,
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    boxShadow: '0 8px 32px rgba(92,55,125,0.12)'
+                  }}
+                >
+                  <Image
+                    src={absImg(workImage) || '/images/image-16.jpg'}
+                    width={400}
+                    height={500}
+                    alt={workHeading}
+                    className="img-fluid"
+                  />
+                </div>
+              )}
             </div>
             <div className="col-lg-7">
               <div
                 className="mb-2 text-uppercase fw-bold"
                 style={{ letterSpacing: 1, color: "#5c377d" }}
               >
-                Liebe Seele
+                {workLabel}
               </div>
               <h2
                 className="fw-bold mb-4"
                 style={{ color: "#2d1a3a", fontSize: "2.5rem" }}
               >
-                {" "}
-                Ich arbeite mit positiven Menschen im Erwachen, die tief in sich
-                selbst wissen oder spüren
+               {workHeading}
               </h2>
               <p className="mb-3">
                 <span
                   className="fw-semibold"
                   style={{ fontSize: "1.15rem", color: "#3d2c4a" }}
                 >
-                  So wie bisher geht es nicht weiter.
+                  {highlight}
                 </span>
               </p>
               <div
@@ -154,60 +197,13 @@ const AboutUS = () => (
                 So wie ich wirklich bin – darf es jetzt in der Tiefe
                 weitergehen.
               </div>
-              <ul
-                className="list-unstyled"
-                style={{ fontSize: "1.15rem", color: "#3d2c4a" }}
-              >
-                <li className="mb-3 d-flex align-items-start">
-                  <span
-                    className="me-2"
-                    style={{ color: "#5c377d", fontSize: "1.3rem" }}
-                  >
-                    &#10003;
-                  </span>{" "}
-                  Ich begleite Menschen, die sich selbst wieder bewohnen wollen
-                  – durch Präsenz, Frequenz &amp; tiefe energetische Arbeit auf
-                  Zellebene.
-                </li>
-                <li className="mb-3 d-flex align-items-start">
-                  <span
-                    className="me-2"
-                    style={{ color: "#5c377d", fontSize: "1.3rem" }}
-                  >
-                    &#10003;
-                  </span>{" "}
-                  Meine Arbeit ist kein „Coaching im Kopf“ – sondern eine
-                  Erinnerung an das, was du längst weisst.
-                </li>
-                <li className="mb-3 d-flex align-items-start">
-                  <span
-                    className="me-2"
-                    style={{ color: "#5c377d", fontSize: "1.3rem" }}
-                  >
-                    &#10003;
-                  </span>{" "}
-                  Ich arbeite intuitiv, hellsichtig, körperorientiert und
-                  seelengeführt.
-                </li>
-                <li className="mb-3 d-flex align-items-start">
-                  <span
-                    className="me-2"
-                    style={{ color: "#5c377d", fontSize: "1.3rem" }}
-                  >
-                    &#10003;
-                  </span>{" "}
-                  Ich arbeite auf energetischer &amp; zellulärer Ebene – ich
-                  verwandle Bewusstsein.
-                </li>
-                <li className="mb-3 d-flex align-items-start">
-                  <span
-                    className="me-2"
-                    style={{ color: "#5c377d", fontSize: "1.3rem" }}
-                  >
-                    &#10003;
-                  </span>{" "}
-                  I Ich führe Dich zurück – und lasse Dich erinnern.
-                </li>
+              <ul className="list-unstyled" style={{ fontSize: '1.15rem', color: '#3d2c4a' }}>
+                {bullets.map((b, i) => (
+                  <li key={i} className="mb-3 d-flex align-items-start">
+                    <span className="me-2" style={{ color: '#5c377d', fontSize: '1.3rem' }}>&#10003;</span>
+                    {b}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -467,7 +463,7 @@ const AboutUS = () => (
         </div>
       </div>
     </div>
-  </>
-);
+  </>);
+};
 
 export default AboutUS;

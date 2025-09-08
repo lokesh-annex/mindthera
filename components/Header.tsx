@@ -1,19 +1,34 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Link from "next/link";
 import Logo from "./Logo";
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [navItems, setNavItems] = useState<any[]>([]);
+  const [menuOpen, setMenuOpen] = useState(false); // closed by default
+  const pathname = usePathname();
 
+  // Close menu automatically on route change
   useEffect(() => {
-    fetch("http://localhost:3001/api/globals/header?depth=2&draft=false&trash=false")
-      .then((res) => res.json())
-      .then((data) => setNavItems(data?.navItems || []))
-      .catch((err) => console.error("Error fetching header nav:", err));
-  }, []);
+    setMenuOpen(false);
+  }, [pathname]);
 
+  const navItems = [
+    { label: 'Harmonyum', href: '/' },
+    { label: 'Angebote', href: '/offer' },
+    { label: 'Über mich', href: '/about' },
+    { label: 'Events', href: '/event' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Q&A', href: '/faq' },
+    { label: 'Kontakt', href: '/contact' },
+  ];
+
+  const handleLinkClick = () => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 992) {
+      setMenuOpen(false);
+    }
+  };
   return (
     <header className="transparent scroll-light has-topbar header-s1">
       <div className="container">
@@ -32,15 +47,13 @@ export default function Header() {
                   style={{
                     display:
                       typeof window !== "undefined" && window.innerWidth <= 992
-                        ? menuOpen
-                          ? "block"
-                          : "none"
+                        ? (menuOpen ? "block" : "none")
                         : undefined,
                   }}
                 >
-                  {navItems.map((item, i) => (
-                    <li key={i}>
-                      <Link className="menu-item" href={item.link || "/"}>
+                  {navItems.map(item => (
+                    <li key={item.href}>
+                      <Link className="menu-item" href={item.href} onClick={handleLinkClick}>
                         {item.label}
                       </Link>
                     </li>
