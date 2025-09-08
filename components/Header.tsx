@@ -1,12 +1,19 @@
 "use client";
-import React, { useState } from "react";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Logo from "./Logo";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navItems, setNavItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api/globals/header?depth=2&draft=false&trash=false")
+      .then((res) => res.json())
+      .then((data) => setNavItems(data?.navItems || []))
+      .catch((err) => console.error("Error fetching header nav:", err));
+  }, []);
+
   return (
     <header className="transparent scroll-light has-topbar header-s1">
       <div className="container">
@@ -31,42 +38,13 @@ export default function Header() {
                         : undefined,
                   }}
                 >
-                  <li>
-                    <Link className="menu-item" href="/">
-                      Harmonyum
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="menu-item" href="/offer">
-                      Angebote
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link className="menu-item" href="/about">
-                      Über mich
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="menu-item" href="/event">
-                      Events
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="menu-item" href="/blog">
-                      Blog
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="menu-item" href="/faq">
-                      Q&amp;A
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="menu-item" href="/contact">
-                      Kontakt
-                    </Link>
-                  </li>
+                  {navItems.map((item, i) => (
+                    <li key={i}>
+                      <Link className="menu-item" href={item.link || "/"}>
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
                 <span
                   id="menu-btn"
@@ -77,7 +55,6 @@ export default function Header() {
                 </span>
               </div>
 
-              {/* Right Contact + Button */}
               <div className="de-flex-col mob-order-2">
                 <div className="menu_side_area">
                   <Link href="/" className="btn-main d-xl-block">
