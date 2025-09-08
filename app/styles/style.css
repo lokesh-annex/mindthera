@@ -10760,6 +10760,9 @@ display: none;
 .post-image {
   height: auto;
 }
+.price-sec li {
+  flex-wrap: wrap;
+}
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {
