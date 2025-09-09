@@ -13,17 +13,13 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
     async function fetchArticle() {
       setLoading(true);
       try {
+       
         const res = await fetch(
-          `http://localhost:3001/api/posts/68b9654e0cdce0790917cd22?depth=2&draft=false&locale=undefined&trash=false`
+          `http://localhost:3001/api/posts?where[slug][equals]=${encodeURIComponent(slug)}&depth=2&draft=false&locale=undefined&trash=false`
         );
         const data = await res.json();
-
-        // slug match check
-        if (data.slug === slug) {
-          setArticle(data);
-        } else {
-          setArticle(null);
-        }
+        const doc = Array.isArray(data?.docs) ? data.docs[0] : (Array.isArray(data) ? data[0] : data);
+        setArticle(doc && doc.slug === slug ? doc : null);
       } catch (err) {
         setArticle(null);
       }
@@ -37,9 +33,9 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
   if (!article) return notFound();
 
   // Fields from API
-  const imageUrl = article.heroImage?.url
-    ? `http://localhost:3001${article.heroImage.url}`
-    : null;
+  const hero = article.heroImage || article.image;
+  const rawImg = hero?.sizes?.og?.url || hero?.sizes?.large?.url || hero?.url || hero?.sizes?.thumbnail?.url || "";
+  const imageUrl = rawImg ? (rawImg.startsWith("http") ? rawImg : `http://localhost:3001${rawImg}`) : null;
   const author = article.populatedAuthors?.[0]?.name || "Unknown";
   const date = new Date(article.publishedAt).toLocaleDateString("de-DE", {
     day: "2-digit",
@@ -47,13 +43,9 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
     year: "numeric",
   });
   const locale = article.meta?.locales?.[0]?.locale;
-
-  // Convert content JSON to HTML string
   const htmlContent =
     article.content?.root?.children
-      ?.map((block: any) =>
-        block.children.map((c: any) => c.text).join("")
-      )
+      ?.map((block: any) => `<p>${(block.children || []).map((c: any) => c.text || '').join('')}</p>`)
       .join("") || "";
 
   return (

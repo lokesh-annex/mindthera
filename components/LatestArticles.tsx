@@ -69,7 +69,7 @@ const LatestArticles = () => {
           {/* Main big article */}
           <div className="col-lg-6 mb-4">
             <div className="position-relative">
-              <Link href={`/blog/${main.slug}`}>
+              <Link href={`/blog-single/${main.slug}`}>
                 <Image src={mainImg} alt={main?.title || ''} className="img-fluid" width={600} height={500} />
               </Link>
             </div>
@@ -79,7 +79,7 @@ const LatestArticles = () => {
                 <small className="text-muted text-uppercase">{mainMonth} {mainYear}</small>
               </div>
               <div>
-                <Link href={`/blog/${main.slug}`}>
+                <Link href={`/blog-single/${main.slug}`}>
                   <h2 className="fw-bold">{main.title}</h2>
                 </Link>
                 <p className="text-muted mb-2 small">{main.description}</p>
@@ -101,7 +101,7 @@ const LatestArticles = () => {
                 </div>
                 <div>
                   <small className="text-uppercase text-muted d-block mb-1">{dateStr}</small>
-                  <Link href={`/blog/${item.slug}`}><h3 className="fw-bold mb-0">{item.title}</h3></Link>
+                  <Link href={`/blog-single/${item.slug}`}><h3 className="fw-bold mb-0">{item.title}</h3></Link>
                 </div>
               </div>
               );

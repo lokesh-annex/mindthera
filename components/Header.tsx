@@ -3,10 +3,15 @@ import React, { useState, useEffect } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Link from "next/link";
 import Logo from "./Logo";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
+
+type NavItem = { label: string; href: string; id?: string };
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false); // closed by default
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [navItems, setNavItems] = useState<NavItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const pathname = usePathname();
 
   // Close menu automatically on route change
@@ -14,21 +19,89 @@ export default function Header() {
     setMenuOpen(false);
   }, [pathname]);
 
-  const navItems = [
-    { label: 'Harmonyum', href: '/' },
-    { label: 'Angebote', href: '/offer' },
-    { label: 'Über mich', href: '/about' },
-    { label: 'Events', href: '/event' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Q&A', href: '/faq' },
-    { label: 'Kontakt', href: '/contact' },
-  ];
+  // Fetch menu items from API
+  useEffect(() => {
+    let active = true;
+    const fetchMenu = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const res = await fetch(
+          "http://localhost:3001/api/globals/header?depth=2&draft=false&locale=undefined&trash=false",
+          { cache: "no-store" }
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        const rawItems: any[] = data?.navItems ?? (Array.isArray(data) ? data : []);
+
+        const labelFallbackMap: Record<string, string> = {
+          "harmonyum": "/",
+          "angebote": "/offer",
+          "über mich": "/about",
+          "uber mich": "/about",
+          "events": "/event",
+          "blog": "/blog",
+          "q&a": "/faq",
+          "q & a": "/faq",
+          "kontakt": "/contact",
+        };
+
+       
+        const toPathFromSlug = (slug?: string) => {
+          if (!slug) return "/";
+          const clean = String(slug).trim().replace(/^\/+/, "");
+          if (!clean || clean === "/" || clean.toLowerCase() === "home") return "/";
+          return `/${clean}`;
+        };
+
+        const normalized: NavItem[] = rawItems
+          .map((ni: any): NavItem => {
+            const id = ni?.id;
+            const label: string = ni?.label || ni?.link?.label || ni?.title || "Item";
+            const lowerLabel = String(label).toLowerCase();
+
+            // Resolve href from link field
+            const link = ni?.link;
+            let href: string | undefined;
+            if (link?.type === "reference") {
+              const refValue = link?.value || link?.doc || link?.reference?.value;
+              const slug = refValue?.slug || refValue?.path || refValue?.url || refValue?.pathname;
+              href = toPathFromSlug(slug);
+            } else if (link?.url) {
+              href = link.url;
+            } else if (ni?.url || ni?.path || ni?.href) {
+              href = ni?.href || ni?.url || ni?.path;
+            }
+
+            if (!href && labelFallbackMap[lowerLabel]) href = labelFallbackMap[lowerLabel];
+            if (!href) href = "/";
+
+            return { id, label, href };
+          })
+          .filter((i) => Boolean(i?.href && i?.label));
+
+        if (active) setNavItems(normalized);
+      } catch (err: any) {
+        if (active) setError(err?.message || "Menu load failed");
+        console.error("Menu load failed:", err);
+      } finally {
+        if (active) setLoading(false);
+      }
+    };
+
+    fetchMenu();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleLinkClick = () => {
-    if (typeof window !== 'undefined' && window.innerWidth <= 992) {
+    if (typeof window !== "undefined" && window.innerWidth <= 992) {
       setMenuOpen(false);
     }
   };
+
   return (
     <header className="transparent scroll-light has-topbar header-s1">
       <div className="container">
@@ -47,12 +120,24 @@ export default function Header() {
                   style={{
                     display:
                       typeof window !== "undefined" && window.innerWidth <= 992
-                        ? (menuOpen ? "block" : "none")
+                        ? menuOpen
+                          ? "block"
+                          : "none"
                         : undefined,
                   }}
                 >
-                  {navItems.map(item => (
-                    <li key={item.href}>
+                  {loading && (
+                    <li>
+                      <span className="text-muted small">Lade Menü...</span>
+                    </li>
+                  )}
+                  {!loading && error && (
+                    <li>
+                      <span className="text-danger small">{error}</span>
+                    </li>
+                  )}
+                  {!loading && !error && navItems.map((item) => (
+                    <li key={item.id || item.href}>
                       <Link className="menu-item" href={item.href} onClick={handleLinkClick}>
                         {item.label}
                       </Link>
