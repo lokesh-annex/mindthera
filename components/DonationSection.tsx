@@ -1,44 +1,142 @@
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
+const API_URL =
+  "http://localhost:3001/api/pages/68c11c79cb79fffc279450d0?depth=2&draft=false&locale=undefined&trash=false";
+
+const absUrl = (u?: string) =>
+  u?.startsWith("http") ? u : u ? `http://localhost:3001${u}` : "";
+
+const toMediaUrl = (m: any): string =>
+  absUrl(
+    m?.sizes?.og?.url ||
+      m?.sizes?.large?.url ||
+      m?.url ||
+      m?.sizes?.thumbnail?.url ||
+      ""
+  );
+
+const escapeHtml = (s: string) =>
+  (s || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+const descriptionToHtml = (input: any): string => {
+  if (!input) return "";
+  if (typeof input === "string") return `<p>${escapeHtml(input)}</p>`;
+
+  const root = input?.root || input;
+  const children = Array.isArray(root?.children) ? root.children : [];
+
+  return children
+    .map((p: any) => {
+      if (!Array.isArray(p?.children)) return "";
+      const t = p.children
+        .map((c: any) => {
+          if (c?.type === "linebreak") return "<br />";
+          let text = escapeHtml(c?.text || "");
+          // ✅ Bold check
+          if (c?.format === 1) {
+            text = `<strong>${text}</strong>`;
+          }
+          return text;
+        })
+        .join("");
+      return t ? `<p>${t}</p>` : "";
+    })
+    .join("");
+};
+
+type DonationContent = {
+  image?: string;
+  title?: string;
+  bodyHtml?: string;
+  raised?: number;
+  goal?: number;
+};
 
 const DonationSection = () => {
   const [amount, setAmount] = useState(10);
+  const [content, setContent] = useState<DonationContent>({});
 
-  const handleAmountClick = (val: string) => {
-    setAmount(Number(val));
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountClick = (val: string) => setAmount(Number(val));
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setAmount(Number(e.target.value));
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.open(`https://paypal.me/veraenderungench/${amount}`, '_blank');
+    window.open(`https://paypal.me/veraenderungench/${amount}`, "_blank");
   };
 
+
+  useEffect(() => {
+  let cancelled = false;
+  (async () => {
+    try {
+      const res = await fetch(API_URL, { cache: "no-store" });
+      if (!res.ok) return;
+      const json = await res.json();
+      const doc = json?.doc ?? json?.docs?.[0] ?? json;
+      if (!doc) return;
+
+      const next: DonationContent = {};
+
+      // ✅ bodyHtml from hero.richText
+      if (doc?.hero?.richText) {
+        next.bodyHtml = descriptionToHtml(doc.hero.richText);
+      }
+
+      // ✅ title
+      if (doc?.title) next.title = String(doc.title);
+
+    let imgUrl = "";
+if (doc?.hero?.image) {
+  imgUrl = toMediaUrl(doc.hero.image);
+} else if (doc?.image1?.url) {
+  imgUrl = absUrl(doc.image1.url);   // direct image1 url use
+}
+next.image = imgUrl || "/images/misc/placeholder.jpg";
+      if (typeof doc?.raised === "number") next.raised = doc.raised;
+      if (typeof doc?.goal === "number") next.goal = doc.goal;
+
+      if (!cancelled) setContent(next);
+    } catch {}
+  })();
+  return () => {
+    cancelled = true;
+  };
+}, []);
+
+const absUrl = (u?: string) =>
+  u?.startsWith("http") ? u : u ? `http://localhost:3001${u}` : "";
   return (
-    <section className="donation-section" style={{ background: "#ffffff", padding: "100px 0" }}>
+    <section
+      className="donation-section"
+      style={{ background: "#ffffff", padding: "100px 0" }}
+    >
       <div className="container">
         <div className="row align-items-center">
-          <div className="col-lg-6 mb-4 mb-lg-0 d-flex justify-content-center">
-            <Image
-              src="/images/misc/10.jpg"
-              alt="Donation"
-              width={550}
-              height={500}
-              style={{
-               
-                borderRadius: "8px",
-                objectFit: "cover",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
-              }}
-            />
-          </div>
+          {content.image && (
+            <div className="col-lg-6 mb-4 mb-lg-0 d-flex justify-content-center">
+              <Image
+                src={content.image}
+                alt="Donation"
+                width={550}
+                height={500}
+                style={{
+                  borderRadius: "8px",
+                  objectFit: "cover",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+                }}
+              />
+            </div>
+          )}
 
           <div className="col-lg-6">
-            <div className="d-flex justify-content-between align-items-center mb-2">
+          <div className="d-flex justify-content-between align-items-center mb-2">
               <div className="fw-bold" style={{ fontSize: "1.1rem" }}>
                 Raised:
                 <span
@@ -65,7 +163,7 @@ const DonationSection = () => {
                       />
                     </g>
                   </svg>
-                  0
+                  {content.raised ?? 0}
                 </span>
               </div>
               <div className="fw-bold" style={{ fontSize: "1.1rem" }}>
@@ -94,7 +192,7 @@ const DonationSection = () => {
                       />
                     </g>
                   </svg>
-                  12,000
+                  {content.goal?.toLocaleString('de-DE') ?? '12,000'}
                 </span>
               </div>
             </div>
@@ -108,20 +206,22 @@ const DonationSection = () => {
                 borderRadius: "3px",
               }}
             ></div>
+           
 
-            <div className="text-muted mb-4" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-                 <p><strong>Liebe Seele,</strong></p>
-              <div style={{ fontSize: "15px" }}>
-             
-                <p className="mb-1">Nicht alle Menschen können sich momentan eine Harmonyum Trauma Release®-Behandlung leisten. Unser Gesundheitssystem darf dieses Angebot noch in ihr Portfolio aufnehmen.</p>
-                <p className="mb-1">Deshalb sammeln wir für Menschen in körperlicher, emotionaler und/oder seelischer Not nach traumatischen Erfahrungen.</p>
-                <p className="mb-1">Es gibt in der Schweiz, Österreich und Deutschland Obdachlose, Flüchtlinge, Frauenhäuser oder Babyklappen, die sehr von Harmonyum Trauma Release® profitieren können.</p>
-                <p className="mb-1">Hier möchten wir mit deiner Spende die finanzielle Lücke schliessen, damit so viele Menschen wie möglich von diesem Angebot profitieren können.</p>
-                <p className="mb-1">Unter anderem begleiten wir Projekte in Afrika und Indien, damit traumatisierte Kinder wieder aufatmen können, um glücklich zu spielen und ihr volles Potential auszuschöpfen.</p>
+            {/* Body */}
+            {content.bodyHtml && (
+              <div
+                className="text-muted mb-4"
+                style={{ fontSize: "1.1rem", lineHeight: 1.7 }}
+              >
+                <div
+                  style={{ fontSize: "15px" }}
+                  dangerouslySetInnerHTML={{ __html: content.bodyHtml }}
+                />
               </div>
-            </div>
+            )}
 
-            <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
               <div
                 className="mb-3 d-flex align-items-center border border-secondary-subtle rounded"
                 style={{ maxWidth: "140px" }}

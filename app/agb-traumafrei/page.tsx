@@ -1,10 +1,98 @@
-"use client";
+
+"use client"
+import React, { useEffect, useState } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+
+const API_URL = "http://localhost:3001/api/pages/68c15aedcb79fffc27945f95?depth=2&draft=false&locale=undefined&trash=false";
+
+const escapeHtml = (s: string) => (s || "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;")
+  .replace(/'/g, "&#39;");
+
+const descriptionToHtml = (input: any): string => {
+  if (!input) return "";
+  if (typeof input === "string") return `<p>${escapeHtml(input)}</p>`;
+  const root = input?.root || input;
+  const children = Array.isArray(root?.children) ? root.children : [];
+  return children.map((p: any) => {
+    if (!Array.isArray(p?.children)) return "";
+    const t = p.children.map((c: any) => c?.type === 'linebreak' ? '<br />' : escapeHtml(c?.text || '')).join("");
+    return t ? `<p>${t}</p>` : "";
+  }).join("");
+};
+
 export default function AgbTraumafreiPage() {
+  const [content, setContent] = useState<{ title?: string; bodyHtml?: string }>({});
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(API_URL, { cache: 'no-store' });
+        if (!res.ok) return;
+        const json = await res.json();
+        const doc = json?.doc ?? json?.docs?.[0] ?? json;
+        if (!doc) return;
+        const next: { title?: string; bodyHtml?: string } = {};
+        next.title = doc?.title ? String(doc.title) : undefined;
+        if (doc?.description) next.bodyHtml = descriptionToHtml(doc.description);
+        if (!cancelled) setContent(next);
+        if (doc?.hero?.richText) {
+  next.bodyHtml = richTextToHtml(doc.hero.richText);
+} else if (doc?.description) {
+  next.bodyHtml = richTextToHtml(doc.description);
+}
+      } catch {}
+    })();
+    return () => { cancelled = true; };
+  }, []);
+const richTextToHtml = (input: any): string => {
+  if (!input) return "";
+  const root = input?.root || input;
+  const nodes = Array.isArray(root?.children) ? root.children : [];
+
+  const renderNode = (node: any): string => {
+    if (!node) return "";
+
+    // Text nodes
+    if (typeof node.text === "string") {
+      let text = node.text;
+      if (node.format === 1) text = `<strong>${text}</strong>`; // bold
+      if (node.format === 2) text = `<em>${text}</em>`; // italic
+      if (node.format === 4) text = `<u>${text}</u>`; // underline
+      return text;
+    }
+
+    // Children nodes
+    if (Array.isArray(node.children)) {
+      const inner = node.children.map(renderNode).join("");
+
+      // Use tag if provided (p, h1, h2, ul, li, etc.)
+      if (node.tag) {
+        return `<${node.tag}>${inner}</${node.tag}>`;
+      }
+
+      // Links
+      if (node.fields?.url) {
+        return `<a href="${node.fields.url}" target="_blank" rel="noopener noreferrer" style="color:rgb(92,55,125)">${inner}</a>`;
+      }
+
+      return inner;
+    }
+
+    return "";
+  };
+
+  return nodes.map(renderNode).join("");
+};
+
   return (
     <>
       <Breadcrumbs
-        title="AGB"
+        title={content.title || "AGB"}
         items={[{ label: "Home", href: "/" }, { label: "AGB" }]}
       />
       <div style={{
@@ -13,90 +101,15 @@ export default function AgbTraumafreiPage() {
         position: 'relative',
         paddingTop: '40px',
       }}>
-        <div className="container py-5" >
+        <div className="container py-5">
           <div className="mx-auto" style={{ maxWidth: '100%' }}>
-            <div className="p-4 p-md-5 d-flex flex-column ">
-              <div className="mb-3" style={{ fontSize: '2.5rem', color: '#7a566b' }}>
-                <i className="bi bi-file-earmark-text"></i>
-              </div>
-              <h2 className="h5 mb-3" style={{ color: '#7a566b' }}>Allgemeine Geschäftsbedingungen (AGB)</h2>
-              <p>
-                für die Praxis Kerstin R. Stoll, Traumafrei.ch,
-                <br />
-                Anbieterin von Harmonyum Trauma Release®
-                <br />
-                Stand: 25.07.2025
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>1. Allgemeines</h3>
-              <p>
-                Diese AGB gelten für alle Angebote, Buchungen und Leistungen im
-                Rahmen meiner Tätigkeit als Anbieterin von HTR (Harmonyum Trauma
-                Release®) sowie ergänzender energetischer Begleitungen. Mit einer
-                Buchung erklärst du dich mit den folgenden Bedingungen
-                einverstanden.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>2. Angebot &amp; Zielsetzung</h3>
-              <p>
-                HTR ist eine tiefenenergetische Methode zur Harmonisierung des
-                Nervensystems und zur Bearbeitung traumatischer Erfahrungen. Meine
-                Arbeit ersetzt keine ärztliche, psychiatrische oder
-                psychotherapeutische Behandlung. Du bist selbst verantwortlich für
-                deine physische und psychische Gesundheit. Eine laufende
-                medizinische Behandlung sollte nicht abgebrochen werden. Ich behalte
-                mir vor, eine Begleitung abzulehnen oder zu beenden, wenn sie aus
-                fachlicher oder energetischer Sicht nicht stimmig ist.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>3. Terminbuchung</h3>
-              <p>
-                Termine werden über mein Online-Buchungssystem oder individuell per
-                Mail/Telefon vereinbart. Mit deiner Buchung gilt der Termin als
-                verbindlich. Die Bezahlung erfolgt je nach Format im Voraus (bei
-                Paketen) oder direkt vor Ort (bei Einzelsitzungen), sofern nichts
-                anderes vereinbart wurde.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>4. Absagen &amp; Verspätungen</h3>
-              <p>
-                Termine können bis spätestens 24 Stunden vor Beginn kostenfrei
-                storniert oder verschoben werden. Bei kurzfristigeren Absagen oder
-                Nichterscheinen wird der volle Betrag fällig. Ausnahmen sind Unfall
-                und Naturkatastrophen. Eine Behandlung dauert 45 Minuten - Bei
-                Verspätungen bis 10 Minuten findet die Session statt. Längere
-                Verspätungen werden in voller Höhe berechnet und müssen mit einem
-                neuen Termin gebucht werden. Bitte komme daher pünktlich, damit dein
-                Raum der Rückverbindung in Ruhe beginnen kann.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>5. Pakete &amp; Gültigkeit</h3>
-              <p>
-                Pakete (Z.B. 3er, 5er oder 10er) sind nicht übertragbar und
-                innerhalb von 3 Monaten ab Kaufdatum einzulösen. Nicht genutzte
-                Sessions verfallen nach Ablauf der Frist. Eine Rückerstattung ist
-                nicht möglich.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>6. Datenschutz</h3>
-              <p>
-                Alle persönlichen Informationen, die im Rahmen der Begleitung
-                geteilt oder sichtbar werden, unterliegen der absoluten
-                Vertraulichkeit. Ich speichere deine Daten ausschließlich zur
-                Terminverwaltung und internen Dokumentation gemäss geltender
-                Datenschutzbestimmungen.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>7. Haftung</h3>
-              <p>
-                Die Teilnahme an einer HTR-Session erfolgt freiwillig und auf eigene
-                Verantwortung. Ich übernehme keine Haftung für körperliche,
-                psychische oder emotionale Reaktionen, die im Rahmen oder nach der
-                Sitzung auftreten können. Meine Arbeit versteht sich als Einladung
-                zur Rückverbindung – nicht als Heilversprechen.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>8. Schlussbestimmungen</h3>
-              <p>
-                Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die
-                Gültigkeit der übrigen davon unberührt. Gerichtsstand ist der Sitz
-                der Praxisort.
-              </p>
-              <p className="mt-4 text-end">
-                <small style={{ color: '#7a566b' }}>Danke für dein Vertrauen – und für dein bewusstes JA zu deinem Trauma Release.</small>
-              </p>
+            <div className="p-4 p-md-5 d-flex flex-column">
+              {/* API content if available */}
+              {content.bodyHtml && (
+                <div className="mb-4" style={{ fontSize: '1.1rem', lineHeight: 1.7 }}>
+                  <div dangerouslySetInnerHTML={{ __html: content.bodyHtml }} />
+                </div>
+              )}
             </div>
           </div>
         </div>

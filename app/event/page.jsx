@@ -70,7 +70,8 @@ function renderNode(n) {
 
 function lexicalToHtml(root) {
   if (!root) return '';
-  const nodes = Array.isArray(root?.children) ? root.children : [];
+  const rootNode = root?.root ? root.root : root;
+  const nodes = Array.isArray(rootNode?.children) ? rootNode.children : [];
   return nodes.map(renderNode).join('');
 }
 

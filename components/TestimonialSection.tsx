@@ -64,6 +64,7 @@ const TestimonialSection = () => {
                 />
               )}
               {name && <h5 className="mt-3 mb-0">{name}</h5>}
+              <p className="small mb-2">CEO</p>
               {/* {role && <p className="small mb-2">{role}</p>} */}
             </div>
             <div className="col-lg-8 col-sm-8">

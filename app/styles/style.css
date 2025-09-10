@@ -9425,6 +9425,15 @@ align-items: center;
 .swiper-inner.two {
   align-items: center;
   display: flex;
+
+}
+.static-page h2{
+color: rgb(122, 86, 107);
+font-size: 1.25rem;
+}
+.static-page h3 {
+  font-size: 1rem;
+  color: rgb(92, 55, 125);
 }
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {

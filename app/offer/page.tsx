@@ -3,127 +3,45 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
+const API_URL = "http://localhost:3001/api/pages/68b961bf0cdce0790917cc2f?depth=2&draft=false&locale=undefined&trash=false";
+
+function normalizeOffer(doc: any) {
+  const layout = Array.isArray(doc?.layout) ? doc.layout : [];
+  const tabs: Record<string, { label: string; services: any[] }> = {};
+  for (const block of layout) {
+    const entry = block?.locales?.find((l: any) => l?.locale === "de") || block?.locales?.[0];
+    if (!entry) continue;
+    for (const col of entry.columns || []) {
+      const label = col.label || "Andere Angebote";
+      if (!tabs[label]) tabs[label] = { label, services: [] };
+      tabs[label].services.push({
+        title: col.title || "",
+        desc: col.subtitle || "",
+        slug: col?.slug || col.title?.toLowerCase().replace(/\s+/g, "-") || "",
+        image: col.image?.url ? `http://localhost:3001${col.image.url}` : "/images/misc/placeholder.jpg",
+      });
+    }
+  }
+  return Object.values(tabs);
+}
+
 const OfferPage = () => {
-  const tabData = [
-  {
-    label: "Für Paare & Familien",
-    services: [
-      {
-        title: "Harmonyum Trauma Release®  ",
-        image: "1.webp",
-        desc: "Frequenzform zur Rückverbindung",
-        slug: "harmonyum-trauma-release",
-      },
-      {
-        title: "Paar-Special mit Kinderwunsch",
-        image: "2.webp",
-        desc: "Ein heilender Raum für Empfängnis – körperlich, energetisch, seelisch",
-        slug: "paar-special-mit-kinderwunsch",
-      },
-      {
-        title: "Ahnenfrieden – energetische Löschung von übernommenem Trauma",
-        image: "3.webp",
-        desc: "Du trägst, was du fühlst. Aber manches ist alt, gehört nicht zu dir und wartet auf Erlösung.",
-         slug: "ahnenfrieden-energetische-loeschung",
-      },
-      {
-        title: "Gemeinsame Familienzeit ",
-        image: "4.webp",
-        desc: "Ein heilender Raum für Eltern – in Rückverbindung mit sich selbst und ihren Kindern",
-         slug: "gemeinsame-familienzeit",
-      },
-    ],
-  },
+  const [tabData, setTabData] = useState<any[]>([]);
 
-  {
-    label: "Für Schwangerschaft",
-    services: [
-      {
-        title: "Schwangerschaft",
-        image: "6.webp",
-        desc: "Nervensystem-Beruhigung & Rückverbindung",
-         slug: "schwangerschaft",
-      },
-      {
-        title: "Mutter & Kind – Geburts-special",
-        image: "7.webp",
-        desc: "die Geburt verändert alles – auch das, was oft unsichtbar bleibt",
-        slug: "mutter-und-kind-geburts-special",
-      },
-      {
-        title: "Ergänzende Begleitung im Wochenbett",
-        image: "5.webp",
-        desc: "weil Rückverbindung nicht mit der Geburt deines Kindes endet",
-        slug: "wochenbett-begleitung",
-      },
-      {
-        title: "Traumata aus der Kindheit",
-        image: "8.webp",
-        desc: "die ersten Jahre prägen alles – auch das, was wir längst vergessen haben",
-        slug: "traumata-aus-der-kindheit",
-      },
-    ],
-  },
-  {
-    label: "Für sofortige Hilfe",
-    services: [
-      {
-        title: "Trauma durch emotionale & körperliche Blockaden ",
-        image: "9.webp",
-        desc: "wenn etwas zu gross war, um verarbeitet zu werden – wird es vom Körper getragen",
-        slug: "trauma-durch-emotionale-und-koerperliche-blockaden",
-      },
-      {
-        title: "Trauma nach Unfall",
-        image: "10.webp",
-        desc: "Erste-Hilfe-Special mit BlueBody-Aktivierung",
-        slug: "trauma-nach-unfall",
-      },
-      {
-        title: "Trauma durch chronischen Stress, Burnout, Depression & Überforderung",
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(API_URL, { cache: "no-store" });
+        if (!res.ok) return;
+        const json = await res.json();
+        const doc = json?.doc ?? json?.docs?.[0] ?? json;
+        if (!doc) return;
+        const normalized = normalizeOffer(doc);
+        setTabData(normalized);
+      } catch {}
+    })();
+  }, []);
 
-        image: "11.webp",
-        desc: "wenn nichts mehr geht – ist es Zeit, wieder bei dir anzukommen",
-         slug: "trauma-durch-stress-burnout",
-      },
-      {
-        title: "Trauma durch Berufliche Belastung (Z. B. Notfallmedizin, Polizei, Rettungskräfte)",
-        image: "12.webp",
-        desc: "wenn Helfen traumatisch wird – braucht auch die Stärke einen Raum",
-         slug: "trauma-durch-berufliche-belastung",
-      },
-    ],
-  },
-  {
-    label: "Unsere Spezialangebote",
-    services: [
-      {
-        title: "Seelenentbindung – Rückgabe Inkarnierter Traumafrequenzen",
-        image: "15.webp",
-        desc: "manchmal reagiert der Körper auf Dinge, die der Verstand nicht kennt",
-         slug: "seelenentbindung-rueckgabe-traumafrequenzen",
-      },
-      {
-        title: "Kollektive Erlebnisse (Krieg, Pandemie, Flucht, Gewalt etc.)",
-        image: "16.webp",
-        desc: "manche Erfahrungen prägen nicht nur dich – sondern ganze Felder, Gesellschaften und Kulturen",
-        slug: "kollektive-erlebnisse",
-      },
-      {
-        title: "Hier wartet eine Überraschung auf dich",
-        image: "14.webp",
-        desc: "Dieses Angebot ist noch in Bearbeitung und braucht noch etwas Zeit…",
-         slug: "ueberraschung-angebot",
-      },
-      {
-        title: "Stille heilt",
-        image: "13.webp",
-        desc: "Retreat zur Rückverbindung mit deiner Urform",
-        slug: "stille-heilt-retreat",
-      },
-    ],
-  },
-];
   return (
     <main>
       <Breadcrumbs
@@ -153,7 +71,7 @@ const OfferPage = () => {
                 </div>
               </div>
               <div className="row g-3">
-                {tab.services.map((service, i) => (
+                {tab.services.map((service: { title: string; desc: string; slug: string; image: string }, i: number) => (
                   <div className="col-xl-3 col-lg-4 mb-5 col-md-6 col-sm-6 offer-inner-page" key={i}>
                       <div className="relative h-100 rounded-10px p-4 rounded-20px d-flex flex-column" style={{ background: '#f8f5fd', position: 'relative' }}>
                         <div className="alt-font absolute end-0 pe-4 fw-bold fs-24 id-color">{(i+1).toString().padStart(2, '0')}</div>
