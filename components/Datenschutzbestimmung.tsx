@@ -35,29 +35,29 @@ const descriptionToHtml = (input: any): string => {
     }
 
     // Line break
-    if (node.type === "linebreak") return "<br />";
+    // if (node.type === "linebreak") return "<br />";
 
-    // Links
-    if (node.type === "link" || node.type === "autolink") {
-      const url = node?.fields?.url || "#";
-      const inner = (node.children || []).map(renderNode).join("");
-      return `<a href="${escapeHtml(
-        url
-      )}" target="_blank" rel="noopener noreferrer" style="color:rgb(92,55,125)">${inner}</a>`;
-    }
+    // // Links
+    // if (node.type === "link" || node.type === "autolink") {
+    //   const url = node?.fields?.url || "#";
+    //   const inner = (node.children || []).map(renderNode).join("");
+    //   return `<a href="${escapeHtml(
+    //     url
+    //   )}" target="_blank" rel="noopener noreferrer" style="color:rgb(92,55,125)">${inner}</a>`;
+    // }
 
-    // Paragraph
-    if (node.type === "paragraph") {
-      const inner = (node.children || []).map(renderNode).join("");
-      return inner ? `<p>${inner}</p>` : "";
-    }
+    // // Paragraph
+    // if (node.type === "paragraph") {
+    //   const inner = (node.children || []).map(renderNode).join("");
+    //   return inner ? `<p>${inner}</p>` : "";
+    // }
 
-    // Headings
-    if (node.type === "heading") {
-      const tag = node.tag || "h2";
-      const inner = (node.children || []).map(renderNode).join("");
-      return `<${tag}>${inner}</${tag}>`;
-    }
+    // // Headings
+    // if (node.type === "heading") {
+    //   const tag = node.tag || "h2";
+    //   const inner = (node.children || []).map(renderNode).join("");
+    //   return `<${tag}>${inner}</${tag}>`;
+    // }
 
     // Default recursion
     if (Array.isArray(node.children)) {

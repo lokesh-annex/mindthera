@@ -5,25 +5,34 @@ import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
 const API_URL = "http://localhost:3001/api/pages/68b961bf0cdce0790917cc2f?depth=2&draft=false&locale=undefined&trash=false";
 
+// 🔧 helper function to normalize slug (same as slug page)
+function normalizeSlug(str: string) {
+  return str
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+}
+
 function normalizeOffer(doc: any) {
   const layout = Array.isArray(doc?.layout) ? doc.layout : [];
   const tabs: Record<string, { label: string; services: any[] }> = {};
   for (const block of layout) {
-    const entry = block?.locales?.find((l: any) => l?.locale === "de") || block?.locales?.[0];
-    if (!entry) continue;
-    for (const col of entry.columns || []) {
-      const label = col.label || "Andere Angebote";
+    for (const entry of block?.locales || []) {
+      const label = entry.label || "Andere Angebote";
       if (!tabs[label]) tabs[label] = { label, services: [] };
       tabs[label].services.push({
-        title: col.title || "",
-        desc: col.subtitle || "",
-        slug: col?.slug || col.title?.toLowerCase().replace(/\s+/g, "-") || "",
-        image: col.image?.url ? `http://localhost:3001${col.image.url}` : "/images/misc/placeholder.jpg",
+        title: entry.title || "",
+        desc: entry.subtitle || "",
+        slug: entry.title ? normalizeSlug(entry.title) : "",
+        image: entry.image?.url
+          ? `http://localhost:3001${entry.image.url}`
+          : "/images/misc/placeholder.jpg",
       });
     }
   }
   return Object.values(tabs);
 }
+
 
 const OfferPage = () => {
   const [tabData, setTabData] = useState<any[]>([]);
@@ -75,11 +84,11 @@ const OfferPage = () => {
                   <div className="col-xl-3 col-lg-4 mb-5 col-md-6 col-sm-6 offer-inner-page" key={i}>
                       <div className="relative h-100 rounded-10px p-4 rounded-20px d-flex flex-column" style={{ background: '#f8f5fd', position: 'relative' }}>
                         <div className="alt-font absolute end-0 pe-4 fw-bold fs-24 id-color">{(i+1).toString().padStart(2, '0')}</div>
-                        <Image src={`/images/services/${service.image}`} width={120} height={120} className="img-fluid circle mb-4 w-30 mt-50 shadow-soft scaleIn animated" alt={service.title} />
+                        <Image src={service.image} width={120} height={120} className="img-fluid circle mb-4 w-30 mt-50 shadow-soft scaleIn animated" alt={service.title} />
                         <h4>{service.title}</h4>
                         <p className="no-bottom">{service.desc}</p>
                         
-                        <Link className="btn-main btn-light-trans d-flex align-items-center justify-content-center" href={`/service/${service.slug}`} style={{ position: 'absolute', right: 20, bottom: 9, margin: '0 auto', padding: '0',width: '40px', height: '40px', borderRadius: '50%', background: '#5c377d', color: '#fff', boxShadow: '0 2px 8px rgba(92,55,125,0.15)' }} aria-label="Mehr erfahren">
+                        <Link className="btn-main btn-light-trans d-flex align-items-center justify-content-center" href={`/offer/${service.slug}`} style={{ position: 'absolute', right: 20, bottom: 9, margin: '0 auto', padding: '0',width: '40px', height: '40px', borderRadius: '50%', background: '#5c377d', color: '#fff', boxShadow: '0 2px 8px rgba(92,55,125,0.15)' }} aria-label="Mehr erfahren">
                           <span className="bi bi-arrow-right" style={{ fontSize: '20px', color: '#fff' }}></span>
                         </Link>
                       </div>
