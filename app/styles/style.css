@@ -9435,6 +9435,20 @@ font-size: 1.25rem;
   font-size: 1rem;
   color: rgb(92, 55, 125);
 }
+.work-section ul, .work-section p
+ {
+  padding: 0;
+  font-size: 1.15rem;
+  color: #3d2c4a;
+}
+.work-section p{
+  font-weight: 600;
+}
+.work-section ul li{
+  align-items: flex-start !important;
+  display: flex !important;
+  margin-bottom: 1rem;
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;

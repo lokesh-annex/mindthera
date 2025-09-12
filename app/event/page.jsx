@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 const API_URL_EVENTS = "http://localhost:3001/api/pages/68c023ac106eb845adbae559?depth=2&draft=false&locale=undefined&trash=false";
@@ -94,13 +95,15 @@ function normalizeEventsFromDoc(doc) {
     if (!entry) continue;
     const title = entry?.title || entry?.heading || entry?.label || entry?.name || '';
     const image = pickImage(entry);
+    const button1 = Array.isArray(entry?.button1) ? entry.button1 : (entry?.button1 ? [entry.button1] : []);
+    const button2 = entry?.button2 || null;
     let html = '';
     if (entry?.rawHtml && typeof entry.rawHtml === 'string') html = entry.rawHtml;
     else if (entry?.description?.root) html = lexicalToHtml(entry.description);
     else if (entry?.content?.root) html = lexicalToHtml(entry.content);
     else if (typeof entry?.description === 'string') html = `<p>${escapeHtml(entry.description)}</p>`;
     else if (typeof entry?.content === 'string') html = `<p>${escapeHtml(entry.content)}</p>`;
-    if ((title && html) || (title && image)) out.push({ title, image, html });
+    if ((title && html) || (title && image)) out.push({ title, image, html, button1, button2 });
   }
   if (out.length > 0) return out;
 
@@ -121,13 +124,15 @@ function normalizeEventsFromDoc(doc) {
     for (const it of arr) {
       const title = it?.title || it?.heading || it?.label || it?.name || '';
       const image = pickImage(it);
+      const button1 = Array.isArray(it?.button1) ? it.button1 : (it?.button1 ? [it.button1] : []);
+      const button2 = it?.button2 || null;
       let html = '';
       if (it?.rawHtml && typeof it.rawHtml === 'string') html = it.rawHtml;
       else if (it?.description?.root) html = lexicalToHtml(it.description);
       else if (it?.content?.root) html = lexicalToHtml(it.content);
       else if (typeof it?.description === 'string') html = `<p>${escapeHtml(it.description)}</p>`;
       else if (typeof it?.content === 'string') html = `<p>${escapeHtml(it.content)}</p>`;
-      if ((title && html) || (title && image)) generic.push({ title, image, html });
+      if ((title && html) || (title && image)) generic.push({ title, image, html, button1, button2 });
     }
   }
   return generic;
@@ -137,7 +142,14 @@ export default async function EventPage() {
   let pageTitle = 'Events';
   let dynamicEvents = [];
   try {
-    const res = await fetch(API_URL_EVENTS, { cache: 'no-store' });
+    const apiUrl = API_URL_EVENTS + '&timestamp=' + Date.now();
+    const res = await fetch(apiUrl, { 
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    });
     if (res.ok) {
       const json = await res.json();
       const doc = json?.doc ?? (Array.isArray(json?.docs) ? json.docs[0] : json);
@@ -151,7 +163,7 @@ export default async function EventPage() {
   return (
       <>
           <Breadcrumbs
-            title={pageTitle || "Events"}
+            title={"Events"}
             items={[{ label: "Home", href: "/" }, { label: "Events" }]}
           />
     <section className="bg-light py-5">
@@ -203,6 +215,28 @@ export default async function EventPage() {
                         dangerouslySetInnerHTML={{ __html: event.html }}
                       />
                     )}
+                    
+                    {/* Buttons from API */}
+                    <div className="mt-3 d-flex gap-2 flex-wrap">
+                      {/* Render button1 array */}
+                      {Array.isArray(event.button1) && event.button1.map((btn, btnIdx) => (
+                        <button 
+                          key={btnIdx}
+                          className="btn-main mb10 mb-3"
+                        >
+                          {btn}
+                        </button>
+                      ))}
+                      
+                      {/* Render button2 (single) */}
+                      {event.button2 && (
+                        <button 
+                          className="btn-main mb10 mb-3"
+                        >
+                          {event.button2}
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
