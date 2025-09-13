@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const API_URL = "http://localhost:3001/api/pages/68be7cf2bf64c36803556acb?depth=2&draft=false&trash=false";
@@ -91,9 +92,9 @@ const HeroSection = () => {
                     )}
                   </h2>
                   {ctaText && (
-                    <a className="btn-main mb10 mb-3" href={ctaLink}>
+                    <Link className="btn-main mb10 mb-3" href="/harmonyum">
                       {ctaText}
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
