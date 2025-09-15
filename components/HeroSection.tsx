@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const API_URL = "http://localhost:3001/api/pages/68be7cf2bf64c36803556acb?depth=2&draft=false&trash=false";
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/api/pages/68be7cf2bf64c36803556acb?depth=2&draft=false&trash=false`;
 
 const HeroSection = () => {
   const [data, setData] = useState<any>(null);
@@ -29,6 +29,7 @@ const HeroSection = () => {
   // Resolve background image from multiple possible fields
   const resolveBgImage = (d: any) => {
     if (!d) return '';
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
     const candidates = [
       d?.backgroundImage,
       d?.hero?.backgroundImage,
@@ -48,7 +49,7 @@ const HeroSection = () => {
       ].filter(Boolean);
       if (possibleUrls.length) {
         const u = possibleUrls[0];
-        return u.startsWith('http') ? u : `http://localhost:3001${u}`;
+        return u.startsWith('http') ? u : `${baseUrl}${u}`;
       }
     }
     return '';

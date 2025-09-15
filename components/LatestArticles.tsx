@@ -1,50 +1,26 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-const API_URL = "http://localhost:3001/api/posts?depth=2&draft=false&trash=false";
-
-interface Post {
-  slug?: string;
-  title?: string;
-  description?: string;
-  publishedAt?: string;
-  heroImage?: any;
-  likes?: number;
-  comments?: number;
-}
+import { useBlogPosts } from "../hooks/useBlogPosts";
 
 const toImageUrl = (post: any) => {
   const imgObj = post?.heroImage;
   if (!imgObj) return "/images/blog/placeholder.jpg";
-  if (imgObj?.sizes?.og?.url) return `http://localhost:3001${imgObj.sizes.og.url}`;
-  if (imgObj?.url) return `http://localhost:3001${imgObj.url}`;
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+  
+  // Check if URL is already absolute (transformed by useBlogPosts hook)
+  if (imgObj?.sizes?.og?.url) {
+    return imgObj.sizes.og.url.startsWith('http') ? imgObj.sizes.og.url : `${baseUrl}${imgObj.sizes.og.url}`;
+  }
+  if (imgObj?.url) {
+    return imgObj.url.startsWith('http') ? imgObj.url : `${baseUrl}${imgObj.url}`;
+  }
   return "/images/blog/placeholder.jpg";
 };
 
 const LatestArticles = () => {
-  const [articles, setArticles] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    (async () => {
-      try {
-        const res = await fetch(API_URL, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-        const docs = Array.isArray(json?.docs) ? json.docs : Array.isArray(json) ? json : [];
-        if (active) setArticles(docs as Post[]);
-      } catch (e: any) {
-        if (active) setError(e.message || 'Fehler beim Laden');
-      } finally {
-        if (active) setLoading(false);
-      }
-    })();
-    return () => { active = false; };
-  }, []);
+  const { posts: articles, loading, error } = useBlogPosts();
 
   if (loading) return <section className="blog-page-homepage pt-lg-7 bg-white text-dark"><div className="container"><p>Lade...</p></div></section>;
   if (error) return <section className="blog-page-homepage pt-lg-7 bg-white text-dark"><div className="container"><p className='text-danger'>Error: {error}</p></div></section>;

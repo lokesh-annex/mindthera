@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const API_URL =
-  "http://localhost:3001/api/pages/68c3f1f1bfc21719f3ab805a?depth=2&draft=false&locale=undefined&trash=false";
+  `${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/api/pages/68c3f1f1bfc21719f3ab805a?depth=2&draft=false&locale=undefined&trash=false`;
 
 interface BuildSpacesData {
   title?: string;

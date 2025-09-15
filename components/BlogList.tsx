@@ -1,35 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useBlogPosts } from "../hooks/useBlogPosts";
 
 const BlogList = () => {
-  const [articles, setArticles] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchArticles() {
-      try {
-        const res = await fetch(
-          "http://localhost:3001/api/posts?depth=2&draft=false&locale=undefined&trash=false"
-        );
-        const data = await res.json();
-  
-        if (Array.isArray(data.docs)) {
-          setArticles(data.docs);
-        } else if (Array.isArray(data)) {
-          setArticles(data);
-        } else {
-          setArticles([]);
-        }
-      } catch (err) {
-        console.error("Error fetching articles:", err);
-        setArticles([]);
-      }
-      setLoading(false);
-    }
-    fetchArticles();
-  }, []);
+  const { posts: articles, loading } = useBlogPosts();
 
   if (loading) return <div>Lade Blogs...</div>;
 
@@ -38,9 +13,10 @@ const BlogList = () => {
       {articles.map((article, idx) => {
         // Resolve image with sizes fallback
         const hero = article.heroImage || article.image;
-        const rawImg = hero?.sizes?.og?.url || hero?.sizes?.large?.url || hero?.url || hero?.sizes?.thumbnail?.url || "";
+        const rawImg = hero?.url || hero?.url || hero?.url || hero?.url || "";
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
         const imageUrl = rawImg
-          ? (rawImg.startsWith("http") ? rawImg : `http://localhost:3001${rawImg}`)
+          ? (rawImg.startsWith("http") ? rawImg : `${baseUrl}${rawImg}`)
           : "/images/blog/placeholder.jpg";
         const slug = article.slug;
         const title = article.title;
@@ -53,7 +29,7 @@ const BlogList = () => {
             <div className="rounded-20px">
               <div className="post-image rounded-10px">
                 <Image
-                  alt={title}
+                  alt={title || "Blog post"}
                   src={imageUrl}
                   className="lazy h-100"
                   height={300}

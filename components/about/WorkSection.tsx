@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const API_URL =
-  "http://localhost:3001/api/pages/68bec51e2880ed52c0efdf22?depth=2&draft=false&locale=undefined&trash=false";
+  `${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/api/pages/68bec51e2880ed52c0efdf22?depth=2&draft=false&locale=undefined&trash=false`;
 
 interface PageContent {
   title?: string;
@@ -91,7 +91,7 @@ const WorkSection = () => {
               }}
             >
               <Image
-                src={`http://localhost:3001/${content.image1?.url || "/images/image-16.jpg"}`}
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/${content.image1?.url || "/images/image-16.jpg"}`}
                 width={content.image1?.width || 400}
                 height={content.image1?.height || 500}
                 alt={content.title || "Work Image"}

@@ -9449,6 +9449,10 @@ font-size: 1.25rem;
   display: flex !important;
   margin-bottom: 1rem;
 }
+.post-image img {
+  width: 100%;
+  object-fit: cover;
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;

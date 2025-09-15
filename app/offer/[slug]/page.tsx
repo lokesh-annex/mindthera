@@ -9,7 +9,7 @@ type Offer = {
 };
 
 const API_URL =
-  "http://localhost:3001/api/pages/68b961bf0cdce0790917cc2f?depth=2&draft=false&locale=undefined&trash=false";
+  `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/pages/68b961bf0cdce0790917cc2f?depth=2&draft=false&locale=undefined&trash=false`;
 
 // 🔧 helper function to normalize slug
 function normalizeSlug(str: string) {
