@@ -9453,6 +9453,26 @@ font-size: 1.25rem;
   width: 100%;
   object-fit: cover;
 }
+.events-page .row:nth-child(2) {
+  flex-direction: row-reverse;
+}
+/* .about-image-70 {
+  width: 70% !important;
+  height: auto !important;
+} */
+ .about-home .col-6:nth-child(3) img{
+  margin-top: -50px;
+}
+ .about-home .col-6:nth-child(1) img {
+  width: 70%;
+  margin-left: 30%;
+  margin-top: 50px;
+}
+ .about-home .col-6:nth-child(4) img {
+  width: 70%;
+  margin-right: 30%;
+  margin-top: -27px;
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;
@@ -10790,6 +10810,15 @@ display: none;
 .price-sec li {
   flex-wrap: wrap;
 }
+.events-page .row {
+  padding: 20px 0px !important;
+}
+
+ .about-home .col-6:nth-child(1) img {
+  
+  margin-top: 20px;
+}
+
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {

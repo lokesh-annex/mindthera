@@ -11,31 +11,28 @@ const AboutUS = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       try {
         const res = await fetch(API_URL, { cache: "no-store" });
         if (!res.ok) throw new Error("Failed to fetch data");
         const json = await res.json();
-        setData(json);
+        setData(json?.doc ?? json);
       } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
-    };
-    fetchData();
+    })();
   }, []);
 
   if (loading) {
     return (
       <section className="py-5">
-        <div className="container">
-          <div className="d-flex align-items-center justify-content-center py-5">
-            <div className="spinner-border text-primary me-2" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-            <span>Lade Inhalte...</span>
+        <div className="container d-flex align-items-center justify-content-center py-5">
+          <div className="spinner-border text-primary me-2" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
+          
         </div>
       </section>
     );
@@ -43,29 +40,26 @@ const AboutUS = () => {
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
-  const getImageUrl = (img: any) => {
-    if (!img?.url) return "";
-    if (img.url.startsWith("http")) return img.url;
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-    return `${baseUrl}${img.url}`;
-  };
+  const absUrl = (u?: string) =>
+    u?.startsWith("http")
+      ? u
+      : u
+      ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${u}`
+      : "";
 
-  // Simpler list extraction: pull all <li>...</li> across richText
-  const extractListItems = () => {
-    const nodes = data.hero?.richText?.root?.children || [];
-    const html = nodes
-      .map((node: any) => (node.children || []).map((c: any) => c.text || "").join(""))
-      .join("");
-    const matches = html.match(/<li>(.*?)<\/li>/g) || [];
-    return matches
-      .map((m: string) => m.replace(/<li>|<\/li>/g, "").trim())
-      .filter(Boolean);
-  };
+  // content block with HTML
+  const contentBlock = data.layout?.find((b: any) => b.blockType === "content");
+  const html = contentBlock?.locales?.[0]?.html || "";
 
-  const liItems = extractListItems();
+  // collect media images
+  const mediaBlocks =
+    data.layout?.filter((b: any) => b.blockType === "mediaBlock") || [];
+  const images = mediaBlocks.map((b: any) =>
+    absUrl(b.locales?.[0]?.media?.url)
+  );
 
   return (
-    <section className="relative">
+    <section className="relative about-home">
       <span className="absolute top-15 start-0">
         <Image
           src="/images/bg-2-copyright.webp"
@@ -85,74 +79,40 @@ const AboutUS = () => {
         />
       </div>
 
-      {/* Main Content */}
       <div className="container">
         <div className="row g-4 gx-5 align-items-center">
-          {/* Left Column: Images */}
+          {/* Left Column: API Images */}
           <div className="col-lg-6">
-            <div className="relative">
-              <div className="row g-4 z-1000">
-                <div className="col-6">
-                  <div className="spacer-single sm-hide"></div>
-                  {data.image1 && (
-                    <Image
-                      src={getImageUrl(data.image1)}
-                      className="img-fluid rounded-10px mb-4 w-70 ms-30"
-                      width={500}
-                      height={500}
-                      alt="Image 1"
-                    />
-                  )}
-                  {data.image3 && (
-                    <Image
-                      src={getImageUrl(data.image3)}
-                      className="img-fluid rounded-10px"
-                      width={500}
-                      height={500}
-                      alt="Image 3"
-                    />
-                  )}
-                </div>
-                <div className="col-6">
-                  {data.image2 && (
-                    <Image
-                      src={getImageUrl(data.image2)}
-                      className="img-fluid rounded-10px mb-4"
-                      width={500}
-                      height={500}
-                      alt="Image 2"
-                    />
-                  )}
-                  {data.image4 && (
-                    <Image
-                      src={getImageUrl(data.image4)}
-                      className="img-fluid rounded-10px w-70"
-                      width={500}
-                      height={500}
-                      alt="Image 4"
-                    />
-                  )}
-                </div>
-              </div>
+            <div className="row g-4">
+              {images.map(
+                (img: string, idx: number) =>
+                  img && (
+                    <div className="col-6" key={idx}>
+                      <Image
+                        src={img}
+                        className="img-fluid rounded-10px mb-4 about-image-70"
+                        width={500}
+                        height={500}
+                        alt={`Image ${idx + 1}`}
+                      />
+                    </div>
+                  )
+              )}
             </div>
           </div>
 
+          {/* Right Column: Text + HTML */}
           <div className="col-lg-6">
-            <div className="subtitle mb-3">{data?.label_text || ""}</div>
-            <h2>{data.hero?.title || data.title}</h2>
+            <div className="subtitle mb-3">{data.label_text || ""}</div>
+            <h2>{data.title}</h2>
             <p>{data.description}</p>
 
-            <div className="row g-4">
-              <div className="col-xl-12">
-                {liItems.length > 0 && (
-                  <ul className="ul-style-2 text-dark fw-600">
-                    {liItems.map((item: any, idx: any) => (
-                      <li key={idx}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
+            {html && (
+              <div
+                className="ul-style-2 text-dark fw-600"
+                dangerouslySetInnerHTML={{ __html: html }}
+              />
+            )}
 
             <div className="spacer-10"></div>
             <a className="btn-main" href="#">
