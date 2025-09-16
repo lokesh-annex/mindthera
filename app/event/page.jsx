@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
-const API_URL_EVENTS = `${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/api/pages/68c023ac106eb845adbae559?depth=2&draft=false&locale=undefined&trash=false`;
+const API_URL_EVENTS = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c023ac106eb845adbae559?depth=2&draft=false&locale=undefined&trash=false`;
 
 // Helpers to extract and render content
 const absUrl = (u) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   return (typeof u === 'string' && u.startsWith('http') ? u : (u ? `${baseUrl}${u}` : ''));
 };
 

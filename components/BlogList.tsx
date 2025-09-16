@@ -14,7 +14,7 @@ const BlogList = () => {
         // Resolve image with sizes fallback
         const hero = article.heroImage || article.image;
         const rawImg = hero?.url || hero?.url || hero?.url || hero?.url || "";
-        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
         const imageUrl = rawImg
           ? (rawImg.startsWith("http") ? rawImg : `${baseUrl}${rawImg}`)
           : "/images/blog/placeholder.jpg";

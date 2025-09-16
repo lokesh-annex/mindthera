@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 const API_URL =
-  `${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/api/pages/68c131b5cb79fffc279458d0?depth=2&draft=false&locale=undefined&trash=false`;
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c131b5cb79fffc279458d0?depth=2&draft=false&locale=undefined&trash=false`;
 
 export default function DatenschutzPage() {
   const [htmlContent, setHtmlContent] = useState<string | null>(null);

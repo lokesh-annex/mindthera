@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 const API_URL =
-  `${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/api/pages/68ba8bd18b6ef54bfa7a2c50?depth=2&draft=false&trash=false`;
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68ba8bd18b6ef54bfa7a2c50?depth=2&draft=false&trash=false`;
 
 const AboutUS = () => {
   const [data, setData] = useState<any>(null);
@@ -33,7 +33,7 @@ const AboutUS = () => {
   const getImageUrl = (img: any) => {
     if (!img?.url) return "";
     if (img.url.startsWith("http")) return img.url;
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
     return `${baseUrl}${img.url}`;
   };
 

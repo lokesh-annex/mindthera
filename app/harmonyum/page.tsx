@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 const API_URL =
-  "http://localhost:3001/api/pages/68c406e4bfc21719f3ab8b7a?depth=2&draft=false&locale=undefined&trash=false";
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c406e4bfc21719f3ab8b7a?depth=2&draft=false&locale=undefined&trash=false`;
 
 // Content type definition
 interface ContentData {

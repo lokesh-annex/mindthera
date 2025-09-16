@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const API_URL =
-  `${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/api/pages/68c3fc53bfc21719f3ab8434?depth=2&draft=false&locale=undefined&trash=false`;
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c3fc53bfc21719f3ab8434?depth=2&draft=false&locale=undefined&trash=false`;
 
 interface SectionBlock {
   blockType: string;

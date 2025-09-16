@@ -27,7 +27,7 @@ export default function Header() {
         setLoading(true);
         setError(null);
         const res = await fetch(
-          "http://localhost:3001/api/globals/header?depth=2&draft=false&locale=undefined&trash=false",
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/globals/header?depth=2&draft=false&locale=undefined&trash=false`,
           { cache: "no-store" }
         );
         if (!res.ok) throw new Error(`HTTP ${res.status}`);

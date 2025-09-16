@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 const API_URL =
-  "http://localhost:3001/api/pages/68c11c79cb79fffc279450d0?depth=2&draft=false&locale=undefined&trash=false";
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c11c79cb79fffc279450d0?depth=2&draft=false&locale=undefined&trash=false`;
 
 const absUrl = (u?: string) =>
-  u?.startsWith("http") ? u : u ? `http://localhost:3001${u}` : "";
+  u?.startsWith("http") ? u : u ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${u}` : "";
 
 const toMediaUrl = (m: any): string =>
   absUrl(
@@ -111,7 +111,7 @@ next.image = imgUrl || "/images/misc/placeholder.jpg";
 }, []);
 
 const absUrl = (u?: string) =>
-  u?.startsWith("http") ? u : u ? `http://localhost:3001${u}` : "";
+  u?.startsWith("http") ? u : u ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${u}` : "";
   return (
     <section
       className="donation-section"

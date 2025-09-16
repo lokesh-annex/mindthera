@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-const API_URL = 'http://localhost:3001/api/pages/68bab47f8b6ef54bfa7a348d?depth=2&draft=false&trash=false';
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68bab47f8b6ef54bfa7a348d?depth=2&draft=false&trash=false`;
 
 const TestimonialSection = () => {
   const [data, setData] = useState<any>(null);
@@ -29,7 +29,7 @@ const TestimonialSection = () => {
   const pickImage = (d: any) => {
     const candidate = d?.image || d?.image1 || d?.hero?.image || d?.media;
     if (!candidate?.url) return '';
-    return candidate.url.startsWith('http') ? candidate.url : `http://localhost:3001${candidate.url}`;
+    return candidate.url.startsWith('http') ? candidate.url : `${process.env.NEXT_PUBLIC_API_BASE_URL}${candidate.url}`;
   };
 
 

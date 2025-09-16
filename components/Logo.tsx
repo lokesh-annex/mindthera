@@ -3,8 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-const API_URL = 'http://localhost:3001/api/globals/header?depth=2&draft=false&locale=undefined&trash=false';
-const CMS_BASE = 'http://localhost:3001';
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/globals/header?depth=2&draft=false&locale=undefined&trash=false`;
+const CMS_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const Logo = () => {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);

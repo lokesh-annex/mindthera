@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-const API_URL = "http://localhost:3001/api/pages/68b961bf0cdce0790917cc2f?depth=2&draft=false&locale=undefined&trash=false";
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68b961bf0cdce0790917cc2f?depth=2&draft=false&locale=undefined&trash=false`;
 
 // 🔧 helper function to normalize slug (same as slug page)
 function normalizeSlug(str: string) {
@@ -25,7 +25,7 @@ function normalizeOffer(doc: any) {
         desc: entry.subtitle || "",
         slug: entry.title ? normalizeSlug(entry.title) : "",
         image: entry.image?.url
-          ? `http://localhost:3001${entry.image.url}`
+          ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${entry.image.url}`
           : "/images/misc/placeholder.jpg",
       });
     }

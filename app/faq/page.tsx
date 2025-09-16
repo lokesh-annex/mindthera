@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Image from "next/image";
 const API_URL_FAQ =
-  "http://localhost:3001/api/pages/68c01158106eb845adbadfa2?depth=2&draft=false&locale=undefined&trash=false";
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c01158106eb845adbadfa2?depth=2&draft=false&locale=undefined&trash=false`;
 
 type FAQItem = { q: string; a: string };
 

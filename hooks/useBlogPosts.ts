@@ -12,11 +12,11 @@ interface Post {
   image?: any;
 }
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001"}/api/posts?depth=2&draft=false&locale=undefined&trash=false`;
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/posts?depth=2&draft=false&locale=undefined&trash=false`;
 
 // Helper function to transform image URLs
 const transformImageUrl = (url: string) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   if (!url) return url;
   if (url.startsWith('http')) return url;
   return `${baseUrl}${url}`;

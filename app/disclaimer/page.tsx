@@ -66,9 +66,9 @@ export default function DisclaimerPage() {
     try {
       setLoading(true);
       setError(null);
-      
-      const response = await fetch('http://localhost:3001/api/pages/68c3b30fd8f4df9f964d3d45?depth=2&draft=false&locale=undefined&trash=false');
-      
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c3b30fd8f4df9f964d3d45?depth=2&draft=false&locale=undefined&trash=false`);
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

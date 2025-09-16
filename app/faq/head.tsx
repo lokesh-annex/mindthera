@@ -1,5 +1,5 @@
 export default async function Head() {
-  const API_URL = "http://localhost:3001/api/pages/68c01158106eb845adbadfa2?depth=2&draft=false&locale=undefined&trash=false";
+  const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c01158106eb845adbadfa2?depth=2&draft=false&locale=undefined&trash=false`;
 
   let title = "";
   let description = "";

@@ -52,7 +52,7 @@ async function getOfferBySlug(slug: string): Promise<Offer | null> {
             title: entry.title || "No Title",
             desc: entry.subtitle || "No Subtitle",
             image: entry.image?.url
-              ? `http://localhost:3001${entry.image.url}`
+              ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${entry.image.url}`
               : "/images/misc/placeholder.jpg",
             htmlContent: entry.htmlContent || null, // ✅ include htmlContent
           };

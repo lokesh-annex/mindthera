@@ -27,7 +27,7 @@ export default function AgbImpressumPage() {
       setLoading(true);
       setError(null);
       
-      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
       const response = await fetch(`${baseUrl}/api/pages/68c3b715d8f4df9f964d3f70?depth=2&draft=false&locale=undefined&trash=false`);
       
       if (!response.ok) {

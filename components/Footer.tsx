@@ -15,7 +15,7 @@ export default function Footer() {
   useEffect(() => {
     async function fetchFooter() {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
         const res = await fetch(
           `${baseUrl}/api/globals/footer?depth=2&draft=false&locale=undefined&trash=false`
         );

@@ -10,8 +10,8 @@ const toImageUrl = (post: any) => {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
   
   // Check if URL is already absolute (transformed by useBlogPosts hook)
-  if (imgObj?.sizes?.og?.url) {
-    return imgObj.sizes.og.url.startsWith('http') ? imgObj.sizes.og.url : `${baseUrl}${imgObj.sizes.og.url}`;
+  if (imgObj?.url) {
+    return imgObj.url.startsWith('http') ? imgObj.url : `${baseUrl}${imgObj.url}`;
   }
   if (imgObj?.url) {
     return imgObj.url.startsWith('http') ? imgObj.url : `${baseUrl}${imgObj.url}`;

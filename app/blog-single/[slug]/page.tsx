@@ -15,7 +15,7 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
       try {
        
         const res = await fetch(
-          `http://localhost:3001/api/posts?where[slug][equals]=${encodeURIComponent(slug)}&depth=2&draft=false&locale=undefined&trash=false`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/posts?where[slug][equals]=${encodeURIComponent(slug)}&depth=2&draft=false&locale=undefined&trash=false`
         );
         const data = await res.json();
         const doc = Array.isArray(data?.docs) ? data.docs[0] : (Array.isArray(data) ? data[0] : data);
@@ -35,7 +35,7 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
   // Fields from API
   const hero = article.heroImage || article.image;
   const rawImg = hero?.sizes?.og?.url || hero?.sizes?.large?.url || hero?.url || hero?.sizes?.thumbnail?.url || "";
-  const imageUrl = rawImg ? (rawImg.startsWith("http") ? rawImg : `http://localhost:3001${rawImg}`) : null;
+  const imageUrl = rawImg ? (rawImg.startsWith("http") ? rawImg : `${process.env.NEXT_PUBLIC_API_BASE_URL}${rawImg}`) : null;
   const author = article.populatedAuthors?.[0]?.name || "Unknown";
   const date = new Date(article.publishedAt).toLocaleDateString("de-DE", {
     day: "2-digit",

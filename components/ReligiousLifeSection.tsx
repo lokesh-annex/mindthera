@@ -2,8 +2,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-// Base API host (requested to force http://localhost:3001 for images)
-const CMS_BASE = 'http://localhost:3001';
+
+const CMS_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 const API_URL = `${CMS_BASE}/api/pages/68be83bbbf64c36803556e91?depth=2&draft=false&trash=false`;
 
 interface MediaObj { url?: string; sizes?: any; }

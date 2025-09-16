@@ -7,10 +7,10 @@ import { Pagination } from "swiper/modules";
 import Image from "next/image";
 
 const API_URL =
-  "http://localhost:3001/api/pages/68c10a17cb79fffc27944876?depth=2&draft=false&locale=undefined&trash=false";
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c10a17cb79fffc27944876?depth=2&draft=false&locale=undefined&trash=false`;
 
 const absUrl = (u?: string) =>
-  u?.startsWith("http") ? u : u ? `http://localhost:3001${u}` : "";
+  u?.startsWith("http") ? u : u ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${u}` : "";
 
 const toMediaUrl = (m: any) =>
   absUrl(m?.sizes?.og?.url || m?.sizes?.large?.url || m?.url || m?.sizes?.thumbnail?.url || "");
