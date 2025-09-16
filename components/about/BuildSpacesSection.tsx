@@ -53,7 +53,14 @@ const BuildSpacesSection = () => {
   if (loading) {
     return (
       <section style={{ background: "#7a566b", padding: "64px 0" }}>
-        <div className="container text-center text-white">Loading...</div>
+        <div className="container text-center text-white">
+          <div className="d-flex align-items-center justify-content-center">
+            <div className="spinner-border spinner-border-sm text-light me-2" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <span>Wird geladen...</span>
+          </div>
+        </div>
       </section>
     );
   }

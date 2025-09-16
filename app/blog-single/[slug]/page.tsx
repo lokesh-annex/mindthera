@@ -29,7 +29,16 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
     fetchArticle();
   }, [slug]);
 
-  if (loading) return <div className="container py-5">Loading...</div>;
+  if (loading) return (
+    <div className="container py-5">
+      <div className="text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-2 m-0">Lade Artikel...</p>
+      </div>
+    </div>
+  );
   if (!article) return notFound();
 
   // Fields from API

@@ -65,7 +65,14 @@ const HeroSection = () => {
   return (
     <section className="section-dark text-light hero-section-slider no-top no-bottom position-relative overflow-hidden z-1000">
       {loading && (
-        <div className="container py-5"><p className="m-0">Loading...</p></div>
+        <div className="container py-5">
+          <div className="d-flex align-items-center justify-content-center">
+            <div className="spinner-border spinner-border-sm text-light me-2" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="m-0 text-light">Lade Hero-Inhalte...</p>
+          </div>
+        </div>
       )}
       {error && !loading && (
         <div className="container py-5 text-danger"><p className="m-0">Error: {error}</p></div>

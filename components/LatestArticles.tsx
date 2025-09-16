@@ -22,7 +22,18 @@ const toImageUrl = (post: any) => {
 const LatestArticles = () => {
   const { posts: articles, loading, error } = useBlogPosts();
 
-  if (loading) return <section className="blog-page-homepage pt-lg-7 bg-white text-dark"><div className="container"><p>Lade...</p></div></section>;
+  if (loading) return (
+    <section className="blog-page-homepage pt-lg-7 bg-white text-dark">
+      <div className="container">
+        <div className="d-flex align-items-center justify-content-center py-5">
+          <div className="spinner-border text-primary me-2" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mb-0">Lade Artikel...</p>
+        </div>
+      </div>
+    </section>
+  );
   if (error) return <section className="blog-page-homepage pt-lg-7 bg-white text-dark"><div className="container"><p className='text-danger'>Error: {error}</p></div></section>;
 
   if (!articles.length) return <section className="blog-page-homepage pt-lg-7 bg-white text-dark"><div className="container"><p>Keine Artikel gefunden.</p></div></section>;

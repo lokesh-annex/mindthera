@@ -6,7 +6,18 @@ import { useBlogPosts } from "../hooks/useBlogPosts";
 const BlogList = () => {
   const { posts: articles, loading } = useBlogPosts();
 
-  if (loading) return <div>Lade Blogs...</div>;
+  if (loading) {
+    return (
+      <div className="container py-5">
+        <div className="d-flex align-items-center justify-content-center">
+          <div className="spinner-border text-primary me-2" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mb-0">Lade Blog-Posts...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

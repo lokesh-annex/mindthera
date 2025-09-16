@@ -41,7 +41,14 @@ const TestimonialSection = () => {
   return (
     <section className="position-relative testimonial-section text-light">
       <div className="container">
-        {loading && <p className="py-5 text-center m-0">Loading...</p>}
+        {loading && (
+          <div className="py-5 text-center d-flex align-items-center justify-content-center">
+            <div className="spinner-border spinner-border-sm text-light me-2" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="m-0">Lade Bewertungen...</p>
+          </div>
+        )}
         {error && !loading && <p className="py-5 text-center text-danger m-0">Error: {error}</p>}
         {!loading && !error && data && (
           <div className="row g-4 gx-5 relative z-index-1000 align-items-center">

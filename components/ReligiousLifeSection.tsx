@@ -88,7 +88,14 @@ const ReligiousLifeSection = () => {
   return (
     <section className="py-5 bg-white two-images-section">
       <div className="container">
-        {loading && <p className="m-0 py-5 text-center">Loading...</p>}
+        {loading && (
+          <div className="py-5 text-center d-flex align-items-center justify-content-center">
+            <div className="spinner-border text-primary me-2" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="m-0">Lade Inhalte...</p>
+          </div>
+        )}
         {error && !loading && <p className="m-0 py-5 text-center text-danger">Error: {error}</p>}
         {!loading && !error && (
           <div className="row align-items-center">

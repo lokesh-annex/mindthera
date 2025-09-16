@@ -26,7 +26,20 @@ const AboutUS = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <section className="py-5">
+        <div className="container">
+          <div className="d-flex align-items-center justify-content-center py-5">
+            <div className="spinner-border text-primary me-2" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <span>Lade Inhalte...</span>
+          </div>
+        </div>
+      </section>
+    );
+  }
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 

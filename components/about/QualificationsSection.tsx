@@ -48,9 +48,16 @@ const QualificationsSection = () => {
 
   if (loading) {
     return (
-      <div className="container text-center mt-5 mb-5">
-        <p>Loading qualifications...</p>
-      </div>
+      <section className="py-5">
+        <div className="container">
+          <div className="d-flex align-items-center justify-content-center py-5">
+            <div className="spinner-border text-primary me-2" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <span>Lade Qualifikationen...</span>
+          </div>
+        </div>
+      </section>
     );
   }
 

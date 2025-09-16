@@ -128,7 +128,12 @@ export default function Header() {
                 >
                   {loading && (
                     <li>
-                      <span className="text-muted small">Lade Menü...</span>
+                      <div className="d-flex align-items-center">
+                        <div className="spinner-border spinner-border-sm text-primary me-2" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                       
+                      </div>
                     </li>
                   )}
                   {!loading && error && (
