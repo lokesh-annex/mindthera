@@ -1,96 +1,75 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-const articles = [
-  {
-    title: "Wie fühlt sich ein Leben ohne gespeichertes Trauma an?",
-    slug: "wie-fuehlt-sich-ein-leben-ohne-gespeichertes-trauma-an",
-    image: "/images/blog/lamp.jpg",
-    date: "12 August, 2025",
-    likes: 0,
-    comments: 1,
-    mainDay: "12",
-    mainMonth: "Aug",
-    mainYear: "2025",
-    description: "Kurze Beschreibung zum Artikel.",
-    author: "Kerstin R. Stoll",
-      content: `Wie fühlt sich ein Leben ohne gespeichertes Trauma`
-  },
-  {
-    title: "Ich baue Räume – keine Konzepte.",
-    slug: "ich-baue-raeume-keine-konzepte",
-    image: "/images/blog/holi.jpg",
-    date: "25 July, 2025 ",
-    likes: 0,
-    comments: 1,
-    mainDay: "02",
-    mainMonth: "May",
-    description: " Wie tief sitzende Muster unser Leben prägen",
-    author: "Kerstin R. Stoll",
-    content: "Demo-Inhalt für diesen Blogartikel. Hier steht der vollständige Text oder eine Zusammenfassung."
-  },
-  {
-    title: "Die 9 Traumabereiche – Wie tief sitzende Muster unser Leben prägen",
-    slug: "die-9-traumabereiche-wie-tief-sitzende-muster-unser-leben-praegen",
-    image: "/images/blog/krishna1.jpg",
-    date: "1 August, 2025",
-    likes: 0,
-    comments: 1,
-    mainDay: "24",
-    mainMonth: "Apr",
-    description: " Wie tief sitzende Muster unser Leben prägen",
-    author: "Kerstin R. Stoll",
-    content: "Demo-Inhalt für diesen Blogartikel. Hier steht der vollständige Text oder eine Zusammenfassung."
-  },
-  {
-    title: "Die Urform der Menschlichkeit ist das befreite Trauma",
-    slug: "die-urform-der-menschlichkeit-ist-das-befreite-trauma",
-    image: "/images/blog/festival.jpg",
-    date: "8 August, 2025",
-    likes: 0,
-    comments: 1,
-    mainDay: "10",
-    mainMonth: "May",
-    description: "Kurze Beschreibung zum Artikel.",
-    author: "Kerstin R. Stoll",
-    content: "Demo-Inhalt für diesen Blogartikel. Hier steht der vollständige Text oder eine Zusammenfassung."
-  },
-];
+import { useBlogPosts } from "../hooks/useBlogPosts";
 
-const BlogList = () => (
-  <>
-    {articles.map((article, idx) => (
-      <div className="col-lg-4 col-md-6 mb10 position-relative z-10" key={idx}>
-        <div className="rounded-20px">
-          <div className="post-image rounded-10px">
-            <Image
-              alt=""
-              src={article.image}
-              className="lazy h-100"
-              height={300}
-              width={400}
-            />
+const BlogList = () => {
+  const { posts: articles, loading } = useBlogPosts();
+
+  if (loading) {
+    return (
+      <div className="container py-5">
+        <div className="d-flex align-items-center justify-content-center">
+          <div className="spinner-border text-primary me-2" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
-          <div className="pt-2 h-100">
-            <Link href={`/blog-single/${article.slug}`} className="text-dark text-decoration-none">
-              <h4 className="text-dark">{article.title}</h4>
-            </Link>
-            <p className="mb-3">{article.description}</p>
-            <div className="relative bg-grey p-1 px-3 rounded-10px">
-              <div className="d-inline fs-14 fw-bold me-3">
-                <i className="bi bi-calendar id-color me-2"></i>
-                {article.date}
-              </div>
-              <div className="d-inline fs-14 fw-600 ms-3">
-                <i className="bi bi-person me-1"></i>
-                {article.author || "Autor"}
-              </div>
-             
-            </div>
-          </div>
+          <p className="mb-0">Lade Blog-Posts...</p>
         </div>
       </div>
-    ))}
-  </>
-);
+    );
+  }
+
+  return (
+    <>
+      {articles.map((article, idx) => {
+        // Resolve image with sizes fallback
+        const hero = article.heroImage || article.image;
+        const rawImg = hero?.url || hero?.url || hero?.url || hero?.url || "";
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+        const imageUrl = rawImg
+          ? (rawImg.startsWith("http") ? rawImg : `${baseUrl}${rawImg}`)
+          : "/images/blog/placeholder.jpg";
+        const slug = article.slug;
+        const title = article.title;
+        const description = article.description;
+        const date = article.publishedAt
+          ? new Date(article.publishedAt).toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" })
+          : "";
+        return (
+          <div className="col-lg-4 col-md-6 mb10" key={idx}>
+            <div className="rounded-20px">
+              <div className="post-image rounded-10px">
+                <Image
+                  alt={title || "Blog post"}
+                  src={imageUrl}
+                  className="lazy h-100"
+                  height={300}
+                  width={400}
+                />
+              </div>
+              <div className="pt-2 h-100">
+                <Link href={`/blog-single/${slug}`} className="text-dark text-decoration-none">
+                  <h4 className="text-dark">{title}</h4>
+                </Link>
+                <p className="mb-3">{description}</p>
+                <div className="relative bg-grey p-1 px-3 rounded-10px">
+                  <div className="d-inline fs-14 fw-bold me-3">
+                    <i className="bi bi-calendar id-color me-2"></i>
+                    {date}
+                   
+                  </div>
+                  <div className="d-inline fs-14 fw-600 ms-3">
+                    <i className="bi bi-person me-1"></i>
+                    {article.populatedAuthors?.[0]?.name || "Autor"}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
 
 export default BlogList;

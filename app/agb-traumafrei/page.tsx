@@ -1,10 +1,178 @@
+
 "use client";
+import React, { useEffect, useState, useCallback } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c15aedcb79fffc27945f95?depth=2&draft=false&locale=undefined&trash=false`;
+
+// Content type definition
+interface ContentData {
+  title?: string;
+  bodyHtml?: string;
+  htmlContent?: string[];
+}
+
+// Escape helper - optimized
+const escapeHtml = (s: string): string => {
+  if (!s) return "";
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+};
+
+// Convert Payload RichText → HTML - optimized with proper typing
+const richTextToHtml = (input: any): string => {
+  if (!input) return "";
+  if (typeof input === "string") return `<p>${escapeHtml(input)}</p>`;
+
+  const root = input?.root || input;
+  const nodes = Array.isArray(root?.children) ? root.children : [];
+
+  const renderNode = (node: any): string => {
+    if (!node) return "";
+
+    const { type, children, tag, text, fields, format } = node;
+    const childrenHtml = children?.map(renderNode).join("") || "";
+
+    // Text nodes with formatting
+    if (typeof text === "string") {
+      let formattedText = escapeHtml(text);
+      if (format === 1) formattedText = `<strong>${formattedText}</strong>`; // bold
+      if (format === 2) formattedText = `<em>${formattedText}</em>`; // italic
+      if (format === 4) formattedText = `<u>${formattedText}</u>`; // underline
+      return formattedText;
+    }
+
+    // Handle different node types
+    switch (type) {
+      case "heading":
+        const headingTag = tag || "h3";
+        return `<${headingTag}>${childrenHtml}</${headingTag}>`;
+      case "paragraph":
+        return `<p>${childrenHtml}</p>`;
+      case "link":
+        const url = fields?.url || "#";
+        const target = fields?.newTab ? "_blank" : "_self";
+        return `<a href="${escapeHtml(url)}" target="${target}" rel="noopener noreferrer" style="color:rgb(92,55,125)">${childrenHtml}</a>`;
+      case "linebreak":
+        return "<br/>";
+      default:
+        // Use tag if provided (ul, li, etc.)
+        if (tag) {
+          return `<${tag}>${childrenHtml}</${tag}>`;
+        }
+        return childrenHtml;
+    }
+  };
+
+  return nodes.map(renderNode).join("");
+};
+
 export default function AgbTraumafreiPage() {
+  const [content, setContent] = useState<ContentData>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch API data with proper error handling
+  const fetchContent = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const res = await fetch(API_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const json = await res.json();
+      const doc = json?.doc ?? json?.docs?.[0] ?? json;
+      
+      if (!doc) {
+        throw new Error("No document found in API response");
+      }
+
+      const processedContent: ContentData = {
+        title: doc?.title ? String(doc.title) : undefined,
+      };
+
+      // Process hero richText or description
+      if (doc?.hero?.richText) {
+        processedContent.bodyHtml = richTextToHtml(doc.hero.richText);
+      } else if (doc?.description) {
+        processedContent.bodyHtml = richTextToHtml(doc.description);
+      }
+
+      // Process layout blocks efficiently
+      if (Array.isArray(doc?.layout)) {
+        processedContent.htmlContent = doc.layout
+          .flatMap((block: any) => 
+            block?.locales?.map((loc: any) => loc?.html || loc?.content || "") || []
+          )
+          .filter((html: string) => html.trim() !== "");
+      }
+
+      setContent(processedContent);
+    } catch (err) {
+      console.error("Error fetching content:", err);
+      setError(err instanceof Error ? err.message : "Unknown error occurred");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchContent();
+  }, [fetchContent]);
+  // Loading state
+  if (loading) {
+    return (
+      <>
+        <Breadcrumbs
+          title="AGB"
+          items={[{ label: "Home", href: "/" }, { label: "AGB" }]}
+        />
+        <div className="container py-5">
+          <div className="text-center">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <>
+        <Breadcrumbs
+          title="AGB"
+          items={[{ label: "Home", href: "/" }, { label: "AGB" }]}
+        />
+        <div className="container py-5">
+          <div className="alert alert-danger" role="alert">
+            <h4 className="alert-heading">Error loading content</h4>
+            <p>{error}</p>
+            <button 
+              className="btn btn-outline-danger" 
+              onClick={fetchContent}
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <Breadcrumbs
-        title="AGB"
+        title={"AGB"}
         items={[{ label: "Home", href: "/" }, { label: "AGB" }]}
       />
       <div style={{
@@ -13,90 +181,27 @@ export default function AgbTraumafreiPage() {
         position: 'relative',
         paddingTop: '40px',
       }}>
-        <div className="container py-5" >
+        <div className="container py-5">
           <div className="mx-auto" style={{ maxWidth: '100%' }}>
-            <div className="p-4 p-md-5 d-flex flex-column ">
-              <div className="mb-3" style={{ fontSize: '2.5rem', color: '#7a566b' }}>
-                <i className="bi bi-file-earmark-text"></i>
+            <div className="p-4 p-md-5 d-flex flex-column static-page">
+              <div className="mb-3" style={{ fontSize: '2.5rem', color: 'rgb(122, 86, 107)' }}>
+                <i className="bi bi-file-earmark-text" aria-label="Terms and Conditions Icon"></i>
               </div>
-              <h2 className="h5 mb-3" style={{ color: '#7a566b' }}>Allgemeine Geschäftsbedingungen (AGB)</h2>
-              <p>
-                für die Praxis Kerstin R. Stoll, Traumafrei.ch,
-                <br />
-                Anbieterin von Harmonyum Trauma Release®
-                <br />
-                Stand: 25.07.2025
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>1. Allgemeines</h3>
-              <p>
-                Diese AGB gelten für alle Angebote, Buchungen und Leistungen im
-                Rahmen meiner Tätigkeit als Anbieterin von HTR (Harmonyum Trauma
-                Release®) sowie ergänzender energetischer Begleitungen. Mit einer
-                Buchung erklärst du dich mit den folgenden Bedingungen
-                einverstanden.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>2. Angebot &amp; Zielsetzung</h3>
-              <p>
-                HTR ist eine tiefenenergetische Methode zur Harmonisierung des
-                Nervensystems und zur Bearbeitung traumatischer Erfahrungen. Meine
-                Arbeit ersetzt keine ärztliche, psychiatrische oder
-                psychotherapeutische Behandlung. Du bist selbst verantwortlich für
-                deine physische und psychische Gesundheit. Eine laufende
-                medizinische Behandlung sollte nicht abgebrochen werden. Ich behalte
-                mir vor, eine Begleitung abzulehnen oder zu beenden, wenn sie aus
-                fachlicher oder energetischer Sicht nicht stimmig ist.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>3. Terminbuchung</h3>
-              <p>
-                Termine werden über mein Online-Buchungssystem oder individuell per
-                Mail/Telefon vereinbart. Mit deiner Buchung gilt der Termin als
-                verbindlich. Die Bezahlung erfolgt je nach Format im Voraus (bei
-                Paketen) oder direkt vor Ort (bei Einzelsitzungen), sofern nichts
-                anderes vereinbart wurde.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>4. Absagen &amp; Verspätungen</h3>
-              <p>
-                Termine können bis spätestens 24 Stunden vor Beginn kostenfrei
-                storniert oder verschoben werden. Bei kurzfristigeren Absagen oder
-                Nichterscheinen wird der volle Betrag fällig. Ausnahmen sind Unfall
-                und Naturkatastrophen. Eine Behandlung dauert 45 Minuten - Bei
-                Verspätungen bis 10 Minuten findet die Session statt. Längere
-                Verspätungen werden in voller Höhe berechnet und müssen mit einem
-                neuen Termin gebucht werden. Bitte komme daher pünktlich, damit dein
-                Raum der Rückverbindung in Ruhe beginnen kann.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>5. Pakete &amp; Gültigkeit</h3>
-              <p>
-                Pakete (Z.B. 3er, 5er oder 10er) sind nicht übertragbar und
-                innerhalb von 3 Monaten ab Kaufdatum einzulösen. Nicht genutzte
-                Sessions verfallen nach Ablauf der Frist. Eine Rückerstattung ist
-                nicht möglich.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>6. Datenschutz</h3>
-              <p>
-                Alle persönlichen Informationen, die im Rahmen der Begleitung
-                geteilt oder sichtbar werden, unterliegen der absoluten
-                Vertraulichkeit. Ich speichere deine Daten ausschließlich zur
-                Terminverwaltung und internen Dokumentation gemäss geltender
-                Datenschutzbestimmungen.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>7. Haftung</h3>
-              <p>
-                Die Teilnahme an einer HTR-Session erfolgt freiwillig und auf eigene
-                Verantwortung. Ich übernehme keine Haftung für körperliche,
-                psychische oder emotionale Reaktionen, die im Rahmen oder nach der
-                Sitzung auftreten können. Meine Arbeit versteht sich als Einladung
-                zur Rückverbindung – nicht als Heilversprechen.
-              </p>
-              <h3 className="h6 mt-3" style={{ color: '#5c377d' }}>8. Schlussbestimmungen</h3>
-              <p>
-                Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die
-                Gültigkeit der übrigen davon unberührt. Gerichtsstand ist der Sitz
-                der Praxisort.
-              </p>
-              <p className="mt-4 text-end">
-                <small style={{ color: '#7a566b' }}>Danke für dein Vertrauen – und für dein bewusstes JA zu deinem Trauma Release.</small>
-              </p>
+
+
+              {/* Layout content - optimized rendering */}
+              {content.htmlContent && content.htmlContent.length > 0 && (
+                <div className="mb-4">
+                  {content.htmlContent.map((htmlItem, index) => (
+                    <div
+                      key={`content-${index}`}
+                      className="mb-3"
+                      style={{ fontSize: '1.1rem', lineHeight: 1.7 }}
+                      dangerouslySetInnerHTML={{ __html: htmlItem }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

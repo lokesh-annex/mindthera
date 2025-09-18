@@ -9382,6 +9382,11 @@ img {
 .donation-section .btn:hover svg path {
   fill: #fff;
 }
+.donation-section p{
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 24px;
+}
 .id-color-2{
   color: var(--secondary-color) !important;
 }
@@ -9425,6 +9430,53 @@ align-items: center;
 .swiper-inner.two {
   align-items: center;
   display: flex;
+
+}
+.static-page h2{
+color: rgb(122, 86, 107);
+font-size: 1.25rem;
+}
+.static-page h3 {
+  font-size: 1rem;
+  color: rgb(92, 55, 125);
+}
+.work-section ul, .work-section p
+ {
+  padding: 0;
+  font-size: 1.15rem;
+  color: #3d2c4a;
+}
+.work-section p{
+  font-weight: 600;
+}
+.work-section ul li{
+  align-items: flex-start !important;
+  display: flex !important;
+  margin-bottom: 1rem;
+}
+.post-image img {
+  width: 100%;
+  object-fit: cover;
+}
+.events-page .row:nth-child(2) {
+  flex-direction: row-reverse;
+}
+/* .about-image-70 {
+  width: 70% !important;
+  height: auto !important;
+} */
+ .about-home .col-6:nth-child(3) img{
+  margin-top: -50px;
+}
+ .about-home .col-6:nth-child(1) img {
+  width: 70%;
+  margin-left: 30%;
+  margin-top: 50px;
+}
+ .about-home .col-6:nth-child(4) img {
+  width: 70%;
+  margin-right: 30%;
+  margin-top: -27px;
 }
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
@@ -10763,6 +10815,15 @@ display: none;
 .price-sec li {
   flex-wrap: wrap;
 }
+.events-page .row {
+  padding: 20px 0px !important;
+}
+
+ .about-home .col-6:nth-child(1) img {
+  
+  margin-top: 20px;
+}
+
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {

@@ -1,80 +1,106 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import Image from "next/image";
 
-const testimonials = [
-  {
-    name: "ganz ohne",
-    text: "Nach nur einer Sitzung fühlte ich mich, als sei ein tonnenschwerer Druck von mir genommen worden.Ich konnte wieder frei durchatmen. Es war, als hätte mein Körper einen uralten Kampf beendet – ganz ohne Worte.",
-    image: "/images/27.png",
-    role: "Student",
-  },
-  {
-    name: "Rahul Verma",
-    text: "Ich war emotional blockiert, konnte weder Trauer noch Freude richtig fühlen.Nach der dritten HTR-Sitzung kam Bewegung in meine Empfindungen Ich fühlte zum ersten Mal wieder Verbindung – ohne Drama, ohne Wiederholung meiner Geschichte.",
-    image: "/images/28.png",
-    role: "Software Engineer",
-  },
-  {
-    name: "Priya Singh",
-    text: "Ich konnte wochenlang nicht schlafen. Mein Nervensystem war ständig im Alarmzustand. Schon nach zwei HTR-Terminen spürte ich, wie mein Körper nachts zur Ruhe kam. Es war, als hätte mein System endlich ‚Ja‘ zur Entspannung gesagt.",
-     image: "/images/29.png",
-    role: "Artist",
-  },
-  {
-    name: "Sofia Müller",
-    text: "Ich habe den Aufbau der Energie bei jeder Behandlung sehr klar gespürt. HTR gab der Heilung meiner multiplen Fraktur am Wadenbein den entscheidenden Impuls.",
-     image: "/images/30.png",
-    role: "Designer",
-  },
-];
+const API_URL =
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c10a17cb79fffc27944876?depth=2&draft=false&locale=undefined&trash=false`;
+
+const absUrl = (u?: string) =>
+  u?.startsWith("http") ? u : u ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${u}` : "";
+
+const toMediaUrl = (m: any) =>
+  absUrl(m?.sizes?.og?.url || m?.sizes?.large?.url || m?.url || m?.sizes?.thumbnail?.url || "");
+
+const descriptionToHtml = (input: any): string => {
+  if (!input) return "";
+  const root = typeof input === "string" ? { children: [{ children: [{ text: input }]}]} : input?.root || input;
+  return (root.children || [])
+    .map((p: any) =>
+      (p.children || [])
+        .map((c: any) => (c?.type === "linebreak" ? "<br/>" : c?.text || ""))
+        .join("")
+    )
+    .filter(Boolean)
+    .map((t: string) => `<p>${t}</p>`)
+    .join("");
+};
+
+const normalizeFromDoc = (doc: any) => {
+  const layout = doc?.layout || [];
+  const slider = layout.find((b: any) => /slider/i.test(b?.blockType));
+  const slides = (slider?.locales || []).filter((l: any) => l?.locale === "de") || slider?.locales || [];
+  return {
+    title: doc?.title,
+    buttonLabel: doc?.label_text,
+    items: slides.map((s: any) => ({
+      name: "",
+      textHtml: descriptionToHtml(s?.description),
+      image: toMediaUrl(s?.images?.[0]?.image || s?.images?.[0])
+    })).filter((i: any) => i.textHtml || i.image)
+  };
+};
 
 const TestimonialsBottom = () => {
+  const [data, setData] = useState<{ title?: string; buttonLabel?: string; items: any[] }>({
+    title: "Erfahrungsberichte von KundInnen",
+    buttonLabel: "Feedback",
+    items: []
+  });
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(API_URL, { cache: "no-store" });
+        if (!res.ok) return;
+        const json = await res.json();
+        const doc = json?.doc ?? json?.docs?.[0] ?? json;
+        const norm = normalizeFromDoc(doc);
+        if (!cancelled) setData((d) => ({ ...d, ...norm }));
+      } catch {}
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
   return (
     <section className="testimonials-bottom-section">
       <div className="container">
         <div className="testimonials-header">
-        <button
-            className="btn fw-bold mb-3 btn-main px-5 py-3">
-            Feedback
-          </button>
-          <h2 className="testimonials-title">Erfahrungsberichte von KundInnen</h2>
-         
+          <button className="btn fw-bold mb-3 btn-main px-5 py-3">{data.buttonLabel}</button>
+          <h2 className="testimonials-title">{data.title}</h2>
         </div>
         <Swiper
           modules={[Pagination]}
           spaceBetween={32}
           slidesPerView={1}
           pagination={{ clickable: true }}
-          breakpoints={{
-            768: { slidesPerView: 2 },
-            1200: { slidesPerView: 3 },
-          }}
+          breakpoints={{ 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }}
           className="testimonials-cards"
         >
-          {testimonials.map((testimonial, idx) => (
+          {data.items.map((t, idx) => (
             <SwiperSlide key={idx}>
               <div className="testimonial-card">
-                <div className="testimonial-image-wrap">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={200}
-                    height={200}
-                    className="testimonial-image"
-                  />
-                </div>
-                <p className="testimonial-text">{testimonial.text}</p>
+                {t.image && (
+                  <div className="testimonial-image-wrap">
+                    <Image
+                      src={t.image}
+                      alt={t.name || `Testimonial ${idx + 1}`}
+                      width={200}
+                      height={200}
+                      className="testimonial-image"
+                    />
+                  </div>
+                )}
+                <p className="testimonial-text" dangerouslySetInnerHTML={{ __html: t.textHtml }} />
                 <span className="testimonial-index">{`0${idx + 1}`}</span>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-        
-       
       </div>
     </section>
   );

@@ -1,123 +1,141 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-import "bootstrap-icons/font/bootstrap-icons.css";
+const API_URL =
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68ba8bd18b6ef54bfa7a2c50?depth=2&draft=false&trash=false`;
+
 const AboutUS = () => {
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(API_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch data");
+        const json = await res.json();
+        setData(json?.doc ?? json);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-5">
+        <div className="container d-flex align-items-center justify-content-center py-5">
+          <div className="spinner-border text-primary me-2" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  if (error) return <div>Error: {error}</div>;
+  if (!data) return null;
+
+  const absUrl = (u?: string) =>
+    u?.startsWith("http")
+      ? u
+      : u
+      ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${u}`
+      : "";
+
+  // ✅ content block
+  const contentBlock = data.layout?.find((b: any) => b.blockType === "content");
+  const html = contentBlock?.locales?.[0]?.html || "";
+
+  // ✅ media blocks
+  const mediaBlocks =
+    data.layout?.filter((b: any) => b.blockType === "mediaBlock") || [];
+  const images = mediaBlocks.map((b: any) =>
+    absUrl(b.locales?.[0]?.media?.url)
+  );
+
+  // ✅ button blocks (array सपोर्ट किया)
+  const buttonBlocks =
+    data.layout?.filter((b: any) => b.blockType === "buttonBlock") || [];
+
   return (
-    <section className="relative ">
-       <span className="absolute top-15 start-0">
-              <Image
-                src="/images/bg-2-copyright.webp"
-                width={393}
-                height={625}
-                 
-                alt="Background Copyright"
-                priority
-              />
-                </span>
+    <section className="relative about-home">
+      <span className="absolute top-15 start-0">
+        <Image
+          src="/images/bg-2-copyright.webp"
+          width={393}
+          height={625}
+          alt="Background Copyright"
+          priority
+        />
+      </span>
       <div className="leaf-bg">
         <Image
           src="/images/misc/leaf-1.png"
           width={140}
           height={148}
-          className="absolute top-10 end-10  anim-up-down sm-hide"
-          alt=""
+          className="absolute top-10 end-10 anim-up-down sm-hide"
+          alt="Leaf"
         />
       </div>
-      <div className="container ">
+
+      <div className="container">
         <div className="row g-4 gx-5 align-items-center">
-          {/* Left Column */}
+          {/* Left Column: API Images */}
           <div className="col-lg-6">
-            <div className="relative">
-              <div className="row g-4 z-1000">
-                <div className="col-6">
-                  <div className="spacer-single sm-hide"></div>
-                  <Image
-                    src="/images/misc/11.webp"
-                    className="img-fluid rounded-10px mb-4 w-70 ms-30 "
-                    data-wow-delay=".0s"
-                    width={500}
-                    height={500}
-                    alt=""
-                  />
-                  <Image
-                    src="/images/misc/3.webp"
-                    className="img-fluid rounded-10px"
-                    data-wow-delay=".1s"
-                    width={500}
-                    height={500}
-                    alt=""
-                  />
-                </div>
-                <div className="col-6">
-                  <Image
-                    src="/images/misc/10.webp"
-                    className="img-fluid rounded-10px mb-4 "
-                    data-wow-delay=".2s"
-                    width={500}
-                    height={500}
-                    alt=""
-                  />
-                  <Image
-                    src="/images/misc/8.webp"
-                    className="img-fluid rounded-10px w-70 "
-                    data-wow-delay=".3s"
-                    width={500}
-                    height={500}
-                    alt=""
-                  />
-                </div>
-              </div>
+            <div className="row g-4">
+              {images.map(
+                (img: string, idx: number) =>
+                  img && (
+                    <div className="col-6" key={idx}>
+                      <Image
+                        src={img}
+                        className="img-fluid rounded-10px mb-4 about-image-70"
+                        width={500}
+                        height={500}
+                        alt={`Image ${idx + 1}`}
+                      />
+                    </div>
+                  )
+              )}
             </div>
           </div>
 
-          {/* Right Column */}
+          {/* Right Column: Text + HTML + Buttons */}
           <div className="col-lg-6">
-            <div className="subtitle  mb-3">WAS WIR TUN</div>
-            <h2 className="">
-              Hier endet das Verbiegen –
-              <span className="d-block font-italic mt-2 alt-font fw-500 fs-42 id-color-2">
-                und beginnt dein ganzes Sein
-              </span>
-            </h2>
-            <p className="">
-              Diese Methode ist mehr als Entspannung. Sie ist ein sanftes, aber
-              tiefes Zurücksetzen deines Nervensystems – wie ein energetischer
-              Reset auf Zell-ebene.
-            </p>
+            <div className="subtitle mb-3">{data.label_text || ""}</div>
+            <h2>{data.title}</h2>
+            <p>{data.description}</p>
 
-            <div className="row g-4">
-              <div className="col-xl-12">
-                <ul className="ul-style-2 text-dark fw-600">
-                  <li>
-                    Während dein Körper loslässt, entladen sich emotionale und
-                    seelische Spannungen,die oft über Jahre gespeichert wurden –
-                    ohne, dass du sie nochmal durchleben musst.
-                  </li>
-                  <li>
-                    Es ist kein Tun. Es ist ein Geschehen lassen. Ein
-                    Heimkommen. Ich arbeite mit Menschen, die fühlen statt
-                    erklären wollen.
-                  </li>
-                  <li>
-                    Die bereit sind, alte Konstrukte loszulassen – um sich
-                    selbst ein neues Zuhause zu erschaffen.
-                  </li>
-                  <li>
-                    Du musst nicht „besser werden“. Du darfst zurückkehren in
-                    dein ursprüngliches GanzSein.
-                  </li>
-                  <li>
-                    Ich halte den Raum. Für deinen nächsten Bewusstseinsschritt.
-                  </li>
-                </ul>
-              </div>
-            </div>
+            {html && (
+              <div
+                className="ul-style-2 text-dark fw-600"
+                dangerouslySetInnerHTML={{ __html: html }}
+              />
+            )}
 
             <div className="spacer-10"></div>
-            <a className="btn-main " href="">
-              Bist du bereit?
-            </a>
+
+           
+            {buttonBlocks.map((btn: any, idx: number) => {
+              const locale = btn.locales?.[0];
+              if (!locale) return null;
+              return (
+                <Link
+                  key={idx}
+                  className="btn-main me-2"
+                  href={locale.buttonLink || "#"}
+                  target={locale.openInNewTab ? "_blank" : "_self"}
+                  rel={locale.openInNewTab ? "noopener noreferrer" : undefined}
+                >
+                  {locale.buttonText}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
