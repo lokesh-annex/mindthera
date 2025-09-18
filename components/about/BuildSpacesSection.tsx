@@ -5,13 +5,23 @@ import Image from "next/image";
 const API_URL =
   `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c3f1f1bfc21719f3ab805a?depth=2&draft=false&locale=undefined&trash=false`;
 
+// --- Helper to safely join base + path
+const buildUrl = (base: string, path: string) => {
+  if (!base) return path;
+  return `${base.replace(/\/$/, "")}${path}`;
+};
+
+interface MediaImage {
+  url: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+
 interface BuildSpacesData {
   title?: string;
   label_text?: string;
-  image?: {
-    url: string;
-    alt?: string;
-  };
+  image?: MediaImage;
   layout?: Array<{
     blockType: string;
     locales?: Array<{
@@ -19,6 +29,7 @@ interface BuildSpacesData {
       html?: string;
       title?: string;
       htmlContent?: string;
+      media?: MediaImage;
     }>;
   }>;
 }
@@ -36,7 +47,33 @@ const BuildSpacesSection = () => {
         if (response.ok) {
           const result = await response.json();
           console.log("✅ BuildSpaces API Response:", result);
-          setData(result);
+
+          const doc = result?.doc ?? result?.docs?.[0] ?? result;
+
+          // केवल mediaBlock से image
+          const mediaBlock = doc.layout?.find(
+            (block: any) => block.blockType === "mediaBlock"
+          );
+          const media = mediaBlock?.locales?.[0]?.media;
+
+          if (media) {
+            console.log(
+              "🖼 Media URL:",
+              buildUrl(process.env.NEXT_PUBLIC_API_BASE_URL || "", media.url)
+            );
+          }
+
+          setData({
+            ...doc,
+            image: media
+              ? {
+                  url: media.url,
+                  alt: media.alt || "BuildSpaces Image",
+                  width: media.width || 565,
+                  height: media.height || 692,
+                }
+              : undefined,
+          });
         } else {
           console.error("❌ API error:", response.status);
         }
@@ -55,7 +92,10 @@ const BuildSpacesSection = () => {
       <section style={{ background: "#7a566b", padding: "64px 0" }}>
         <div className="container text-center text-white">
           <div className="d-flex align-items-center justify-content-center">
-            <div className="spinner-border spinner-border-sm text-light me-2" role="status">
+            <div
+              className="spinner-border spinner-border-sm text-light me-2"
+              role="status"
+            >
               <span className="visually-hidden">Loading...</span>
             </div>
             <span>Wird geladen...</span>
@@ -86,16 +126,21 @@ const BuildSpacesSection = () => {
               {data?.title}
             </h2>
 
-            {/* image */}
-            <div className="build-portrait">
-              <Image
-                src={data?.image?.url || "/images/image-15.jpg"}
-                width={580}
-                height={250}
-                alt={data?.image?.alt || "Portrait"}
-                className="img-fluid build-portrait-img"
-              />
-            </div>
+            {/* केवल mediaBlock image */}
+            {data?.image && (
+              <div className="build-portrait">
+                <Image
+                  src={buildUrl(
+                    process.env.NEXT_PUBLIC_API_BASE_URL || "",
+                    data.image.url
+                  )}
+                  width={data.image.width || 580}
+                  height={data.image.height || 250}
+                  alt={data.image.alt || "Portrait"}
+                  className="img-fluid build-portrait-img"
+                />
+              </div>
+            )}
           </div>
 
           {/* content from layout[0].locales[0].html */}

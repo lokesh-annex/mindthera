@@ -9382,6 +9382,11 @@ img {
 .donation-section .btn:hover svg path {
   fill: #fff;
 }
+.donation-section p{
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 24px;
+}
 .id-color-2{
   color: var(--secondary-color) !important;
 }

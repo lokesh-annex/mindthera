@@ -31,8 +31,8 @@ function normalizeEvents(doc) {
         title: loc?.title || "",
         html: loc?.htmlContent || "",
         image: absUrl(
-          loc?.image?.sizes?.og?.url ||
-            loc?.image?.sizes?.large?.url ||
+          loc?.image?.url ||
+            loc?.image?.url ||
             loc?.image?.url
         ),
         button1: loc?.button1,

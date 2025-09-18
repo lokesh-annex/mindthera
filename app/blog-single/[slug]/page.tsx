@@ -13,12 +13,17 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
     async function fetchArticle() {
       setLoading(true);
       try {
-       
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/posts?where[slug][equals]=${encodeURIComponent(slug)}&depth=2&draft=false&locale=undefined&trash=false`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/posts?where[slug][equals]=${encodeURIComponent(
+            slug
+          )}&depth=2&draft=false&locale=undefined&trash=false`
         );
         const data = await res.json();
-        const doc = Array.isArray(data?.docs) ? data.docs[0] : (Array.isArray(data) ? data[0] : data);
+        const doc = Array.isArray(data?.docs)
+          ? data.docs[0]
+          : Array.isArray(data)
+          ? data[0]
+          : data;
         setArticle(doc && doc.slug === slug ? doc : null);
       } catch (err) {
         setArticle(null);
@@ -29,33 +34,47 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
     fetchArticle();
   }, [slug]);
 
-  if (loading) return (
-    <div className="container py-5">
-      <div className="text-center">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
+  if (loading)
+    return (
+      <div className="container py-5">
+        <div className="text-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-2 m-0">Lade Artikel...</p>
         </div>
-        <p className="mt-2 m-0">Lade Artikel...</p>
       </div>
-    </div>
-  );
+    );
   if (!article) return notFound();
 
-  // Fields from API
+  // Hero image
   const hero = article.heroImage || article.image;
-  const rawImg = hero?.sizes?.og?.url || hero?.sizes?.large?.url || hero?.url || hero?.sizes?.thumbnail?.url || "";
-  const imageUrl = rawImg ? (rawImg.startsWith("http") ? rawImg : `${process.env.NEXT_PUBLIC_API_BASE_URL}${rawImg}`) : null;
-  const author = article.populatedAuthors?.[0]?.name || "Unknown";
-  const date = new Date(article.publishedAt).toLocaleDateString("de-DE", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+  const rawImg =
+    hero?.url ||
+    hero?.url ||
+    hero?.url ||
+    hero?.url ||
+    "";
+  const imageUrl = rawImg
+    ? rawImg.startsWith("http")
+      ? rawImg
+      : `${process.env.NEXT_PUBLIC_API_BASE_URL}${rawImg}`
+    : null;
+
+  // Author + Date + Locale
+  const author = article.populatedAuthors?.[0]?.name || article.authors?.[0]?.name || "Unknown";
+  const date = article.publishedAt
+    ? new Date(article.publishedAt).toLocaleDateString("de-DE", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
+    : "";
   const locale = article.meta?.locales?.[0]?.locale;
-  const htmlContent =
-    article.content?.root?.children
-      ?.map((block: any) => `<p>${(block.children || []).map((c: any) => c.text || '').join('')}</p>`)
-      .join("") || "";
+
+  // ✅ Content from layout -> content block
+  const contentBlock = article.layout?.find((b: any) => b.blockType === "content");
+  const htmlContent = contentBlock?.locales?.[0]?.html || "";
 
   return (
     <main>
@@ -101,7 +120,7 @@ export default function BlogSinglePage({ params }: { params: { slug: string } })
             <article
               className="blog-content"
               dangerouslySetInnerHTML={{
-                __html: `<p><strong>${article.description}</strong></p>${htmlContent}`,
+                __html: `<p><strong>${article.description || ""}</strong></p>${htmlContent}`,
               }}
             />
           </div>

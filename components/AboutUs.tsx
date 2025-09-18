@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const API_URL =
   `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68ba8bd18b6ef54bfa7a2c50?depth=2&draft=false&trash=false`;
@@ -32,7 +33,6 @@ const AboutUS = () => {
           <div className="spinner-border text-primary me-2" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
-          
         </div>
       </section>
     );
@@ -47,16 +47,20 @@ const AboutUS = () => {
       ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${u}`
       : "";
 
-  // content block with HTML
+  // ✅ content block
   const contentBlock = data.layout?.find((b: any) => b.blockType === "content");
   const html = contentBlock?.locales?.[0]?.html || "";
 
-  // collect media images
+  // ✅ media blocks
   const mediaBlocks =
     data.layout?.filter((b: any) => b.blockType === "mediaBlock") || [];
   const images = mediaBlocks.map((b: any) =>
     absUrl(b.locales?.[0]?.media?.url)
   );
+
+  // ✅ button blocks (array सपोर्ट किया)
+  const buttonBlocks =
+    data.layout?.filter((b: any) => b.blockType === "buttonBlock") || [];
 
   return (
     <section className="relative about-home">
@@ -101,7 +105,7 @@ const AboutUS = () => {
             </div>
           </div>
 
-          {/* Right Column: Text + HTML */}
+          {/* Right Column: Text + HTML + Buttons */}
           <div className="col-lg-6">
             <div className="subtitle mb-3">{data.label_text || ""}</div>
             <h2>{data.title}</h2>
@@ -115,9 +119,23 @@ const AboutUS = () => {
             )}
 
             <div className="spacer-10"></div>
-            <a className="btn-main" href="#">
-              Bist du bereit?
-            </a>
+
+           
+            {buttonBlocks.map((btn: any, idx: number) => {
+              const locale = btn.locales?.[0];
+              if (!locale) return null;
+              return (
+                <Link
+                  key={idx}
+                  className="btn-main me-2"
+                  href={locale.buttonLink || "#"}
+                  target={locale.openInNewTab ? "_blank" : "_self"}
+                  rel={locale.openInNewTab ? "noopener noreferrer" : undefined}
+                >
+                  {locale.buttonText}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

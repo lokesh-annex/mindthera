@@ -25,49 +25,57 @@ const HeroSection = () => {
     fetchData();
   }, []);
 
-
-  // Resolve background image from multiple possible fields
-  const resolveBgImage = (d: any) => {
-    if (!d) return '';
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-    const candidates = [
-      d?.backgroundImage,
-      d?.hero?.backgroundImage,
-      d?.hero?.image,
-      d?.image,
-      d?.image1,
-    ];
-    for (const c of candidates) {
-      if (!c) continue;
-      // consider sizes
-      const possibleUrls = [
-        c?.url,
-        c?.sizes?.large?.url,
-        c?.sizes?.medium?.url,
-        c?.sizes?.small?.url,
-        c?.sizes?.thumbnail?.url,
-      ].filter(Boolean);
-      if (possibleUrls.length) {
-        const u = possibleUrls[0];
-        return u.startsWith('http') ? u : `${baseUrl}${u}`;
-      }
-    }
-    return '';
+  // ✅ layout से buttonBlock निकालना
+  const getButtonBlock = (layout: any[]) => {
+    if (!layout) return null;
+    const block = layout.find((b) => b.blockType === "buttonBlock");
+    if (!block) return null;
+    const btn = block.locales?.[0];
+    return {
+      text: btn?.buttonText || null,
+      url: btn?.buttonUrl || "#",
+      newTab: btn?.openInNewTab || false,
+    };
   };
 
-  const bgimg = resolveBgImage(data);
+  // ✅ layout से mediaBlock निकालना
+  const getMediaBlock = (layout: any[]) => {
+    if (!layout) return "";
+    const block = layout.find((b) => b.blockType === "mediaBlock");
+    const media = block?.locales?.[0]?.media;
+    if (!media) return "";
 
-  const title = data?.title ;
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const possibleUrls = [
+      media?.sizes?.xlarge?.url,
+      media?.sizes?.large?.url,
+      media?.sizes?.medium?.url,
+      media?.sizes?.small?.url,
+      media?.sizes?.thumbnail?.url,
+      media?.url,
+    ].filter(Boolean);
+
+    if (possibleUrls.length) {
+      const u = possibleUrls[0];
+      return u.startsWith("http") ? u : `${baseUrl}${u}`;
+    }
+    return "";
+  };
+
+  const title = data?.title;
   const subtitle = data?.description;
-  const ctaText = data?.button_text  ;
-  const ctaLink = data?.ctaLink;
+  const button = getButtonBlock(data?.layout);
+  const bgimg = getMediaBlock(data?.layout);
 
   return (
     <section className="section-dark text-light hero-section-slider no-top no-bottom position-relative overflow-hidden z-1000">
       {loading && (
         <div className="container py-5">
           <div className="d-flex align-items-center justify-content-center">
-            <div className="spinner-border spinner-border-sm text-light me-2" role="status">
+            <div
+              className="spinner-border spinner-border-sm text-light me-2"
+              role="status"
+            >
               <span className="visually-hidden">Loading...</span>
             </div>
             <p className="m-0 text-light">Lade Hero-Inhalte...</p>
@@ -75,13 +83,17 @@ const HeroSection = () => {
         </div>
       )}
       {error && !loading && (
-        <div className="container py-5 text-danger"><p className="m-0">Error: {error}</p></div>
+        <div className="container py-5 text-danger">
+          <p className="m-0">Error: {error}</p>
+        </div>
       )}
       {!loading && !error && (
         <div
           className="swiper-inner two"
           style={{
-            backgroundImage: bgimg ? `url(${bgimg})` : 'url(/images/slider/2.jpg)',
+            backgroundImage: bgimg
+              ? `url(${bgimg})`
+              : "url(/images/slider/2.jpg)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -99,9 +111,13 @@ const HeroSection = () => {
                       </span>
                     )}
                   </h2>
-                  {ctaText && (
-                    <Link className="btn-main mb10 mb-3" href="/harmonyum">
-                      {ctaText}
+                  {button?.text && (
+                    <Link
+                      className="btn-main mb10 mb-3"
+                      href={button.url}
+                      target={button.newTab ? "_blank" : "_self"}
+                    >
+                      {button.text}
                     </Link>
                   )}
                 </div>

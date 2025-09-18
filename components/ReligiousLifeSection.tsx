@@ -46,14 +46,22 @@ const ReligiousLifeSection = () => {
   if (error) return <p className="text-center text-danger py-5">Error: {error}</p>;
   if (!data) return null;
 
+  // ✅ content block
   const contentBlock = data.layout?.find((b: any) => b.blockType === "content");
   const html = contentBlock?.locales?.[0]?.html || "";
 
+  // ✅ media blocks
   const mediaBlocks =
     data.layout?.filter((b: any) => b.blockType === "mediaBlock") || [];
   const images = mediaBlocks.map((b: any) =>
     absUrl(b.locales?.[0]?.media?.url)
   );
+
+  // ✅ button block
+  const buttonBlock = data.layout?.find((b: any) => b.blockType === "buttonBlock");
+  const buttonText = buttonBlock?.locales?.[0]?.buttonText || "";
+  const buttonLink = buttonBlock?.locales?.[0]?.buttonLink || "#";
+  const openInNewTab = buttonBlock?.locales?.[0]?.openInNewTab || false;
 
   return (
     <section className="py-5 bg-white two-images-section">
@@ -124,12 +132,15 @@ const ReligiousLifeSection = () => {
               />
             )}
 
-            {data.button_text && (
+            {/* ✅ Button from buttonBlock */}
+            {buttonText && (
               <a
                 className="btn btn-main px-4 py-2 fw-bold"
-                href={data.button_link || "#"}
+                href={buttonLink}
+                target={openInNewTab ? "_blank" : "_self"}
+                rel={openInNewTab ? "noopener noreferrer" : undefined}
               >
-                {data.button_text}
+                {buttonText}
               </a>
             )}
           </div>

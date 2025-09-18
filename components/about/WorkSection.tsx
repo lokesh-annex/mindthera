@@ -30,16 +30,23 @@ const WorkSection = () => {
         if (!doc) return;
 
         console.log("Full API response:", json);
-        console.log("Doc object:", doc);
-        console.log("Doc title:", doc.title);
-        console.log("Doc image1:", doc.image1);
-        console.log("Doc layout:", doc.layout);
-        console.log("Doc html:", doc.html);
+
+        // mediaBlock निकालना
+        const mediaBlock = doc.layout?.find(
+          (block: any) => block.blockType === "mediaBlock"
+        );
+        const media = mediaBlock?.locales?.[0]?.media;
 
         const next: PageContent = {
           title: doc.title,
           label_text: doc.label_text,
-          image1: doc.image1
+          image1: media
+            ? {
+                url: media.url,
+                width: media.width || 400,
+                height: media.height || 500,
+              }
+            : doc.image1
             ? {
                 url: doc.image1.url,
                 width: doc.image1.width || 400,
@@ -82,22 +89,24 @@ const WorkSection = () => {
         <div className="row align-items-center justify-content-center">
           {/* Left Image */}
           <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
-            <div
-              style={{
-                maxWidth: 400,
-                borderRadius: "16px",
-                overflow: "hidden",
-                boxShadow: "0 8px 32px rgba(92,55,125,0.12)",
-              }}
-            >
-              <Image
-                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${content.image1?.url}`}
-                width={content.image1?.width || 400}
-                height={content.image1?.height || 500}
-                alt={content.title || "Work Image"}
-                className="img-fluid"
-              />
-            </div>
+            {content.image1 && (
+              <div
+                style={{
+                  maxWidth: 400,
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  boxShadow: "0 8px 32px rgba(92,55,125,0.12)",
+                }}
+              >
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${content.image1.url}`}
+                  width={content.image1.width}
+                  height={content.image1.height}
+                  alt={content.title || "Work Image"}
+                  className="img-fluid"
+                />
+              </div>
+            )}
           </div>
 
           {/* Right Content */}
@@ -120,11 +129,9 @@ const WorkSection = () => {
               </h2>
             )}
 
-            {/* Rich HTML block from Payload */}
+            {/* Rich HTML block */}
             {content.html ? (
-              <div
-                dangerouslySetInnerHTML={{ __html: content.html }}
-              />
+              <div dangerouslySetInnerHTML={{ __html: content.html }} />
             ) : (
               <div
                 className="fw-semibold"
