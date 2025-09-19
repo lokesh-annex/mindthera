@@ -51,10 +51,7 @@ const TestimonialSection = () => {
   // ✅ Use square size if available, else main url
   const media = data?.mediaImage;
   const imageUrl = media
-    ? buildUrl(
-        process.env.NEXT_PUBLIC_API_BASE_URL || '',
-        media?.sizes?.square?.url || media?.url
-      )
+    ? (media?.sizes?.square?.url || media?.url)
     : '';
 
   return (

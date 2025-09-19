@@ -57,10 +57,7 @@ const BuildSpacesSection = () => {
           const media = mediaBlock?.locales?.[0]?.media;
 
           if (media) {
-            console.log(
-              "🖼 Media URL:",
-              buildUrl(process.env.NEXT_PUBLIC_API_BASE_URL || "", media.url)
-            );
+            console.log("🖼 Media URL:", media.url);
           }
 
           setData({
@@ -130,10 +127,7 @@ const BuildSpacesSection = () => {
             {data?.image && (
               <div className="build-portrait">
                 <Image
-                  src={buildUrl(
-                    process.env.NEXT_PUBLIC_API_BASE_URL || "",
-                    data.image.url
-                  )}
+                  src={data.image.url}
                   width={data.image.width || 580}
                   height={data.image.height || 250}
                   alt={data.image.alt || "Portrait"}
