@@ -99,7 +99,7 @@ const WorkSection = () => {
                 }}
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${content.image1.url}`}
+                  src={`${content.image1.url}`}
                   width={content.image1.width}
                   height={content.image1.height}
                   alt={content.title || "Work Image"}
