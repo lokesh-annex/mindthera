@@ -18,11 +18,13 @@ interface PageContent {
 
 const WorkSection = () => {
   const [content, setContent] = useState<PageContent>({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
+        setLoading(true);
         const res = await fetch(API_URL, { cache: "no-store" });
         if (!res.ok) return;
         const json = await res.json();
@@ -65,6 +67,8 @@ const WorkSection = () => {
         if (!cancelled) setContent(next);
       } catch (err) {
         console.error(err);
+      } finally {
+        if (!cancelled) setLoading(false);
       }
     })();
     return () => {
@@ -130,19 +134,18 @@ const WorkSection = () => {
             )}
 
             {/* Rich HTML block */}
-            {content.html ? (
+            {loading ? (
+              <div className="d-flex align-items-center">
+                <div className="spinner-border text-primary me-3" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+                <p className="m-0 fs-5">Lade Inhalte...</p>
+              </div>
+            ) : content.html ? (
               <div dangerouslySetInnerHTML={{ __html: content.html }} />
             ) : (
-              <div
-                className="fw-semibold"
-                style={{
-                  fontSize: "1.15rem",
-                  color: "#3d2c4a",
-                  marginBottom: "1rem",
-                }}
-              >
-                <p>Content is loading from API...</p>
-                <small>Debug: No HTML content found in API response</small>
+              <div className="text-muted">
+                <p className="m-0">Keine Inhalte verfügbar.</p>
               </div>
             )}
           </div>
