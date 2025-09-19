@@ -25,7 +25,7 @@ function normalizeOffer(doc: any) {
         desc: entry.subtitle || "",
         slug: entry.title ? normalizeSlug(entry.title) : "",
         image: entry.image?.url
-          ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${entry.image.url}`
+          ? `${entry.image.url}`
           : "/images/misc/placeholder.jpg",
       });
     }
