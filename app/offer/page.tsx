@@ -36,18 +36,25 @@ function normalizeOffer(doc: any) {
 
 const OfferPage = () => {
   const [tabData, setTabData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   React.useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         const res = await fetch(API_URL, { cache: "no-store" });
-        if (!res.ok) return;
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         const doc = json?.doc ?? json?.docs?.[0] ?? json;
-        if (!doc) return;
+        if (!doc) throw new Error("No data found");
         const normalized = normalizeOffer(doc);
         setTabData(normalized);
-      } catch {}
+      } catch (err: any) {
+        setError(err.message || "Failed to load data");
+      } finally {
+        setLoading(false);
+      }
     })();
   }, []);
 
@@ -69,8 +76,31 @@ const OfferPage = () => {
                                    />
                                      </span>
         <div className="container">
-       
-          {tabData.map((tab, idx) => (
+          {loading && (
+            <div className="row justify-content-center py-5">
+              <div className="col-12 text-center">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="spinner-border text-primary me-3" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  <p className="m-0 fs-5">Lade Angebote...</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {error && !loading && (
+            <div className="row justify-content-center py-5">
+              <div className="col-md-8 text-center">
+                <div className="alert alert-danger" role="alert">
+                  <h4 className="alert-heading">Fehler beim Laden</h4>
+                  <p className="mb-0">Die Angebote konnten nicht geladen werden: {error}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {!loading && !error && tabData.map((tab, idx) => (
             <div key={tab.label} >
               <div className="row mb-4 mt-3">
                 <div className="col-lg-12 mb-4 mt-3">
@@ -97,7 +127,6 @@ const OfferPage = () => {
               </div>
             </div>
           ))}
-        
         </div>
       </section>
 
