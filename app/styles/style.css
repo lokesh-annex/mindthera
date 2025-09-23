@@ -9478,6 +9478,10 @@ font-size: 1.25rem;
   margin-right: 30%;
   margin-top: -27px;
 }
+.statice-trauma-section p{
+  font-size: 1.14rem;
+ color: var(--title-font-color);
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;
