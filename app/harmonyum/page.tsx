@@ -500,7 +500,7 @@ export default function HarmonyumPage() {
     // Special styling for trauma-related sections
     if (block.title.includes("Was ist ein Trauma") || block.title.includes("Beispiele für ein Trauma") || block.title.includes("Für wen ist HTR geeignet?") || block.title.includes("Für wen ist HTR geeignet?")  || block.title.includes("Ablauf der Behandlung") ) {
       return (
-        <section key={block.id} className="py-3 position-relative static">
+        <section key={block.id} className="py-3 position-relative static-content-sec">
           <span className="position-absolute top-20 start-0">
             <Image
               src="/images/bg-2-copyright.webp"
@@ -540,9 +540,9 @@ export default function HarmonyumPage() {
 
     // Default text content layout
     return (
-      <section key={block.id} className="py-4">
+      <div key={block.id}>
         
-      </section>
+      </div>
     );
   };
 

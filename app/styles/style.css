@@ -9478,10 +9478,70 @@ font-size: 1.25rem;
   margin-right: 30%;
   margin-top: -27px;
 }
-.statice-trauma-section p{
+.statice-trauma-section p,
+.static-content-sec p{
   font-size: 1.14rem;
  color: var(--title-font-color);
 }
+.static-content-sec ul,.application-areas ul {
+  padding-left: 22px;
+  list-style: none;
+}
+.static-content-sec ul li,.application-areas ul li {
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  color:var(--primary-color);
+  position: relative;
+
+}
+.babyflyer-sec h4{
+  font-size: 1.45rem;
+  color: rgb(92, 55, 125);
+  margin-top: 20px;
+}
+.babyflyer-sec ul{
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+.babyflyer-sec ul li{
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+
+}
+.static-content-sec ul li::after{
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-size: 1.15rem;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -.125em;
+ left: -26px;
+  position: absolute;
+  margin-right: 8px;
+  content: "\f625";
+  top: 7px;
+}
+.application-areas ul li::after {
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-size: 1.38rem;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  left: -26px;
+  position: absolute;
+  margin-right: 8px;
+  content: "\f26e";
+  top: 4px;
+}
+
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;
@@ -10827,7 +10887,16 @@ display: none;
   
   margin-top: 20px;
 }
-
+.py-6.application-areas,
+.py-4.why-does-trauma {
+  padding-bottom: 0 !important;
+}
+.harmonyum-hero-overlay {
+  background: linear-gradient(40deg, rgba(26, 26, 26, 0.37) 100%, rgba(36, 34, 38, 0.85) 100%);
+}
+ #menu-btn {
+    margin-left: 0px;
+  }
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {

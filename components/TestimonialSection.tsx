@@ -47,7 +47,7 @@ const TestimonialSection = () => {
   const title = data?.title || '';
   const name = data?.label_text || '';
   const quote = data?.quote || '';
-
+  const labelText = data?.description || '';
   // ✅ Use square size if available, else main url
   const media = data?.mediaImage;
   const imageUrl = media
@@ -95,7 +95,7 @@ const TestimonialSection = () => {
               )}
 
               {name && <h5 className="mt-3 mb-0">{name}</h5>}
-              <p className="small mb-2">CEO</p>
+              <p className="small mb-2">{labelText}</p>
             </div>
 
             <div className="col-lg-8 col-sm-8">

@@ -38,7 +38,9 @@ const LatestArticles = () => {
 
   if (!articles.length) return <section className="blog-page-homepage pt-lg-7 bg-white text-dark"><div className="container"><p>Keine Artikel gefunden.</p></div></section>;
 
-  const [main, ...rest] = articles;
+  // Limit to maximum 4 latest blogs
+  const limitedArticles = articles.slice(0, 4);
+  const [main, ...rest] = limitedArticles;
   const sidebar = rest.slice(0, 3);
   const mainDate = main?.publishedAt ? new Date(main.publishedAt) : null;
   const mainDay = mainDate ? mainDate.toLocaleDateString('de-DE', { day: '2-digit' }) : '';

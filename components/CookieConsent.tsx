@@ -38,7 +38,7 @@ const CookieConsent = () => {
                   <a 
                     href="/datenschutz" 
                     className="text-decoration-none ms-2"
-                    style={{ color: "#bf94e5" }}
+                    style={{ color: "rgb(221, 190, 249)" }}
                   >
                     Mehr erfahren
                   </a>
@@ -57,8 +57,8 @@ const CookieConsent = () => {
                   onClick={acceptCookies}
                   className="btn btn-light btn-sm px-3 fw-semibold"
                   style={{ 
-                    background: "#bf94e5", 
-                    borderColor: "#bf94e5",
+                    background: "#5c377d", 
+                    borderColor: "rgb(81, 15, 138)",
                     color: "#fff" 
                   }}
                 >
@@ -115,10 +115,7 @@ const CookieConsent = () => {
           }
         }
 
-        .btn-outline-light:hover {
-          background-color: rgba(255, 255, 255, 0.1);
-          border-color: rgba(255, 255, 255, 0.3);
-        }
+      
       `}</style>
     </div>
   );
