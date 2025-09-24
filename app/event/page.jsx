@@ -29,6 +29,7 @@ function normalizeEvents(doc) {
       if (!loc) return null;
       return {
         title: loc?.title || "",
+        subtitle: loc?.subtitle || "",
         html: loc?.htmlContent || "",
         image: absUrl(
           loc?.image?.url ||
@@ -113,9 +114,10 @@ export default function EventPage() {
                   </div>
                 )}
                 <div className={`col-md-${event.image ? 7 : 12}`}>
-                  <h3 className="fw-bold mb-3 text-primary" style={{ fontSize: "1.5rem" }}>
+                  <h3 className="fw-bold mb-2 text-primary" style={{ fontSize: "1.5rem" }}>
                     {event.title}
                   </h3>
+               
                   {event.html && (
                     <div
                       className="mb-3"
@@ -130,7 +132,13 @@ export default function EventPage() {
                     {event.button2 && (
                       <button className="btn-main mb-2">{event.button2}</button>
                     )}
+
                   </div>
+   {event.subtitle && (
+                    <p className="fw-semibold mb-3 text-secondary" style={{ fontSize: "1.1rem" }}>
+                      {event.subtitle}
+                    </p>
+                  )}
                 </div>
               </div>
             ))
