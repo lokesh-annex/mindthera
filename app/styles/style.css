@@ -9541,7 +9541,14 @@ font-size: 1.25rem;
   content: "\f26e";
   top: 4px;
 }
-
+.about-part-3 ul li{
+	font-size: 1.08rem;
+  margin-bottom: 10px;
+  color: var(--title-font-color);
+}
+.about-part-3 ul {
+  padding-left: 20px;
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;

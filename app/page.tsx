@@ -42,7 +42,7 @@ const audioRef = useRef<HTMLAudioElement | null>(null);
   }, []);
   return (
     <>
-    <audio ref={audioRef} src="/music/bg-music.mp3" loop preload="auto" />
+    {/* <audio ref={audioRef} src="/music/bg-music.mp3" loop preload="auto" /> */}
 
    
      
