@@ -68,13 +68,18 @@ const DonationSection = () => {
   }, []);
 
   const handleAmountClick = (val: string) => setAmount(Number(val));
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setAmount(Number(e.target.value));
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setAmount(value === '' ? 0 : Number(value));
+  };
   const handleCustomAmountClick = () => {
     const input = document.querySelector('.top_sec_donate') as HTMLInputElement;
     if (input) {
+      setAmount(0); // Clear the amount first
       input.focus();
-      input.select();
+      setTimeout(() => {
+        input.select();
+      }, 10);
     }
   };
   const handleSubmit = (e: React.FormEvent) => {
@@ -143,8 +148,8 @@ const DonationSection = () => {
                 <input
                   type="number"
                   className="form-control top_sec_donate"
-                  placeholder="10"
-                  value={amount}
+                  placeholder=""
+                  value={amount || ''}
                   style={{ height: "33px", fontSize: "1.1rem", fontWeight: 500, borderLeft: "none", outline: "none", boxShadow: "none", border: "none" }}
                   onChange={handleInputChange}
                   min="1"
