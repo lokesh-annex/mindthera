@@ -62,7 +62,7 @@ const QualificationsSection = () => {
   }
 
   return (
-    <div className="container mt-5 mb-5">
+    <div className="container about-part-3 mt-5 mb-5">
       <div className="row mt-2 g-4">
         {/* Left Column = Qualifications */}
         <div className="col-lg-6 fade-in" style={{ animationDelay: "0.9s" }}>
@@ -104,6 +104,7 @@ const QualificationsSection = () => {
             <h4 className="fw-bold mb-3 text-primary">
               <span className="d-inline-flex gap-2 align-items-center flex-wrap">
               <span
+              
                   style={{
                     background: "#5c377d",
                     color: "#fff",
@@ -119,7 +120,8 @@ const QualificationsSection = () => {
                     className="bi bi-book"
                     style={{ fontSize: "1.5rem" }}
                   ></i>
-                </span><span>{data?.layout?.[1]?.locales?.[0]?.title}</span>  </span>
+                </span>
+                <span>{data?.layout?.[1]?.locales?.[0]?.title}</span>  </span>
             </h4>
             {data?.layout?.[1]?.locales?.[0]?.htmlContent && (
               <div

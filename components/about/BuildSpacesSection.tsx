@@ -86,7 +86,7 @@ const BuildSpacesSection = () => {
 
   if (loading) {
     return (
-      <section style={{ background: "#7a566b", padding: "64px 0" }}>
+      <section style={{ background: "rgb(247, 245, 250)", padding: "64px 0" }}>
         <div className="container text-center text-white">
           <div className="d-flex align-items-center justify-content-center">
             <div
@@ -103,14 +103,14 @@ const BuildSpacesSection = () => {
   }
 
   return (
-    <section style={{ background: "#7a566b", padding: "64px 0" }}>
+    <section style={{ background: "rgb(247, 245, 250)", padding: "64px 0" }}>
       <div className="container">
         <div className="row align-items-center justify-content-center">
           <div className="col-lg-6 mb-4 mb-lg-0">
             {/* label_text */}
             <div
               className="text-uppercase fw-bold mb-3"
-              style={{ color: "#fff", letterSpacing: 1 }}
+              style={{ color: "rgb(92, 55, 125)", letterSpacing: 1 }}
             >
               {data?.label_text}
             </div>
@@ -118,7 +118,7 @@ const BuildSpacesSection = () => {
             {/* title */}
             <h2
               className="fw-bold mb-4"
-              style={{ color: "#fff", fontSize: "2.8rem", lineHeight: 1.1 }}
+              style={{ color: "rgb(92, 55, 125)", fontSize: "2.8rem", lineHeight: 1.1 }}
             >
               {data?.title}
             </h2>
@@ -141,7 +141,7 @@ const BuildSpacesSection = () => {
           <div className="col-lg-6">
             {data?.layout?.[0]?.locales?.[0]?.html && (
               <div
-                style={{ color: "#e2dbe2", fontSize: "1.15rem", maxWidth: 600 }}
+                style={{ color: "#202020", fontSize: "1.15rem", maxWidth: 600 }}
                 dangerouslySetInnerHTML={{
                   __html: data.layout[0].locales[0].html,
                 }}
@@ -154,10 +154,14 @@ const BuildSpacesSection = () => {
         {data?.layout?.[1]?.locales?.[0]?.htmlContent && (
           <div
             className="mt-4 mb-3 text-center"
-            dangerouslySetInnerHTML={{
+           
+          >
+            <div style={{ color: "#202020", fontSize: "1.15rem", background: "rgb(243, 239, 249)", padding: "30px 10px", borderRadius: "12px" }}>
+            <div className=""  dangerouslySetInnerHTML={{
               __html: data.layout[1].locales[0].htmlContent,
-            }}
-          />
+            }}/>
+            </div>
+            </div>
         )}
       </div>
     </section>
