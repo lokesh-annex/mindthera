@@ -14,6 +14,22 @@ type Offer = {
   buttonUrl?: string;
   buttonStyle?: string;
   hasButton?: boolean;
+  additionalSections?: Array<{
+    title: string;
+    description: string;
+    benefits: string[];
+    blockName: string;
+    content?: string;
+    image?: string;
+    keyValuePairs?: Array<{
+      key: string;
+      value: string;
+      id: string;
+    }>;
+    showButton?: boolean;
+    buttonText?: string;
+    buttonUrl?: string;
+  }>;
 };
 
 const API_URL =
@@ -59,19 +75,30 @@ async function getOfferBySlug(slug: string): Promise<Offer | null> {
       console.log(`Comparing: "${generatedSlug}" === "${normalizeSlug(slug)}"`);
       
       if (generatedSlug === normalizeSlug(slug)) {
-        // description निकालना (richTextBlock)
+        // description निकालना - debug all content blocks first
+        console.log("All content blocks:", entry.content);
+        
         let description = "";
-        const richTextBlock = entry.content?.find((c: any) => c.blockType === "richTextBlock");
-        if (richTextBlock?.content?.root?.children) {
-          description = richTextBlock.content.root.children
-            .map((c: any) =>
-              (c.children || [])
-                .map((cc: any) => cc.text || "")
-                .join(" ")
-            )
-            .join("\n")
-            .trim();
+        
+        // Try multiple approaches to find description
+        const ckEditorBlock = entry.content?.find((c: any) => 
+          c.blockType === "ckEditorBlock" && c.blockName === "image-content"
+        );
+        
+        if (ckEditorBlock?.content) {
+          console.log("Found ckEditorBlock:", ckEditorBlock);
+          // Keep HTML formatting for proper display
+          description = ckEditorBlock.content.trim();
+        } else {
+          // Fallback: try any ckEditorBlock
+          const anyCtEditorBlock = entry.content?.find((c: any) => c.blockType === "ckEditorBlock");
+          if (anyCtEditorBlock?.content) {
+            console.log("Using fallback ckEditorBlock:", anyCtEditorBlock);
+            description = anyCtEditorBlock.content.trim();
+          }
         }
+        
+        console.log("Extracted description:", description);
 
         // image निकालना (imageBlock)
         let image = "/images/misc/placeholder.jpg";
@@ -93,26 +120,83 @@ async function getOfferBySlug(slug: string): Promise<Offer | null> {
           buttonStyle = buttonBlock.style || "";
         }
 
-        // locales[1] से benefits निकालना
-        let benefits: string[] = [];
+        // सभी textContentContentBlock और contentShowcaseContentBlock को additionalSections में add करना
+        let benefits: string[] = []; // Empty for compatibility
         let benefitsTitle = "";
         let benefitsSubtitle = "";
-        const secondLocale = block?.locales?.[1];
-        if (secondLocale?.content) {
-          benefitsTitle = secondLocale.title || "";
-          benefitsSubtitle = secondLocale.subtitle || "";
-          const benefitsRichText = secondLocale.content?.find((c: any) => c.blockType === "richTextBlock");
-          if (benefitsRichText?.content?.root?.children) {
-            benefits = benefitsRichText.content.root.children
-              .map((c: any) => 
-                (c.children || [])
-                  .map((cc: any) => cc.text || "")
-                  .join(" ")
+        let additionalSections: any[] = [];
+        
+        // Find all textContentContentBlock blocks
+        const textContentBlocks = entry.content?.filter((c: any) => 
+          c.blockType === "textContentContentBlock"
+        ) || [];
+        
+        // Find all contentShowcaseContentBlock blocks
+        const contentShowcaseBlocks = entry.content?.filter((c: any) => 
+          c.blockType === "contentShowcaseContentBlock"
+        ) || [];
+        
+        console.log("Found textContentContentBlocks:", textContentBlocks);
+        console.log("Found contentShowcaseContentBlocks:", contentShowcaseBlocks);
+        
+        // Process each textContentContentBlock and add to additionalSections
+        textContentBlocks.forEach((block: any, index: number) => {
+          console.log(`Processing textContentBlock ${index}:`, block);
+          
+          const sectionBenefits: string[] = [];
+          if (block.content) {
+            const htmlContent = block.content;
+            const liMatches = htmlContent.match(/<li[^>]*>(.*?)<\/li>/g);
+            if (liMatches) {
+              sectionBenefits.push(...liMatches.map((li: string) => 
+                li.replace(/<[^>]*>/g, '')
+                  .replace(/&amp;/g, '&')
                   .trim()
-              )
-              .filter((text: string) => text.length > 0);
+              ).filter((text: string) => text.length > 0));
+            }
           }
-        }
+          
+          additionalSections.push({
+            title: block.title?.trim() || "",
+            description: block.description?.trim() || "",
+            benefits: sectionBenefits,
+            blockName: block.blockName || "",
+            content: block.content || "",
+            showButton: block.showButton || false,
+            buttonText: block.buttonText?.trim() || "",
+            buttonUrl: block.buttonUrl || ""
+          });
+        });
+
+        // Process each contentShowcaseContentBlock and add to additionalSections
+        contentShowcaseBlocks.forEach((block: any, index: number) => {
+          console.log(`Processing contentShowcaseBlock ${index}:`, block);
+          
+          const sectionBenefits: string[] = [];
+          if (block.content) {
+            const htmlContent = block.content;
+            const liMatches = htmlContent.match(/<li[^>]*>(.*?)<\/li>/g);
+            if (liMatches) {
+              sectionBenefits.push(...liMatches.map((li: string) => 
+                li.replace(/<[^>]*>/g, '')
+                  .replace(/&amp;/g, '&')
+                  .trim()
+              ).filter((text: string) => text.length > 0));
+            }
+          }
+          
+          additionalSections.push({
+            title: block.title?.trim() || "",
+            description: block.description?.trim() || "",
+            benefits: sectionBenefits,
+            blockName: block.blockName || "",
+            content: block.content || "",
+            image: block.image?.url || "",
+            keyValuePairs: block.keyValuePairs || []
+          });
+        });
+        
+        console.log("All sections added to additionalSections:", additionalSections);
 
         found = {
           title: entry.title || "",
@@ -126,6 +210,7 @@ async function getOfferBySlug(slug: string): Promise<Offer | null> {
           buttonUrl: buttonUrl,
           buttonStyle: buttonStyle,
           hasButton: hasButton,
+          additionalSections: additionalSections,
         };
         console.log("Found matching offer:", found);
         break;
@@ -220,9 +305,13 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
             <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
               {offer.subtitle}
             </h4>
-            <p className="mt-3 text-right">
-              {offer.description}
-            </p>
+            <div className="mt-3 text-right">
+              {offer.description ? (
+                <div dangerouslySetInnerHTML={{ __html: offer.description }} />
+              ) : (
+                <p>Description coming soon...</p>
+              )}
+            </div>
             {offer.hasButton && offer.buttonText && (
               <div className="d-flex gap-3 mt-4">
                 <a 
@@ -237,39 +326,161 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
         </div>
       </div>
 
-      {/* Benefits Section - locales[1] data */}
-      {offer.benefits && offer.benefits.length > 0 && (
-        <section className="py-5 session-sec-bg-fe">
-          <div className="container">
-            <div className="row justify-content-center mb-4">
-              <div className="col-lg-12 text-center">
-                <h2 className="fw-bold mb-3" style={{ color: "#5C377D", fontSize: "2.1rem", letterSpacing: "1px" }}>
-                  {offer.benefitsTitle.replace(":", "")}
+      {/* All textContentContentBlock & contentShowcaseContentBlock Sections */}
+      
+      {/* First render all sections EXCEPT Hinweis */}
+      {offer.additionalSections && offer.additionalSections
+        .filter(section => section.blockName !== "Hinweis")
+        .map((section, sectionIndex) => {
+        // Special rendering for SessionPreise blockName
+        if (section.blockName === "SessionPreise") {
+          return (
+            <section key={sectionIndex} className="pt-0 pb-8 price-sec">
+              <div className="container" style={{ position: "relative", zIndex: 2 }}>
+                <div className="new-session-box">
+                  <div className="row">
+                    <div className="col-lg-5 col-md-12">
+                      <div className="flex-1 d-flex flex-column justify-content-center align-items-center">
+                        <Image 
+                          src={section.image || "/images/services/session-img.png"} 
+                          alt="Session Booking" 
+                          width={400}
+                          height={300}
+                          className="w-100 max-w-xs rounded-lg shadow-md"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-7 col-md-12">
+                      <div className="p-4 flex-1 d-flex flex-column justify-content-center">
+                        <h2 className="h2 fw-bold text-dark mb-4 text-left w-100">
+                          {section.title}:
+                        </h2>
+                        <ul className="fs-5 text-dark mb-0 w-100 list-unstyled">
+                          {section.keyValuePairs && section.keyValuePairs.map((item: any, index: number) => (
+                            <li key={item.id || index} className="mb-3 d-flex align-items-center gap-3">
+                              <i className="bi bi-calendar4-range" style={{ fontSize: "0.8rem", color: "#000" }}></i>
+                              <strong>{item.key}:</strong> {item.value}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Special rendering for sessionAb blockName
+        if (section.blockName === "sessionAb") {
+          return (
+            <section key={sectionIndex} className="py-10 session-sec-bg position-relative text-dark" style={{ fontSize: "1.15rem", lineHeight: "1.7" }}>
+              <span className="position-absolute top-20 start-0">
+                <Image src="/images/bg-2-copyright.webp" width={393} height={625} alt="Background Copyright" />
+              </span>
+              <div className="container mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#143774" }}>
+                  {section.title.replace(":", "")}
                 </h2>
-                {offer.benefitsSubtitle && (
-                  <p className="lead" style={{ color: "#3D2C4A", fontWeight: "500" }}>
-                    {offer.benefitsSubtitle}
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="row justify-content-center">
-              <div className="col-lg-12">
-                <ul className="list-unstyled" style={{ fontSize: "1.18rem", color: "#2D1A3A", fontWeight: "500" }}>
-                  {offer.benefits.map((benefit, index) => (
-                    <li key={index} className="mb-4 d-flex align-items-start">
-                      <span style={{ color: "#7A566B", fontSize: "1.7rem", marginRight: "16px", marginTop: "2px" }}>
-                        <i className="bi bi-stars"></i>
+                <div className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                  {section.content ? (
+                    <div dangerouslySetInnerHTML={{ 
+                      __html: section.content
+                        .replace(/<ul[^>]*>[\s\S]*?<\/ul>/g, '') // Remove ul lists as they're handled separately
+                        .replace(/<li[^>]*>[\s\S]*?<\/li>/g, '') // Remove any remaining li items
+                        .trim()
+                    }} />
+                  ) : (
+                    <p>Content coming soon...</p>
+                  )}
+                </div>
+                <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-6">
+                  {section.benefits.map((benefit, index) => (
+                    <div key={index} className="d-flex align-items-center gap-3">
+                      <span className="d-inline-flex align-items-center justify-content-center w-14 h-14 rounded-lg bg-gray-800 text-white">
+                        <i className="bi bi-x-diamond" style={{ fontSize: "1.5rem", color: "#7A566B" }}></i>
                       </span>
-                      {benefit}
-                    </li>
+                      <span className="text-left text-lg text-gray-800">
+                        {benefit}
+                      </span>
+                    </div>
                   ))}
-                </ul>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Default rendering for other blocks
+        return (
+          section.benefits && section.benefits.length > 0 && (
+            <section key={sectionIndex} className="py-5 session-sec-bg-fe">
+              <div className="container">
+                <div className="row justify-content-center mb-4">
+                  <div className="col-lg-12 text-center">
+                    <h2 className="fw-bold mb-3" style={{ color: "#5C377D", fontSize: "2.1rem", letterSpacing: "1px" }}>
+                      {section.title.replace(":", "")}
+                    </h2>
+                    {section.description && (
+                      <p className="lead" style={{ color: "#3D2C4A", fontWeight: "500" }}>
+                        {section.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="row justify-content-center">
+                  <div className="col-lg-12">
+                    <ul className="list-unstyled" style={{ fontSize: "1.18rem", color: "#2D1A3A", fontWeight: "500" }}>
+                      {section.benefits.map((benefit, index) => (
+                        <li key={index} className="mb-4 d-flex align-items-start">
+                          <span style={{ color: "#7A566B", fontSize: "1.7rem", marginRight: "16px", marginTop: "2px" }}>
+                            <i className="bi bi-stars"></i>
+                          </span>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )
+        );
+      })}
+
+      {/* Finally render Hinweis (Stimmen aus den Sessions) at the very end */}
+      {offer.additionalSections && offer.additionalSections
+        .filter(section => section.blockName === "Hinweis")
+        .map((section, sectionIndex) => (
+          <section key={`hinweis-${sectionIndex}`} className="py-8 bg-light stimmen-sec">
+            <div className="container">
+              <div className="row align-items-center justify-content-center">
+                <div className="col-lg-12">
+                  <h2 className="fw-bold mb-3" style={{ color: "#2D1A3A", fontSize: "1.7rem", letterSpacing: "1px" }}>
+                    {section.title}
+                  </h2>
+                  <div className="mb-3" style={{ fontSize: "1.15rem", color: "#5C377D", fontWeight: "500" }}>
+                    {section.content && (
+                      <div dangerouslySetInnerHTML={{ 
+                        __html: section.content
+                          .replace(/<blockquote>/g, '<blockquote class="mb-2" style="border-left: 4px solid #7A566B; padding-left: 16px; margin-bottom: 12px;">')
+                      }} />
+                    )}
+                  </div>
+                  {section.showButton && section.buttonText && (
+                    <div className="mt-4">
+                      <a href={section.buttonUrl || "/contact"} className="btn btn-main px-4 py-2 fw-bold mb-2">
+                        {section.buttonText}
+                        <i className="bi bi-arrow-right"></i>
+                      </a>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        ))}
     </>
   );
 };
