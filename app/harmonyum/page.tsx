@@ -19,6 +19,7 @@ interface ImageData {
 interface ContentShowcaseBlock {
   id: string;
   blockType: "contentShowcase";
+  blockName?: string;
   title: string;
   description?: string;
   content?: {
@@ -35,6 +36,7 @@ interface ContentShowcaseBlock {
 interface TextContentBlock {
   id: string;
   blockType: "textContent";
+  blockName?: string;
   title: string;
   description?: string;
   content?: {
@@ -124,7 +126,7 @@ export default function HarmonyumPage() {
 
   const renderContentShowcase = (block: ContentShowcaseBlock) => {
     // Special handling for different sections
-    if (block.title.includes("Anwendungsbereiche")) {
+    if (block.blockName === "Anwendungsbereiche") {
       return (
         <section key={block.id} className="py-6 application-areas position-relative pb-5 two-sec">
           <span className="position-absolute top-20 start-0">
@@ -171,7 +173,7 @@ export default function HarmonyumPage() {
       );
     }
 
-    if (block.title.includes("Warum bleibt Trauma")) {
+    if (block.blockName === "Warum bleibt Trauma") {
       return (
         <section key={block.id} className="py-4 why-does-trauma position-relative">
           <span className="position-absolute top-20 end-0">
@@ -220,7 +222,7 @@ export default function HarmonyumPage() {
     }
 
     // Special handling for baby section
-    if (block.title.includes("Sanfte Hilfe für dein Baby")) {
+    if (block.blockName === "Sanfte-Hilfe-fur-dein-baby") {
       return (
         <section key={block.id} className="pt-8 babyflyer-sec bg-light position-relative">
           <span className="d-none d-lg-block position-absolute top-0 end-0">
@@ -384,7 +386,7 @@ export default function HarmonyumPage() {
     }
 
     // Special handling for Kontakt & Buchung section
-    if (block.title.includes("Kontakt & Buchung")) {
+    if (block.blockName === "Kontakt-Buchung") {
       return (
         <section key={block.id} className="pt-7 kontakt-buchung position-relative">
           <span className="d-lg-block position-absolute top-10 start-0">
@@ -449,7 +451,7 @@ export default function HarmonyumPage() {
     }
 
     // Special handling for HTR Zertifikat section
-    if (block.title.includes("HTR Zertifikat")) {
+    if (block.blockName === "HTR Zertifikat") {
       return (
         <section key={block.id} className="pt-8 bg-light position-relative">
           <span className="d-none d-lg-block position-absolute top-10 end-0">
@@ -498,7 +500,7 @@ export default function HarmonyumPage() {
 
   const renderTextContent = (block: TextContentBlock) => {
     // Special styling for trauma-related sections
-    if (block.title.includes("Was ist ein Trauma") || block.title.includes("Beispiele für ein Trauma") || block.title.includes("Für wen ist HTR geeignet?") || block.title.includes("Für wen ist HTR geeignet?")  || block.title.includes("Ablauf der Behandlung") ) {
+    if (block.blockName === "Was ist ein Trauma" || block.blockName === "Beispiele für ein Trauma" || block.blockName === "Für wen ist HTR geeignet?" || block.blockName === "Für wen ist HTR geeignet?"  || block.blockName === "Ablauf der Behandlung" ) {
       return (
         <section key={block.id} className="py-3 position-relative static-content-sec">
           <span className="position-absolute top-20 start-0">
