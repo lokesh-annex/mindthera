@@ -9549,6 +9549,13 @@ font-size: 1.25rem;
 .about-part-3 ul {
   padding-left: 20px;
 }
+.stimmen-sec p,.top-sec-offer-inner p{
+  font-size: 1.15rem;
+  color: var(--title-font-color);
+}
+.new-session-box img.max-w-xs{
+  height: 100%;
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;

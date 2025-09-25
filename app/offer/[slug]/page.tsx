@@ -286,7 +286,7 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
      
 
       {/* Content Section */}
-      <div className="container py-5">
+      <div className="container py-5 top-sec-offer-inner dark-color">
         <div className="d-flex flex-column flex-md-row align-items-center justify-content-center">
           <div className="mb-4 mb-md-0 me-md-4">
             <Image 
@@ -309,7 +309,7 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
               {offer.description ? (
                 <div dangerouslySetInnerHTML={{ __html: offer.description }} />
               ) : (
-                <p>Description coming soon...</p>
+                <p >Description coming soon...</p>
               )}
             </div>
             {offer.hasButton && offer.buttonText && (
@@ -355,6 +355,7 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
                         <h2 className="h2 fw-bold text-dark mb-4 text-left w-100">
                           {section.title}:
                         </h2>
+                      
                         <ul className="fs-5 text-dark mb-0 w-100 list-unstyled">
                           {section.keyValuePairs && section.keyValuePairs.map((item: any, index: number) => (
                             <li key={item.id || index} className="mb-3 d-flex align-items-center gap-3">
@@ -363,6 +364,11 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
                             </li>
                           ))}
                         </ul>
+                          {section.content && (
+                          <div className="mb-4 text-dark" style={{ fontSize: "1.1rem", lineHeight: "1.6" }}>
+                            <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -383,6 +389,11 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#143774" }}>
                   {section.title.replace(":", "")}
                 </h2>
+                {section.description && (
+                  <div className="text-lg text-gray-700 mb-6 max-w-3xl mx-auto">
+                    <p>{section.description}</p>
+                  </div>
+                )}
                 <div className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
                   {section.content ? (
                     <div dangerouslySetInnerHTML={{ 
@@ -407,6 +418,18 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
                     </div>
                   ))}
                 </div>
+                {section.showButton && section.buttonText && (
+                  <div className="text-center mt-8">
+                    <a 
+                      href={section.buttonUrl || "/contact"} 
+                      className="btn btn-main px-6 py-3 fw-bold"
+                      style={{ fontSize: "1.1rem" }}
+                    >
+                      {section.buttonText}
+                      <i className="bi bi-arrow-right ms-2"></i>
+                    </a>
+                  </div>
+                )}
               </div>
             </section>
           );
@@ -441,6 +464,20 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
                         </li>
                       ))}
                     </ul>
+                    {section.showButton && section.buttonText && (
+                      <div className="mt-4">
+          <div className="mt-3">
+                        <a 
+                          href={section.buttonUrl || "/contact"} 
+                          className="btn btn-main px-4 py-2 fw-bold"
+                          style={{ fontSize: "1.1rem" }}
+                        >
+                          {section.buttonText}
+                         
+                        </a>
+                      </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
