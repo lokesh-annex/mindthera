@@ -107,7 +107,6 @@ async function getOfferBySlug(slug: string): Promise<Offer | null> {
           image = imgBlock.image.url;
         }
 
-        // button निकालना (buttonContentBlock) - केवल तब जब block exist करे
         let buttonText = "";
         let buttonUrl = "";
         let buttonStyle = "";
@@ -454,28 +453,24 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
                 </div>
                 <div className="row justify-content-center">
                   <div className="col-lg-12">
-                    <ul className="list-unstyled" style={{ fontSize: "1.18rem", color: "#2D1A3A", fontWeight: "500" }}>
-                      {section.benefits.map((benefit, index) => (
-                        <li key={index} className="mb-4 d-flex align-items-start">
-                          <span style={{ color: "#7A566B", fontSize: "1.7rem", marginRight: "16px", marginTop: "2px" }}>
-                            <i className="bi bi-stars"></i>
-                          </span>
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
+                    {section.content ? (
+                      <div 
+                        className="content-section" 
+                        style={{ fontSize: "1.18rem", color: "#2D1A3A", fontWeight: "500" }}
+                        dangerouslySetInnerHTML={{ __html: section.content }}
+                      />
+                    ) : ""}
                     {section.showButton && section.buttonText && (
                       <div className="mt-4">
-          <div className="mt-3">
-                        <a 
-                          href={section.buttonUrl || "/contact"} 
-                          className="btn btn-main px-4 py-2 fw-bold"
-                          style={{ fontSize: "1.1rem" }}
-                        >
-                          {section.buttonText}
-                         
-                        </a>
-                      </div>
+                        <div className="mt-3">
+                          <a 
+                            href={section.buttonUrl || "/contact"} 
+                            className="btn btn-main px-4 py-2 fw-bold"
+                            style={{ fontSize: "1.1rem" }}
+                          >
+                            {section.buttonText}
+                          </a>
+                        </div>
                       </div>
                     )}
                   </div>
