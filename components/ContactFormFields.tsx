@@ -48,8 +48,20 @@ const ContactFormFields = () => {
       const initialVals: {[key: string]: string} = {};
       const schemaFields: {[key: string]: any} = {};
       
-      doc.fields?.forEach((field: FormField) => {
-        initialVals[field.name] = field.defaultValue || '';
+      doc.fields?.forEach((field: FormField, index: number) => {
+        const typeCount = doc.fields.filter((f: FormField, i: number) => f.blockType === field.blockType && i <= index).length;
+        
+        const staticFieldName = (() => {
+          switch (field.blockType) {
+            case 'text': return typeCount > 1 ? `name${typeCount}` : 'name';
+            case 'email': return typeCount > 1 ? `email${typeCount}` : 'email';
+            case 'number': return typeCount > 1 ? `telephone${typeCount}` : 'telephone';
+            case 'textarea': return typeCount > 1 ? `message${typeCount}` : 'message';
+            default: return `defaultField${index + 1}`;
+          }
+        })();
+          
+        initialVals[staticFieldName] = field.defaultValue || '';
         
         // Create Yup validation based on field type
         let fieldSchema;
@@ -74,7 +86,7 @@ const ContactFormFields = () => {
           fieldSchema = fieldSchema.required(`${field.label} ist erforderlich.`);
         }
         
-        schemaFields[field.name] = fieldSchema;
+        schemaFields[staticFieldName] = fieldSchema;
       });
       
       setInitialValues(initialVals);
@@ -93,15 +105,37 @@ const ContactFormFields = () => {
     setLoading(true);
     
     try {
-      // Submit to Payload CMS form submission endpoint
+      // Convert static field names back to original field names for API submission
+      const originalFieldData: {[key: string]: string} = {};
+      
+      formData?.fields?.forEach((field: FormField, index: number) => {
+        const staticFieldName = getStaticFieldName(field, index);
+        if (values[staticFieldName]) {
+          originalFieldData[field.name] = values[staticFieldName];
+        }
+      });
+      
+      // Submit to Payload CMS form submission endpoint with readable field names
+      const formattedSubmissionData = formData?.fields?.map((field: FormField, index: number) => {
+        const staticFieldName = getStaticFieldName(field, index);
+        return {
+          field: field.name,       // Use field name instead of ID for better readability
+          value: values[staticFieldName] || ''
+        };
+      }) || [];
+
+      const submissionPayload = {
+        form: "68d52ff11b1e3f12d34e1328",
+        submissionData: formattedSubmissionData
+      };
+
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/form-submissions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          form: "68d52ff11b1e3f12d34e1328",
-          submissionData: values
-        }),
+        body: JSON.stringify(submissionPayload),
       });
+      
+      const responseData = await res.json();
       
       if (res.ok) {
         // Get success message from API
@@ -122,8 +156,7 @@ const ContactFormFields = () => {
           setShowSuccessModal(false);
         }, 5000);
       } else {
-        const errorData = await res.json();
-        setMessage(errorData.message || "Fehler beim Senden der Nachricht.");
+        setMessage(responseData.message || "Fehler beim Senden der Nachricht.");
       }
     } catch (err) {
       setMessage("Serverfehler. Bitte versuchen Sie es später erneut.");
@@ -132,18 +165,38 @@ const ContactFormFields = () => {
     setSubmitting(false);
   };
 
-  const renderFormikField = (field: FormField) => {
+  const getStaticFieldName = (field: FormField, index: number): string => {
+    // Return static field names based on field type and make them unique
+    const typeCount = formData?.fields?.filter((f, i) => f.blockType === field.blockType && i <= index).length || 1;
+    
+    switch (field.blockType) {
+      case 'text':
+        return typeCount > 1 ? `name${typeCount}` : 'name';
+      case 'email':
+        return typeCount > 1 ? `email${typeCount}` : 'email';
+      case 'number':
+        return typeCount > 1 ? `telephone${typeCount}` : 'telephone';
+      case 'textarea':
+        return typeCount > 1 ? `message${typeCount}` : 'message';
+      default:
+        return `defaultField${index + 1}`;
+    }
+  };
+
+  const renderFormikField = (field: FormField, index: number) => {
+    const fieldName = getStaticFieldName(field, index);
+    
     switch (field.blockType) {
       case 'text':
         return (
           <div key={field.id} className="field-set position-relative">
             <Field 
               type="text" 
-              name={field.name}
+              name={fieldName}
               className="form-control no-border" 
               placeholder={field.label}
             />
-            <ErrorMessage name={field.name} component="div" className="text-danger position-absolute top-90 small" />
+            <ErrorMessage name={fieldName} component="div" className="text-danger position-absolute top-90 small" />
           </div>
         );
       case 'email':
@@ -151,11 +204,11 @@ const ContactFormFields = () => {
           <div key={field.id} className="field-set position-relative">
             <Field 
               type="email" 
-              name={field.name}
+              name={fieldName}
               className="form-control no-border" 
               placeholder={field.label}
             />
-            <ErrorMessage name={field.name} component="div" className="text-danger position-absolute top-90 small" />
+            <ErrorMessage name={fieldName} component="div" className="text-danger position-absolute top-90 small" />
           </div>
         );
       case 'number':
@@ -163,11 +216,11 @@ const ContactFormFields = () => {
           <div key={field.id} className="field-set position-relative">
             <Field 
               type="tel" 
-              name={field.name}
+              name={fieldName}
               className="form-control no-border" 
               placeholder={field.label}
             />
-            <ErrorMessage name={field.name} component="div" className="text-danger position-absolute top-90 small" />
+            <ErrorMessage name={fieldName} component="div" className="text-danger position-absolute top-90 small" />
           </div>
         );
       case 'textarea':
@@ -175,12 +228,12 @@ const ContactFormFields = () => {
           <div key={field.id} className="field-set mb20 position-relative">
             <Field 
               as="textarea"
-              name={field.name}
+              name={fieldName}
               className="form-control no-border"
               placeholder={field.label}
               rows={5}
             />
-            <ErrorMessage name={field.name} component="div" className="text-danger position-absolute top-100 small" />
+            <ErrorMessage name={fieldName} component="div" className="text-danger position-absolute top-100 small" />
           </div>
         );
       default:
@@ -220,7 +273,7 @@ const ContactFormFields = () => {
               id="contact_form"
               className="position-relative z1000"
             >
-              {formData?.fields?.map(field => renderFormikField(field))}
+              {formData?.fields?.map((field, index) => renderFormikField(field, index))}
               
               <div id="submit" className="mt30">
                 <button 

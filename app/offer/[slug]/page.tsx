@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 // Types
@@ -35,6 +36,11 @@ interface Offer {
   buttonStyle?: string;
   hasButton?: boolean;
   additionalSections?: AdditionalSection[];
+  // SEO fields
+  seoTitle?: string;
+  seoDescription?: string;
+  seoImage?: string;
+  seoKeywords?: string;
 }
 
 interface ApiBlock {
@@ -57,6 +63,13 @@ interface ApiEntry {
   title?: string;
   subtitle?: string;
   content?: ApiBlock[];
+  // SEO fields from API
+  meta?: {
+    title?: string;
+    description?: string;
+    image?: { url?: string };
+    keywords?: string;
+  };
 }
 
 // Constants
@@ -109,6 +122,18 @@ const findBlockByType = (content: ApiBlock[] | undefined, blockType: string): Ap
 
 const findBlocksByType = (content: ApiBlock[] | undefined, blockType: string): ApiBlock[] => {
   return content?.filter((c: ApiBlock) => c.blockType === blockType) || [];
+};
+
+const extractSeoData = (entry: ApiEntry) => {
+  // Extract SEO data from API meta field or use fallbacks
+  const meta = entry.meta;
+  
+  return {
+    seoTitle: meta?.title || entry.title || "",
+    seoDescription: meta?.description || entry.subtitle || "",
+    seoImage: meta?.image?.url || "",
+    seoKeywords: meta?.keywords || ""
+  };
 };
 
 async function getOfferBySlug(slug: string): Promise<Offer | null> {
@@ -195,6 +220,9 @@ function createOfferFromEntry(entry: ApiEntry): Offer {
   
   // Extract additional sections
   const additionalSections = extractAdditionalSections(content);
+  
+  // Extract SEO data
+  const seoData = extractSeoData(entry);
 
   return {
     title: entry.title || "",
@@ -206,6 +234,7 @@ function createOfferFromEntry(entry: ApiEntry): Offer {
     benefitsSubtitle: "",
     ...buttonInfo,
     additionalSections,
+    ...seoData,
   };
 }
 
@@ -279,6 +308,60 @@ function createSectionFromBlock(block: ApiBlock): AdditionalSection {
     buttonText: block.buttonText?.trim() || "",
     buttonUrl: block.buttonUrl || ""
   };
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  try {
+    const offer = await getOfferBySlug(params.slug);
+    
+    if (!offer) {
+      return {
+        title: "Offer Not Found | MindThera",
+        description: "The requested offer could not be found.",
+      };
+    }
+
+    // Use SEO fields from API or fallback to offer data
+    const title = offer.seoTitle || offer.title || "MindThera Offer";
+    const description = offer.seoDescription || offer.subtitle || offer.description?.replace(/<[^>]*>/g, "").substring(0, 160) || "Discover our healing and therapy services";
+    const image = offer.seoImage || offer.image || "/images/misc/placeholder.jpg";
+
+    return {
+      title: `${title} | MindThera`,
+      description,
+      keywords: offer.seoKeywords || `${offer.title}, therapy, healing, mindfulness, meditation`,
+      openGraph: {
+        title: `${title} | MindThera`,
+        description,
+        images: [
+          {
+            url: image,
+            width: 1200,
+            height: 630,
+            alt: title,
+          }
+        ],
+        type: "website",
+        locale: "de_DE",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${title} | MindThera`,
+        description,
+        images: [image],
+      },
+      alternates: {
+        canonical: `/offer/${params.slug}`,
+      },
+    };
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+    return {
+      title: "MindThera Offer",
+      description: "Discover our healing and therapy services",
+    };
+  }
 }
 
 // Generate static params for all offer slugs
