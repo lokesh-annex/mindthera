@@ -66,7 +66,7 @@ export default function Footer() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-4 text-center text-md-start">
-              <span className="ms-md-3">
+              <span className="">
                 Traumafrei.ch© 2025. All Rights Reserved
               </span>
             </div>

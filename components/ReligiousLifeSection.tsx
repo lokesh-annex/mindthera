@@ -95,6 +95,7 @@ const ReligiousLifeSection = () => {
                   alt={data.title || "Image 2"}
                   width={800}
                   height={600}
+                  className="second-image-why"
                   style={{
                     position: "absolute",
                     right: "6%",

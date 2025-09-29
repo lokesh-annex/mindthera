@@ -14,7 +14,7 @@ export default function BlogPage() {
                                    src="/images/bg-2-copyright.webp"
                                    width={303}
                                    height={550}
-                                    
+                                    className="blog-copyright"
                                    alt="Background Copyright"
                                    priority
                                  />

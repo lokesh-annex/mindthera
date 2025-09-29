@@ -212,7 +212,7 @@ const NewsletterSection = () => {
     <section className="py-10 text-center newsletter-main position-relative bg-light">
       <div className="container">
         <div className="row justify-content-center mb-4">
-          <div className="col-lg-10">
+          <div className="col-lg-12">
             {isLoadingContent ? (
               // Loading spinner
               <div className="d-flex justify-content-center align-items-center py-5">
