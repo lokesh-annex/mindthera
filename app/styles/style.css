@@ -9315,10 +9315,11 @@ img {
 #contact_form input[type="email"],
 #contact_form input[type="number"],
 #contact_form input[type="date"],
+#contact_form input[type="tel"],
 #search,
 #contact_form select {
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   border: solid 1px rgba(0, 0, 0, 0.25);
   height: auto;
   border-radius: 6px;
@@ -9499,17 +9500,22 @@ font-size: 1.25rem;
   color: rgb(92, 55, 125);
   margin-top: 20px;
 }
-.babyflyer-sec ul{
+.babyflyer-sec ul,.session-sec-bg-fe ul{
   list-style: none;
   padding: 0;
   margin-top: 10px;
 }
-.babyflyer-sec ul li{
+.babyflyer-sec ul li,.session-sec-bg-fe ul li{
   margin-bottom: 0.5rem;
   font-size: 1.15rem;
-
+  position: relative;
 }
-.static-content-sec ul li::after{
+.session-sec-bg-fe ul li{
+   margin-bottom: 1.5rem;
+}
+.static-content-sec ul li::after,
+.application-areas ul li::after,
+.session-sec-bg-fe ul li::after{
   display: inline-block;
   font-family: bootstrap-icons !important;
   font-style: normal;
@@ -9522,24 +9528,24 @@ font-size: 1.25rem;
  left: -26px;
   position: absolute;
   margin-right: 8px;
-  content: "\f625";
+  
   top: 7px;
 }
-.application-areas ul li::after {
-  display: inline-block;
-  font-family: bootstrap-icons !important;
-  font-style: normal;
-  font-size: 1.38rem;
-  font-weight: normal !important;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  vertical-align: -.125em;
-  left: -26px;
-  position: absolute;
-  margin-right: 8px;
+.static-content-sec ul li::after{
+content: "\f625";
+}
+.application-areas ul li::after{
   content: "\f26e";
-  top: 4px;
+}
+.session-sec-bg-fe ul {
+  padding-left: 30px;
+}
+.session-sec-bg-fe ul li::after{
+ content: "\f589";
+ color: rgb(122, 86, 107);
+ font-size: 1.7rem;
+ top: 0px;
+ left: -36px;
 }
 .about-part-3 ul li{
 	font-size: 1.08rem;
@@ -9556,6 +9562,7 @@ font-size: 1.25rem;
 .new-session-box img.max-w-xs{
   height: 100%;
 }
+
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;

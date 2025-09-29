@@ -9,8 +9,28 @@ interface FooterLink {
   url: string;
 }
 
+interface SocialMedia {
+  platform: string;
+  url: string;
+  id: string;
+}
+
+interface ContactData {
+  showContact?: boolean;
+  contactHeading?: string;
+  email?: string;
+  phone?: string;
+  socialMedia?: SocialMedia[];
+}
+
+interface FooterData {
+  navItems?: any[];
+  contact?: ContactData;
+}
+
 export default function Footer() {
   const [footerLinks, setFooterLinks] = useState<FooterLink[]>([]);
+  const [socialMediaLinks, setSocialMediaLinks] = useState<SocialMedia[]>([]);
 
   useEffect(() => {
     async function fetchFooter() {
@@ -27,6 +47,11 @@ export default function Footer() {
             url: item.link?.url || "#",
           }));
           setFooterLinks(links);
+        }
+        
+        // Set social media links from API
+        if (data && data.contact && data.contact.socialMedia) {
+          setSocialMediaLinks(data.contact.socialMedia);
         }
       } catch (error) {
         console.error("Error fetching footer:", error);
@@ -55,27 +80,17 @@ export default function Footer() {
             <div className="col-md-4 text-center text-md-end">
               <div className="d-inline-flex align-items-center me-md-3">
                 <div className="footer-socail-icon d-flex align-items-center justify-content-center gap-3 me-2">
-                  <a
-                    href="https://www.facebook.com/KerstinRStoll/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-facebook text-white"></i>
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/kerstin-r-stoll-630917178/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-linkedin text-white"></i>
-                  </a>
-                  <a
-                    href="https://www.instagram.com/kerstin.r.stoll/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-instagram text-white"></i>
-                  </a>
+                  {/* API-driven social media links */}
+                  {socialMediaLinks.map((social, idx) => (
+                    <a
+                      key={social.id || idx}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className={`bi bi-${social.platform} text-white`}></i>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
