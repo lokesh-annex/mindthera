@@ -10791,10 +10791,30 @@ content: "\f625";
   }
   .two-images-section img {
     width: 100% !important;
+    
+  }
+  .second-image-why{
+    display: none !important;
   }
   .two-images-section .second-image {
     display: none;
   }
+  .events-page img {
+  height: auto !important;
+}
+.blog-copyright{
+  display: none;
+}
+.session-sec-bg-fe h2 {
+  font-size: 24px !important;
+}
+.session-sec-bg-fe {
+  padding-top: 0 !important;
+}
+.session-sec-bg-fe .mb-4 {
+  margin-bottom: 0px !important;
+}
+
   .pb60.tabs-sec {
     padding-bottom: 0px !important;
   }
@@ -10918,6 +10938,10 @@ display: none;
  #menu-btn {
     margin-left: 0px;
   }
+  .tabs-sec .g-4 {
+  --bs-gutter-y: 0.4rem;
+}
+
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {

@@ -39,6 +39,7 @@ const BlogList = () => {
           <div className="col-lg-4 col-md-6 mb10" key={idx}>
             <div className="rounded-20px">
               <div className="post-image rounded-10px">
+                <Link href={`/blog-single/${slug}`} >
                 <Image
                   alt={title || "Blog post"}
                   src={imageUrl}
@@ -46,6 +47,7 @@ const BlogList = () => {
                   height={300}
                   width={400}
                 />
+                </Link>
               </div>
               <div className="pt-2 h-100">
                 <Link href={`/blog-single/${slug}`} className="text-dark text-decoration-none">
