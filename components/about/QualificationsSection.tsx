@@ -3,20 +3,21 @@
 import { useEffect, useState } from "react";
 
 const API_URL =
-  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c3fc53bfc21719f3ab8434?depth=2&draft=false&locale=undefined&trash=false`;
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68db928a32bade52d81dfc3d?depth=2&draft=false&locale=undefined&trash=false`;
 
-interface SectionBlock {
+interface TextContentBlock {
   blockType: string;
-  locales?: Array<{
-    locale: string;
-    title?: string;
-    htmlContent?: string;
-  }>;
+  blockName: string;
+  title?: string;
+  description?: string;
+  content?: string;
 }
 
 interface QualificationsData {
   title?: string;
-  layout?: SectionBlock[];
+
+  aboutSecFour?: TextContentBlock;
+    aboutSecFive?: TextContentBlock;
 }
 
 const QualificationsSection = () => {
@@ -32,7 +33,49 @@ const QualificationsSection = () => {
         if (response.ok) {
           const result = await response.json();
           console.log("✅ Qualifications API Response:", result);
-          setData(result);
+          
+          const doc = result?.doc ?? result?.docs?.[0] ?? result;
+          
+          // Find about-sec-three and about-sec-four from layout
+          let aboutSecFive: TextContentBlock | undefined;
+          let aboutSecFour: TextContentBlock | undefined;
+
+          if (Array.isArray(doc.layout)) {
+            for (const layoutBlock of doc.layout) {
+              if (Array.isArray(layoutBlock.locales)) {
+                for (const locale of layoutBlock.locales) {
+                  if (Array.isArray(locale.content)) {
+                    for (const contentBlock of locale.content) {
+                      if (contentBlock.blockName === "about-sec-five") {
+                        aboutSecFive = {
+                          blockType: contentBlock.blockType,
+                          blockName: contentBlock.blockName,
+                          title: contentBlock.title,
+                          description: contentBlock.description,
+                          content: contentBlock.content,
+                        };
+                      } else if (contentBlock.blockName === "about-sec-four") {
+                        aboutSecFour = {
+                          blockType: contentBlock.blockType,
+                          blockName: contentBlock.blockName,
+                          title: contentBlock.title,
+                          description: contentBlock.description,
+                          content: contentBlock.content,
+                        };
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          setData({
+            title: doc.title,
+           
+            aboutSecFour,
+            aboutSecFive,
+          });
         } else {
           console.error("❌ API error:", response.status);
         }
@@ -64,7 +107,7 @@ const QualificationsSection = () => {
   return (
     <div className="container about-part-3 mt-5 mb-5">
       <div className="row mt-2 g-4">
-        {/* Left Column = Qualifications */}
+        {/* Left Column = Qualifications (about-sec-three) */}
         <div className="col-lg-6 fade-in" style={{ animationDelay: "0.9s" }}>
           <div className="mb-4 p-4 rounded-4 text-dark bg-light h-100">
             <h4 className="fw-bold mb-3 text-primary">
@@ -85,20 +128,20 @@ const QualificationsSection = () => {
                     className="bi bi-award"
                     style={{ fontSize: "1.5rem" }}
                   ></i>
-                </span><span> {data?.layout?.[0]?.locales?.[0]?.title}</span>
+                </span><span> {data?.aboutSecFour?.title}</span>
                 </span>
             </h4>
-            {data?.layout?.[0]?.locales?.[0]?.htmlContent && (
+            {data?.aboutSecFour?.content && (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: data.layout[0].locales[0].htmlContent,
+                  __html: data.aboutSecFour.content,
                 }}
               />
             )}
           </div>
         </div>
 
-        {/* Right Column = Books */}
+        {/* Right Column = Books (about-sec-four) */}
         <div className="col-lg-6">
           <div className="mb-4 p-4 rounded-4 text-dark bg-light h-100 fade-in">
             <h4 className="fw-bold mb-3 text-primary">
@@ -121,12 +164,12 @@ const QualificationsSection = () => {
                     style={{ fontSize: "1.5rem" }}
                   ></i>
                 </span>
-                <span>{data?.layout?.[1]?.locales?.[0]?.title}</span>  </span>
+                <span>{data?.aboutSecFive?.title}</span>  </span>
             </h4>
-            {data?.layout?.[1]?.locales?.[0]?.htmlContent && (
+            {data?.aboutSecFive?.content && (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: data.layout[1].locales[0].htmlContent,
+                  __html: data.aboutSecFive.content,
                 }}
               />
             )}

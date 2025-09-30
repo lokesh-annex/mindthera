@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const API_URL =
-  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68bec51e2880ed52c0efdf22?depth=2&draft=false&locale=undefined&trash=false`;
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68db928a32bade52d81dfc3d?depth=2&draft=false&locale=undefined&trash=false`;
 
 interface PageContent {
   title?: string;
@@ -12,8 +11,10 @@ interface PageContent {
     url: string;
     width: number;
     height: number;
+    thumbnailURL?: string;
   };
   html?: string;
+  description?: string;
 }
 
 const WorkSection = () => {
@@ -31,38 +32,52 @@ const WorkSection = () => {
         const doc = json?.doc ?? json?.docs?.[0] ?? json;
         if (!doc) return;
 
-        console.log("Full API response:", json);
+        // Find the about-sec-one contentBlock
+        let aboutBlock: any = undefined;
+        let title = doc.title;
+        let label_text = doc.label_text;
 
-        // mediaBlock निकालना
-        const mediaBlock = doc.layout?.find(
-          (block: any) => block.blockType === "mediaBlock"
-        );
-        const media = mediaBlock?.locales?.[0]?.media;
+        if (Array.isArray(doc.layout)) {
+          for (const layoutBlock of doc.layout) {
+            if (Array.isArray(layoutBlock.locales)) {
+              for (const locale of layoutBlock.locales) {
+                if (Array.isArray(locale.content)) {
+                  for (const c of locale.content) {
+                    if (c.blockName === "about-sec-one") {
+                      aboutBlock = c;
+                      // Optionally get sectionBlock-level title etc as fallback:
+                      title = locale.title || title;
+                      label_text = locale.label || label_text;
+                      break;
+                    }
+                  }
+                  if (aboutBlock) break;
+                }
+              }
+              if (aboutBlock) break;
+            }
+          }
+        }
 
+        // Process image
+        let image1;
+        if (aboutBlock?.image) {
+          image1 = {
+            url: aboutBlock.image.url,
+            width: aboutBlock.image.width || 400,
+            height: aboutBlock.image.height || 500,
+            thumbnailURL: aboutBlock.image.thumbnailURL,
+          };
+        }
+
+        // Compose final content
         const next: PageContent = {
-          title: doc.title,
-          label_text: doc.label_text,
-          image1: media
-            ? {
-                url: media.url,
-                width: media.width || 400,
-                height: media.height || 500,
-              }
-            : doc.image1
-            ? {
-                url: doc.image1.url,
-                width: doc.image1.width || 400,
-                height: doc.image1.height || 500,
-              }
-            : undefined,
-          html:
-            doc.layout?.[0]?.locales?.[0]?.html ||
-            doc.layout?.[0]?.html ||
-            doc.html ||
-            undefined,
+          title: aboutBlock?.title || title, // block or sectionBlock or root
+          label_text,
+          image1,
+          description: aboutBlock?.description,
+          html: aboutBlock?.content,
         };
-
-        console.log("Processed content:", next);
 
         if (!cancelled) setContent(next);
       } catch (err) {
@@ -75,6 +90,19 @@ const WorkSection = () => {
       cancelled = true;
     };
   }, []);
+
+  if (loading) {
+    return (
+      <section className="py-5 work-section position-relative d-flex justify-content-center align-items-center" style={{ minHeight: '400px' }}>
+        <div className="text-center">
+          <div className="spinner-border text-primary" role="status" style={{ color: '#5c377d !important' }}>
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-3 text-muted">Loading content...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-5 work-section position-relative">
@@ -103,7 +131,7 @@ const WorkSection = () => {
                 }}
               >
                 <Image
-                  src={`${content.image1.url}`}
+                  src={content.image1.url}
                   width={content.image1.width}
                   height={content.image1.height}
                   alt={content.title || "Work Image"}
@@ -115,38 +143,29 @@ const WorkSection = () => {
 
           {/* Right Content */}
           <div className="col-lg-7">
-            {content.label_text && (
+            {content.title && (
               <div
                 className="mb-2 text-uppercase fw-bold"
                 style={{ letterSpacing: 1, color: "#5c377d" }}
               >
-                {content.label_text}
+                {content.title}
               </div>
             )}
 
-            {content.title && (
+            {content.description && (
               <h2
                 className="fw-bold mb-4"
                 style={{ color: "#2d1a3a", fontSize: "2.5rem" }}
               >
-                {content.title}
+                {content.description}
               </h2>
             )}
 
-            {/* Rich HTML block */}
-            {loading ? (
-              <div className="d-flex align-items-center">
-                <div className="spinner-border text-primary me-3" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </div>
-                <p className="m-0 fs-5">Lade Inhalte...</p>
-              </div>
-            ) : content.html ? (
-              <div dangerouslySetInnerHTML={{ __html: content.html }} />
-            ) : (
-              <div className="text-muted">
-                <p className="m-0">Keine Inhalte verfügbar.</p>
-              </div>
+            {content.html && (
+              <div
+                className="mb-3 text-muted"
+                dangerouslySetInnerHTML={{ __html: content.html }}
+              />
             )}
           </div>
         </div>

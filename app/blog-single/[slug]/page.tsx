@@ -1,131 +1,97 @@
-"use client";
+import React from "react";
+import { Metadata } from 'next';
 import { notFound } from "next/navigation";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import dynamic from 'next/dynamic';
 
-export default function BlogSinglePage({ params }: { params: { slug: string } }) {
+const BlogSingleClient = dynamic(() => import('./BlogSingleClient'), {
+  loading: () => (
+    <div className="container py-5">
+      <div className="text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-2 m-0">Lade Artikel...</p>
+      </div>
+    </div>
+  ),
+});
+
+async function fetchArticle(slug: string) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/posts?where[slug][equals]=${encodeURIComponent(
+        slug
+      )}&depth=2&draft=false&locale=undefined&trash=false`,
+      { cache: 'no-store', next: { revalidate: 0 } }
+    );
+    const data = await res.json();
+    const doc = Array.isArray(data?.docs)
+      ? data.docs[0]
+      : Array.isArray(data)
+      ? data[0]
+      : data;
+    return doc && doc.slug === slug ? doc : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { slug } = params;
-  const [article, setArticle] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchArticle() {
-      setLoading(true);
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/posts?where[slug][equals]=${encodeURIComponent(
-            slug
-          )}&depth=2&draft=false&locale=undefined&trash=false`
-        );
-        const data = await res.json();
-        const doc = Array.isArray(data?.docs)
-          ? data.docs[0]
-          : Array.isArray(data)
-          ? data[0]
-          : data;
-        setArticle(doc && doc.slug === slug ? doc : null);
-      } catch (err) {
-        setArticle(null);
-      }
-      setLoading(false);
+  
+  try {
+    const article = await fetchArticle(slug);
+    
+    if (!article) {
+      return {
+        title: 'Article Not Found',
+        description: 'The requested article could not be found.',
+      };
     }
 
-    fetchArticle();
-  }, [slug]);
+    console.log('📊 Blog Single Page API Response:', article);
+    
+    const doc = article;
+    const metaLocale = doc?.meta?.locales?.[0];
+    const title = metaLocale?.title || article?.title;
+    const description = metaLocale?.description || article?.excerpt || article?.summary;
+    
+    console.log('📋 Blog Single Page SEO Data:', { title, description });
+    
+    const heroImage = article?.hero?.media || article?.featuredImage;
+    const imageUrl = heroImage?.url;
+    
+    return {
+      title: title || `${article?.title} | Blog`,
+      description: description || 'Read this blog article',
+      openGraph: {
+        title: title || article?.title,
+        description: description || 'Read this blog article',
+        type: 'article',
+        locale: 'de_DE',
+        images: imageUrl ? [{ url: imageUrl, width: 1200, height: 600 }] : undefined,
+        publishedTime: article?.publishedAt,
+        authors: article?.author ? [article.author] : undefined,
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: title || article?.title,
+        description: description || 'Read this blog article',
+        images: imageUrl ? [imageUrl] : undefined,
+      },
+      alternates: {
+        canonical: `/blog-single/${slug}`,
+      },
+    };
+  } catch (error) {
+    console.error('❌ Error generating Blog Single page metadata:', error);
+    return {
+      title: 'Blog Article',
+      description: 'Read our blog article',
+    };
+  }
+}
 
-  if (loading)
-    return (
-      <div className="container py-5">
-        <div className="text-center">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <p className="mt-2 m-0">Lade Artikel...</p>
-        </div>
-      </div>
-    );
-  if (!article) return notFound();
-
-  // Hero image
-  const hero = article.heroImage || article.image;
-  const rawImg =
-    hero?.url ||
-    hero?.url ||
-    hero?.url ||
-    hero?.url ||
-    "";
-  const imageUrl = rawImg
-    ? rawImg.startsWith("http")
-      ? rawImg
-      : `${process.env.NEXT_PUBLIC_API_BASE_URL}${rawImg}`
-    : null;
-
-  // Author + Date + Locale
-  const author = article.populatedAuthors?.[0]?.name || article.authors?.[0]?.name || "Unknown";
-  const date = article.publishedAt
-    ? new Date(article.publishedAt).toLocaleDateString("de-DE", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      })
-    : "";
-  const locale = article.meta?.locales?.[0]?.locale;
-
-  // ✅ Content from layout -> content block
-  const contentBlock = article.layout?.find((b: any) => b.blockType === "content");
-  const htmlContent = contentBlock?.locales?.[0]?.html || "";
-
-  return (
-    <main>
-      <Breadcrumbs
-        title={article.title}
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Blog", href: "/blog" },
-          { label: article.title },
-        ]}
-      />
-      <section className="container py-5 blog-single">
-        <div className="row">
-          <div className="col-lg-8 mx-auto">
-            {imageUrl ? (
-              <Image
-                src={imageUrl}
-                width={800}
-                height={600}
-                alt={article.title}
-                className="rounded-10px main-image mb-4 w-100"
-              />
-            ) : (
-              <div
-                className="main-image mb-4 w-100"
-                style={{
-                  height: 600,
-                  background: "#eee",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                No Image
-              </div>
-            )}
-
-            <div className="mb-3 text-muted">
-              {date} &nbsp;|&nbsp; Autor: {author}
-              {locale && <span> &nbsp;|&nbsp; Sprache: {locale}</span>}
-            </div>
-
-            <article
-              className="blog-content"
-              dangerouslySetInnerHTML={{
-                __html: `<p><strong>${article.description || ""}</strong></p>${htmlContent}`,
-              }}
-            />
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+export default function BlogSinglePage({ params }: { params: { slug: string } }) {
+  return <BlogSingleClient slug={params.slug} />;
 }
