@@ -1,150 +1,64 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import React from "react";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
 
-const API_URL_EVENTS = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c023ac106eb845adbae559?depth=2&draft=false&locale=undefined&trash=false`;
-
-// EventItem interface converted to JSDoc comment for JavaScript
-/**
- * @typedef {Object} EventItem
- * @property {string} title
- * @property {string} html
- * @property {string} [image]
- * @property {string} [button1]
- * @property {string} [button2]
- */
-
-function absUrl(u) {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  return u?.startsWith("http") ? u : u ? `${baseUrl}${u}` : "";
-}
-
-function normalizeEvents(doc) {
-  if (!doc || !Array.isArray(doc.layout)) return [];
-  return doc.layout
-    .filter((b) => b?.blockType === "sectionBlock")
-    .map((block) => {
-      const loc = block?.locales?.find((l) => l.locale === "de") || block?.locales?.[0];
-      if (!loc) return null;
-      return {
-        title: loc?.title || "",
-        subtitle: loc?.subtitle || "",
-        html: loc?.htmlContent || "",
-        image: absUrl(
-          loc?.image?.url ||
-            loc?.image?.url ||
-            loc?.image?.url
-        ),
-        button1: loc?.button1,
-        button2: loc?.button2,
-      };
-    })
-    .filter(Boolean);
-}
-
-export default function EventPage() {
-  const [events, setEvents] = useState([]);
-  const [pageTitle, setPageTitle] = useState("Events");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchEvents() {
-      try {
-        const res = await fetch(API_URL_EVENTS, { cache: "no-store" });
-        if (res.ok) {
-          const json = await res.json();
-          const doc = json?.doc ?? (Array.isArray(json?.docs) ? json.docs[0] : json);
-          setPageTitle(doc?.title || "Events");
-          setEvents(normalizeEvents(doc));
-        }
-      } catch (e) {
-        console.error("Event fetch failed", e);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchEvents();
-  }, []);
-
-  return (
-    <>
-      <Breadcrumbs
-        title={pageTitle}
-        items={[{ label: "Home", href: "/" }, { label: pageTitle }]}
-      />
-
-      <section className="bg-light py-5 events-page">
-        <div className="container">
-          {loading ? (
-            <div className="row justify-content-center py-5">
-              <div className="col-12 text-center">
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="spinner-border text-primary me-3" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </div>
-                  <p className="m-0 fs-5">Lade Events...</p>
-                </div>
-              </div>
-            </div>
-          ) : events.length === 0 ? (
-            <div className="row justify-content-center py-5">
-              <div className="col-md-8 text-center">
-                <p className="mb-0" style={{ fontSize: "1.1rem" }}>
-                  Aktuell sind keine Events verfügbar.
-                </p>
-              </div>
-            </div>
-          ) : (
-            events.map((event, idx) => (
-              <div
-                key={idx}
-                className="row align-items-center bg-white rounded-4 shadow-sm py-5 px-5 mb-5"
-              >
-                {event.image && (
-                  <div className="col-md-5 d-flex align-items-center justify-content-center mb-4 mb-md-0">
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      width={520}
-                      height={520}
-                      style={{ objectFit: "cover", width: "100%", borderRadius: "12px" }}
-                    />
-                  </div>
-                )}
-                <div className={`col-md-${event.image ? 7 : 12}`}>
-                  <h3 className="fw-bold mb-2 text-primary" style={{ fontSize: "1.5rem" }}>
-                    {event.title}
-                  </h3>
-               
-                  {event.html && (
-                    <div
-                      className="mb-3"
-                      style={{ fontSize: "1.08rem", color: "#333" }}
-                      dangerouslySetInnerHTML={{ __html: event.html }}
-                    />
-                  )}
-                  <div className="d-flex gap-2 flex-wrap">
-                    {event.button1 && (
-                      <button className="btn-main mb-2">{event.button1}</button>
-                    )}
-                    {event.button2 && (
-                      <button className="btn-main mb-2">{event.button2}</button>
-                    )}
-
-                  </div>
-   {event.subtitle && (
-                    <p className="fw-semibold mb-3 text-secondary" style={{ fontSize: "1.1rem" }}>
-                      {event.subtitle}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))
-          )}
+// Dynamic import for client component
+const EventClient = dynamic(() => import("@/components/EventClient"), {
+  ssr: false,
+  loading: () => (
+    <div className="container py-5 text-center">
+      <div className="d-flex align-items-center justify-content-center">
+        <div className="spinner-border text-primary me-3" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
-      </section>
-    </>
-  );
+        <p className="m-0 fs-5">Lade Events...</p>
+      </div>
+    </div>
+  )
+});
+
+const API_URL_EVENTS = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c023ac106eb845adbae559?depth=2&draft=false&locale=de&trash=false`;
+
+// Function to fetch event page SEO data
+async function getEventPageSEO() {
+  try {
+    const res = await fetch(API_URL_EVENTS, { 
+      cache: "no-store",
+      next: { revalidate: 3600 }
+    });
+    
+    if (!res.ok) return null;
+    const json = await res.json();
+    const doc = json?.doc ?? json;
+    
+    console.log("Event API Response:", JSON.stringify(doc, null, 2));
+    
+    // Get data from meta.locales[0] (German locale)
+    const metaLocale = doc?.meta?.locales?.[0];
+    const title = metaLocale?.title;
+    const description = metaLocale?.description;
+    return { title, description };
+  } catch (error) {
+    console.error('Error fetching event SEO:', error);
+    return null;
+  }
+}
+
+// Generate metadata for SEO
+export async function generateMetadata() {
+  const seoData = await getEventPageSEO();
+  
+  const title = seoData?.title;
+  const description = seoData?.description ;
+
+  return {
+    title: `${title}`,
+    description,
+    keywords: "events, veranstaltungen, workshops, seminare, therapie, harmonyum, trauma-release, mindthera",
+  };
+}
+
+// Server component wrapper
+export default function EventPage() {
+  return <EventClient />;
 }

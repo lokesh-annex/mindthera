@@ -191,7 +191,7 @@ const Datenschutzbestimmung = () => {
 
               {/* Layout content - optimized rendering */}
               {content.htmlContent && content.htmlContent.length > 0 && (
-                <div className="mb-4">
+                <div className="mb-4" style={{ color: "rgb(51, 51, 51)" }}>
                   {content.htmlContent.map((htmlItem, index) => (
                     <div
                       key={`content-${index}`}

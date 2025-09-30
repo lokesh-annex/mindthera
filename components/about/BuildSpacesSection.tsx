@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const API_URL =
-  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c3f1f1bfc21719f3ab805a?depth=2&draft=false&locale=undefined&trash=false`;
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68db928a32bade52d81dfc3d?depth=2&draft=false&locale=undefined&trash=false`;
 
 // --- Helper to safely join base + path
 const buildUrl = (base: string, path: string) => {
@@ -18,20 +18,28 @@ interface MediaImage {
   height?: number;
 }
 
+interface ContentShowcaseBlock {
+  blockType: string;
+  blockName: string;
+  title?: string;
+  description?: string;
+  content?: string;
+  image?: MediaImage;
+}
+
+interface TextContentBlock {
+  blockType: string;
+  blockName: string;
+  title?: string;
+  description?: string;
+  content?: string;
+}
+
 interface BuildSpacesData {
   title?: string;
   label_text?: string;
-  image?: MediaImage;
-  layout?: Array<{
-    blockType: string;
-    locales?: Array<{
-      locale: string;
-      html?: string;
-      title?: string;
-      htmlContent?: string;
-      media?: MediaImage;
-    }>;
-  }>;
+  aboutSecTwo?: ContentShowcaseBlock;
+  aboutSecThree?: TextContentBlock;
 }
 
 const BuildSpacesSection = () => {
@@ -46,30 +54,55 @@ const BuildSpacesSection = () => {
 
         if (response.ok) {
           const result = await response.json();
-          console.log("✅ BuildSpaces API Response:", result);
+          console.log("✅ About API Response:", result);
 
           const doc = result?.doc ?? result?.docs?.[0] ?? result;
 
-          // केवल mediaBlock से image
-          const mediaBlock = doc.layout?.find(
-            (block: any) => block.blockType === "mediaBlock"
-          );
-          const media = mediaBlock?.locales?.[0]?.media;
+          // Find about-sec-two and about-sec-three from layout
+          let aboutSecTwo: ContentShowcaseBlock | undefined;
+          let aboutSecThree: TextContentBlock | undefined;
 
-          if (media) {
-            console.log("🖼 Media URL:", media.url);
+          if (Array.isArray(doc.layout)) {
+            for (const layoutBlock of doc.layout) {
+              if (Array.isArray(layoutBlock.locales)) {
+                for (const locale of layoutBlock.locales) {
+                  if (Array.isArray(locale.content)) {
+                    for (const contentBlock of locale.content) {
+                      if (contentBlock.blockName === "about-sec-two") {
+                        aboutSecTwo = {
+                          blockType: contentBlock.blockType,
+                          blockName: contentBlock.blockName,
+                          title: contentBlock.title,
+                          description: contentBlock.description,
+                          content: contentBlock.content,
+                          image: contentBlock.image ? {
+                            url: contentBlock.image.url,
+                            alt: contentBlock.title || "About Section Two",
+                            width: contentBlock.image.width || 576,
+                            height: contentBlock.image.height || 330,
+                          } : undefined,
+                        };
+                      } else if (contentBlock.blockName === "about-sec-three") {
+                        aboutSecThree = {
+                          blockType: contentBlock.blockType,
+                          blockName: contentBlock.blockName,
+                          title: contentBlock.title,
+                          description: contentBlock.description,
+                          content: contentBlock.content,
+                        };
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
 
           setData({
-            ...doc,
-            image: media
-              ? {
-                  url: media.url,
-                  alt: media.alt || "BuildSpaces Image",
-                  width: media.width || 565,
-                  height: media.height || 692,
-                }
-              : undefined,
+            title: doc.title,
+            label_text: doc.label_text,
+            aboutSecTwo,
+            aboutSecThree,
           });
         } else {
           console.error("❌ API error:", response.status);
@@ -112,53 +145,53 @@ const BuildSpacesSection = () => {
               className="text-uppercase fw-bold mb-3"
               style={{ color: "rgb(92, 55, 125)", letterSpacing: 1 }}
             >
-              {data?.label_text}
+             {data?.aboutSecTwo?.title}
             </div>
 
-            {/* title */}
+            {/* title from about-sec-two */}
             <h2
               className="fw-bold mb-4"
               style={{ color: "rgb(92, 55, 125)", fontSize: "2.8rem", lineHeight: 1.1 }}
             >
-              {data?.title}
+              {data?.aboutSecTwo?.description}
             </h2>
 
-            {/* केवल mediaBlock image */}
-            {data?.image && (
+            {/* image from about-sec-two */}
+            {data?.aboutSecTwo?.image && (
               <div className="build-portrait">
                 <Image
-                  src={data.image.url}
-                  width={data.image.width || 580}
-                  height={data.image.height || 250}
-                  alt={data.image.alt || "Portrait"}
+                  src={data.aboutSecTwo.image.url}
+                  width={data.aboutSecTwo.image.width || 580}
+                  height={data.aboutSecTwo.image.height || 250}
+                  alt={data.aboutSecTwo.image.alt || "Portrait"}
                   className="img-fluid build-portrait-img"
                 />
               </div>
             )}
           </div>
 
-          {/* content from layout[0].locales[0].html */}
+          {/* content from about-sec-two */}
           <div className="col-lg-6">
-            {data?.layout?.[0]?.locales?.[0]?.html && (
+            {data?.aboutSecTwo?.content && (
               <div
                 style={{ color: "#202020", fontSize: "1.15rem", maxWidth: 600 }}
                 dangerouslySetInnerHTML={{
-                  __html: data.layout[0].locales[0].html,
+                  __html: data.aboutSecTwo.content,
                 }}
               />
             )}
           </div>
         </div>
 
-        {/* extra htmlContent from layout[1].locales[0].htmlContent */}
-        {data?.layout?.[1]?.locales?.[0]?.htmlContent && (
+        {/* about-sec-three content */}
+        {data?.aboutSecThree?.content && (
           <div
             className="mt-4 mb-3 text-center"
            
           >
             <div style={{ color: "#202020", fontSize: "1.15rem", background: "rgb(243, 239, 249)", padding: "30px 10px", borderRadius: "12px" }}>
             <div className=""  dangerouslySetInnerHTML={{
-              __html: data.layout[1].locales[0].htmlContent,
+              __html: data.aboutSecThree.content,
             }}/>
             </div>
             </div>
