@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import DatenschutzPage from "@/app/datenschutz/page";
 import { Button, InputGroup } from "react-bootstrap";
 import DatenschutzPageContent from "@/components/DatenschutzContent";
+// import { brevoIntegration } from "@/lib/brevo";
 
 // API endpoints
 const FORM_API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/forms/68d519481b1e3f12d34e11c4?depth=2&draft=false&locale=undefined&trash=false`;
@@ -172,6 +173,7 @@ const NewsletterSection = () => {
         submissionData: formattedSubmissionData
       };
 
+      // Submit to Payload CMS only (Brevo commented out)
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/form-submissions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -184,7 +186,7 @@ const NewsletterSection = () => {
         // Get success message from API
         const confirmationText = formData?.confirmationMessage?.root?.children?.find((child: any) => 
           child.children?.[0]?.text
-        )?.children?.[0]?.text || "Danke!";
+        )?.children?.[0]?.text || "Danke für deine Anmeldung zu unserem Newsletter! Schau in dein Postfach, um die Anmeldung zu bestätigen.";
         setSuccessMessage(confirmationText);
         
         // Show success popup
