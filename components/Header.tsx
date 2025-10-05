@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Link from "next/link";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
+import BookingModal from "./BookingModal";
 
 type NavItem = { label: string; href: string; id?: string };
 
@@ -12,7 +13,10 @@ export default function Header() {
   const [navItems, setNavItems] = useState<NavItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const pathname = usePathname();
+
+  const bookingUrl = "http://localhost:5173/widget?provider=56b9b5aa-1af1-4721-b86e-7b668625fc8b";
 
   // Close menu automatically on route change
   useEffect(() => {
@@ -160,15 +164,31 @@ export default function Header() {
 
               <div className="de-flex-col mob-order-2">
                 <div className="menu_side_area">
-                  <Link href="/" className="btn-main d-xl-block">
+                  <button 
+                    type="button"
+                    className="btn-main d-xl-block"
+                    onClick={() => setIsBookingModalOpen(true)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <i className="bi bi-calendar-check me-2"></i>
                     Buche hier deinen Termin
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <BookingModal 
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        iframeUrl={bookingUrl}
+      />
     </header>
   );
 }
