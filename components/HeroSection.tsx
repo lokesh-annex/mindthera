@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-
+import Image from "next/image";
 const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68be7cf2bf64c36803556acb?depth=2&draft=false&trash=false`;
 
 const HeroSection = () => {
@@ -68,7 +68,25 @@ const HeroSection = () => {
   const bgimg = getMediaBlock(data?.layout);
 
   return (
-    <section className="section-dark text-light hero-section-slider no-top no-bottom position-relative overflow-hidden z-1000">
+    <section className="section-dark text-light hero-section-slider  position-relative overflow-hidden">
+        <span className="absolute top-15 start-0">
+              <Image
+                src="/images/bg-2-copyright.webp"
+                width={343}
+                height={625}
+                alt="Background Copyright"
+                priority
+              />
+            </span>
+             <span className="absolute top-30 end-0">
+              <Image
+                src="/images/bg-2-copyright-right.webp"
+                width={343}
+                height={625}
+                alt="Background Copyright"
+                priority
+              />
+            </span>
       {loading && (
         <div className="container py-5">
           <div className="d-flex align-items-center justify-content-center">
@@ -88,25 +106,21 @@ const HeroSection = () => {
         </div>
       )}
       {!loading && !error && (
-        <div
-          className="swiper-inner two"
-          style={{
-            backgroundImage: bgimg
-              ? `url(${bgimg})`
-              : "url(/images/slider/2.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
+       
           <div className="container">
             <div className="row gx-5 align-items-center">
-              <div className="col-lg-6 offset-lg-6">
-                <div className="spacer-single"></div>
+              <div className="col-lg-6 p-0">
+                <div className="image-slider-bg">
+                <img src="/images/slider/slide.jpg" className="img-fluid" />
+              </div>
+              </div>
+              <div className="col-lg-6 p-0">
+               
                 <div className="sw-text-wrapper">
                   <h2 className="slider-title mb-3">
                     {title}
                     {subtitle && (
-                      <span className="d-block alt-font fw-500 id-color-2 fs-36 fs-xs-24 mt-2">
+                      <span className="d-block alt-font fw-500  fs-36 fs-xs-24 mt-2">
                         {subtitle}
                       </span>
                     )}
@@ -124,7 +138,7 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
-        </div>
+     
       )}
     </section>
   );

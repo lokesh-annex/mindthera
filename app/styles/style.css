@@ -93,7 +93,7 @@ html {
   overflow-x: hidden;
   padding: 0;
   margin: 0;
-  background: #6f5586;
+  /* background: #6f5586; */
 }
 .dark-scheme {
   color: var(--dark-body-font-color);
@@ -197,7 +197,7 @@ header.header-bg {
   background: rgba(0, 0, 0, 0.5);
 }
 header.transparent {
-  background: none;
+ background: #6f5586;
 }
 body:not(.side-layout)
   header:not(.smaller):not(.header-mobile).header-light.transparent {
@@ -484,7 +484,7 @@ header .header-col.mid .social-icons {
   color: #fff;
 }
 #de-subheader {
-  margin-top: 104px;
+  margin-top: 96px;
   background: rgb(240, 240, 240);
 }
 #de-subheader.op-2 {
@@ -5240,6 +5240,15 @@ a.img-icon-zoom {
   border-left: solid 1px rgba(255, 255, 255, 0.75);
   padding-left: 40px;
 }
+.sw-text-wrapper {
+ padding: 60px 100px 60px 60px;
+  background: #F8F5FD;
+  position: relative;
+  margin-left: -170px;
+  margin-top: 90px;
+  border-radius: 5px;
+  z-index: 99;
+}
 .slider-title .underline {
   position: relative;
 }
@@ -5255,6 +5264,7 @@ a.img-icon-zoom {
 h2.slider-title {
   font-size: 46px;
   line-height: 1.2em;
+  color: var(--primary-color);
   letter-spacing: -3px;
 }
 h2.slider-title span {
@@ -5262,8 +5272,10 @@ h2.slider-title span {
   line-height: 42px;
   margin-top: 10px;
   font-style: italic;
+  color: var(--title-font-color);
   font-weight: normal;
 }
+
 h3.slider-teaser {
   font-size: 24px;
 }
@@ -9425,8 +9437,10 @@ img {
   box-shadow: var(--bs-box-shadow-sm) !important;
 }
 .hero-section-slider {
-height: 100vh;
-align-items: center;
+  display: flex;
+  align-items: center;
+padding-top: 160px !important;
+  padding-bottom: 30px !important;
 }
 .swiper-inner.two {
   align-items: center;
@@ -9562,7 +9576,12 @@ content: "\f625";
 .new-session-box img.max-w-xs{
   height: 100%;
 }
-
+.about-home ul {
+  padding: 0;
+}
+/* .image-wrapper-about {
+  text-align: right;
+} */
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;
@@ -9648,18 +9667,15 @@ content: "\f625";
 .contact-booking .btn.btn-main {
   font-size: 14px;
 }
-.hero-section-slider {
-  height: 83vh;
- 
+#mainmenu > li {
+  margin-right: 15px;
+  
 }
 
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-.hero-section-slider {
-  height: 60vh;
 
-}
  .header-col-mid #mainmenu {
     top: 49px !important;
   }
@@ -9748,6 +9764,10 @@ content: "\f625";
   .harmonyum-hero-section .row {
     min-height: 520px !important;
   }
+  .sw-text-wrapper {
+  margin-left: -120px;
+  margin-top: 0px;
+}
 }
 @media only screen and (max-width: 992px) {
   .container {
@@ -10424,6 +10444,7 @@ content: "\f625";
   h1.slider-title,
   h2.slider-title {
     margin-bottom: 0;
+    letter-spacing: 0px;
   }
   h2 {
     font-size: 40px;
@@ -10498,6 +10519,21 @@ content: "\f625";
   .header-col-mid #mainmenu {
     top: 39px;
   }
+    .hero-section-slider {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+ .sw-text-wrapper {
+    margin-left: 0;
+    margin-top: 0px;
+    padding: 20px;
+  }
+  .image-slider-bg img{
+    width: 100%;
+  }
+  header.transparent {
+  background: #fff;
+}
 }
 
 @media (min-width: 993px) {
@@ -10511,6 +10547,7 @@ content: "\f625";
   #menu-btn {
     display: none;
   }
+
 }
 @media only screen and (max-width: 767px) {
   header .logo-main {
@@ -10873,9 +10910,7 @@ content: "\f625";
     line-height: 26px;
     font-size: 20px;
   }
-.hero-section-slider{
-height: 330px;
-}
+
 a.btn-main{
 padding: 4px 12px !important;
     font-size: 15px !important;
@@ -10942,6 +10977,14 @@ display: none;
   --bs-gutter-y: 0.4rem;
 }
 
+.image-slider-bg {
+  text-align: center;
+  padding: 0 30px;
+}
+ .sw-text-wrapper {
+    margin-left: 29px;
+    margin-right: 30px;
+  }
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {
