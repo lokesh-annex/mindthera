@@ -110,7 +110,9 @@ const HeroSection = () => {
           <div className="container">
             <div className="row gx-5 align-items-center">
               <div className="col-lg-6 p-0">
+                <div className="image-slider-bg">
                 <img src="/images/slider/slide.jpg" className="img-fluid" />
+              </div>
               </div>
               <div className="col-lg-6 p-0">
                

@@ -87,11 +87,11 @@ const AboutUS = () => {
         <div className="row g-4 gx-5 align-items-center">
           {/* Left Column: API Images */}
           <div className="col-lg-6">
-            <div className="row g-4">
+         
               {images.map(
                 (img: string, idx: number) =>
                   img && (
-                    <div className="col-6" key={idx}>
+                    <div className="image-wrapper-about" key={idx}>
                       <Image
                         src={img}
                         className="img-fluid rounded-10px mb-4 about-image-70"
@@ -103,7 +103,7 @@ const AboutUS = () => {
                   )
               )}
             </div>
-          </div>
+         
 
           {/* Right Column: Text + HTML + Buttons */}
           <div className="col-lg-6">

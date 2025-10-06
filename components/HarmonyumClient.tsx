@@ -564,20 +564,47 @@ export default function HarmonyumPage() {
     <>
       <Breadcrumbs title="Harmonyum" items={[{ label: "Home", href: "/" }, { label: "Harmonyum" }]} />
       <main>
-        {layoutBlocks.map((block, idx) => {
-          if (block.blockType === "contentShowcase") {
-            const contentBlock = block as ContentShowcaseBlock;
-            // First block is hero
-            if (idx === 0) {
-              return renderHeroSection(contentBlock);
-            }
-            return renderContentShowcase(contentBlock);
+        {layoutBlocks.map((block) => {
+          // Custom layouts by blockName
+          if (block.blockName === "Hero Section" && (block as ContentShowcaseBlock).image) {
+            const heroBlock = block as ContentShowcaseBlock;
+            return (
+              <section key={heroBlock.id} className="container-fluid py-8 position-relative harmonyum-hero-section" style={{ backgroundImage: `url(${getImageUrl(heroBlock.image)})`, backgroundSize: "cover", backgroundPosition: "top center", minHeight: "600px", overflow: "hidden" }}>
+                <div className="harmonyum-hero-overlay"></div>
+                <div className="row justify-content-center align-items-center" style={{ minHeight: "400px", marginTop: "4rem", zIndex: 2, position: "relative" }}>
+                  <div className="col-md-6 animated fadeInUp"></div>
+                  <div className="col-md-6 animated fadeInUp">
+                    <div className="px-4">
+                      <h1 className="display-4 fw-bold harmonyum-title mb-3 animated-text-gradient">{heroBlock.title}</h1>
+                      {heroBlock.description && (<p className="lead dark-color alt-font id-color-2">{heroBlock.description}</p>)}
+                      {heroBlock.content?.paragraph && (<div className="mb-0 dark-color harmonyum-hero-desc" dangerouslySetInnerHTML={{ __html: heroBlock.content.paragraph }} />)}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            );
           }
-          
-          if (block.blockType === "textContent") {
+          if (block.blockName === "Anwendungsbereiche") {
+            return renderContentShowcase(block as ContentShowcaseBlock);
+          }
+            // Trauma-related text sections
+          if (["Was ist ein Trauma", "Beispiele für ein Trauma", "Für wen ist HTR geeignet?", "Ablauf der Behandlung"].includes(block.blockName || "")) {
             return renderTextContent(block as TextContentBlock);
           }
-          
+          if (block.blockName === "Warum bleibt Trauma") {
+            return renderContentShowcase(block as ContentShowcaseBlock);
+          }
+          if (block.blockName === "Sanfte-Hilfe-fur-dein-baby") {
+            return renderContentShowcase(block as ContentShowcaseBlock);
+          }
+          if (block.blockName === "Kontakt-Buchung") {
+            return renderContentShowcase(block as ContentShowcaseBlock);
+          }
+          if (block.blockName === "HTR Zertifikat") {
+            return renderContentShowcase(block as ContentShowcaseBlock);
+          }
+        
+          // Default fallback
           return null;
         })}
       </main>
