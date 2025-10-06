@@ -7,7 +7,7 @@ interface BookingWidgetModalProps {
 }
 
 const DEFAULT_IFRAME_URL =
-  "https://appointer-admin-panel.vercel.app/widget?provider=f6f2c8e6-d590-4038-94e4-e2f55e280866";
+  "https://appointer-admin-panel.vercel.app/widget?provider=f6f2c8e6-d590-4038-94e4-e2f55e280866&locale=de";
 
 export default function BookingWidgetModal({ open, onClose, iframeUrl }: BookingWidgetModalProps) {
   useEffect(() => {
