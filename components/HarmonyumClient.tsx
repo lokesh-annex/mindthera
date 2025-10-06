@@ -566,7 +566,11 @@ export default function HarmonyumPage() {
       <main>
         {layoutBlocks.map((block) => {
           // Custom layouts by blockName
-          if (block.blockName === "Hero Section" && (block as ContentShowcaseBlock).image) {
+          if (
+            block.blockName === "Harmonyum Trauma Release®" &&
+            "image" in block &&
+            block.image
+          ) {
             const heroBlock = block as ContentShowcaseBlock;
             return (
               <section key={heroBlock.id} className="container-fluid py-8 position-relative harmonyum-hero-section" style={{ backgroundImage: `url(${getImageUrl(heroBlock.image)})`, backgroundSize: "cover", backgroundPosition: "top center", minHeight: "600px", overflow: "hidden" }}>
