@@ -71,7 +71,7 @@ export default function BookingWidgetModal({ open, onClose, iframeUrl }: Booking
         <iframe
           src={iframeUrl || DEFAULT_IFRAME_URL}
           style={{
-            width: 600,
+            width: "90vw",
             maxWidth: "90vw",
             height: "80vh",
             border: "none",
