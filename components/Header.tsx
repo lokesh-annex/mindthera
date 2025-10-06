@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Link from "next/link";
 import Logo from "./Logo";
+import BookingWidgetModal from "./BookingWidgetModal";
 import { usePathname } from "next/navigation";
 
 type NavItem = { label: string; href: string; id?: string };
@@ -12,6 +13,7 @@ export default function Header() {
   const [navItems, setNavItems] = useState<NavItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
   const pathname = usePathname();
 
   // Close menu automatically on route change
@@ -160,9 +162,14 @@ export default function Header() {
 
               <div className="de-flex-col mob-order-2">
                 <div className="menu_side_area">
-                  <Link href="/" className="btn-main d-xl-block">
+                  <button
+                    type="button"
+                    className="btn-main d-xl-block"
+                    onClick={() => setBookingOpen(true)}
+                  >
                     Buche hier deinen Termin
-                  </Link>
+                  </button>
+                  <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
                 </div>
               </div>
             </div>
