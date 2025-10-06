@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 interface BookingWidgetModalProps {
   open: boolean;
@@ -10,6 +10,21 @@ const DEFAULT_IFRAME_URL =
   "https://appointer-admin-panel.vercel.app/widget?provider=f6f2c8e6-d590-4038-94e4-e2f55e280866";
 
 export default function BookingWidgetModal({ open, onClose, iframeUrl }: BookingWidgetModalProps) {
+  useEffect(() => {
+    if (!open) return;
+    const handleMessage = (event: MessageEvent) => {
+      if (event?.data?.type === "APPOINTMENT_BOOKED") {
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      }
+    };
+    window.addEventListener("message", handleMessage);
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, [open, onClose]);
+
   if (!open) return null;
   return (
     <div
