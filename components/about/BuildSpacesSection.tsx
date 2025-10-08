@@ -136,10 +136,23 @@ const BuildSpacesSection = () => {
   }
 
   return (
-    <section style={{ background: "rgb(247, 245, 250)", padding: "64px 0" }}>
+    <section className="about_second" style={{ background: "rgb(247, 245, 250)", padding: "64px 0" }}>
       <div className="container">
         <div className="row align-items-center justify-content-center">
-          <div className="col-lg-6 mb-4 mb-lg-0">
+       
+
+          {/* content from about-sec-two */}
+          <div className="col-lg-6">
+            {data?.aboutSecTwo?.content && (
+              <div
+                style={{ color: "#202020", fontSize: "1.15rem", maxWidth: 600 }}
+                dangerouslySetInnerHTML={{
+                  __html: data.aboutSecTwo.content,
+                }}
+              />
+            )}
+          </div>
+             <div className="col-lg-6 mb-4 mb-lg-0">
             {/* label_text */}
             <div
               className="text-uppercase fw-bold mb-3"
@@ -167,18 +180,6 @@ const BuildSpacesSection = () => {
                   className="img-fluid build-portrait-img"
                 />
               </div>
-            )}
-          </div>
-
-          {/* content from about-sec-two */}
-          <div className="col-lg-6">
-            {data?.aboutSecTwo?.content && (
-              <div
-                style={{ color: "#202020", fontSize: "1.15rem", maxWidth: 600 }}
-                dangerouslySetInnerHTML={{
-                  __html: data.aboutSecTwo.content,
-                }}
-              />
             )}
           </div>
         </div>
