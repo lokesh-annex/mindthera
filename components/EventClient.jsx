@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
+
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import BookingWidgetModal from "@/components/BookingWidgetModal";
 
 const API_URL_EVENTS = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68c023ac106eb845adbae559?depth=2&draft=false&locale=de&trash=false`;
 
@@ -55,6 +57,7 @@ const EventClient = () => {
   const [events, setEvents] = useState([]);
   const [pageTitle, setPageTitle] = useState("Events");
   const [loading, setLoading] = useState(true);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     async function fetchEvents() {
@@ -135,7 +138,7 @@ const EventClient = () => {
                   )}
                   <div className="d-flex gap-2 flex-wrap">
                     {event.button1 && (
-                      <button className="btn-main mb-2">{event.button1}</button>
+                      <button className="btn-main mb-2" onClick={() => setBookingOpen(true)}>{event.button1}</button>
                     )}
                     {event.button2 && (
                       <button className="btn-main mb-2">{event.button2}</button>
@@ -152,6 +155,9 @@ const EventClient = () => {
           )}
         </div>
       </section>
+
+      {/* Booking Modal for Event page */}
+      <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   );
 };

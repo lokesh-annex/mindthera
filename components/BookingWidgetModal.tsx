@@ -35,7 +35,7 @@ export default function BookingWidgetModal({ open, onClose, iframeUrl }: Booking
         width: "100vw",
         height: "100vh",
         background: "rgba(0,0,0,0.7)",
-        zIndex: 9999,
+        zIndex: 99999,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

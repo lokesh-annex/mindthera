@@ -105,6 +105,7 @@ export default function Header() {
   };
 
   return (
+    <>
     <header className="transparent scroll-light has-topbar header-s1">
       <div className="container">
         <div className="row">
@@ -169,7 +170,7 @@ export default function Header() {
                   >
                     Buche hier deinen Termin
                   </button>
-                  <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+                 
                 </div>
               </div>
             </div>
@@ -177,5 +178,7 @@ export default function Header() {
         </div>
       </div>
     </header>
+     <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+      </>
   );
 }

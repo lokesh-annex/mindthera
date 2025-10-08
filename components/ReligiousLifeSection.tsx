@@ -1,13 +1,17 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import BookingWidgetModal from "@/components/BookingWidgetModal";
+import Link from "next/link";
 
 const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68be83bbbf64c36803556e91?depth=2&draft=false&trash=false`;
+
 
 const ReligiousLifeSection = () => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -135,14 +139,22 @@ const ReligiousLifeSection = () => {
 
             {/* ✅ Button from buttonBlock */}
             {buttonText && (
-              <a
-                className="btn btn-main px-4 py-2 fw-bold"
-                href={buttonLink}
-                target={openInNewTab ? "_blank" : "_self"}
-                rel={openInNewTab ? "noopener noreferrer" : undefined}
-              >
-                {buttonText}
-              </a>
+              <>
+               
+                  <button
+                    className="btn btn-main px-4 py-2 fw-bold"
+                    
+                    rel={openInNewTab ? "noopener noreferrer" : undefined}
+                    onClick={e => {
+                      e.preventDefault();
+                      setBookingOpen(true);
+                    }}
+                  >
+                    {buttonText}
+                  
+                </button>
+                <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+              </>
             )}
           </div>
         </div>
