@@ -64,7 +64,7 @@ const ReligiousLifeSection = () => {
   // ✅ button block
   const buttonBlock = data.layout?.find((b: any) => b.blockType === "buttonBlock");
   const buttonText = buttonBlock?.locales?.[0]?.buttonText || "";
-  const buttonLink = buttonBlock?.locales?.[0]?.buttonLink || "#";
+  const buttonLink = buttonBlock?.locales?.[0]?.buttonUrl || "#";
   const openInNewTab = buttonBlock?.locales?.[0]?.openInNewTab || false;
 
   return (
@@ -141,19 +141,14 @@ const ReligiousLifeSection = () => {
             {buttonText && (
               <>
                
-                  <button
+                  <Link
+                    href={buttonLink || "#"}
                     className="btn btn-main px-4 py-2 fw-bold"
-                    
+                    target={openInNewTab ? "_blank" : undefined}
                     rel={openInNewTab ? "noopener noreferrer" : undefined}
-                    onClick={e => {
-                      e.preventDefault();
-                      setBookingOpen(true);
-                    }}
                   >
                     {buttonText}
-                  
-                </button>
-                <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+                  </Link>
               </>
             )}
           </div>

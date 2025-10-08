@@ -49,20 +49,33 @@ const AboutUS = () => {
       ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${u}`
       : "";
 
-  // ✅ content block
-  const contentBlock = data.layout?.find((b: any) => b.blockType === "content");
+
+  // Filter out empty sections (no title, description, html, or images)
+  const layout = Array.isArray(data.layout)
+    ? data.layout.filter((b: any) => {
+        const locale = b.locales?.[0] || {};
+        const hasContent =
+          (locale.title && locale.title.trim() !== "") ||
+          (locale.description && locale.description.trim() !== "") ||
+          (locale.html && locale.html.trim() !== "") ||
+          (b.blockType === "mediaBlock" && locale.media?.url) ||
+          (b.blockType === "buttonBlock" && locale.buttonText && locale.buttonText.trim() !== "");
+        return hasContent;
+      })
+    : [];
+
+  
+  const contentBlock = layout.find((b: any) => b.blockType === "content");
   const html = contentBlock?.locales?.[0]?.html || "";
 
-  // ✅ media blocks
-  const mediaBlocks =
-    data.layout?.filter((b: any) => b.blockType === "mediaBlock") || [];
+  
+  const mediaBlocks = layout.filter((b: any) => b.blockType === "mediaBlock") || [];
   const images = mediaBlocks.map((b: any) =>
     absUrl(b.locales?.[0]?.media?.url)
   );
 
-  // ✅ button blocks (array सपोर्ट किया)
-  const buttonBlocks =
-    data.layout?.filter((b: any) => b.blockType === "buttonBlock") || [];
+
+  const buttonBlocks = layout.filter((b: any) => b.blockType === "buttonBlock") || [];
 
   return (
     <>
@@ -107,19 +120,20 @@ const AboutUS = () => {
             <div className="spacer-10"></div>
 
             {/* Existing mapped buttons */}
-            {buttonBlocks.map((btn: any, idx: number) => {
+           {buttonBlocks.map((btn: any, idx: number) => {
               const locale = btn.locales?.[0];
               if (!locale) return null;
               return (
-                <Link
-                  key={idx}
-                  href={locale.buttonUrl || "#"}
-                  className="btn-main me-2"
-                  target={locale.openInNewTab ? "_blank" : undefined}
-                  rel={locale.openInNewTab ? "noopener noreferrer" : undefined}
-                >
-                  {locale.buttonText}
-                </Link>
+                <>
+                 <button
+              type="button"
+              className="btn-main me-2"
+              onClick={() => setBookingOpen(true)}
+            >
+              {locale.buttonText}
+            </button>
+            
+              </>
               );
             })}
 

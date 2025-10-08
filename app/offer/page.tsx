@@ -188,6 +188,7 @@ const OfferPage = () => {
                               background: "#5c377d",
                               color: "#fff",
                               boxShadow: "0 2px 8px rgba(92,55,125,0.15)",
+                              zIndex: 1,
                             }}
                             aria-label="Mehr erfahren"
                           >
