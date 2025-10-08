@@ -145,14 +145,14 @@ const QualificationsSection = () => {
         <div className="col-lg-6">
           <div className="mb-4 p-4 rounded-4 text-dark bg-light h-100 fade-in">
             <h4 className="fw-bold mb-3 text-primary">
-              <span className="d-inline-flex gap-2 align-items-center flex-wrap">
+              <span className="d-inline-flex gap-2 align-items-center">
               <span
               
                   style={{
                     background: "#5c377d",
                     color: "#fff",
                     borderRadius: "50%",
-                    width: "38px",
+                    minWidth: "38px",
                     height: "38px",
                     display: "inline-flex",
                     alignItems: "center",
