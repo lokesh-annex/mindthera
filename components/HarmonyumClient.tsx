@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
+
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Image from "next/image";
+import BookingWidgetModal from "@/components/BookingWidgetModal";
 
 // API endpoint
 const API_URL =
@@ -58,6 +60,7 @@ type LayoutBlock = ContentShowcaseBlock | TextContentBlock;
 export default function HarmonyumPage() {
   const [layoutBlocks, setLayoutBlocks] = useState<LayoutBlock[]>([]);
   const [loading, setLoading] = useState(true);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const fetchContent = useCallback(async () => {
     try {
@@ -415,16 +418,27 @@ export default function HarmonyumPage() {
                     )}
                     <div className="d-flex flex-column flex-md-row gap-3 mt-4">
                       {block.buttons && block.buttons.length > 0 && block.buttons.map((button, idx) => (
-                        <a
-                          key={idx}
-                          href={button.url}
-                          className="btn btn-main"
-                          target={button.openInNewTab ? "_blank" : undefined}
-                          rel={button.openInNewTab ? "noopener noreferrer" : undefined}
-                          download={button.url.includes('.pdf') ? true : undefined}
-                        >
-                          {button.label}
-                        </a>
+                        idx === 0 ? (
+                          <button
+                            key={idx}
+                            type="button"
+                            className="btn btn-main"
+                            onClick={() => setBookingOpen(true)}
+                          >
+                            {button.label}
+                          </button>
+                        ) : (
+                          <a
+                            key={idx}
+                            href={button.url}
+                            className="btn btn-main"
+                            target={button.openInNewTab ? "_blank" : undefined}
+                            rel={button.openInNewTab ? "noopener noreferrer" : undefined}
+                            download={button.url.includes('.pdf') ? true : undefined}
+                          >
+                            {button.label}
+                          </a>
+                        )
                       ))}
                     </div>
                   </div>
@@ -612,6 +626,10 @@ export default function HarmonyumPage() {
           return null;
         })}
       </main>
+      {/* Booking Modal for Kontakt-Buchung section */}
+      {typeof window !== 'undefined' && (
+        <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+      )}
     </>
   );
 }

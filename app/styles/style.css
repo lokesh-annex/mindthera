@@ -3451,7 +3451,7 @@ ol.ol-style-1 li::before {
 .relative,
 .position-relative {
   position: relative;
-  z-index: 1;
+  
 }
 .z-1 {
   z-index: 1;
@@ -9579,9 +9579,10 @@ content: "\f625";
 .about-home ul {
   padding: 0;
 }
-/* .image-wrapper-about {
+
+ .image-wrapper-about {
   text-align: right;
-} */
+}
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;

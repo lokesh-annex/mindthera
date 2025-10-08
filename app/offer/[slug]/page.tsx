@@ -328,38 +328,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     const image = offer.seoImage || offer.image || "/images/misc/placeholder.jpg";
 
     return {
-      title: `${title} | MindThera`,
+      title: `${title}`,
       description,
-      keywords: offer.seoKeywords || `${offer.title}, therapy, healing, mindfulness, meditation`,
-      openGraph: {
-        title: `${title} | MindThera`,
-        description,
-        images: [
-          {
-            url: image,
-            width: 1200,
-            height: 630,
-            alt: title,
-          }
-        ],
-        type: "website",
-        locale: "de_DE",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: `${title} | MindThera`,
-        description,
-        images: [image],
-      },
-      alternates: {
-        canonical: `/offer/${params.slug}`,
-      },
+      
+      
+     
     };
   } catch (error) {
     console.error("Error generating metadata:", error);
     return {
-      title: "MindThera Offer",
-      description: "Discover our healing and therapy services",
+      title: "",
+      description: "",
     };
   }
 }

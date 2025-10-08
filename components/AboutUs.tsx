@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import BookingWidgetModal from "@/components/BookingWidgetModal";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,6 +11,7 @@ const AboutUS = () => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -63,6 +65,7 @@ const AboutUS = () => {
     data.layout?.filter((b: any) => b.blockType === "buttonBlock") || [];
 
   return (
+    <>
     <section className="relative about-home">
       <span className="absolute top-15 start-0">
         <Image
@@ -73,7 +76,7 @@ const AboutUS = () => {
           priority
         />
       </span>
-      <div className="leaf-bg">
+      <div className="leaf-bg d-none">
         <Image
           src="/images/misc/leaf-1.png"
           width={140}
@@ -85,6 +88,43 @@ const AboutUS = () => {
 
       <div className="container">
         <div className="row g-4 gx-5 align-items-center">
+          
+         
+
+          {/* Right Column: Text + HTML + Buttons */}
+          <div className="col-lg-6">
+            <div className="subtitle mb-3">{data.label_text || ""}</div>
+            <h2>{data.title}</h2>
+            <p>{data.description}</p>
+
+            {html && (
+              <div
+                className="ul-style-2 text-dark fw-600"
+                dangerouslySetInnerHTML={{ __html: html }}
+              />
+            )}
+
+            <div className="spacer-10"></div>
+
+            {/* Existing mapped buttons */}
+            {buttonBlocks.map((btn: any, idx: number) => {
+              const locale = btn.locales?.[0];
+              if (!locale) return null;
+              return (
+                <Link
+                  key={idx}
+                  href={locale.buttonUrl || "#"}
+                  className="btn-main me-2"
+                  target={locale.openInNewTab ? "_blank" : undefined}
+                  rel={locale.openInNewTab ? "noopener noreferrer" : undefined}
+                >
+                  {locale.buttonText}
+                </Link>
+              );
+            })}
+
+            {/* Booking modal trigger button */}
+          </div>
           {/* Left Column: API Images */}
           <div className="col-lg-6">
          
@@ -103,43 +143,11 @@ const AboutUS = () => {
                   )
               )}
             </div>
-         
-
-          {/* Right Column: Text + HTML + Buttons */}
-          <div className="col-lg-6">
-            <div className="subtitle mb-3">{data.label_text || ""}</div>
-            <h2>{data.title}</h2>
-            <p>{data.description}</p>
-
-            {html && (
-              <div
-                className="ul-style-2 text-dark fw-600"
-                dangerouslySetInnerHTML={{ __html: html }}
-              />
-            )}
-
-            <div className="spacer-10"></div>
-
-           
-            {buttonBlocks.map((btn: any, idx: number) => {
-              const locale = btn.locales?.[0];
-              if (!locale) return null;
-              return (
-                <Link
-                  key={idx}
-                  className="btn-main me-2"
-                  href={locale.buttonLink || "#"}
-                  target={locale.openInNewTab ? "_blank" : "_self"}
-                  rel={locale.openInNewTab ? "noopener noreferrer" : undefined}
-                >
-                  {locale.buttonText}
-                </Link>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>
+     <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+      </>
   );
 };
 
