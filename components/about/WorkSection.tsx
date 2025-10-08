@@ -120,7 +120,7 @@ const WorkSection = () => {
       <div className="container">
         <div className="row align-items-center justify-content-center">
           {/* Left Image */}
-          <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
+          {/* <div className="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
             {content.image1 && (
               <div
                 style={{
@@ -139,10 +139,10 @@ const WorkSection = () => {
                 />
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* Right Content */}
-          <div className="col-lg-7">
+          <div className="col-lg-12">
             {content.title && (
               <div
                 className="mb-2 text-uppercase fw-bold"

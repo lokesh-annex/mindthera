@@ -24,9 +24,7 @@ function absUrl(u) {
 
 function normalizeEvents(doc) {
   if (!doc || !Array.isArray(doc.layout)) return [];
-  
   const events = [];
-  
   doc.layout.forEach((block) => {
     // Handle sectionBlockV2 with content array
     if (block?.blockType === "sectionBlockV2") {
@@ -34,22 +32,29 @@ function normalizeEvents(doc) {
       if (locale?.content && Array.isArray(locale.content)) {
         locale.content.forEach((contentItem) => {
           if (contentItem?.blockType === "contentShowcaseContentBlock") {
+            // Hide empty event sections
+            const hasContent =
+              (contentItem?.title && contentItem.title.trim() !== "") ||
+              (contentItem?.description && contentItem.description.trim() !== "") ||
+              (contentItem?.content && contentItem.content.trim() !== "") ||
+              (contentItem?.image && contentItem.image.url) ||
+              (contentItem?.buttons?.[0]?.text && contentItem.buttons[0].text.trim() !== "");
+            if (!hasContent) return;
             events.push({
               title: contentItem?.title || "",
               subtitle: contentItem?.description || "",
               html: contentItem?.content || "",
               image: absUrl(contentItem?.image?.url),
               button1: contentItem?.buttons?.[0]?.text || "",
+              button1Url: contentItem?.buttons?.[0]?.url || "",
               button2: contentItem?.buttons?.[1]?.text || "",
+              button2Url: contentItem?.buttons?.[1]?.url || "",
             });
           }
         });
       }
     }
-    
- 
   });
-  
   return events.filter(Boolean);
 }
 
@@ -138,10 +143,32 @@ const EventClient = () => {
                   )}
                   <div className="d-flex gap-2 flex-wrap">
                     {event.button1 && (
-                      <button className="btn-main mb-2" onClick={() => setBookingOpen(true)}>{event.button1}</button>
+                      event.button1Url ? (
+                        <a
+                          className="btn-main mb-2"
+                          href={event.button1Url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {event.button1}
+                        </a>
+                      ) : (
+                        <button className="btn-main mb-2" onClick={() => setBookingOpen(true)}>{event.button1}</button>
+                      )
                     )}
                     {event.button2 && (
-                      <button className="btn-main mb-2">{event.button2}</button>
+                      event.button2Url ? (
+                        <a
+                          className="btn-main mb-2"
+                          href={event.button2Url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {event.button2}
+                        </a>
+                      ) : (
+                        <button className="btn-main mb-2">{event.button2}</button>
+                      )
                     )}
                   </div>
                   {event.subtitle && (

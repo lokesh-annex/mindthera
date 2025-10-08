@@ -83,6 +83,19 @@ export default function HarmonyumPage() {
     fetchContent();
   }, [fetchContent]);
 
+  // Filter out empty sections (no title, description, content, or images, or buttonText for buttonBlock)
+  const filteredLayoutBlocks = Array.isArray(layoutBlocks)
+    ? layoutBlocks.filter((b: any) => {
+        const hasContent =
+          (b.title && b.title.trim() !== "") ||
+          (b.description && b.description.trim() !== "") ||
+          (b.content && (typeof b.content === 'string' ? b.content.trim() !== "" : b.content.paragraph && b.content.paragraph.trim() !== "")) ||
+          (b.image && b.image.url) ||
+          (b.blockType === "buttonBlock" && b.buttonText && b.buttonText.trim() !== "");
+        return hasContent;
+      })
+    : [];
+
   // Helper function to get image URL
   const getImageUrl = (image?: ImageData) => {
     return image?.url || '/images/placeholder.jpg';
@@ -299,89 +312,7 @@ export default function HarmonyumPage() {
                 </div>
               </div>
               
-              {/* Render Ein guter Start ins Leben block if it exists */}
-              {(() => {
-                const einGuterStartBlock = layoutBlocks.find(b => 
-                  b.title && b.title.includes("Ein guter Start ins Leben")
-                );
-                
-                if (!einGuterStartBlock) return null;
-                
-                return (
-                  <div className="col-lg-12 mt-5">
-                    <div className="px-0 py-3">
-                      <h2
-                        className="fw-bold mb-3"
-                        style={{ color: "#5c377d", fontSize: "2rem" }}
-                      >
-                        {einGuterStartBlock.title}
-                      </h2>
-                      {einGuterStartBlock.description && (
-                        <h5 className="mt-3 mb-3" style={{ color: "#333" }}>
-                          {einGuterStartBlock.description}
-                        </h5>
-                      )}
-                      
-                      {/* Render content from API */}
-                      {einGuterStartBlock.content && (
-                        <div 
-                          className="mb-3"
-                          style={{ fontSize: "1.15rem", color: "#202020", lineHeight: "1.7" }}
-                          dangerouslySetInnerHTML={{ __html: einGuterStartBlock.content }}
-                        />
-                      )}
-                      
-                      <div className="d-flex mt-4">
-                        {/* Handle different button types for einGuterStartBlock */}
-                        {einGuterStartBlock.blockType === 'contentShowcase' && 
-                         (einGuterStartBlock as ContentShowcaseBlock).buttons && 
-                         (einGuterStartBlock as ContentShowcaseBlock).buttons!.map((button, idx) => (
-                          <a
-                            key={idx}
-                            href={button.url}
-                            className="btn btn-main px-4 py-2 fw-bold"
-                            style={{
-                              fontSize: "1.1rem",
-                              background: "#5c377d",
-                              color: "#fff",
-                              borderRadius: "2rem",
-                              boxShadow: "0 2px 8px rgba(92,55,125,0.08)"
-                            }}
-                            target={button.openInNewTab ? "_blank" : undefined}
-                            rel={button.openInNewTab ? "noopener noreferrer" : undefined}
-                            download={button.url.includes('.pdf') ? true : undefined}
-                          >
-                            {button.label}
-                          </a>
-                        ))}
-                        
-                        {einGuterStartBlock.blockType === 'textContent' && 
-                         (einGuterStartBlock as TextContentBlock).button?.showButton && 
-                         (einGuterStartBlock as TextContentBlock).button!.link && (
-                          <a
-                            href={(einGuterStartBlock as TextContentBlock).button!.link!.url}
-                            className="btn btn-main px-4 py-2 fw-bold"
-                            style={{
-                              fontSize: "1.1rem",
-                              background: "#5c377d",
-                              color: "#fff",
-                              borderRadius: "2rem",
-                              boxShadow: "0 2px 8px rgba(92,55,125,0.08)"
-                            }}
-                            target={(einGuterStartBlock as TextContentBlock).button!.link!.newTab ? "_blank" : undefined}
-                            rel={(einGuterStartBlock as TextContentBlock).button!.link!.newTab ? "noopener noreferrer" : undefined}
-                            download={(einGuterStartBlock as TextContentBlock).button!.link!.url?.includes('.pdf') ? true : undefined}
-                          >
-                            {(einGuterStartBlock as TextContentBlock).button!.label}
-                          </a>
-                        )}
-                      </div>
-                     
-                      
-                    </div>
-                  </div>
-                );
-              })()}
+             
             </div>
           </div>
         </section>
