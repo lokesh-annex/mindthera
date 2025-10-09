@@ -57,9 +57,10 @@ const ReligiousLifeSection = () => {
   // ✅ media blocks
   const mediaBlocks =
     data.layout?.filter((b: any) => b.blockType === "mediaBlock") || [];
-  const images = mediaBlocks.map((b: any) =>
-    absUrl(b.locales?.[0]?.media?.url)
-  );
+  const images = mediaBlocks.map((b: any, index: number) => ({
+    url: absUrl(b.locales?.[0]?.media?.url),
+    alt: b.locales?.[0]?.media?.alt || data.title || `Image ${index + 1}`
+  }));
 
   // ✅ button block
   const buttonBlock = data.layout?.find((b: any) => b.blockType === "buttonBlock");
@@ -77,10 +78,10 @@ const ReligiousLifeSection = () => {
             style={{ minHeight: "350px" }}
           >
             <div style={{ position: "relative", width: "100%", height: "550px" }}>
-              {images[0] && (
+              {images[0]?.url && (
                 <Image
-                  src={images[0]}
-                  alt={data.title || "Image 1"}
+                  src={images[0].url}
+                  alt={images[0].alt}
                   width={800}
                   height={600}
                   style={{
@@ -93,10 +94,10 @@ const ReligiousLifeSection = () => {
                   }}
                 />
               )}
-              {images[1] && (
+              {images[1]?.url && (
                 <Image
-                  src={images[1]}
-                  alt={data.title || "Image 2"}
+                  src={images[1].url}
+                  alt={images[1].alt}
                   width={800}
                   height={600}
                   className="second-image-why"

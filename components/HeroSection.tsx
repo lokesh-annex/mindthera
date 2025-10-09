@@ -40,32 +40,32 @@ const HeroSection = () => {
 
   // ✅ layout से mediaBlock निकालना
   const getMediaBlock = (layout: any[]) => {
-    if (!layout) return "";
+    if (!layout) return { url: "", alt: "" };
     const block = layout.find((b) => b.blockType === "mediaBlock");
     const media = block?.locales?.[0]?.media;
-    if (!media) return "";
+    if (!media) return { url: "", alt: "" };
 
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
     const possibleUrls = [
-      media?.sizes?.xlarge?.url,
-      media?.sizes?.large?.url,
-      media?.sizes?.medium?.url,
-      media?.sizes?.small?.url,
-      media?.sizes?.thumbnail?.url,
       media?.url,
     ].filter(Boolean);
 
+    let imageUrl = "";
     if (possibleUrls.length) {
       const u = possibleUrls[0];
-      return u.startsWith("http") ? u : `${baseUrl}${u}`;
+      imageUrl = u.startsWith("http") ? u : `${baseUrl}${u}`;
     }
-    return "";
+
+    return {
+      url: imageUrl,
+      alt: media?.alt || "Hero Image"
+    };
   };
 
   const title = data?.title;
   const subtitle = data?.description;
   const button = getButtonBlock(data?.layout);
-  const bgimg = getMediaBlock(data?.layout);
+  const mediaData = getMediaBlock(data?.layout);
 
   return (
     <section className="section-dark text-light hero-section-slider  position-relative overflow-hidden">
@@ -111,7 +111,18 @@ const HeroSection = () => {
             <div className="row gx-5 align-items-center">
               <div className="col-lg-6 p-0">
                 <div className="image-slider-bg">
-                <img src="/images/slider/slide.jpg" className="img-fluid" />
+                {mediaData.url ? (
+                  <Image 
+                    src={mediaData.url} 
+                    width={521} 
+                    height={668} 
+                   
+                    alt={mediaData.alt}
+                    priority
+                  />
+                ) : (
+                 ""
+                )}
               </div>
               </div>
               <div className="col-lg-6 p-0">

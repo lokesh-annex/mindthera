@@ -38,9 +38,11 @@ function normalizeOffer(doc: any) {
 
     // image निकालना (imageBlock)
     let image = "/images/misc/placeholder.jpg";
+    let imageAlt = entry.title || "Service Image";
     const imgBlock = entry.content?.find((c: any) => c.blockType === "imageBlock");
     if (imgBlock?.image?.url) {
       image = imgBlock.image.url;
+      imageAlt = imgBlock.image.alt || entry.title || "Service Image";
     }
 
     tabs[label].services.push({
@@ -48,6 +50,7 @@ function normalizeOffer(doc: any) {
       desc: entry.subtitle || desc.substring(0, 100) + "...",
       slug: entry.title ? normalizeSlug(entry.title) : "",
       image,
+      imageAlt,
     });
   }
 
@@ -139,7 +142,7 @@ const TherapistServices = () => {
 
             {/* Tab Content */}
             <div className="row g-4">
-              {tabData[activeTab]?.services?.map((service: { title: string; desc: string; slug: string; image: string }, i: number) => (
+              {tabData[activeTab]?.services?.map((service: { title: string; desc: string; slug: string; image: string; imageAlt: string }, i: number) => (
                 <div key={i} className="col-lg-3 col-sm-4">
                   <div className="relative mb-3" style={{ minHeight: "470px" }}>
                     <Link href={`/offer/${service.slug}`} className="d-block hover mb-3">
@@ -152,7 +155,7 @@ const TherapistServices = () => {
                           width={300}
                           height={200}
                           className="img-fluid hover-scale-1-2"
-                          alt={service.title}
+                          alt={service.imageAlt}
                         />
                       </div>
                     </Link>

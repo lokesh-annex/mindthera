@@ -36,11 +36,15 @@ const normalizeFromDoc = (doc: any) => {
   return {
     title: doc?.title,
     buttonLabel: doc?.label_text,
-    items: slides.map((s: any) => ({
-      name: "",
-      textHtml: descriptionToHtml(s?.description),
-      image: toMediaUrl(s?.images?.[0]?.image || s?.images?.[0])
-    })).filter((i: any) => i.textHtml || i.image)
+    items: slides.map((s: any, index: number) => {
+      const imageObj = s?.images?.[0]?.image || s?.images?.[0];
+      return {
+        name: "",
+        textHtml: descriptionToHtml(s?.description),
+        image: toMediaUrl(imageObj),
+        imageAlt: imageObj?.alt || `Testimonial ${index + 1}`
+      };
+    }).filter((i: any) => i.textHtml || i.image)
   };
 };
 
@@ -88,7 +92,7 @@ const TestimonialsBottom = () => {
                   <div className="testimonial-image-wrap">
                     <Image
                       src={t.image}
-                      alt={t.name || `Testimonial ${idx + 1}`}
+                      alt={t.imageAlt}
                       width={200}
                       height={200}
                       className="testimonial-image"

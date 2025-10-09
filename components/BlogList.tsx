@@ -29,6 +29,7 @@ const BlogList = () => {
         const imageUrl = rawImg
           ? (rawImg.startsWith("http") ? rawImg : `${baseUrl}${rawImg}`)
           : "/images/blog/placeholder.jpg";
+        const imageAlt = hero?.alt || article.title || "Blog post";
         const slug = article.slug;
         const title = article.title;
         const description = article.description;
@@ -41,7 +42,7 @@ const BlogList = () => {
               <div className="post-image rounded-10px">
                 <Link href={`/blog-single/${slug}`} >
                 <Image
-                  alt={title || "Blog post"}
+                  alt={imageAlt}
                   src={imageUrl}
                   className="lazy h-100"
                   height={300}

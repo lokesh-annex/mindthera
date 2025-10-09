@@ -70,9 +70,10 @@ const AboutUS = () => {
 
   
   const mediaBlocks = layout.filter((b: any) => b.blockType === "mediaBlock") || [];
-  const images = mediaBlocks.map((b: any) =>
-    absUrl(b.locales?.[0]?.media?.url)
-  );
+  const images = mediaBlocks.map((b: any) => ({
+    url: absUrl(b.locales?.[0]?.media?.url),
+    alt: b.locales?.[0]?.media?.alt || `About Image ${mediaBlocks.indexOf(b) + 1}`
+  }));
 
 
   const buttonBlocks = layout.filter((b: any) => b.blockType === "buttonBlock") || [];
@@ -143,15 +144,15 @@ const AboutUS = () => {
           <div className="col-lg-6">
          
               {images.map(
-                (img: string, idx: number) =>
-                  img && (
+                (img: { url: string; alt: string }, idx: number) =>
+                  img.url && (
                     <div className="image-wrapper-about" key={idx}>
                       <Image
-                        src={img}
+                        src={img.url}
                         className="img-fluid rounded-10px mb-4 about-image-70"
                         width={500}
                         height={500}
-                        alt={`Image ${idx + 1}`}
+                        alt={img.alt}
                       />
                     </div>
                   )

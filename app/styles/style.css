@@ -9592,6 +9592,11 @@ content: "\f625";
   position: relative;
   z-index: 99;
 }
+.contact-info-divider a,
+.contact-info-divider a:hover {
+  color: var(--primary-color);
+}
+
 @media (min-width: 1600px) and (max-width: 2500px) {
   .swiper-inner.two {
     background-position: 10%;
@@ -10547,6 +10552,10 @@ content: "\f625";
   .harmonyum-hero-section p {
     font-size: 1.35rem;
    
+}
+.image-slider-bg img{
+  width: 100% !important;
+  height: auto !important;
 }
 }
 

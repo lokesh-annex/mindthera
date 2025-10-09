@@ -44,9 +44,11 @@ function normalizeOffer(doc: any) {
 
     // image निकालना (imageBlock)
     let image = "/images/misc/placeholder.jpg";
+    let imageAlt = entry.title || "Service Image";
     const imgBlock = entry.content?.find((c: any) => c.blockType === "imageBlock");
     if (imgBlock?.image?.url) {
       image = imgBlock.image.url;
+      imageAlt = imgBlock.image.alt || entry.title || "Service Image";
     }
 
     tabs[label].services.push({
@@ -54,6 +56,7 @@ function normalizeOffer(doc: any) {
       desc: entry.subtitle || "",
       slug: entry.title ? normalizeSlug(entry.title) : "",
       image,
+      imageAlt,
     });
   }
 
@@ -146,6 +149,7 @@ const OfferPage = () => {
                         desc: string;
                         slug: string;
                         image: string;
+                        imageAlt: string;
                       },
                       i: number
                     ) => (
@@ -168,7 +172,7 @@ const OfferPage = () => {
                             width={120}
                             height={120}
                             className="img-fluid circle mb-4 w-30 mt-50 shadow-soft scaleIn animated"
-                            alt={service.title}
+                            alt={service.imageAlt}
                           />
                           <h4>{service.title}</h4>
                           <p className="no-bottom">{service.desc}</p>
