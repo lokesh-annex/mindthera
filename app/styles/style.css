@@ -10544,6 +10544,10 @@ content: "\f625";
   header.transparent {
   background: #fff;
 }
+  .harmonyum-hero-section p {
+    font-size: 1.35rem;
+   
+}
 }
 
 @media (min-width: 993px) {
@@ -10995,6 +10999,7 @@ display: none;
     margin-left: 29px;
     margin-right: 30px;
   }
+
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {
