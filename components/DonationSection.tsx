@@ -20,6 +20,7 @@ const toMediaUrl = (m: any): string =>
 const DonationSection = () => {
   const [content, setContent] = useState<{
     image?: string;
+    imageAlt?: string;
     bodyHtml?: string;
     buttonText?: string;
     raised?: number;
@@ -45,8 +46,10 @@ const DonationSection = () => {
 
         // image
         const mediaBlock = doc.layout?.find((b: any) => b.blockType === "mediaBlock");
-        if (mediaBlock?.locales?.[0]?.media)
+        if (mediaBlock?.locales?.[0]?.media) {
           next.image = toMediaUrl(mediaBlock.locales[0].media);
+          next.imageAlt = mediaBlock.locales[0].media?.alt || "Donation Image";
+        }
 
         // button text
         const buttonBlock = doc.layout?.find((b: any) => b.blockType === "buttonBlock");
@@ -100,7 +103,7 @@ const DonationSection = () => {
             <div className="col-lg-6 mb-4 mb-lg-0 d-flex justify-content-center">
               <Image
                 src={content.image}
-                alt="Donation"
+                alt={content.imageAlt || "Donation"}
                 width={550}
                 height={500}
                 style={{ borderRadius: "8px", objectFit: "cover" }}

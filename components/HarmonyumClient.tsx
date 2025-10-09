@@ -96,9 +96,14 @@ export default function HarmonyumPage() {
       })
     : [];
 
-  // Helper function to get image URL
+  // Helper function to get image URL and alt text
   const getImageUrl = (image?: ImageData) => {
     return image?.url || '/images/placeholder.jpg';
+  };
+
+  // Helper function to get image alt text
+  const getImageAlt = (image?: ImageData, fallback?: string) => {
+    return image?.alt || fallback || 'Image';
   };
 
   // Render component functions
@@ -174,7 +179,7 @@ export default function HarmonyumPage() {
                   <div className="p-1 mt-2" style={{ background: "#fff", display: "inline-block", overflow: "hidden" }}>
                     <Image
                       src={getImageUrl(block.image)}
-                      alt={block.title}
+                      alt={getImageAlt(block.image, block.title)}
                       width={370}
                       height={320}
                       className="img-fluid rounded"
@@ -206,7 +211,7 @@ export default function HarmonyumPage() {
                 {block.image && (
                   <Image
                     src={getImageUrl(block.image)}
-                    alt={block.title}
+                    alt={getImageAlt(block.image, block.title)}
                     width={300}
                     height={300}
                     className="img-fluid"
@@ -256,7 +261,7 @@ export default function HarmonyumPage() {
                 {block.image && (
                   <Image
                     src={getImageUrl(block.image)}
-                    alt={block.title}
+                    alt={getImageAlt(block.image, block.title)}
                     width={370}
                     height={400}
                     className="rounded mb-3 shadow-sm w-100"
@@ -290,24 +295,42 @@ export default function HarmonyumPage() {
                
               
 
-                <div className="d-flex mt-3">
+                <div className="d-flex mt-3 gap-3">
                   {block.buttons && block.buttons.length > 0 && block.buttons.map((button, idx) => (
-                    <a
-                      key={idx}
-                      href={button.url}
-                      className="btn btn-main px-4 py-2 fw-bold"
-                      style={{
-                        fontSize: "1.1rem",
-                        background: "#5c377d",
-                        color: "#fff",
-                        borderRadius: "2rem",
-                        boxShadow: "0 2px 8px rgba(92,55,125,0.08)"
-                      }}
-                      target={button.openInNewTab ? "_blank" : undefined}
-                      rel={button.openInNewTab ? "noopener noreferrer" : undefined}
-                    >
-                      {button.label}
-                    </a>
+                    button.url && button.url.trim() !== "" ? (
+                      <a
+                        key={idx}
+                        href={button.url}
+                        className="btn btn-main px-4 py-2 fw-bold"
+                        style={{
+                          fontSize: "1.1rem",
+                          background: "#5c377d",
+                          color: "#fff",
+                          borderRadius: "2rem",
+                          boxShadow: "0 2px 8px rgba(92,55,125,0.08)"
+                        }}
+                        target={button.openInNewTab ? "_blank" : undefined}
+                        rel={button.openInNewTab ? "noopener noreferrer" : undefined}
+                      >
+                        {button.label}
+                      </a>
+                    ) : (
+                      <button
+                        key={idx}
+                        type="button"
+                        className="btn btn-main px-4 py-2 fw-bold"
+                        style={{
+                          fontSize: "1.1rem",
+                          background: "#5c377d",
+                          color: "#fff",
+                          borderRadius: "2rem",
+                          boxShadow: "0 2px 8px rgba(92,55,125,0.08)"
+                        }}
+                        onClick={() => setBookingOpen(true)}
+                      >
+                        {button.label}
+                      </button>
+                    )
                   ))}
                 </div>
               </div>
@@ -378,7 +401,7 @@ export default function HarmonyumPage() {
                       {block.image && (
                         <Image
                           src={getImageUrl(block.image)}
-                          alt={block.title}
+                          alt={getImageAlt(block.image, block.title)}
                           width={410}
                           height={120}
                           className="img-fluid w-100"
@@ -429,7 +452,7 @@ export default function HarmonyumPage() {
             {block.image && (
               <Image
                 src={getImageUrl(block.image)}
-                alt={block.title}
+                alt={getImageAlt(block.image, block.title)}
                 width={700}
                 height={1050}
                 className="img-fluid rounded shadow-sm"

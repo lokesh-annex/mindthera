@@ -53,6 +53,7 @@ const TestimonialSection = () => {
   const imageUrl = media
     ? (media?.sizes?.square?.url || media?.url)
     : '';
+  const imageAlt = media?.alt || title || name || 'Testimonial';
 
   return (
     <section className="position-relative testimonial-section text-light">
@@ -82,7 +83,7 @@ const TestimonialSection = () => {
                   width={300}
                   height={300}
                   className="img-fluid circle object-cover"
-                  alt={title || 'Testimonial'}
+                  alt={imageAlt}
                 />
               ) : (
                 <Image

@@ -1,7 +1,8 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import BookingWidgetModal from "@/components/BookingWidgetModal"; // ✅ Booking modal import
 
 // Types
 interface KeyValuePair {
@@ -17,6 +18,7 @@ interface AdditionalSection {
   blockName: string;
   content?: string;
   image?: string;
+  imageAlt?: string;
   keyValuePairs?: KeyValuePair[];
   showButton?: boolean;
   buttonText?: string;
@@ -28,6 +30,7 @@ interface Offer {
   subtitle: string;
   description: string;
   image: string;
+  imageAlt?: string;
   benefits: string[];
   benefitsTitle: string;
   benefitsSubtitle?: string;
@@ -36,7 +39,6 @@ interface Offer {
   buttonStyle?: string;
   hasButton?: boolean;
   additionalSections?: AdditionalSection[];
-  // SEO fields
   seoTitle?: string;
   seoDescription?: string;
   seoImage?: string;
@@ -55,15 +57,15 @@ interface ApiBlock {
   showButton?: boolean;
   buttonText?: string;
   buttonUrl?: string;
-  image?: { url: string };
+  image?: { url: string; alt?: string };
   keyValuePairs?: KeyValuePair[];
+  buttons?: Array<{ text: string; url?: string; id: string }>;
 }
 
 interface ApiEntry {
   title?: string;
   subtitle?: string;
   content?: ApiBlock[];
-  // SEO fields from API
   meta?: {
     title?: string;
     description?: string;
@@ -79,191 +81,131 @@ const API_PARAMS = "depth=2&draft=false&locale=undefined&trash=false";
 const API_URL = `${API_BASE_URL}/api/pages/${PAGE_ID}?${API_PARAMS}`;
 const DEFAULT_IMAGE = "/images/misc/placeholder.jpg";
 
-// Block type constants
 const BLOCK_TYPES = {
   CK_EDITOR: "ckEditorBlock",
   IMAGE: "imageBlock",
   BUTTON: "buttonContentBlock",
   TEXT_CONTENT: "textContentContentBlock",
-  CONTENT_SHOWCASE: "contentShowcaseContentBlock"
+  CONTENT_SHOWCASE: "contentShowcaseContentBlock",
 } as const;
 
-// Block name constants
 const BLOCK_NAMES = {
   SESSION_PREISE: "SessionPreise",
   SESSION_AB: "sessionAb",
   HINWEIS: "Hinweis",
-  IMAGE_CONTENT: "image-content"
+  IMAGE_CONTENT: "image-content",
 } as const;
 
+// ------------------------
 // Utility functions
-const normalizeSlug = (str: string): string => {
-  return str
+// ------------------------
+const normalizeSlug = (str: string): string =>
+  str
     .toLowerCase()
     .trim()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
-};
 
 const extractBenefitsFromHTML = (htmlContent: string): string[] => {
   const liMatches = htmlContent.match(/<li[^>]*>(.*?)<\/li>/g);
-  return liMatches ? liMatches.map((li: string) => 
-    li.replace(/<[^>]*>/g, '')
-      .replace(/&amp;/g, '&')
-      .trim()
-  ).filter((text: string) => text.length > 0) : [];
+  return liMatches
+    ? liMatches
+        .map((li) => li.replace(/<[^>]*>/g, "").replace(/&amp;/g, "&").trim())
+        .filter((text) => text.length > 0)
+    : [];
 };
 
-const findBlockByType = (content: ApiBlock[] | undefined, blockType: string): ApiBlock | undefined => {
-  return content?.find((c: ApiBlock) => c.blockType === blockType);
-};
+const findBlockByType = (
+  content: ApiBlock[] | undefined,
+  blockType: string
+): ApiBlock | undefined => content?.find((c) => c.blockType === blockType);
 
-const findBlocksByType = (content: ApiBlock[] | undefined, blockType: string): ApiBlock[] => {
-  return content?.filter((c: ApiBlock) => c.blockType === blockType) || [];
-};
+const findBlocksByType = (
+  content: ApiBlock[] | undefined,
+  blockType: string
+): ApiBlock[] => content?.filter((c) => c.blockType === blockType) || [];
 
 const extractSeoData = (entry: ApiEntry) => {
-  // Extract SEO data from API meta field or use fallbacks
   const meta = entry.meta;
-  
   return {
     seoTitle: meta?.title || entry.title || "",
     seoDescription: meta?.description || entry.subtitle || "",
     seoImage: meta?.image?.url || "",
-    seoKeywords: meta?.keywords || ""
+    seoKeywords: meta?.keywords || "",
   };
 };
 
+// ------------------------
+// Fetch Offer
+// ------------------------
 async function getOfferBySlug(slug: string): Promise<Offer | null> {
-  if (!API_BASE_URL) {
-    console.error('API_BASE_URL is not defined');
-    return null;
-  }
-
-  if (!slug?.trim()) {
-    console.error('Invalid slug provided');
-    return null;
-  }
-
+  if (!API_BASE_URL || !slug?.trim()) return null;
   try {
     const timestamp = Date.now();
     const apiUrl = `${API_URL}&timestamp=${timestamp}`;
-    
-    if (process.env.NODE_ENV === 'development') {
-      console.log("Fetching offer from:", apiUrl);
-    }
-    
-    const res = await fetch(apiUrl, { 
+    const res = await fetch(apiUrl, {
       cache: "no-store",
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
     });
-    
-    if (!res.ok) {
-      console.error(`API request failed with status: ${res.status}`);
-      return null;
-    }
+    if (!res.ok) return null;
 
     const json = await res.json();
-    
-    if (process.env.NODE_ENV === 'development') {
-      console.log("Offer API Response:", json);
-    }
-    
     const doc = json?.doc ?? json?.docs?.[0] ?? json;
     const layout = Array.isArray(doc?.layout) ? doc.layout : [];
-
     const normalizedSlug = normalizeSlug(slug);
 
     for (const block of layout) {
       const entry: ApiEntry = block?.locales?.[0];
       if (!entry?.title) continue;
-
-      const generatedSlug = normalizeSlug(entry.title);
-      
-      if (process.env.NODE_ENV === 'development') {
-        console.log(`Comparing: "${generatedSlug}" === "${normalizedSlug}"`);
-      }
-      
-      if (generatedSlug === normalizedSlug) {
+      if (normalizeSlug(entry.title) === normalizedSlug) {
         return createOfferFromEntry(entry);
       }
     }
-
     return null;
   } catch (err) {
-    console.error("Error in getOfferBySlug:", err);
+    console.error(err);
     return null;
   }
 }
 
-// Helper function to create offer from API entry
 function createOfferFromEntry(entry: ApiEntry): Offer {
   const content = entry.content || [];
-  
-  if (process.env.NODE_ENV === 'development') {
-    console.log("All content blocks:", content);
-  }
-
-  // Extract description
-  const description = extractDescription(content);
-  
-  // Extract image
-  const image = extractImage(content);
-  
-  // Extract button info
-  const buttonInfo = extractButtonInfo(content);
-  
-  // Extract additional sections
-  const additionalSections = extractAdditionalSections(content);
-  
-  // Extract SEO data
-  const seoData = extractSeoData(entry);
-
+  const title = entry.title || "";
   return {
-    title: entry.title || "",
+    title,
     subtitle: entry.subtitle || "",
-    description,
-    image,
-    benefits: [], // Empty for compatibility
+    description: extractDescription(content),
+    image: extractImage(content),
+    imageAlt: extractImageAlt(content, title),
+    benefits: [],
     benefitsTitle: "",
     benefitsSubtitle: "",
-    ...buttonInfo,
-    additionalSections,
-    ...seoData,
+    ...extractButtonInfo(content),
+    additionalSections: extractAdditionalSections(content),
+    ...extractSeoData(entry),
   };
 }
 
-// Helper functions for data extraction
 function extractDescription(content: ApiBlock[]): string {
-  const ckEditorBlock = findBlockByType(content, BLOCK_TYPES.CK_EDITOR);
-  const imageContentBlock = content.find((c: ApiBlock) => 
-    c.blockType === BLOCK_TYPES.CK_EDITOR && c.blockName === BLOCK_NAMES.IMAGE_CONTENT
+  const imageContentBlock = content.find(
+    (c) => c.blockType === BLOCK_TYPES.CK_EDITOR && c.blockName === BLOCK_NAMES.IMAGE_CONTENT
   );
-  
-  if (imageContentBlock?.content) {
-    return imageContentBlock.content.trim();
-  }
-  
-  if (ckEditorBlock?.content) {
-    return ckEditorBlock.content.trim();
-  }
-  
-  return "";
+  const ckEditorBlock = findBlockByType(content, BLOCK_TYPES.CK_EDITOR);
+  return imageContentBlock?.content?.trim() || ckEditorBlock?.content?.trim() || "";
 }
 
 function extractImage(content: ApiBlock[]): string {
-  const imgBlock = findBlockByType(content, BLOCK_TYPES.IMAGE);
-  return imgBlock?.image?.url || DEFAULT_IMAGE;
+  return findBlockByType(content, BLOCK_TYPES.IMAGE)?.image?.url || DEFAULT_IMAGE;
+}
+
+function extractImageAlt(content: ApiBlock[], fallbackTitle: string = ""): string {
+  const imageBlock = findBlockByType(content, BLOCK_TYPES.IMAGE);
+  return imageBlock?.image?.alt || fallbackTitle || "Service Image";
 }
 
 function extractButtonInfo(content: ApiBlock[]) {
   const buttonBlock = findBlockByType(content, BLOCK_TYPES.BUTTON);
-  
   return {
     hasButton: !!buttonBlock,
     buttonText: buttonBlock?.text?.trim() || "",
@@ -273,134 +215,62 @@ function extractButtonInfo(content: ApiBlock[]) {
 }
 
 function extractAdditionalSections(content: ApiBlock[]): AdditionalSection[] {
-  const textContentBlocks = findBlocksByType(content, BLOCK_TYPES.TEXT_CONTENT);
-  const contentShowcaseBlocks = findBlocksByType(content, BLOCK_TYPES.CONTENT_SHOWCASE);
-  
+  const textBlocks = findBlocksByType(content, BLOCK_TYPES.TEXT_CONTENT);
+  const showcaseBlocks = findBlocksByType(content, BLOCK_TYPES.CONTENT_SHOWCASE);
   const sections: AdditionalSection[] = [];
-  
-  // Process text content blocks
-  textContentBlocks.forEach((block) => {
-    sections.push(createSectionFromBlock(block));
-  });
-  
-  // Process content showcase blocks
-  contentShowcaseBlocks.forEach((block) => {
+
+  textBlocks.forEach((block) => sections.push(createSectionFromBlock(block)));
+  showcaseBlocks.forEach((block) =>
     sections.push({
       ...createSectionFromBlock(block),
       image: block.image?.url || "",
-      keyValuePairs: block.keyValuePairs || []
-    });
-  });
-  
+      keyValuePairs: block.keyValuePairs || [],
+    })
+  );
+
   return sections;
 }
 
 function createSectionFromBlock(block: ApiBlock): AdditionalSection {
   const benefits = block.content ? extractBenefitsFromHTML(block.content) : [];
-  
+  const firstButton = block.buttons?.[0];
+  const sectionTitle = block.title?.trim() || "";
   return {
-    title: block.title?.trim() || "",
+    title: sectionTitle,
     description: block.description?.trim() || "",
     benefits,
     blockName: block.blockName || "",
     content: block.content || "",
-    showButton: block.showButton || false,
-    buttonText: block.buttonText?.trim() || "",
-    buttonUrl: block.buttonUrl || ""
+    showButton: block.showButton || !!firstButton,
+    buttonText: block.buttonText?.trim() || firstButton?.text?.trim() || "",
+    buttonUrl: block.buttonUrl || firstButton?.url || "",
+    image: block.image?.url,
+    imageAlt: block.image?.alt || sectionTitle || "Section Image",
+    keyValuePairs: block.keyValuePairs,
   };
 }
 
-// Generate metadata for SEO
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  try {
-    const offer = await getOfferBySlug(params.slug);
-    
-    if (!offer) {
-      return {
-        title: "Offer Not Found | MindThera",
-        description: "The requested offer could not be found.",
-      };
-    }
-
-    // Use SEO fields from API or fallback to offer data
-    const title = offer.seoTitle || offer.title || "MindThera Offer";
-    const description = offer.seoDescription || offer.subtitle || offer.description?.replace(/<[^>]*>/g, "").substring(0, 160) || "Discover our healing and therapy services";
-    const image = offer.seoImage || offer.image || "/images/misc/placeholder.jpg";
-
-    return {
-      title: `${title}`,
-      description,
-      
-      
-     
-    };
-  } catch (error) {
-    console.error("Error generating metadata:", error);
-    return {
-      title: "",
-      description: "",
-    };
-  }
-}
-
-// Generate static params for all offer slugs
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  if (!API_BASE_URL) {
-    console.error('API_BASE_URL is not defined in generateStaticParams');
-    return [];
-  }
-
-  try {
-    const res = await fetch(API_URL, { 
-      cache: "no-store",
-      next: { revalidate: 3600 } // Revalidate every hour
-    });
-    
-    if (!res.ok) {
-      console.error(`Failed to fetch static params: ${res.status}`);
-      return [];
-    }
-
-    const json = await res.json();
-    const doc = json?.doc ?? json?.docs?.[0] ?? json;
-    const layout = Array.isArray(doc?.layout) ? doc.layout : [];
-
-    const slugs = new Set<string>(); // Use Set to avoid duplicates
-
-    for (const block of layout) {
-      const entry: ApiEntry = block?.locales?.[0];
-      if (!entry?.title) continue;
-
-      const slug = normalizeSlug(entry.title);
-      if (slug && slug.length > 0) {
-        slugs.add(slug);
-      }
-    }
-
-    const result = Array.from(slugs).map(slug => ({ slug }));
-    
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`Generated ${result.length} static params:`, result.map(r => r.slug));
-    }
-
-    return result;
-  } catch (err) {
-    console.error("Error in generateStaticParams:", err);
-    return [];
-  }
-}
-
-// Section rendering components
-const SessionPreiseSection = ({ section, sectionIndex }: { section: AdditionalSection; sectionIndex: number }) => (
+// ------------------------
+// Sections Components
+// ------------------------
+const SessionPreiseSection = ({
+  section,
+  sectionIndex,
+    setBookingOpen,
+}: {
+  section: AdditionalSection;
+  sectionIndex: number;
+    setBookingOpen: (open: boolean) => void;
+}) => (
   <section key={sectionIndex} className="pt-0 pb-8 price-sec">
     <div className="container" style={{ position: "relative", zIndex: 2 }}>
       <div className="new-session-box">
         <div className="row">
           <div className="col-lg-5 col-md-12">
             <div className="flex-1 d-flex flex-column justify-content-center align-items-center">
-              <Image 
-                src={section.image || "/images/services/session-img.png"} 
-                alt="Session Booking" 
+              <Image
+                src={section.image || "/images/services/session-img.png"}
+                alt={section.imageAlt || section.title || "Session Booking"}
                 width={400}
                 height={300}
                 className="w-100 max-w-xs rounded-lg shadow-md"
@@ -425,6 +295,14 @@ const SessionPreiseSection = ({ section, sectionIndex }: { section: AdditionalSe
                   <div dangerouslySetInnerHTML={{ __html: section.content }} />
                 </div>
               )}
+              {section.showButton && section.buttonText && (
+                <div className="mt-2">
+                  <button className="btn btn-main px-4 py-2 fw-bold" onClick={() => setBookingOpen(true)}>
+                    {section.buttonText}
+                    <i className="bi bi-arrow-right ms-2 position-relative" style={{ top: "2px" }}></i>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -433,7 +311,14 @@ const SessionPreiseSection = ({ section, sectionIndex }: { section: AdditionalSe
   </section>
 );
 
-const SessionAbSection = ({ section, sectionIndex }: { section: AdditionalSection; sectionIndex: number }) => (
+const SessionAbSection = ({
+  section,
+  sectionIndex,
+}: {
+  section: AdditionalSection;
+  sectionIndex: number;
+  
+}) => (
   <section key={sectionIndex} className="py-10 session-sec-bg position-relative text-dark" style={{ fontSize: "1.15rem", lineHeight: "1.7" }}>
     <span className="position-absolute top-20 start-0">
       <Image src="/images/bg-2-copyright.webp" width={393} height={625} alt="Background Copyright" />
@@ -449,12 +334,7 @@ const SessionAbSection = ({ section, sectionIndex }: { section: AdditionalSectio
       )}
       <div className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
         {section.content ? (
-          <div dangerouslySetInnerHTML={{ 
-            __html: section.content
-              .replace(/<ul[^>]*>[\s\S]*?<\/ul>/g, '')
-              .replace(/<li[^>]*>[\s\S]*?<\/li>/g, '')
-              .trim()
-          }} />
+          <div dangerouslySetInnerHTML={{ __html: section.content.replace(/<ul[^>]*>[\s\S]*?<\/ul>/g, '').replace(/<li[^>]*>[\s\S]*?<\/li>/g, '').trim() }} />
         ) : (
           <p>Content coming soon...</p>
         )}
@@ -465,21 +345,14 @@ const SessionAbSection = ({ section, sectionIndex }: { section: AdditionalSectio
             <span className="d-inline-flex align-items-center justify-content-center w-14 h-14 rounded-lg bg-gray-800 text-white">
               <i className="bi bi-x-diamond" style={{ fontSize: "1.5rem", color: "#7A566B" }}></i>
             </span>
-            <span className="text-left text-lg text-gray-800">
-              {benefit}
-            </span>
+            <span className="text-left text-lg text-gray-800">{benefit}</span>
           </div>
         ))}
       </div>
       {section.showButton && section.buttonText && (
         <div className="text-center mt-8">
-          <a 
-            href={section.buttonUrl || "/contact"} 
-            className="btn btn-main px-6 py-3 fw-bold"
-            style={{ fontSize: "1.1rem" }}
-          >
-            {section.buttonText}
-            <i className="bi bi-arrow-right ms-2"></i>
+          <a href={section.buttonUrl || "/contact"} className="btn btn-main px-6 py-3 fw-bold" style={{ fontSize: "1.1rem" }}>
+            {section.buttonText}<i className="bi bi-arrow-right ms-2"></i>
           </a>
         </div>
       )}
@@ -487,9 +360,14 @@ const SessionAbSection = ({ section, sectionIndex }: { section: AdditionalSectio
   </section>
 );
 
-const DefaultSection = ({ section, sectionIndex }: { section: AdditionalSection; sectionIndex: number }) => {
+const DefaultSection = ({
+  section,
+  sectionIndex,
+}: {
+  section: AdditionalSection;
+  sectionIndex: number;
+}) => {
   if (!section.benefits?.length && !section.content) return null;
-  
   return (
     <section key={sectionIndex} className="py-5 session-sec-bg-fe">
       <div className="container">
@@ -498,35 +376,19 @@ const DefaultSection = ({ section, sectionIndex }: { section: AdditionalSection;
             <h2 className="fw-bold mb-3" style={{ color: "#5C377D", fontSize: "2.1rem", letterSpacing: "1px" }}>
               {section.title.replace(":", "")}
             </h2>
-            {section.description && (
-              <p className="lead" style={{ color: "#3D2C4A", fontWeight: "500" }}>
-                {section.description}
-              </p>
-            )}
+            {section.description && <p className="lead" style={{ color: "#3D2C4A", fontWeight: "500" }}>{section.description}</p>}
           </div>
         </div>
         <div className="row justify-content-center">
           <div className="col-lg-12">
-            {section.content ? (
-              <div 
-                className="content-section" 
-                style={{ fontSize: "1.18rem", color: "#2D1A3A", fontWeight: "500" }}
-                dangerouslySetInnerHTML={{ __html: section.content }}
-              />
-            ) : (
-              "<p>Content coming soon...</p>"
+            {section.content && (
+              <div className="content-section" style={{ fontSize: "1.18rem", color: "#2D1A3A", fontWeight: "500" }} dangerouslySetInnerHTML={{ __html: section.content }} />
             )}
             {section.showButton && section.buttonText && (
               <div className="mt-4">
-                <div className="mt-3">
-                  <a 
-                    href={section.buttonUrl || "/contact"} 
-                    className="btn btn-main px-4 py-2 fw-bold"
-                    style={{ fontSize: "1.1rem" }}
-                  >
-                    {section.buttonText}
-                  </a>
-                </div>
+                <a href={section.buttonUrl || "/contact"} className="btn btn-main px-4 py-2 fw-bold" style={{ fontSize: "1.1rem" }}>
+                  {section.buttonText}
+                </a>
               </div>
             )}
           </div>
@@ -536,7 +398,15 @@ const DefaultSection = ({ section, sectionIndex }: { section: AdditionalSection;
   );
 };
 
-const HinweisSection = ({ section, sectionIndex }: { section: AdditionalSection; sectionIndex: number }) => (
+const HinweisSection = ({
+  section,
+  sectionIndex,
+  setBookingOpen,
+}: {
+  section: AdditionalSection;
+  sectionIndex: number;
+  setBookingOpen: (open: boolean) => void;
+}) => (
   <section key={`hinweis-${sectionIndex}`} className="py-8 bg-light stimmen-sec">
     <div className="container">
       <div className="row align-items-center justify-content-center">
@@ -546,17 +416,14 @@ const HinweisSection = ({ section, sectionIndex }: { section: AdditionalSection;
           </h2>
           <div className="mb-3" style={{ fontSize: "1.15rem", color: "#5C377D", fontWeight: "500" }}>
             {section.content && (
-              <div dangerouslySetInnerHTML={{ 
-                __html: section.content.replace(/<blockquote>/g, '<blockquote class="mb-2" style="border-left: 4px solid #7A566B; padding-left: 16px; margin-bottom: 12px;">')
-              }} />
+              <div dangerouslySetInnerHTML={{ __html: section.content.replace(/<blockquote>/g, '<blockquote class="mb-2" style="border-left: 4px solid #7A566B; padding-left: 16px; margin-bottom: 12px;">') }} />
             )}
           </div>
           {section.showButton && section.buttonText && (
             <div className="mt-4">
-              <a href={section.buttonUrl || "/contact"} className="btn btn-main px-4 py-2 fw-bold mb-2">
-                {section.buttonText}
-                <i className="bi bi-arrow-right"></i>
-              </a>
+              <button type="button" className="btn btn-main px-4 py-2 fw-bold mb-2 d-none" onClick={() => setBookingOpen(true)}>
+                {section.buttonText}<i className="bi bi-arrow-right"></i>
+              </button>
             </div>
           )}
         </div>
@@ -565,23 +432,47 @@ const HinweisSection = ({ section, sectionIndex }: { section: AdditionalSection;
   </section>
 );
 
-const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
-  const offer: Offer | null = await getOfferBySlug(params.slug);
+// ------------------------
+// Page Component
+// ------------------------
+const OfferSlugPage = ({ params }: { params: { slug: string } }) => {
+  const [offer, setOffer] = useState<Offer | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [bookingOpen, setBookingOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchOffer = async () => {
+      try {
+        const fetchedOffer = await getOfferBySlug(params.slug);
+        setOffer(fetchedOffer);
+      } catch (error) {
+        console.error('Error fetching offer:', error);
+        setOffer(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOffer();
+  }, [params.slug]);
+
+  if (loading) {
+    return (
+      <div className="auto-container">
+        <div className="text-center py-5">
+          <p>Laden...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!offer) {
     return (
       <>
-        <Breadcrumbs
-          title="Offer Not Found"
-          items={[{ label: "Home", href: "/" }, { label: "Offers", href: "/offer" }, { label: "Not Found" }]}
-        />
+        <Breadcrumbs title="Offer Not Found" items={[{ label: "Home", href: "/" }, { label: "Offers", href: "/offer" }, { label: "Not Found" }]} />
         <main className="max-w-2xl mx-auto py-10 px-4">
-          <h1 className="text-3xl font-bold mb-4 text-red-600">
-            404 | No matching offer found
-          </h1>
-          <p className="mb-4">
-            Requested slug: <strong>{params.slug}</strong>
-          </p>
+          <h1 className="text-3xl font-bold mb-4 text-red-600">404 | No matching offer found</h1>
+          <p className="mb-4">Requested slug: <strong>{params.slug}</strong></p>
           <p className="mb-4">Check your API data and slug normalization.</p>
         </main>
       </>
@@ -590,45 +481,22 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <Breadcrumbs
-        title={offer.title}
-        items={[{ label: "Home", href: "/" }, { label: "Offers", href: "/offer" }, { label: offer.title }]}
-      />
-     
+      <Breadcrumbs title={offer.title} items={[{ label: "Home", href: "/" }, { label: "Offers", href: "/offer" }, { label: offer.title }]} />
 
-      {/* Content Section */}
       <div className="container py-5 top-sec-offer-inner dark-color">
         <div className="d-flex flex-column flex-md-row align-items-center justify-content-center">
           <div className="mb-4 mb-md-0 me-md-4">
-            <Image 
-              src={offer.image} 
-              alt={offer.title} 
-              width={320}
-              height={320}
-              style={{ borderRadius: "12px" }}
-            
-            />
+            <Image src={offer.image} alt={offer.imageAlt || offer.title} width={320} height={320} style={{ borderRadius: "12px" }} />
           </div>
           <div className="flex-grow-1">
-            <h2 className="text-right fw-bold mb-2" style={{ color: "#1a2a6c" }}>
-              {offer.title}
-            </h2>
-            <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>
-              {offer.subtitle}
-            </h4>
+            <h2 className="text-right fw-bold mb-2" style={{ color: "#1a2a6c" }}>{offer.title}</h2>
+            <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>{offer.subtitle}</h4>
             <div className="mt-3 text-right">
-              {offer.description ? (
-                <div dangerouslySetInnerHTML={{ __html: offer.description }} />
-              ) : (
-                <p >Description coming soon...</p>
-              )}
+              {offer.description ? <div dangerouslySetInnerHTML={{ __html: offer.description }} /> : <p>Description coming soon...</p>}
             </div>
             {offer.hasButton && offer.buttonText && (
-              <div className="d-flex gap-3 mt-4">
-                <a 
-                  className={`btn ${offer.buttonStyle === 'primary' ? 'btn-main' : 'btn-secondary'} px-4 py-2 fw-bold mb-2`} 
-                  href={offer.buttonUrl}
-                >
+              <div className="d-none gap-3 mt-4">
+                <a className={`btn ${offer.buttonStyle === "primary" ? "btn-main" : "btn-secondary"} px-4 py-2 fw-bold mb-2`} href={offer.buttonUrl}>
                   <i className="bi bi-calendar-check"></i> {offer.buttonText}
                 </a>
               </div>
@@ -638,31 +506,23 @@ const OfferSlugPage = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* Render all sections */}
-      {offer.additionalSections && (
-        <>
-          {/* Render non-Hinweis sections first */}
-          {offer.additionalSections
-            .filter(section => section.blockName !== BLOCK_NAMES.HINWEIS)
-            .map((section, sectionIndex) => {
-              // Use appropriate component based on blockName
-              switch (section.blockName) {
-                case BLOCK_NAMES.SESSION_PREISE:
-                  return <SessionPreiseSection key={sectionIndex} section={section} sectionIndex={sectionIndex} />;
-                case BLOCK_NAMES.SESSION_AB:
-                  return <SessionAbSection key={sectionIndex} section={section} sectionIndex={sectionIndex} />;
-                default:
-                  return <DefaultSection key={sectionIndex} section={section} sectionIndex={sectionIndex} />;
-              }
-            })}
-          
-          {/* Render Hinweis sections at the end */}
-          {offer.additionalSections
-            .filter(section => section.blockName === BLOCK_NAMES.HINWEIS)
-            .map((section, sectionIndex) => (
-              <HinweisSection key={`hinweis-${sectionIndex}`} section={section} sectionIndex={sectionIndex} />
-            ))}
-        </>
-      )}
+      {offer.additionalSections && offer.additionalSections.filter(sec => sec.blockName !== BLOCK_NAMES.HINWEIS).map((section, i) => {
+        switch (section.blockName) {
+          case BLOCK_NAMES.SESSION_PREISE:
+            return <SessionPreiseSection key={i} section={section} sectionIndex={i} setBookingOpen={setBookingOpen} />;
+          case BLOCK_NAMES.SESSION_AB:
+            return <SessionAbSection key={i} section={section} sectionIndex={i} />;
+          default:
+            return <DefaultSection key={i} section={section} sectionIndex={i} />;
+        }
+      })}
+
+      {offer.additionalSections && offer.additionalSections.filter(sec => sec.blockName === BLOCK_NAMES.HINWEIS).map((section, i) => (
+        <HinweisSection key={`hinweis-${i}`} section={section} sectionIndex={i} setBookingOpen={setBookingOpen} />
+      ))}
+
+      {/* Booking Modal */}
+      <BookingWidgetModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   );
 };

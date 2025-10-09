@@ -45,6 +45,7 @@ function normalizeEvents(doc) {
               subtitle: contentItem?.description || "",
               html: contentItem?.content || "",
               image: absUrl(contentItem?.image?.url),
+              imageAlt: contentItem?.image?.alt || contentItem?.title || "Event Image",
               button1: contentItem?.buttons?.[0]?.text || "",
               button1Url: contentItem?.buttons?.[0]?.url || "",
               button2: contentItem?.buttons?.[1]?.text || "",
@@ -122,7 +123,7 @@ const EventClient = () => {
                   <div className="col-md-5 d-flex align-items-center justify-content-center mb-4 mb-md-0">
                     <Image
                       src={event.image}
-                      alt={event.title}
+                      alt={event.imageAlt || event.title}
                       width={520}
                       height={520}
                       style={{ objectFit: "cover", width: "100%", borderRadius: "12px" }}

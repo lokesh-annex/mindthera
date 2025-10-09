@@ -77,7 +77,7 @@ const BuildSpacesSection = () => {
                           content: contentBlock.content,
                           image: contentBlock.image ? {
                             url: contentBlock.image.url,
-                            alt: contentBlock.title || "About Section Two",
+                            alt: contentBlock.image.alt || contentBlock.title || "About Section Two",
                             width: contentBlock.image.width || 576,
                             height: contentBlock.image.height || 330,
                           } : undefined,

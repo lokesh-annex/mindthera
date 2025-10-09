@@ -81,7 +81,7 @@ const ContactInfo = () => {
 
   return (
     <div className="col-lg-6">
-      <div className="subtitle fadeInUp mb-3">Contact Form</div>
+      <div className="subtitle fadeInUp mb-3">Kontakt</div>
       <h2 className="fadeInUp">
         {loading ? "Loading..." : (pageData?.layout?.[0]?.locales?.[0]?.title)}
       </h2>
@@ -100,19 +100,29 @@ const ContactInfo = () => {
           )
         )}
       </div>
+      <div className="contact-info-divider">
       <div className="row">
         <div className="col-lg-12">
           <div className="fw-bold text-dark mt-2">
             <i className="bi bi-envelope-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>
             Schicke Deine Nachricht
           </div>
-          {loading ? "Loading..." : (footerData?.contact?.email)}
+          {loading ? "Loading..." : (
+            <a href={`mailto:${footerData?.contact?.email}`} className="text-decoration-none">
+              {footerData?.contact?.email}
+            </a>
+          )}
 
           <div className="fw-bold text-dark mt-2">
             <i className="bi bi-telephone-fill me-2" style={{ color: 'rgb(45, 26, 58)' }}></i>
-            Call Us Directly
+            Ruf uns an
           </div>
-          {loading ? "Loading..." : (footerData?.contact?.phone)}
+          {loading ? "Loading..." : (
+            <a href={`tel:${footerData?.contact?.phone}`} className="text-decoration-none">
+              {footerData?.contact?.phone}
+            </a>
+          )}
+        </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ const CMS_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const Logo = () => {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [logoAlt, setLogoAlt] = useState<string>("Logo");
 
   useEffect(() => {
     let active = true;
@@ -22,6 +23,7 @@ const Logo = () => {
         if (active && rawUrl) {
           const full = rawUrl.startsWith('http') ? rawUrl : `${CMS_BASE}${rawUrl.startsWith('/') ? '' : '/'}${rawUrl}`;
           setLogoUrl(full);
+          setLogoAlt(img?.alt || img?.title || "Logo");
         }
       } catch (e) {
         // fallback silently
@@ -39,7 +41,7 @@ const Logo = () => {
         src={src}
         height={80}
         width={80}
-        alt="Logo"
+        alt={logoAlt}
         priority
       />
     </Link>
