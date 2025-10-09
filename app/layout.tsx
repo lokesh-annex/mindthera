@@ -16,10 +16,22 @@ const jost = Jost({
 export async function generateMetadata(): Promise<Metadata> {
   const metadata = await getHomePageMetadata();
   
+  console.log('🎯 Generated metadata for layout:', metadata);
+  
   return {
     title: metadata.title,
     description: metadata.description,
-   
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      type: 'website',
+      locale: 'de_DE',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metadata.title,
+      description: metadata.description,
+    },
   };
 }
 
