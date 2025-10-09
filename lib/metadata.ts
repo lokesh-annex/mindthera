@@ -1,24 +1,27 @@
 // Metadata fetching utilities
-const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages/68be7cf2bf64c36803556acb?depth=2&draft=false&locale=undefined&trash=false`;
-
 interface MetaData {
   title: string;
   description: string;
 }
 
-// Cache the metadata to avoid repeated API calls
-let cachedMetadata: MetaData | null = null;
-
 export async function getHomePageMetadata(): Promise<MetaData> {
-  // Return cached data if available
-  if (cachedMetadata) {
-    return cachedMetadata;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  
+  if (!API_BASE_URL) {
+    console.error('API_BASE_URL not found in environment variables');
+    return {
+      title: 'Traumafrei I Finde innere Fülle, Freude und Vertrauen',
+      description: 'Löse alte Traumata und öffne dich für Vertrauen, Freude & Fülle mit Harmonyum Trauma Release® – deine Brücke ins goldene Zeitalter.'
+    };
   }
 
+  const API_URL = `${API_BASE_URL}/api/pages/68be7cf2bf64c36803556acb?depth=2&draft=false&locale=undefined&trash=false`;
+
   try {
+    console.log('🔍 Fetching metadata from:', API_URL);
+    
     const response = await fetch(API_URL, {
-      cache: 'force-cache', // Cache for better performance
-      next: { revalidate: 3600 } // Revalidate every hour
+      cache: 'no-store', // Don't cache during development for testing
     });
 
     if (!response.ok) {
@@ -26,31 +29,32 @@ export async function getHomePageMetadata(): Promise<MetaData> {
     }
 
     const data = await response.json();
+    console.log('📦 Raw API response:', JSON.stringify(data, null, 2));
     
     // Extract metadata from API response
     const metaLocale = data?.meta?.locales?.find((locale: any) => locale.locale === 'de') || data?.meta?.locales?.[0];
+    console.log('🏷️ Found meta locale:', metaLocale);
     
     const metadata: MetaData = {
-      title: metaLocale?.title || '',
-      description: metaLocale?.description || ''
+      title: metaLocale?.title || data?.title || 'Traumafrei I Finde innere Fülle, Freude und Vertrauen',
+      description: metaLocale?.description || data?.description || 'Löse alte Traumata und öffne dich für Vertrauen, Freude & Fülle mit Harmonyum Trauma Release® – deine Brücke ins goldene Zeitalter.'
     };
 
-    // Cache the result
-    cachedMetadata = metadata;
+    console.log('✅ Final metadata:', metadata);
     return metadata;
 
   } catch (error) {
-    console.error('Error fetching homepage metadata:', error);
+    console.error('❌ Error fetching homepage metadata:', error);
     
     // Return fallback metadata if API fails
     return {
-      title: '',
-      description: ''
+      title: 'Traumafrei I Finde innere Fülle, Freude und Vertrauen',
+      description: 'Löse alte Traumata und öffne dich für Vertrauen, Freude & Fülle mit Harmonyum Trauma Release® – deine Brücke ins goldene Zeitalter.'
     };
   }
 }
 
-// Function to refresh cached metadata
+// Function to refresh cached metadata (removed caching for now)
 export function clearMetadataCache() {
-  cachedMetadata = null;
+  // No caching currently implemented
 }
