@@ -11,6 +11,7 @@ const ContactForm = () => {
           src="/images/bg-2-copyright.webp"
           width={393}
           height={625}
+          className="contact-bg"
           alt="Background Copyright"
           priority
         />

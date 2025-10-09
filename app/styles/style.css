@@ -10557,6 +10557,9 @@ content: "\f625";
   width: 100% !important;
   height: auto !important;
 }
+.contact-bg{
+  display: none;
+}
 }
 
 @media (min-width: 993px) {
