@@ -1,9 +1,10 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 // API endpoint
 const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/forms/68d52ff11b1e3f12d34e1328?depth=2&draft=false&locale=undefined&trash=false`;
@@ -27,7 +28,8 @@ interface FormData {
   id: string;
 }
 
-const ContactFormFields = () => {
+// Internal component that uses reCAPTCHA v3
+const ContactFormFieldsInternal = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -35,6 +37,10 @@ const ContactFormFields = () => {
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [validationSchema, setValidationSchema] = useState<any>(null);
   const [initialValues, setInitialValues] = useState<{[key: string]: string}>({});
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
+  
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const fetchFormData = useCallback(async () => {
     try {
@@ -89,6 +95,10 @@ const ContactFormFields = () => {
         schemaFields[staticFieldName] = fieldSchema;
       });
       
+      // reCAPTCHA v3 validation - always optional since it's automatic
+      schemaFields.recaptcha = Yup.string(); // No validation needed for v3
+      initialVals.recaptcha = '';
+      
       setInitialValues(initialVals);
       setValidationSchema(Yup.object().shape(schemaFields));
     } catch (err) {
@@ -100,9 +110,21 @@ const ContactFormFields = () => {
     fetchFormData();
   }, [fetchFormData]);
 
-  const handleFormikSubmit = async (values: {[key: string]: string}, { resetForm, setSubmitting }: any) => {
+  const handleFormikSubmit = async (values: {[key: string]: string}, { resetForm, setSubmitting, setFieldError, setFieldValue }: any) => {
     setMessage(null);
     setLoading(true);
+    
+    // Execute reCAPTCHA v3 - automatic execution
+    let recaptchaTokenV3 = null;
+    if (executeRecaptcha) {
+      try {
+        recaptchaTokenV3 = await executeRecaptcha('form_submit');
+        console.log('reCAPTCHA v3 token generated successfully');
+      } catch (error) {
+        console.warn('reCAPTCHA v3 failed, proceeding without token:', error);
+        // Don't block form submission for reCAPTCHA v3 failures
+      }
+    }
     
     try {
       // Convert static field names back to original field names for API submission
@@ -126,7 +148,8 @@ const ContactFormFields = () => {
 
       const submissionPayload = {
         form: "68d52ff11b1e3f12d34e1328",
-        submissionData: formattedSubmissionData
+        submissionData: formattedSubmissionData,
+        ...(recaptchaTokenV3 && { recaptchaToken: recaptchaTokenV3 })
       };
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/form-submissions`, {
@@ -151,15 +174,24 @@ const ContactFormFields = () => {
         // Reset form to initial values
         resetForm();
         
-       
+        // Reset form state
+        setRecaptchaToken(null);
+        setFieldValue('recaptcha', '');
+        
         setTimeout(() => {
           setShowSuccessModal(false);
         }, 5000);
       } else {
         setMessage(responseData.message || "Fehler beim Senden der Nachricht.");
+        // Reset form state on error
+        setRecaptchaToken(null);
+        setFieldValue('recaptcha', '');
       }
     } catch (err) {
       setMessage("Serverfehler. Bitte versuchen Sie es später erneut.");
+      // Reset form state on error
+      setRecaptchaToken(null);
+      setFieldValue('recaptcha', '');
     }
     setLoading(false);
     setSubmitting(false);
@@ -267,13 +299,33 @@ const ContactFormFields = () => {
           onSubmit={handleFormikSubmit}
           enableReinitialize={true}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, setFieldValue, setFieldError }) => (
             <Form
               name="contactForm"
               id="contact_form"
               className="position-relative z1000"
             >
               {formData?.fields?.map((field, index) => renderFormikField(field, index))}
+              
+              {/* reCAPTCHA v3 - Invisible protection */}
+              {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && 
+               process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY !== '' && executeRecaptcha ? (
+                <div className="field-set mb-3 position-relative">
+                  <div className="alert alert-success small">
+                    <i className="bi bi-shield-check me-2"></i>
+                    reCAPTCHA v3 ist aktiv - Formulare werden automatisch geschützt
+                  </div>
+                  <Field name="recaptcha" type="hidden" value={recaptchaToken || ''} />
+                  <ErrorMessage name="recaptcha" component="div" className="text-danger small mt-1" />
+                </div>
+              ) : (
+                <div className="field-set mb-3 position-relative">
+                  <div className="alert alert-warning">
+                    <i className="bi bi-info-circle me-2"></i>
+                    reCAPTCHA ist im Entwicklungsmodus deaktiviert
+                  </div>
+                </div>
+              )}
               
               <div id="submit" className="mt30">
                 <button 
@@ -329,6 +381,15 @@ const ContactFormFields = () => {
         </Modal.Body>
       </Modal>
     </div>
+  );
+};
+
+// Main component with reCAPTCHA v3 provider
+const ContactFormFields = () => {
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}>
+      <ContactFormFieldsInternal />
+    </GoogleReCaptchaProvider>
   );
 };
 
