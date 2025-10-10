@@ -363,9 +363,11 @@ const SessionAbSection = ({
 const DefaultSection = ({
   section,
   sectionIndex,
+  setBookingOpen,
 }: {
   section: AdditionalSection;
   sectionIndex: number;
+  setBookingOpen?: (open: boolean) => void;
 }) => {
   if (!section.benefits?.length && !section.content) return null;
   return (
@@ -386,9 +388,15 @@ const DefaultSection = ({
             )}
             {section.showButton && section.buttonText && (
               <div className="mt-4">
-                <a href={section.buttonUrl || "/contact"} className="btn btn-main px-4 py-2 fw-bold" style={{ fontSize: "1.1rem" }}>
-                  {section.buttonText}
-                </a>
+                {section.buttonUrl ? (
+                  <a href={section.buttonUrl} className="btn btn-main px-4 py-2 fw-bold" style={{ fontSize: "1.1rem" }}>
+                    {section.buttonText}
+                  </a>
+                ) : (
+                  <button className="btn btn-main px-4 py-2 fw-bold" style={{ fontSize: "1.1rem" }} onClick={() => setBookingOpen?.(true)}>
+                    {section.buttonText}
+                  </button>
+                )}
               </div>
             )}
           </div>
@@ -458,9 +466,13 @@ const OfferSlugPage = ({ params }: { params: { slug: string } }) => {
 
   if (loading) {
     return (
-      <div className="auto-container">
-        <div className="text-center py-5">
-          <p>Laden...</p>
+      <div className="min-vh-100 d-flex align-items-center justify-content-center">
+        <div className="text-center">
+          <div className="spinner-border text-primary mb-3" style={{ width: "3rem", height: "3rem" }} role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          
+          <p className="text-muted">Bitte warten Sie einen Moment</p>
         </div>
       </div>
     );
@@ -491,9 +503,11 @@ const OfferSlugPage = ({ params }: { params: { slug: string } }) => {
           <div className="flex-grow-1">
             <h2 className="text-right fw-bold mb-2" style={{ color: "#1a2a6c" }}>{offer.title}</h2>
             <h4 className="text-right mb-3" style={{ color: "#4f8a8b" }}>{offer.subtitle}</h4>
-            <div className="mt-3 text-right">
-              {offer.description ? <div dangerouslySetInnerHTML={{ __html: offer.description }} /> : <p>Description coming soon...</p>}
-            </div>
+            {offer.description && (
+              <div className="mt-3 text-right">
+                <div dangerouslySetInnerHTML={{ __html: offer.description }} />
+              </div>
+            )}
             {offer.hasButton && offer.buttonText && (
               <div className="d-none gap-3 mt-4">
                 <a className={`btn ${offer.buttonStyle === "primary" ? "btn-main" : "btn-secondary"} px-4 py-2 fw-bold mb-2`} href={offer.buttonUrl}>
@@ -513,7 +527,7 @@ const OfferSlugPage = ({ params }: { params: { slug: string } }) => {
           case BLOCK_NAMES.SESSION_AB:
             return <SessionAbSection key={i} section={section} sectionIndex={i} />;
           default:
-            return <DefaultSection key={i} section={section} sectionIndex={i} />;
+            return <DefaultSection key={i} section={section} sectionIndex={i} setBookingOpen={setBookingOpen} />;
         }
       })}
 
