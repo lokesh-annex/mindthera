@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
-import ReCAPTCHA from "react-google-recaptcha";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 // API endpoint
 const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/forms/68d52ff11b1e3f12d34e1328?depth=2&draft=false&locale=undefined&trash=false`;
@@ -28,7 +28,8 @@ interface FormData {
   id: string;
 }
 
-const ContactFormFields = () => {
+// Internal component that uses reCAPTCHA v3
+const ContactFormFieldsInternal = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -38,7 +39,8 @@ const ContactFormFields = () => {
   const [initialValues, setInitialValues] = useState<{[key: string]: string}>({});
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const fetchFormData = useCallback(async () => {
     try {
@@ -93,23 +95,8 @@ const ContactFormFields = () => {
         schemaFields[staticFieldName] = fieldSchema;
       });
       
-      // Add reCAPTCHA validation only if enabled
-      const isRecaptchaEnabled = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && 
-                                process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY !== 'your_recaptcha_site_key_here';
-      
-      if (isRecaptchaEnabled) {
-        schemaFields.recaptcha = Yup.string().test(
-          'recaptcha-required',
-          'Bitte bestätigen Sie, dass Sie kein Roboter sind.',
-          function(value) {
-            // Only validate if user has attempted to submit
-            if (!hasAttemptedSubmit) return true;
-            return !!value;
-          }
-        );
-      } else {
-        schemaFields.recaptcha = Yup.string(); // Optional validation for dev mode
-      }
+      // reCAPTCHA v3 validation - always optional since it's automatic
+      schemaFields.recaptcha = Yup.string(); // No validation needed for v3
       initialVals.recaptcha = '';
       
       setInitialValues(initialVals);
@@ -127,15 +114,16 @@ const ContactFormFields = () => {
     setMessage(null);
     setLoading(true);
     
-    // Validate reCAPTCHA - only if enabled (not in development mode)
-    const isRecaptchaEnabled = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && 
-                              process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY !== '';
-    
-    if (isRecaptchaEnabled && !recaptchaToken) {
-      setFieldError('recaptcha', 'Bitte bestätigen Sie, dass Sie kein Roboter sind.');
-      setLoading(false);
-      setSubmitting(false);
-      return;
+    // Execute reCAPTCHA v3 - automatic execution
+    let recaptchaTokenV3 = null;
+    if (executeRecaptcha) {
+      try {
+        recaptchaTokenV3 = await executeRecaptcha('form_submit');
+        console.log('reCAPTCHA v3 token generated successfully');
+      } catch (error) {
+        console.warn('reCAPTCHA v3 failed, proceeding without token:', error);
+        // Don't block form submission for reCAPTCHA v3 failures
+      }
     }
     
     try {
@@ -161,7 +149,7 @@ const ContactFormFields = () => {
       const submissionPayload = {
         form: "68d52ff11b1e3f12d34e1328",
         submissionData: formattedSubmissionData,
-        ...(recaptchaToken && { recaptchaToken: recaptchaToken })
+        ...(recaptchaTokenV3 && { recaptchaToken: recaptchaTokenV3 })
       };
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/form-submissions`, {
@@ -186,10 +174,7 @@ const ContactFormFields = () => {
         // Reset form to initial values
         resetForm();
         
-        // Reset reCAPTCHA
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-        }
+        // Reset form state
         setRecaptchaToken(null);
         setFieldValue('recaptcha', '');
         
@@ -198,19 +183,13 @@ const ContactFormFields = () => {
         }, 5000);
       } else {
         setMessage(responseData.message || "Fehler beim Senden der Nachricht.");
-        // Reset reCAPTCHA on error
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-        }
+        // Reset form state on error
         setRecaptchaToken(null);
         setFieldValue('recaptcha', '');
       }
     } catch (err) {
       setMessage("Serverfehler. Bitte versuchen Sie es später erneut.");
-      // Reset reCAPTCHA on error
-      if (recaptchaRef.current) {
-        recaptchaRef.current.reset();
-      }
+      // Reset form state on error
       setRecaptchaToken(null);
       setFieldValue('recaptcha', '');
     }
@@ -328,35 +307,14 @@ const ContactFormFields = () => {
             >
               {formData?.fields?.map((field, index) => renderFormikField(field, index))}
               
-              {/* reCAPTCHA Component - Only show in production or when site key is valid */}
+              {/* reCAPTCHA v3 - Invisible protection */}
               {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && 
-               process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY !== '' ? (
+               process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY !== '' && executeRecaptcha ? (
                 <div className="field-set mb-3 position-relative">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                    onChange={(token) => {
-                      setRecaptchaToken(token);
-                      // Update Formik field value
-                      setFieldValue('recaptcha', token || '');
-                      if (token) {
-                        // Clear any existing reCAPTCHA error when user completes it
-                        setFieldError('recaptcha', '');
-                      }
-                    }}
-                    onExpired={() => {
-                      setRecaptchaToken(null);
-                      setFieldValue('recaptcha', '');
-                      setFieldError('recaptcha', 'reCAPTCHA ist abgelaufen. Bitte erneut bestätigen.');
-                    }}
-                    onErrored={() => {
-                      console.error('reCAPTCHA error - Invalid site key or domain mismatch');
-                      setRecaptchaToken(null);
-                      setFieldValue('recaptcha', '');
-                      setFieldError('recaptcha', 'reCAPTCHA Fehler. Bitte Seite neu laden.');
-                    }}
-                    theme="light"
-                  />
+                  <div className="alert alert-success small">
+                    <i className="bi bi-shield-check me-2"></i>
+                    reCAPTCHA v3 ist aktiv - Formulare werden automatisch geschützt
+                  </div>
                   <Field name="recaptcha" type="hidden" value={recaptchaToken || ''} />
                   <ErrorMessage name="recaptcha" component="div" className="text-danger small mt-1" />
                 </div>
@@ -374,18 +332,10 @@ const ContactFormFields = () => {
                   type="submit" 
                   id="send_message" 
                   className="btn-main" 
-                
+                  disabled={loading || isSubmitting}
                 >
                   {loading || isSubmitting ? "Wird gesendet..." : (formData?.submitButtonLabel || "Schicke Deine Nachricht")}
                 </button>
-                {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && 
-                 process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY !== '' && 
-                 !recaptchaToken && !loading && !isSubmitting && (
-                  <div className="text-danger small mt-2">
-                    <i className="bi bi-exclamation-circle me-1"></i>
-                    Bitte bestätigen Sie das reCAPTCHA, um fortzufahren.
-                  </div>
-                )}
               </div>
             </Form>
           )}
@@ -431,6 +381,15 @@ const ContactFormFields = () => {
         </Modal.Body>
       </Modal>
     </div>
+  );
+};
+
+// Main component with reCAPTCHA v3 provider
+const ContactFormFields = () => {
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}>
+      <ContactFormFieldsInternal />
+    </GoogleReCaptchaProvider>
   );
 };
 
